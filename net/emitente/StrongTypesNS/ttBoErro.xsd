@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ttBoErroDataSet" targetNamespace="ttBoErroNS" xmlns:mstns="ttBoErroNS" xmlns="ttBoErroNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="ttBoErroDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ttBoErro">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="i-sequen" type="xs:int" minOccurs="0" />
+              <xs:element name="cd-erro" type="xs:int" minOccurs="0" />
+              <xs:element name="mensagem" type="xs:string" minOccurs="0" />
+              <xs:element name="parametros" type="xs:string" minOccurs="0" />
+              <xs:element name="errortype" type="xs:string" minOccurs="0" />
+              <xs:element name="errorhelp" type="xs:string" minOccurs="0" />
+              <xs:element name="errorsubtype" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

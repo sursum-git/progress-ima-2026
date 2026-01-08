@@ -1,0 +1,28 @@
+-mmax 2048
+-s 200
+-TB 24
+-TM 24
+-d dmy
+-E
+-Bt 2048
+-Mm 8192
+-cpstream ibm850
+-cpterm iso8859-1
+-inp 32000
+-h 50
+-b 
+-T /home/sum
+
+# Bancos de Producao EMS
+-db /apl/ems204/database/ems204cad -ld mgcad 
+-db /apl/ems204/database/ems204mov -ld mgmov 
+-db /apl/ems204/database/ems204esp -ld espec 
+
+# Bancos de Producao HCM
+-db /apl/hcm210/database/hcm210 -ld hcm210
+
+# Bancos de Teste EMS
+-db /apl/ems204/databaseTST/ems204cad -ld mgcadTST
+-db /apl/ems204/databaseTST/ems204mov -ld mgmovTST
+-db /apl/ems204/databaseTST/ems204esp -ld especTST
+

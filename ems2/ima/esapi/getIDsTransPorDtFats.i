@@ -1,0 +1,6 @@
+DEFINE TEMP-TABLE {1} NO-UNDO
+    FIELD id   AS INT64
+    FIELD data AS DATE
+    INDEX primario IS PRIMARY id .
+
+

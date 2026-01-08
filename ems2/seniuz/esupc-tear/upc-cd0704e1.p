@@ -1,0 +1,12 @@
+DEFINE NEW GLOBAL SHARED VAR h-endereco     AS HANDLE.
+DEFINE NEW GLOBAL SHARED VAR h-cep          AS HANDLE.
+
+DEFINE NEW GLOBAL SHARED VAR h-natureza  AS HANDLE.
+DEFINE NEW GLOBAL SHARED VAR h-atividade    AS HANDLE.
+
+IF h-natureza:SCREEN-VALUE <> "Estrangeiro" AND
+   NOT h-atividade:SCREEN-VALUE BEGINS "EXP" AND
+   h-endereco:SCREEN-VALUE = "" THEN DO.
+   APPLY "entry" TO h-cep.
+   RETURN NO-APPLY.
+END.

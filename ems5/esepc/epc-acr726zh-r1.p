@@ -1,0 +1,16 @@
+DEF INPUT PARAMETER h-query AS HANDLE.
+DEF INPUT PARAMETER h-calc-col AS WIDGET-HANDLE.
+
+DEF VAR h-buffer AS HANDLE.
+DEF VAR h-moeda AS HANDLE.
+
+ASSIGN h-buffer = h-query:GET-BUFFER-HANDLE(1).
+
+ASSIGN h-moeda = h-buffer:BUFFER-FIELD(8).
+
+/*ASSIGN h-moeda:HIDDEN = YES.*/
+
+ASSIGN h-calc-col:SCREEN-VALUE = h-buffer:BUFFER-FIELD(18):BUFFER-VALUE.
+
+
+

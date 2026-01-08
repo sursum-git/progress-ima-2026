@@ -1,0 +1,174 @@
+ADD TABLE "dt-controle-nsu"
+  AREA "Schema Area"
+  LABEL "Controle NSU Documentos"
+  DESCRIPTION "Controle do NSU dos Documentos da Empresa"
+  DUMP-NAME "dt-controle-nsu"
+
+ADD FIELD "cod-estabel" OF "dt-controle-nsu" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "num-nsu-doc" OF "dt-controle-nsu" AS int64 
+  DESCRIPTION "N£mero NSU do Documento na SEFAZ"
+  FORMAT ">>>>>>>>>>>>>>9"
+  INITIAL "0"
+  LABEL "Nr NSU"
+  POSITION 3
+  MAX-WIDTH 8
+  COLUMN-LABEL "Nr NSU"
+  HELP "N£mero NSU do Documento na SEFAZ"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "int-2" OF "dt-controle-nsu" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "int-1" OF "dt-controle-nsu" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "dec-1" OF "dt-controle-nsu" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "dec-2" OF "dt-controle-nsu" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "log-1" OF "dt-controle-nsu" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 8
+  MAX-WIDTH 1
+  ORDER 70
+
+ADD FIELD "log-2" OF "dt-controle-nsu" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "char-1" OF "dt-controle-nsu" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 10
+  MAX-WIDTH 512
+  ORDER 90
+
+ADD FIELD "char-2" OF "dt-controle-nsu" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "date-1" OF "dt-controle-nsu" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 12
+  MAX-WIDTH 4
+  ORDER 110
+
+ADD FIELD "date-2" OF "dt-controle-nsu" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD INDEX "idx-nsu-empresa" ON "dt-controle-nsu" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "num-nsu-doc" ASCENDING 
+
+ADD FIELD "num-nsu-doc" OF "dt-docum-est" AS int64
+  DESCRIPTION "N£mero NSU do Documento na SEFAZ"
+  FORMAT ">>>>>>>>>>>>>>9"
+  POSITION 61
+  INITIAL "0"
+  HELP "N£mero NSU do Documento na SEFAZ"
+  LABEL "Nr NSU"
+  COLUMN-LABEL "Nr NSU"
+  ORDER 590
+  MAX-WIDTH 8
+
+ADD INDEX "idx-num-nsu" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "num-nsu-doc" ASCENDING
+
+ADD FIELD "ambiente-destinadas" OF "dt-empresa" AS integer
+  DESCRIPTION "1 - Consulta Destinadas
+2 - DF-e de Interesse"
+  FORMAT "9"
+  POSITION 40
+  INITIAL "0"
+  LABEL "Ambiente Destinada"
+  COLUMN-LABEL "Ambiente Destinada"
+  VIEW-AS "VIEW-AS COMBO-BOX
+   LIST-ITEM-PAIRS ""Consulta Destinadas"",1,
+""DF-e de Interesse"",2"
+  ORDER 830
+  MAX-WIDTH 4
+
+ADD FIELD "log-ncm-fornec" OF "dt-empresa" AS logical
+  DESCRIPTION "Usar NCM Fornecedor no momento da entrada do documento"
+  FORMAT "Sim/N∆o"
+  POSITION 41
+  INITIAL "N∆o"
+  HELP "Usar NCM Fornecedor no momento da entrada do documento"
+  LABEL "Usa NCM Fornecedor"
+  COLUMN-LABEL "Usa NCM Fornecedor"
+  ORDER 840
+  MAX-WIDTH 1
+
+ADD FIELD "log-bloqueio-ncm" OF "dt-empresa" AS logical
+  DESCRIPTION "Bloqueia NCM n∆o cadastrado ou em branco"
+  FORMAT "Sim/N∆o"
+  POSITION 42
+  INITIAL "N∆o"
+  HELP "Bloqueia NCM n∆o cadastrado ou em branco"
+  LABEL "Bloqueia NCM"
+  COLUMN-LABEL "Bloqueia NCM"
+  ORDER 850
+  MAX-WIDTH 1
+
+ADD FIELD "class-fiscal-orig" OF "dt-it-docum-est" AS character
+  DESCRIPTION "Classificaá∆o Fiscal Original do Fornecedor"
+  FORMAT "9999.99.99"
+  POSITION 55
+  INITIAL ""
+  HELP "Classificaá∆o Fiscal Original do Fornecedor"
+  LABEL "Classificaá∆o Fiscal Fornec"
+  COLUMN-LABEL "Class Fisc Fornec"
+  ORDER 550
+  MAX-WIDTH 20
+
+.
+PSC
+cpstream=ibm850
+.
+0000003928

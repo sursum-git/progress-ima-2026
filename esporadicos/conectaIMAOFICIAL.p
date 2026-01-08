@@ -1,0 +1,2 @@
+IF NOT CONNECTED("ems5ima") THEN
+   CONNECT -db ems5 -ld ems5ima -H 192.168.0.44 -S 10032 NO-ERROR. 

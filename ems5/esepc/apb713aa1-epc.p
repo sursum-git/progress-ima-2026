@@ -1,0 +1,10 @@
+DEFINE  NEW GLOBAL SHARED VARIABLE  wh-bt-sair       AS WIDGET-HANDLE.
+DEF NEW GLOBAL SHARED VAR lAprovador AS LOGICAL NO-UNDO.
+DEFINE VARIABLE h_esbofin328a AS HANDLE      NO-UNDO.
+/*MESSAGE 'apb713aa1 - sair'
+    VIEW-AS ALERT-BOX INFO BUTTONS OK.*/
+RUN esbo/esbofin328a.p PERSISTENT SET h_esbofin328a.
+RUN modificarPermissaoAPB IN h_esbofin328a (lAprovador).
+IF VALID-HANDLE(h_esbofin328a) THEN
+   DELETE PROCEDURE h_esbofin328a.
+APPLY 'CLOSE' TO wh-bt-sair .

@@ -1,0 +1,461 @@
+ADD TABLE "dt-rat-lote"
+  AREA "Schema Area"
+  LABEL "Rateio Receb XML Loader"
+  DESCRIPTION "Rateio do Recebimento entre Diversos Lotes - Loader"
+  DUMP-NAME "in367"
+
+ADD FIELD "cod-lote-fabrican" OF "dt-rat-lote" AS character 
+  DESCRIPTION "Código Lote Fabricante"
+  FORMAT "x(40)"
+  INITIAL ""
+  LABEL "Lote Fabricante"
+  POSITION 2
+  MAX-WIDTH 20
+  COLUMN-LABEL "Lote Fabricante"
+  HELP "Código Lote Fabricante"
+  ORDER 0
+
+ADD FIELD "cod-emitente" OF "dt-rat-lote" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Emitente"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emit"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "serie-docto" OF "dt-rat-lote" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Série"
+  POSITION 4
+  MAX-WIDTH 10
+  COLUMN-LABEL "Ser"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-rat-lote" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Documento"
+  POSITION 5
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "cod-depos" OF "dt-rat-lote" AS character 
+  FORMAT "x(3)"
+  INITIAL ""
+  LABEL "Deposito"
+  POSITION 6
+  MAX-WIDTH 6
+  COLUMN-LABEL "Dep"
+  ORDER 40
+  MANDATORY
+
+ADD FIELD "lote" OF "dt-rat-lote" AS character 
+  FORMAT "x(40)"
+  INITIAL ""
+  LABEL "Lote/Série"
+  POSITION 7
+  MAX-WIDTH 20
+  COLUMN-LABEL "Lote/Série"
+  HELP "Lote ou numero de serie"
+  ORDER 50
+  MANDATORY
+
+ADD FIELD "nat-operacao" OF "dt-rat-lote" AS character 
+  FORMAT "x(06)"
+  INITIAL ""
+  LABEL "Nat Operação"
+  POSITION 8
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper"
+  ORDER 60
+  MANDATORY
+
+ADD FIELD "dt-vali-lote" OF "dt-rat-lote" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Validade Lote"
+  POSITION 9
+  MAX-WIDTH 4
+  COLUMN-LABEL "Valid Lote"
+  ORDER 70
+
+ADD FIELD "quantidade" OF "dt-rat-lote" AS decimal 
+  FORMAT ">>>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qtde"
+  POSITION 10
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qtde"
+  DECIMALS 4
+  ORDER 80
+  MANDATORY
+
+ADD FIELD "sequencia" OF "dt-rat-lote" AS integer 
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Seq"
+  POSITION 11
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq"
+  ORDER 90
+  MANDATORY
+
+ADD FIELD "it-codigo" OF "dt-rat-lote" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item"
+  POSITION 12
+  MAX-WIDTH 32
+  COLUMN-LABEL "Item"
+  ORDER 110
+  MANDATORY
+
+ADD FIELD "nr-ficha" OF "dt-rat-lote" AS integer 
+  FORMAT ">>>>,>>9"
+  INITIAL "0"
+  LABEL "Ficha CQ"
+  POSITION 13
+  MAX-WIDTH 4
+  COLUMN-LABEL "Ficha CQ"
+  HELP "E o numero do Roteiro de Inspeção"
+  ORDER 120
+  MANDATORY
+
+ADD FIELD "cod-localiz" OF "dt-rat-lote" AS character 
+  DESCRIPTION "Código da localização do material"
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Localização"
+  POSITION 14
+  MAX-WIDTH 20
+  COLUMN-LABEL "Localiz"
+  ORDER 200
+
+ADD FIELD "char-1" OF "dt-rat-lote" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  POSITION 15
+  MAX-WIDTH 200
+  ORDER 210
+
+ADD FIELD "char-2" OF "dt-rat-lote" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  POSITION 16
+  MAX-WIDTH 200
+  ORDER 220
+
+ADD FIELD "dec-1" OF "dt-rat-lote" AS decimal 
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  POSITION 17
+  MAX-WIDTH 23
+  DECIMALS 8
+  ORDER 230
+
+ADD FIELD "dec-2" OF "dt-rat-lote" AS decimal 
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  POSITION 18
+  MAX-WIDTH 23
+  DECIMALS 8
+  ORDER 240
+
+ADD FIELD "int-1" OF "dt-rat-lote" AS integer 
+  FORMAT "->>>>>>>>>9"
+  INITIAL "0"
+  POSITION 19
+  MAX-WIDTH 4
+  ORDER 250
+
+ADD FIELD "int-2" OF "dt-rat-lote" AS integer 
+  FORMAT "->>>>>>>>>9"
+  INITIAL "0"
+  POSITION 20
+  MAX-WIDTH 4
+  ORDER 260
+
+ADD FIELD "log-1" OF "dt-rat-lote" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  POSITION 21
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  ORDER 270
+
+ADD FIELD "log-2" OF "dt-rat-lote" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  POSITION 22
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  ORDER 280
+
+ADD FIELD "data-1" OF "dt-rat-lote" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 23
+  MAX-WIDTH 4
+  ORDER 290
+
+ADD FIELD "data-2" OF "dt-rat-lote" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 24
+  MAX-WIDTH 4
+  ORDER 300
+
+ADD FIELD "check-sum" OF "dt-rat-lote" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Check-sum"
+  POSITION 25
+  MAX-WIDTH 40
+  ORDER 310
+
+ADD FIELD "tipo-nota" OF "dt-rat-lote" AS integer 
+  FORMAT ">9"
+  INITIAL "1"
+  LABEL "Tipo Nota"
+  POSITION 26
+  MAX-WIDTH 4
+  VIEW-AS "view-as radio-set horizontal radio-buttons {ininc/i01in089.i 02}"
+  COLUMN-LABEL "Tp Nota"
+  HELP "Tipo de Nota Fiscal"
+  ORDER 320
+  MANDATORY
+
+ADD FIELD "vl-movto" OF "dt-rat-lote" AS decimal 
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor Movimento"
+  POSITION 27
+  MAX-WIDTH 17
+  COLUMN-LABEL "Vl Movto"
+  HELP "Valor do Movimento"
+  DECIMALS 2
+  ORDER 330
+
+ADD FIELD "cod-refer" OF "dt-rat-lote" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Referência"
+  POSITION 28
+  MAX-WIDTH 16
+  COLUMN-LABEL "Ref"
+  ORDER 340
+  MANDATORY
+
+ADD FIELD "num-seq-rma-dep" OF "dt-rat-lote" AS integer 
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Seq RMA DEP"
+  POSITION 29
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq RMA DEP"
+  ORDER 350
+
+ADD FIELD "num-seq-rma-dep-mov" OF "dt-rat-lote" AS integer 
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Mov RMA"
+  POSITION 30
+  MAX-WIDTH 4
+  COLUMN-LABEL "Mov RMA"
+  ORDER 360
+
+ADD FIELD "per-ppm" OF "dt-rat-lote" AS decimal 
+  FORMAT ">>>>,>>9.9999"
+  INITIAL "0"
+  POSITION 31
+  MAX-WIDTH 19
+  DECIMALS 4
+  ORDER 370
+
+ADD FIELD "qtd-origin" OF "dt-rat-lote" AS decimal 
+  FORMAT ">>>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Quantidade Original"
+  POSITION 32
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qtd Orig"
+  HELP "Quantidade Antes da Contagem"
+  DECIMALS 4
+  ORDER 380
+
+ADD FIELD "cod-barras" OF "dt-rat-lote" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Barras"
+  POSITION 33
+  MAX-WIDTH 100
+  COLUMN-LABEL "Barras"
+  HELP "Código Barras"
+  ORDER 390
+
+ADD FIELD "dat-valid-lote-fabrican" OF "dt-rat-lote" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Validade Lote Fabricante"
+  POSITION 34
+  MAX-WIDTH 4
+  COLUMN-LABEL "Validade Lote Fabric"
+  HELP "Data Validade Lote Fabricante"
+  ORDER 400
+
+ADD FIELD "dat-fabricc-lote" OF "dt-rat-lote" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Fabricação"
+  POSITION 35
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Fabric"
+  HELP "Data de fabricação"
+  ORDER 410
+
+ADD FIELD "nom-fabrican" OF "dt-rat-lote" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Fabricante"
+  POSITION 36
+  MAX-WIDTH 120
+  COLUMN-LABEL "Fabricante"
+  HELP "Nome Fabricante"
+  ORDER 420
+
+ADD FIELD "cod-lote-orig" OF "dt-rat-lote" AS character 
+  DESCRIPTION "Lote Original"
+  FORMAT "x(40)"
+  INITIAL ""
+  LABEL "Lote Original"
+  POSITION 37
+  MAX-WIDTH 20
+  COLUMN-LABEL "Lote Orig"
+  HELP "Lote Original"
+  ORDER 430
+
+ADD FIELD "qtd-embal-cq" OF "dt-rat-lote" AS decimal 
+  DESCRIPTION "Quantidade de Embalagens CQ"
+  FORMAT ">>>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qtde Embalagens CQ"
+  POSITION 38
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qtde Embalagens CQ"
+  HELP "Quantidade de Embalagens CQ"
+  DECIMALS 4
+  ORDER 440
+
+ADD FIELD "item-ems" OF "dt-rat-lote" AS character 
+  DESCRIPTION "Item EMS"
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item EMS"
+  POSITION 39
+  MAX-WIDTH 32
+  COLUMN-LABEL "Item EMS"
+  ORDER 450
+
+ADD FIELD "qt-do-forn" OF "dt-rat-lote" AS decimal 
+  FORMAT ">>>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qt Fornecedor"
+  POSITION 40
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qt Fornecedor"
+  DECIMALS 4
+  ORDER 460
+
+ADD INDEX "documento" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "ratlote-02" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  INDEX-FIELD "it-codigo" ASCENDING 
+
+ADD INDEX "ratlote-03" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "it-codigo" ASCENDING 
+  INDEX-FIELD "lote" ASCENDING 
+
+ADD INDEX "ratlote-04" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "lote" ASCENDING 
+
+ADD INDEX "ratlote-05" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+
+ADD INDEX "ratlote-06" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "ratlote-07" ON "dt-rat-lote" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "lote" ASCENDING 
+
+UPDATE FIELD "log-qt-manual" OF "dt-empresa"
+  INITIAL "Não"
+
+ADD FIELD "cod-localiz-dev" OF "dt-empresa" AS character
+  DESCRIPTION "Localizacao Devolução"
+  FORMAT "x(10)"
+  POSITION 50
+  INITIAL ""
+  LABEL "Localiz Devolução"
+  COLUMN-LABEL "Localizacao Devolução"
+  ORDER 930
+  MAX-WIDTH 20
+
+ADD FIELD "log-cst-fornec" OF "dt-empresa" AS logical
+  DESCRIPTION "Utiliza CST do Fornecedor quando divergente"
+  FORMAT "Sim/Não"
+  POSITION 51
+  INITIAL "Não"
+  HELP "Utiliza CST do Fornecedor quando divergente"
+  LABEL "CST Fornec"
+  COLUMN-LABEL "CST Fornec"
+  VIEW-AS "VIEW-AS TOGGLE-BOX tooltip ""Utiliza CST do Fornecedor quando divergente"""
+  ORDER 940
+  MAX-WIDTH 1
+
+UPDATE FIELD "it-codigo" OF "dt-it-docum-est"
+  FORMAT "x(60)"
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000010264

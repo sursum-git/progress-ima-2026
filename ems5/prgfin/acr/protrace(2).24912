@@ -1,0 +1,96 @@
+=====================================================
+PROGRESS stack trace as of Mon Oct 27 09:10:01 2014
+=====================================================
+Startup parameters:
+-pf K:\startup.pf,-cpinternal ISO8859-1,-cpstream ISO8859-1,-cpcoll Basic,-cpcase Basic,-d dmy,-numsep 46,-numdec 44,(end .pf),-pf T:\scripts-8180\datasul.pf,-mmax 8192,-l 10248,-s 1024,-TB 31,-TM 32,-d dmy,-Bt 10248,-tmpbsize 8,-Mr 512,-Mm 8192,-cpstream ibm850,-cpterm iso8859-1,-inp 32000,-h 50,-numsep 46,-numdec 44,-T c:\temp,-db emsfnd,-ld emsfnd,-S 20010,-H 192.168.0.44,-N tcp,(end .pf),-ininame T:\scripts-8180\datasul-cli.ini,-p T:\scripts-8180\datasul-alias.p,-param ,,51024,super,Lm+bDViFtgEPkWd4dEVhf1U6c18=,1,,DI,8180,10HdN02CYN2qXASy7aQbag**,192.168.0.38,Datasul,false,false,null
+
+Exception code: C0000005 ACCESS_VIOLATION
+Fault address:  60AF163B 01:0000063B C:\Windows\SysWOW64\FunDisc.dll
+
+Registers:
+EAX:028619E8
+EBX:00000000
+ECX:60AF2F4C
+EDX:0E5AFB90
+ESI:00000000
+EDI:00000000
+CS:EIP:0023:60AF163B
+SS:ESP:002B:0E5AF1A0  EBP:0E5AF224
+DS:002B  ES:002B  FS:0053  GS:002B
+Flags:00010206
+
+Call Stack:
+Address   Frame
+60AF163B  00000000  0001:0000063B C:\Windows\SysWOW64\FunDisc.dll
+76898CA6  00000000  CoInitializeSecurity+1A4D
+768B3170  00000000  CoSetState+A6B
+76898DCA  00000000  CoInitializeSecurity+1B71
+76898D3F  00000000  CoInitializeSecurity+1AE6
+76898AC2  00000000  CoInitializeSecurity+1869
+76898A73  00000000  CoInitializeSecurity+181A
+76898E2D  00000000  CoInitializeSecurity+1BD4
+768B3170  00000000  CoSetState+A6B
+768B2EF4  00000000  CoSetState+7EF
+768B3170  00000000  CoSetState+A6B
+768B3098  00000000  CoSetState+993
+768B9E25  00000000  CoCreateInstanceEx+D7
+768B9D86  00000000  CoCreateInstanceEx+38
+768B9D3F  00000000  CoCreateInstance+34
+6BFF305E  00000000  0001:0000205E C:\Windows\system32\NetworkItemFactory.dll
+6BFF3144  00000000  0001:00002144 C:\Windows\system32\NetworkItemFactory.dll
+756843C0  00000000  IUnknown_QueryService+15A
+754D336A  00000000  BaseThreadInitThunk+12
+77749F72  00000000  RtlInitializeExceptionChain+63
+77749F45  00000000  RtlInitializeExceptionChain+36
+
+
+** ABL Stack Trace **
+
+--> pi_system_dialog_get_file men/men702dc.w (T:\fnd\men\men702dc.r) at line 2123
+    USER-INTERFACE-TRIGGER men/men702dc.w (T:\fnd\men\men702dc.r) at line 1338
+    men/men702dc.w (T:\fnd\men\men702dc.r) at line 2096
+    executeProgram men/men906za.p (T:\fnd\men\men906za.r) at line 1868
+    protocolBroker men/men906za.p (T:\fnd\men\men906za.r) at line 2475
+    readProcedure men/men906za.p (T:\fnd\men\men906za.r) at line 2542
+    men/men906za.p (T:\fnd\men\men906za.r) at line 1499
+    T:\scripts-8180\datasul-alias.p (T:\scripts-8180\datasul-alias.p) at line 70
+
+** Persistent procedures/Classes **
+
+Handle  File Name
+001151  T:\fnd\men\men702dc.r
+001067  T:\hcm\prghur\fpp\fp9200.r
+001051  T:\fnd\btb\btb920aa.r
+001048  T:\fnd\btb\btb906zb.r
+001047  T:\fnd\prgtec\btb\btb901zo.r
+001005  T:\fnd\utp\ut-func.r
+001004  T:\fnd\utp\ut-win.r
+001002  T:\fnd\btb\btb901zo.r
+001000  T:\fnd\utp\ut-globalsession.r
+
+//=====================================================
+PROGRESS stack trace as of Mon Oct 27 09:10:02 2014
+//=====================================================
+Exception code: C0000005 ACCESS_VIOLATION
+Fault address:  60AF163B 01:0000063B C:\Windows\SysWOW64\FunDisc.dll
+
+Registers:
+EAX:028619E8
+EBX:00000000
+ECX:60AF2F4C
+EDX:0E5AFB90
+ESI:00000000
+EDI:00000000
+CS:EIP:0023:60AF163B
+SS:ESP:002B:0E5AFFDC  EBP:0E5AF224
+DS:002B  ES:002B  FS:0053  GS:002B
+Flags:00010206
+
+Call Stack:
+Address   Frame
+60AF163B  0E5AFFD8  0001:0000063B C:\Windows\SysWOW64\FunDisc.dll
+756842ED  0E5AFFDC  IUnknown_QueryService+87
+0D6CFB9C  0E5AFFE0  0000:00000000 
+FFFFFFFF  0E5AFFE4  0000:00000000 
+777D7428  0E5AFFE8  RtlRemoteCall+249
+

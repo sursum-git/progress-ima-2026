@@ -1,0 +1,47 @@
+UPDATE TABLE "dt-dados-motorista"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts012.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts012.p" CRC "?"
+
+UPDATE TABLE "dt-doc-refer-compl"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts003.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts003.p" CRC "?"
+
+UPDATE TABLE "dt-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts001.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts001.p" CRC "?"
+UPDATE TABLE "dt-duplic-nfe"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts004.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts004.p" CRC "?"
+UPDATE TABLE "dt-it-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts002.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts002.p" CRC "?"
+
+UPDATE TABLE "dt-manifest-documento"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts005.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts005.p" CRC "?"
+
+UPDATE TABLE "dt-monitor-eventos"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts006.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts006.p" CRC "?"
+
+UPDATE TABLE "dt-notas-destinadas"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts007.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts007.p" CRC "?"
+
+UPDATE TABLE "dt-ocorrencia-painel"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts008.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts008.p" CRC "?"
+
+UPDATE TABLE "dt-rat-docum"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts009.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts009.p" CRC "?"
+
+UPDATE TABLE "dt-rat-lote"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts010.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts010.p" CRC "?"
+
+UPDATE TABLE "dt-rat-ordem-compra"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts011.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts011.p" CRC "?"
+
+

@@ -1,0 +1,99 @@
+=====================================================
+PROGRESS stack trace as of Mon Nov 03 09:07:32 2014
+=====================================================
+Startup parameters:
+-pf K:\startup.pf,-cpinternal ISO8859-1,-cpstream ISO8859-1,-cpcoll Basic,-cpcase Basic,-d dmy,-numsep 46,-numdec 44,(end .pf),-pf T:\scripts-8080\datasul.pf,-mmax 8192,-l 10248,-s 1024,-TB 31,-TM 32,-d dmy,-Bt 10248,-tmpbsize 8,-Mr 512,-Mm 8192,-cpstream ibm850,-cpterm iso8859-1,-inp 32000,-h 50,-numsep 46,-numdec 44,-T c:\temp,-db emsfnd,-ld emsfnd,-S 10010,-H 192.168.0.44,-N tcp,(end .pf),-ininame T:\scripts-8080\datasul-cli.ini,-p T:\scripts-8080\datasul-alias.p,-param ,,49296,super,41GndTXnyIWTQueVspBpZVt2MCo=,1,,DI,8080,r3Z4SVhTGwwFtTM8sJXwww**,192.168.0.38,datasul,false,false,null
+
+Exception code: C0000005 ACCESS_VIOLATION
+Fault address:  65541F62 01:00000F62 C:\Windows\system32\dtsh.dll
+
+Registers:
+EAX:003EAD50
+EBX:00000000
+ECX:003EAD50
+EDX:0C0FFBEC
+ESI:0C0FFBE8
+EDI:0C0FF714
+CS:EIP:0023:65541F62
+SS:ESP:002B:0C0FF31C  EBP:0C0FF330
+DS:002B  ES:002B  FS:0053  GS:002B
+Flags:00010206
+
+Call Stack:
+Address   Frame
+65541F62  00000000  0001:00000F62 C:\Windows\system32\dtsh.dll
+655421F7  00000000  0001:000011F7 C:\Windows\system32\dtsh.dll
+65542213  00000000  0001:00001213 C:\Windows\system32\dtsh.dll
+75479EAB  00000000  CoInitializeSecurity+2C52
+754930E4  00000000  CoSetState+9DF
+75499E25  00000000  CoCreateInstanceEx+D7
+75499D86  00000000  CoCreateInstanceEx+38
+75499D3F  00000000  CoCreateInstance+34
+65553179  00000000  0001:00002179 C:\Windows\system32\NetworkItemFactory.dll
+655543BF  00000000  0001:000033BF C:\Windows\system32\NetworkItemFactory.dll
+65554517  00000000  0001:00003517 C:\Windows\system32\NetworkItemFactory.dll
+64D45501  00000000  DllGetClassObject+35C8
+76671E7C  00000000  SHCreateDefaultExtractIcon+5D93
+656B03A0  00000000  DllCanUnloadNow+206C2
+656908F6  00000000  DllCanUnloadNow+C18
+766A63BB  00000000  Ordinal767+433
+766A8C43  00000000  DAD_SetDragImage+732
+766A8D77  00000000  DAD_SetDragImage+866
+7655B2B1  00000000  PathBuildRootW+4C
+77879512  00000000  vsnprintf+181
+77864429  00000000  TpCallbackIndependent+7DC
+75DB336A  00000000  BaseThreadInitThunk+12
+77849F72  00000000  RtlInitializeExceptionChain+63
+77849F45  00000000  RtlInitializeExceptionChain+36
+
+
+** ABL Stack Trace **
+
+--> pi_system_dialog_get_file men/men702dc.w (T:\fnd\men\men702dc.r) at line 2123
+    USER-INTERFACE-TRIGGER men/men702dc.w (T:\fnd\men\men702dc.r) at line 1338
+    men/men702dc.w (T:\fnd\men\men702dc.r) at line 2096
+    executeProgram men/men906za.p (T:\fnd\men\men906za.r) at line 1868
+    protocolBroker men/men906za.p (T:\fnd\men\men906za.r) at line 2475
+    readProcedure men/men906za.p (T:\fnd\men\men906za.r) at line 2542
+    men/men906za.p (T:\fnd\men\men906za.r) at line 1499
+    T:\scripts-8080\datasul-alias.p (T:\scripts-8080\datasul-alias.r) at line 55
+
+** Persistent procedures/Classes **
+
+Handle  File Name
+001077  T:\fnd\men\men702dc.r
+001066  T:\hcm\prghur\fpp\fp9200.r
+001050  T:\fnd\btb\btb920aa.r
+001047  T:\fnd\btb\btb906zb.r
+001046  T:\fnd\prgtec\btb\btb901zo.r
+001005  T:\fnd\utp\ut-func.r
+001004  T:\fnd\utp\ut-win.r
+001002  T:\fnd\btb\btb901zo.r
+001000  T:\fnd\utp\ut-globalsession.r
+
+//=====================================================
+PROGRESS stack trace as of Mon Nov 03 09:07:33 2014
+//=====================================================
+Exception code: C0000005 ACCESS_VIOLATION
+Fault address:  65541F62 01:00000F62 C:\Windows\system32\dtsh.dll
+
+Registers:
+EAX:003EAD50
+EBX:00000000
+ECX:003EAD50
+EDX:0C0FFBEC
+ESI:0C0FFBE8
+EDI:0C0FF714
+CS:EIP:0023:65541F62
+SS:ESP:002B:0C0FFFDC  EBP:0C0FF330
+DS:002B  ES:002B  FS:0053  GS:002B
+Flags:00010206
+
+Call Stack:
+Address   Frame
+65541F62  0C0FFFD8  0001:00000F62 C:\Windows\system32\dtsh.dll
+77863E85  0C0FFFDC  TpCallbackIndependent+238
+008C9310  0C0FFFE0  0000:00000000 
+FFFFFFFF  0C0FFFE4  0000:00000000 
+778D7428  0C0FFFE8  RtlRemoteCall+249
+

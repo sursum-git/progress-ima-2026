@@ -1,0 +1,23 @@
+PROCEDURE deParaFormaPagtoERP:
+    DEFINE INPUT  PARAMETER cForma AS CHARACTER   NO-UNDO.
+    DEFINE OUTPUT PARAMETER iForma AS INTEGER NO-UNDO.
+    CASE cForma:
+       when 'normal' then do:
+         ASSIGN iForma = 1. 
+       end.
+       
+       when 'normal' then do:
+         ASSIGN iForma = 2. 
+       end.               
+
+       WHEN 'cartÆo de d‚bito' THEN DO:
+         ASSIGN iForma = 3.
+
+       END.
+       WHEN 'cartÆo de cr‚dito' THEN DO:
+         ASSIGN iForma = 4.
+
+       END.
+    END CASE.
+
+END PROCEDURE.

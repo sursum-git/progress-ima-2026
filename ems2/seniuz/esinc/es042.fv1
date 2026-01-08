@@ -1,0 +1,5 @@
+/* Include: es042.fv1
+** Tabela.: familia-ext
+*/
+
+can-find(mgind.familia where mgind.familia.fm-codigo = espec.familia-ext.fm-codigo)

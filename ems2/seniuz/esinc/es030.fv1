@@ -1,0 +1,5 @@
+/* Include: es030.fv1
+** Tabela.: teste-cgoma
+*/
+
+can-find(mgind.familia where mgind.familia.fm-codigo = espec.teste-cgoma.fm-codigo)

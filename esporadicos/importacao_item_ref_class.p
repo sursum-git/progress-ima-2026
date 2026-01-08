@@ -1,0 +1,16 @@
+DEFINE TEMP-TABLE tt
+    FIELD it_codigo AS CHAR FORMAT 'x(30)'
+    FIELD cod_refer AS CHAR
+    FIELD CLASS_id  AS INT EXTENT 5.
+INPUT FROM c:\temp\ITEM_ref_class.csv.
+REPEAT:
+    CREATE tt.
+    IMPORT DELIMITER ";" tt.
+END.
+
+INPUT CLOSE.
+
+FOR EACH tt:
+    DISP tt  WITH WIDTH 550.
+
+END.

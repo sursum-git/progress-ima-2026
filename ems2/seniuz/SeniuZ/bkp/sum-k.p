@@ -1,0 +1,8 @@
+DEF VAR i-ct AS INT.
+DO i-ct = 1 TO NUM-DBS.
+   CREATE ALIAS DICTDB FOR DATABASE VALUE(LDBNAME(i-ct)) NO-ERROR.
+
+   RUN seniuz/t70d.p.
+END.
+
+

@@ -1,0 +1,5 @@
+/* Include: es020.fv5
+** Tabela.: mov-est-acbd
+*/
+
+can-find(espec.tipo-def where espec.tipo-def.cod-tipo-def = espec.mov-est-acbd.cod-tipo-def)

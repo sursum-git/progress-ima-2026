@@ -1,0 +1,179 @@
+ADD FIELD "vl-pis-ret" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 60
+  INITIAL "0"
+  LABEL "PIS retido"
+  COLUMN-LABEL "PIS retido"
+  DECIMALS 2
+  ORDER 600
+  MAX-WIDTH 17
+
+ADD FIELD "vl-csll-ret" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 62
+  INITIAL "0"
+  HELP "CSLL Retido"
+  LABEL "CSLL retido"
+  COLUMN-LABEL "CSLL retido"
+  DECIMALS 2
+  ORDER 620
+  MAX-WIDTH 17
+
+ADD FIELD "vl-base-irrf" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 63
+  INITIAL "0"
+  HELP "Valor Base IRRF"
+  LABEL "Base IRRF"
+  COLUMN-LABEL "Base IRRF"
+  DECIMALS 2
+  ORDER 630
+  MAX-WIDTH 17
+
+ADD FIELD "vl-irrf" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 64
+  INITIAL "0"
+  HELP "Valor IRRF"
+  LABEL "Valor IRRF"
+  COLUMN-LABEL "Valor IRRF"
+  DECIMALS 2
+  ORDER 640
+  MAX-WIDTH 17
+
+ADD FIELD "vl-cofins-ret" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 65
+  INITIAL "0"
+  LABEL "COFINS retido"
+  COLUMN-LABEL "COFINS retido"
+  DECIMALS 2
+  ORDER 610
+  MAX-WIDTH 17
+
+ADD FIELD "vl-ret-prev" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 66
+  INITIAL "0"
+  HELP "Valor Retenção Previdência Social"
+  LABEL "Vl Ret Prev Soc"
+  COLUMN-LABEL "Vl Ret Prev Soc"
+  DECIMALS 2
+  ORDER 660
+  MAX-WIDTH 17
+
+ADD FIELD "vl-base-ret-prev" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 67
+  INITIAL "0"
+  HELP "Valor Base Retenção Previdência Social"
+  LABEL "Base Ret Prev Soc"
+  COLUMN-LABEL "Base Ret Prev Soc"
+  DECIMALS 2
+  ORDER 650
+  MAX-WIDTH 17
+
+ADD FIELD "vl-cofins" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 68
+  INITIAL "0"
+  HELP "Valor COFINS"
+  LABEL "Valor COFINS"
+  COLUMN-LABEL "Valor COFINS"
+  DECIMALS 2
+  ORDER 680
+  MAX-WIDTH 17
+
+ADD FIELD "vl-pis" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 69
+  INITIAL "0"
+  HELP "Valor PIS"
+  LABEL "Valor PIS"
+  COLUMN-LABEL "Valor PIS"
+  DECIMALS 2
+  ORDER 670
+  MAX-WIDTH 17
+
+ADD FIELD "vl-base-issqn" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 70
+  INITIAL "0"
+  HELP "Valor Base ISSQN"
+  LABEL "Base ISSQN"
+  COLUMN-LABEL "Base ISSQN"
+  DECIMALS 2
+  ORDER 690
+  MAX-WIDTH 17
+
+ADD FIELD "vl-inss" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 71
+  INITIAL "0"
+  HELP "Valor INSS"
+  LABEL "Valor INSS"
+  COLUMN-LABEL "Valor INSS"
+  DECIMALS 2
+  ORDER 700
+  MAX-WIDTH 17
+
+ADD FIELD "vl-csll" OF "dt-docum-est" AS decimal
+  FORMAT ">>>>>,>>>,>>9.99"
+  POSITION 72
+  INITIAL "0"
+  HELP "Valor CSLL"
+  LABEL "Valor CSLL"
+  COLUMN-LABEL "Valor CSLL"
+  DECIMALS 2
+  ORDER 710
+  MAX-WIDTH 17
+
+ADD FIELD "mun-fg" OF "dt-it-docum-est" AS integer
+  DESCRIPTION "Código do município de ocorrência do fato gerador do ISSQN"
+  FORMAT ">>>>>>9"
+  POSITION 61
+  INITIAL "0"
+  LABEL "Mun FG"
+  COLUMN-LABEL "Mun FG"
+  ORDER 610
+  MAX-WIDTH 4
+
+ADD FIELD "valor-iss-ret" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor ISS Retido"
+  FORMAT "->>>,>>>,>>9.99"
+  POSITION 62
+  INITIAL "0"
+  LABEL "ISS Ret"
+  COLUMN-LABEL "ISS Ret"
+  DECIMALS 2
+  ORDER 620
+  MAX-WIDTH 17
+
+ADD FIELD "cod-servico" OF "dt-it-docum-est" AS character
+  DESCRIPTION "Código do Serviço - TAG cServico ISSQN"
+  FORMAT "x(20)"
+  POSITION 63
+  INITIAL ""
+  HELP "Código do Serviço"
+  LABEL "Cod Serviço"
+  COLUMN-LABEL "Cod Serviço"
+  ORDER 630
+  MAX-WIDTH 40
+
+ADD FIELD "valor-deduc-issqn" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Vl Deduc ISSQN"
+  FORMAT "->>>,>>>,>>9.99"
+  POSITION 64
+  INITIAL "0"
+  HELP "Vl Dedução ISSQN"
+  LABEL "Vl Deduc ISSQN"
+  COLUMN-LABEL "Vl Deduc ISSQN"
+  DECIMALS 2
+  ORDER 640
+  MAX-WIDTH 17
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000003857

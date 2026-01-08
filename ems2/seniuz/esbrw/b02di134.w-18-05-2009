@@ -1,0 +1,2160 @@
+&ANALYZE-SUSPEND _VERSION-NUMBER UIB_v8r11 GUI ADM1
+&ANALYZE-RESUME
+/* Connected Databases 
+          mgcad            PROGRESS
+*/
+&Scoped-define WINDOW-NAME CURRENT-WINDOW
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _DEFINITIONS B-table-Win 
+/*:T *******************************************************************************
+** Copyright DATASUL S.A. (1997)
+** Todos os Direitos Reservados.
+**
+** Este fonte e de propriedade exclusiva da DATASUL, sua reproducao
+** parcial ou total por qualquer meio, so podera ser feita mediante
+** autorizacao expressa.
+*******************************************************************************/
+{include/i-prgvrs.i B03di134 2.04.00.000}
+
+/* Create an unnamed pool to store all the widgets created 
+     by this procedure. This is a good default which assures
+     that this procedure's triggers and internal procedures 
+     will execute in this procedure's storage, and that proper
+     cleanup will occur on deletion of the procedure. */
+
+CREATE WIDGET-POOL.
+
+/* ***************************  Definitions  ************************** */
+
+/* Parameters Definitions ---                                           */
+
+/* Local Variable Definitions ---                                       */
+
+
+DEFINE TEMP-TABLE tt-work  NO-UNDO 
+       FIELD nr-nota-fis   LIKE nota-fiscal.nr-nota-fis
+       FIELD dt-entrega    LIKE ped-venda.dt-entrega
+       FIELD dt-cancel     AS DATE
+       FIELD dt-cancel-ped AS DATE
+       FIELD dt-emis-nota  LIKE nota-fiscal.dt-emis-nota
+       FIELD nome-ab-cli   LIKE nota-fiscal.nome-ab-cli
+       FIELD nr-pedcli     LIKE nota-fiscal.nr-pedcli
+       FIELD nr-pedcli-ped LIKE nota-fiscal.nr-pedcli
+       FIELD no-ab-reppri  LIKE nota-fiscal.no-ab-reppri
+       FIELD qtd-nota      AS DEC FORMAT ">>>,>>9.99" 
+       FIELD vl-tot-nota   LIKE nota-fiscal.vl-tot-nota FORMAT "->>>,>>9.99"
+       FIELD dt-devol      LIKE devol-cli.dt-devol
+       FIELD nro-docto     LIKE devol-cli.nro-docto
+       FIELD qtd-devol     AS DEC
+       FIELD vlr-devol     AS DEC
+       FIELD qtd-ped       AS DEC 
+       FIELD motivo        AS CHAR FORMAT "x(70)".
+
+DEFINE TEMP-TABLE tt-itens NO-UNDO 
+       FIELD it-codigo     LIKE it-nota-fisc.it-codigo
+       FIELD qtd           LIKE it-nota-fisc.qt-faturada[1]
+       FIELD valor         LIKE it-nota-fisc.vl-tot-item  
+       INDEX indice1 it-codigo.
+
+/* Variaveis do parametro */
+DEF VAR i-tp-relat         AS INT.
+DEF VAR da-dt-entrega-ini   AS DATE.
+DEF VAR da-dt-entrega-fin   AS DATE.
+DEF VAR c-nr-pedcli-ini    AS CHAR.                              
+DEF VAR c-nr-pedcli-fin    AS CHAR.
+DEF VAR c-it-codigo-ini    AS CHAR.                              
+DEF VAR c-it-codigo-fin    AS CHAR.                              
+DEF VAR c-cod-refer-ini    AS CHAR.                              
+DEF VAR c-cod-refer-fin    AS CHAR.
+DEF VAR c-nome-abrev-ini   AS CHAR.                              
+DEF VAR c-nome-abrev-fin   AS CHAR.
+DEF VAR c-no-ab-reppri-ini AS CHAR.                              
+DEF VAR c-no-ab-reppri-fin AS CHAR.
+DEF VAR c-tp-pedido        AS CHAR.
+DEF VAR arq-saida          AS CHAR.
+DEF VAR l-cancelados       AS LOG.
+DEF VAR l-avalia-credito   AS LOG.                              
+DEF VAR l-nao-avaliado     AS LOG.
+DEF VAR l-nao-aprovado     AS LOG.
+DEF VAR l-pendente         AS LOG.
+DEF VAR l-dt-cancela       AS LOG.
+DEF VAR da-dt-cancela-ini   AS DATE.
+DEF VAR da-dt-cancela-fin   AS DATE.
+
+/* Variaveis Usadas Na Geraá∆o da Planilha Excel */
+DEF VAR c-empresa LIKE empresa.razao-social.
+DEFINE VAR i-canal     AS INTEGER.
+DEFINE VAR sys         AS INTEGER.
+DEFINE VAR c-lin       AS CHARACTER FORMAT "x(500)".
+DEFINE VAR aux-command AS CHAR FORMAT "x(100)".
+
+/* Variaveis da Rotina de Impress∆o */
+DEFINE VAR l-ok                AS LOG.
+DEFINE VAR i-saida             AS INT.
+DEFINE VAR c-saida             AS CHAR.
+DEFINE VAR i-num-copias        AS INT.
+
+
+
+
+
+/* Variaveis normais do Programa */
+{include/i-vrtab.i emitente}
+{include/i-vrtab.i docum-est}
+DEF NEW GLOBAL SHARED VAR gr-ped-venda   AS ROWID NO-UNDO.
+DEF NEW GLOBAL SHARED VAR gr-nota-fiscal AS ROWID NO-UNDO.
+DEF NEW GLOBAL SHARED VAR gr-docum-est   AS ROWID NO-UNDO.
+DEF NEW GLOBAL SHARED VAR gr-emitente    AS ROWID NO-UNDO.
+
+DEF VAR h-query          AS HANDLE.
+DEF VAR h-acomp          AS HANDLE NO-UNDO.
+DEF VAR da-dt-can-ini    AS DATE.
+DEF VAR da-dt-can-fin    AS DATE.
+DEF VAR da-dt-cancel     AS DATE.
+DEF VAR c-avalia-credito AS CHAR.
+DEF VAR c-codigo         AS CHAR.
+DEF VAR c-motivo         AS CHAR FORMAT "x(70)".
+DEF VAR de-total         AS DEC.
+DEF VAR l-achei-item-can AS LOG.
+DEF VAR i-lin            AS INT.
+DEF VAR i-pag            AS INT.
+
+/* ***************************  Definitions  ************************** */
+/* INICIO DA DEFINIÄ«O DAS TABELAS TEMPORARIAS; PARA A CHAMADA DO RELATORIO ESPD0002RP.P */
+
+DEFINE TEMP-TABLE tt-param NO-UNDO
+       FIELD destino          AS INTEGER
+       FIELD arquivo          AS CHAR FORMAT "x(35)"
+       FIELD usuario          AS CHAR FORMAT "x(12)"
+       FIELD data-exec        AS DATE
+       FIELD hora-exec        AS INTEGER
+       FIELD classifica       AS INTEGER
+       FIELD pedido-ini       LIKE ped-venda.nr-pedido 
+       FIELD pedido-fin       LIKE ped-venda.nr-pedido
+       FIELD dt-emissao-ini   LIKE ped-venda.dt-emissao
+       FIELD dt-emissao-fin   LIKE ped-venda.dt-emissao
+       FIELD dt-entrega-ini   LIKE ped-venda.dt-entrega   
+       FIELD dt-entrega-fin   LIKE ped-venda.dt-entrega   
+       FIELD cod-emit-ini     LIKE ped-venda.cod-emitente 
+       FIELD cod-emit-fin     LIKE ped-venda.cod-emitente 
+       FIELD no-ab-reppri-ini LIKE ped-venda.no-ab-reppri 
+       FIELD no-ab-reppri-fin LIKE ped-venda.no-ab-reppri
+       FIELD nome-transp-ini  LIKE ped-venda.nome-transp
+       FIELD nome-transp-fin  LIKE ped-venda.nome-transp
+       FIELD corte-comerc-ini LIKE ped-item-ext.corte-comerc
+       FIELD corte-comerc-fin LIKE ped-item-ext.corte-comerc
+       FIELD so-indigo        AS   LOG
+       FIELD exc-indigo       AS   LOG
+       FIELD it-codigo        LIKE item.it-codigo EXTENT 10
+       FIELD sit-total        AS   LOG
+       FIELD sit-aberto       AS   LOG 
+       FIELD sit-parcial      AS   LOG
+       FIELD sit-pendentes    AS   LOG 
+       FIELD sit-suspensos    AS   LOG 
+       FIELD sit-cancelados   AS   LOG
+       FIELD cond-credito     AS   CHAR FORMAT "x"
+       FIELD cond-pagto       AS   CHAR FORMAT "x"
+       FIELD mercado          AS   CHAR FORMAT "x"
+       FIELD tp-pedido        LIKE ped-venda.tp-pedido
+       FIELD aceita-parc      AS   CHAR FORMAT "x"
+       FIELD qtd-minima       AS   DEC FORMAT ">>>,>>>,>>9.99" 
+       FIELD perc-minres      AS   DEC FORMAT ">>9.99"
+       FIELD min-it-ares      AS   INT FORMAT ">>>9" 
+       FIELD max-it-ares      AS   INT FORMAT ">>>9"
+       FIELD it-reservados    AS   LOG
+       FIELD nr-coletor       AS   INT.
+
+DEF TEMP-TABLE tt-raw-digita
+    FIELD raw-digita      AS RAW.
+
+DEFINE TEMP-TABLE tt-digita NO-UNDO 
+       FIELD nr-sequencia     AS   INT FORMAT '>>9'
+       FIELD it-codigo        LIKE ped-item.it-codigo
+       FIELD cod-refer        LIKE ped-item.cod-refer
+       FIELD desc-item        AS   CHAR FORMAT "x(25)"
+       FIELD qt-pedida        AS   DEC FORMAT ">>>,>>9.99" 
+       FIELD qt-reserva       AS   DEC FORMAT ">>>,>>9.99" 
+       FIELD sit-prog         AS   CHAR FORMAT "x(7)"
+       INDEX seqped nr-sequencia.
+
+/* Variaveis para a include i-rprun.i */
+DEFINE VAR rs-execucao     AS INTEGER INITIAL 1. 
+DEFINE VAR c-programa-mg97 AS CHAR INIT "ft0513". 
+DEFINE VAR c-versao-mg97   AS CHAR.
+DEFINE VAR raw-param       AS RAW NO-UNDO.
+DEFINE FRAME f-pg-imp rs-execucao AT ROW 5.75 COL 3 NO-LABEL.
+
+{utp/ut-glob.i}
+/* FIM DAS DEFINIÄÂES DO RELATORIO ESPD0002RP.P */
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-PREPROCESSOR-BLOCK 
+
+/* ********************  Preprocessor Definitions  ******************** */
+
+&Scoped-define PROCEDURE-TYPE SmartBrowser
+&Scoped-define DB-AWARE no
+
+&Scoped-define ADM-SUPPORTED-LINKS Record-Source,Record-Target,TableIO-Target
+
+/* Name of first Frame and/or Browse and/or first Query                 */
+&Scoped-define FRAME-NAME F-Main
+&Scoped-define BROWSE-NAME br-work
+
+/* Internal Tables (found by Frame, Query & Browse Queries)             */
+&Scoped-define INTERNAL-TABLES tt-work
+
+/* Definitions for BROWSE br-work                                       */
+&Scoped-define FIELDS-IN-QUERY-br-work tt-work.nr-pedcli-ped tt-work.nr-nota-fis tt-work.dt-emis-nota tt-work.dt-entrega tt-work.dt-cancel tt-work.nome-ab-cli tt-work.nr-pedcli tt-work.no-ab-reppri tt-work.dt-cancel-ped tt-work.qtd-nota tt-work.vl-tot-nota tt-work.dt-devol tt-work.nro-docto tt-work.qtd-devol tt-work.vlr-devol tt-work.qtd-ped tt-work.motivo   
+&Scoped-define ENABLED-FIELDS-IN-QUERY-br-work   
+&Scoped-define SELF-NAME br-work
+&Scoped-define QUERY-STRING-br-work FOR EACH tt-work NO-LOCK
+&Scoped-define OPEN-QUERY-br-work OPEN QUERY {&SELF-NAME} FOR EACH tt-work NO-LOCK.
+&Scoped-define TABLES-IN-QUERY-br-work tt-work
+&Scoped-define FIRST-TABLE-IN-QUERY-br-work tt-work
+
+
+/* Definitions for FRAME F-Main                                         */
+&Scoped-define OPEN-BROWSERS-IN-QUERY-F-Main ~
+    ~{&OPEN-QUERY-br-work}
+
+/* Standard List Definitions                                            */
+&Scoped-Define ENABLED-OBJECTS br-work bt-imprime bt-pedido bt-pre-nota ~
+bt-nota bt-devolucao bt-vapra bt-excel bt-item RECT-60 
+&Scoped-Define DISPLAYED-OBJECTS fi-total-1 fi-total-2 fi-total-3 ~
+fi-total-4 
+
+/* Custom List Definitions                                              */
+/* List-1,List-2,List-3,List-4,List-5,List-6                            */
+&Scoped-define List-4 bt-pedido bt-pre-nota bt-nota bt-devolucao bt-item 
+&Scoped-define List-6 bt-imprime bt-vapra bt-excel 
+
+/* _UIB-PREPROCESSOR-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _XFTR "Foreign Keys" B-table-Win _INLINE
+/* Actions: ? adm/support/keyedit.w ? ? ? */
+/* STRUCTURED-DATA
+<KEY-OBJECT>
+&BROWSE-NAME
+</KEY-OBJECT>
+<FOREIGN-KEYS>
+nr-ord-produ||y|mgmov.ped-item.nr-ord-produ
+nr-programa||y|mgmov.ped-item.nr-programa
+it-codigo||y|mgmov.ped-item.it-codigo
+</FOREIGN-KEYS> 
+<EXECUTING-CODE>
+**************************
+* Set attributes related to FOREIGN KEYS
+*/
+RUN set-attribute-list (
+    'Keys-Accepted = ,
+     Keys-Supplied = "nr-ord-produ,nr-programa,it-codigo"':U).
+
+/* Tell the ADM to use the OPEN-QUERY-CASES. */
+&Scoped-define OPEN-QUERY-CASES RUN dispatch ('open-query-cases':U).
+/**************************
+</EXECUTING-CODE> */
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _XFTR "Advanced Query Options" B-table-Win _INLINE
+/* Actions: ? adm/support/advqedit.w ? ? ? */
+/* STRUCTURED-DATA
+<KEY-OBJECT>
+&BROWSE-NAME
+</KEY-OBJECT>
+<SORTBY-OPTIONS>
+</SORTBY-OPTIONS>
+<SORTBY-RUN-CODE>
+************************
+* Set attributes related to SORTBY-OPTIONS */
+RUN set-attribute-list (
+    'SortBy-Options = ""':U).
+/************************
+</SORTBY-RUN-CODE>
+<FILTER-ATTRIBUTES>
+</FILTER-ATTRIBUTES> */   
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+/* ************************  Function Prototypes ********************** */
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _FUNCTION-FORWARD fn-cor B-table-Win 
+FUNCTION fn-cor RETURNS CHARACTER
+  ( /* parameter-definitions */ )  FORWARD.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+/* ***********************  Control Definitions  ********************** */
+
+
+/* Definitions of the field level widgets                               */
+DEFINE BUTTON bt-devolucao 
+     IMAGE-UP FILE "image/im-zoo.bmp":U
+     LABEL "" 
+     SIZE 5 BY 1.25 TOOLTIP "Detalhar Devoluá∆o".
+
+DEFINE BUTTON bt-excel 
+     IMAGE-UP FILE "image/excel.bmp":U
+     LABEL "Button 2" 
+     SIZE 5 BY 1.25.
+
+DEFINE BUTTON bt-imprime 
+     IMAGE-UP FILE "image/im-pri.bmp":U
+     LABEL "&Imprimir" 
+     SIZE 5 BY 1.25 TOOLTIP "Relat¢rio"
+     BGCOLOR 8 .
+
+DEFINE BUTTON bt-item AUTO-GO 
+     IMAGE-UP FILE "image/im-det2.bmp":U
+     LABEL "" 
+     SIZE 5 BY 1.25 TOOLTIP "Resumo por Item"
+     BGCOLOR 8 FONT 10.
+
+DEFINE BUTTON bt-nota 
+     IMAGE-UP FILE "image/im-local.bmp":U
+     LABEL "" 
+     SIZE 5 BY 1.25 TOOLTIP "Detalhar Nota Fiscal".
+
+DEFINE BUTTON bt-pedido AUTO-GO 
+     IMAGE-UP FILE "image/im-det.bmp":U
+     LABEL "" 
+     SIZE 5 BY 1.25 TOOLTIP "Detalhar Pedido"
+     BGCOLOR 8 FONT 10.
+
+DEFINE BUTTON bt-pre-nota AUTO-GO 
+     IMAGE-UP FILE "image/im-prigr.bmp":U
+     LABEL "" 
+     SIZE 5 BY 1.25 TOOLTIP "Imprimir Pedido"
+     BGCOLOR 8 FONT 10.
+
+DEFINE BUTTON bt-vapra 
+     IMAGE-UP FILE "image/im-vapra.bmp":U
+     LABEL "" 
+     SIZE 5 BY 1.25 TOOLTIP "V† para o (Pedido/Nota Fiscal)"
+     BGCOLOR 8 .
+
+DEFINE VARIABLE fi-total-1 AS DECIMAL FORMAT "->>>,>>>,>>9.99":U INITIAL 0 
+     LABEL "Qtd Cancelada" 
+     VIEW-AS FILL-IN 
+     SIZE 11 BY .79 NO-UNDO.
+
+DEFINE VARIABLE fi-total-2 AS DECIMAL FORMAT "->>>,>>>,>>9.99":U INITIAL 0 
+     LABEL "Valor NFs" 
+     VIEW-AS FILL-IN 
+     SIZE 12 BY .79 NO-UNDO.
+
+DEFINE VARIABLE fi-total-3 AS DECIMAL FORMAT "->>>,>>>,>>9.99":U INITIAL 0 
+     LABEL "Qt(M) Dev" 
+     VIEW-AS FILL-IN 
+     SIZE 11 BY .79 NO-UNDO.
+
+DEFINE VARIABLE fi-total-4 AS DECIMAL FORMAT "->>>,>>>,>>9.99":U INITIAL 0 
+     LABEL "Valor Dev" 
+     VIEW-AS FILL-IN 
+     SIZE 12 BY .79 NO-UNDO.
+
+DEFINE RECTANGLE RECT-60
+     EDGE-PIXELS 2 GRAPHIC-EDGE  NO-FILL 
+     SIZE 7 BY 17.
+
+/* Query definitions                                                    */
+&ANALYZE-SUSPEND
+DEFINE QUERY br-work FOR 
+      tt-work SCROLLING.
+&ANALYZE-RESUME
+
+/* Browse definitions                                                   */
+DEFINE BROWSE br-work
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _DISPLAY-FIELDS br-work B-table-Win _FREEFORM
+  QUERY br-work NO-LOCK DISPLAY
+      tt-work.nr-pedcli-ped COLUMN-LABEL "Pedido"
+      tt-work.nr-nota-fis   COLUMN-LABEL "N.Fiscal"
+      tt-work.dt-emis-nota  COLUMN-LABEL "Dt.Emiss∆o" 
+      tt-work.dt-entrega    COLUMN-LABEL "Dt.Entrega"
+      tt-work.dt-cancel     COLUMN-LABEL "Dt.Cancelado" FORMAT "99/99/9999"
+      tt-work.nome-ab-cli   COLUMN-LABEL "Cliente"     
+      tt-work.nr-pedcli     COLUMN-LABEL "Pedido"
+      tt-work.no-ab-reppri  COLUMN-LABEL "Representante"
+      tt-work.dt-cancel-ped COLUMN-LABEL "Dt.Cancelado" FORMAT "99/99/9999"
+      tt-work.qtd-nota      COLUMN-LABEL "Quantidade"   
+      tt-work.vl-tot-nota   COLUMN-LABEL "Valor NF"    
+      tt-work.dt-devol      COLUMN-LABEL "Dt.Devol."  
+      tt-work.nro-docto     COLUMN-LABEL "NF Dev."
+      tt-work.qtd-devol     COLUMN-LABEL "Qtd Devol"
+      tt-work.vlr-devol     COLUMN-LABEL "Valor Dev"
+      tt-work.qtd-ped       COLUMN-LABEL "Qtd Cancelada"
+      tt-work.motivo        COLUMN-LABEL "Motivo"
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+    WITH NO-ROW-MARKERS SEPARATORS SIZE 100 BY 15.25
+         FONT 1
+         TITLE "" ROW-HEIGHT-CHARS .5.
+
+
+/* ************************  Frame Definitions  *********************** */
+
+DEFINE FRAME F-Main
+     br-work AT ROW 1.25 COL 2
+     bt-imprime AT ROW 1.25 COL 103.57
+     bt-pedido AT ROW 2.54 COL 103.57
+     bt-pre-nota AT ROW 3.83 COL 103.43
+     bt-nota AT ROW 5.13 COL 103.57
+     bt-devolucao AT ROW 6.46 COL 103.57
+     bt-vapra AT ROW 7.83 COL 103.57
+     bt-excel AT ROW 9.25 COL 103.57
+     bt-item AT ROW 10.67 COL 103.72
+     fi-total-1 AT ROW 17 COL 11.72 COLON-ALIGNED
+     fi-total-2 AT ROW 17 COL 35.57 COLON-ALIGNED
+     fi-total-3 AT ROW 17 COL 61.29 COLON-ALIGNED
+     fi-total-4 AT ROW 17 COL 86.43 COLON-ALIGNED
+     RECT-60 AT ROW 1 COL 102.43
+    WITH 1 DOWN NO-BOX KEEP-TAB-ORDER OVERLAY 
+         SIDE-LABELS NO-UNDERLINE THREE-D 
+         AT COL 1 ROW 1 SCROLLABLE 
+         BGCOLOR 8 FGCOLOR 0 FONT 1.
+
+
+/* *********************** Procedure Settings ************************ */
+
+&ANALYZE-SUSPEND _PROCEDURE-SETTINGS
+/* Settings for THIS-PROCEDURE
+   Type: SmartBrowser
+   Allow: Basic,Browse
+   Frames: 1
+   Add Fields to: EXTERNAL-TABLES
+   Other Settings: PERSISTENT-ONLY COMPILE
+ */
+
+/* This procedure should always be RUN PERSISTENT.  Report the error,  */
+/* then cleanup and return.                                            */
+IF NOT THIS-PROCEDURE:PERSISTENT THEN DO:
+  MESSAGE "{&FILE-NAME} should only be RUN PERSISTENT.":U
+          VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+  RETURN.
+END.
+
+&ANALYZE-RESUME _END-PROCEDURE-SETTINGS
+
+/* *************************  Create Window  ************************** */
+
+&ANALYZE-SUSPEND _CREATE-WINDOW
+/* DESIGN Window definition (used by the UIB) 
+  CREATE WINDOW B-table-Win ASSIGN
+         HEIGHT             = 17.04
+         WIDTH              = 109.
+/* END WINDOW DEFINITION */
+                                                                        */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _INCLUDED-LIB B-table-Win 
+/* ************************* Included-Libraries *********************** */
+
+{src/adm/method/browser.i}
+{include/c-browse.i}
+{utp/ut-glob.i}
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+
+
+/* ***********  Runtime Attributes and AppBuilder Settings  *********** */
+
+&ANALYZE-SUSPEND _RUN-TIME-ATTRIBUTES
+/* SETTINGS FOR WINDOW B-table-Win
+  NOT-VISIBLE,,RUN-PERSISTENT                                           */
+/* SETTINGS FOR FRAME F-Main
+   NOT-VISIBLE Size-to-Fit                                              */
+/* BROWSE-TAB br-work 1 F-Main */
+ASSIGN 
+       FRAME F-Main:SCROLLABLE       = FALSE
+       FRAME F-Main:HIDDEN           = TRUE.
+
+/* SETTINGS FOR BUTTON bt-devolucao IN FRAME F-Main
+   4                                                                    */
+/* SETTINGS FOR BUTTON bt-excel IN FRAME F-Main
+   6                                                                    */
+/* SETTINGS FOR BUTTON bt-imprime IN FRAME F-Main
+   6                                                                    */
+/* SETTINGS FOR BUTTON bt-item IN FRAME F-Main
+   4                                                                    */
+/* SETTINGS FOR BUTTON bt-nota IN FRAME F-Main
+   4                                                                    */
+/* SETTINGS FOR BUTTON bt-pedido IN FRAME F-Main
+   4                                                                    */
+/* SETTINGS FOR BUTTON bt-pre-nota IN FRAME F-Main
+   4                                                                    */
+/* SETTINGS FOR BUTTON bt-vapra IN FRAME F-Main
+   6                                                                    */
+/* SETTINGS FOR FILL-IN fi-total-1 IN FRAME F-Main
+   NO-ENABLE                                                            */
+/* SETTINGS FOR FILL-IN fi-total-2 IN FRAME F-Main
+   NO-ENABLE                                                            */
+/* SETTINGS FOR FILL-IN fi-total-3 IN FRAME F-Main
+   NO-ENABLE                                                            */
+/* SETTINGS FOR FILL-IN fi-total-4 IN FRAME F-Main
+   NO-ENABLE                                                            */
+/* _RUN-TIME-ATTRIBUTES-END */
+&ANALYZE-RESUME
+
+
+/* Setting information for Queries and Browse Widgets fields            */
+
+&ANALYZE-SUSPEND _QUERY-BLOCK BROWSE br-work
+/* Query rebuild information for BROWSE br-work
+     _START_FREEFORM
+OPEN QUERY {&SELF-NAME} FOR EACH tt-work NO-LOCK.
+     _END_FREEFORM
+     _Options          = "NO-LOCK INDEXED-REPOSITION"
+     _Query            is OPENED
+*/  /* BROWSE br-work */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _QUERY-BLOCK FRAME F-Main
+/* Query rebuild information for FRAME F-Main
+     _Options          = "NO-LOCK"
+     _Query            is NOT OPENED
+*/  /* FRAME F-Main */
+&ANALYZE-RESUME
+
+ 
+
+
+
+/* ************************  Control Triggers  ************************ */
+
+&Scoped-define BROWSE-NAME br-work
+&Scoped-define SELF-NAME br-work
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL br-work B-table-Win
+ON VALUE-CHANGED OF br-work IN FRAME F-Main
+DO:
+  DISABLE {&list-6} WITH FRAME {&FRAME-NAME}.
+  DISABLE {&list-4} WITH FRAME {&FRAME-NAME}.
+  IF AVAIL tt-work THEN DO:
+     CASE i-tp-relat:
+         WHEN 1 THEN DO:
+             bt-pre-nota:SENSITIVE IN FRAME {&FRAME-NAME}  = YES.
+             bt-pedido:SENSITIVE IN FRAME {&FRAME-NAME}    = YES.
+         END.
+         WHEN 2 THEN DO:
+             bt-nota:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+         END.
+         WHEN 3 THEN DO:
+             bt-devolucao:SENSITIVE IN FRAME {&FRAME-NAME} = YES.  /* Rotina n∆o Consegue Posicionar na NF */
+             bt-item:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+         END.
+     END CASE.
+     ENABLE {&list-6} WITH FRAME {&FRAME-NAME}.
+  END.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-devolucao
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-devolucao B-table-Win
+ON CHOOSE OF bt-devolucao IN FRAME F-Main
+DO:
+  
+  FIND FIRST devol-cli WHERE
+             devol-cli.cod-estabel = '2' AND
+             devol-cli.serie       = '1' AND
+             devol-cli.nr-nota-fis = tt-work.nr-nota-fis NO-LOCK NO-ERROR.
+  IF AVAIL devol-cli THEN DO:
+     FIND emitente WHERE
+          emitente.cod-emit = devol-cli.cod-emit NO-LOCK NO-ERROR.
+     FIND docum-est WHERE
+          docum-est.serie-docto  = devol-cli.serie-docto  AND
+          docum-est.nro-docto    = devol-cli.nro-docto    AND
+          docum-est.cod-emitente = devol-cli.cod-emitente AND
+          docum-est.nat-operacao = devol-cli.nat-operacao NO-LOCK NO-ERROR.
+     IF AVAIL docum-est THEN DO:
+        ASSIGN gr-emitente  = ROWID(emitente)
+               gr-docum-est = ROWID(docum-est).
+
+        RUN rep/re0701a.p.
+     END.
+  END.
+  
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-excel
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-excel B-table-Win
+ON CHOOSE OF bt-excel IN FRAME F-Main /* Button 2 */
+DO:
+  
+   RUN esdlg/d02essp0164.w (INPUT i-tp-relat, OUTPUT arq-saida).
+   IF arq-saida <> "" THEN DO:
+      RUN pi-gera-excel (INPUT arq-saida).
+      MESSAGE "O arquivo foi gerado em " TRIM(arq-saida) + "." SKIP 
+              "Para acess†-lo,  abra-o atravÇs do Excel."
+          VIEW-AS ALERT-BOX INFO BUTTONS OK. 
+   END.
+  
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-imprime
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-imprime B-table-Win
+ON CHOOSE OF bt-imprime IN FRAME F-Main /* Imprimir */
+DO:
+  RUN pi-imprime (INPUT i-tp-relat).
+  
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-item
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-item B-table-Win
+ON CHOOSE OF bt-item IN FRAME F-Main
+DO:
+  HIDE FRAME f-main.
+  RUN esp/essp0164a.p (INPUT TABLE tt-itens,
+                       INPUT da-dt-entrega-ini,
+                       INPUT da-dt-entrega-fin).
+  VIEW FRAME f-main.
+
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-nota
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-nota B-table-Win
+ON CHOOSE OF bt-nota IN FRAME F-Main
+DO:
+  
+  FIND nota-fiscal WHERE
+       nota-fiscal.cod-estabel = '2' AND
+       nota-fiscal.serie       = '1' AND
+       nota-fiscal.nr-nota-fis = tt-work.nr-nota-fis NO-LOCK NO-ERROR.
+  ASSIGN gr-nota-fiscal = ROWID(nota-fiscal).
+
+  RUN ftp/ft0904.
+  
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-pedido
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-pedido B-table-Win
+ON CHOOSE OF bt-pedido IN FRAME F-Main
+DO:
+   
+   FIND ped-venda WHERE
+        ped-venda.nr-pedcli = tt-work.nr-pedcli-ped AND
+        ped-venda.nome-abrev = tt-work.nome-ab-cli NO-LOCK NO-ERROR.
+   ASSIGN gr-ped-venda = ROWID(ped-venda).
+
+   RUN esp\espd4000.w (INPUT "Consultar").
+   
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-pre-nota
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-pre-nota B-table-Win
+ON CHOOSE OF bt-pre-nota IN FRAME F-Main
+DO:  
+  
+    CREATE tt-param.
+    ASSIGN tt-param.usuario          = c-seg-usuario
+           tt-param.data-exec        = TODAY
+           tt-param.hora-exec        = TIME
+           tt-param.destino          = 3
+           tt-param.classifica       = 1
+           tt-param.arquivo          = SESSION:TEMP-DIRECTORY + c-programa-mg97 + ".tmp"
+           tt-param.pedido-ini       = INT(tt-work.nr-pedcli-ped)
+           tt-param.pedido-fin       = INT(tt-work.nr-pedcli-ped)
+           tt-param.dt-emissao-ini   = 01.01.0001     
+           tt-param.dt-emissao-fin   = 12.31.9999
+           tt-param.dt-entrega-ini   = 01.01.0001      
+           tt-param.dt-entrega-fin   = 12.31.9999
+           tt-param.cod-emit-ini     = 0
+           tt-param.cod-emit-fin     = 999999
+           tt-param.no-ab-reppri-ini = ''   
+           tt-param.no-ab-reppri-fin = 'ZZZZZZZZZZZZZZ'   
+           tt-param.nome-transp-ini  = ''                  
+           tt-param.nome-transp-fin  = 'ZZZZZZZZZZZZZZ'    
+           tt-param.corte-comerc-ini = ''
+           tt-param.corte-comerc-fin = 'ZZZ'
+           tt-param.so-indigo        = NO    
+           tt-param.exc-indigo       = NO
+           tt-param.it-codigo        = ''
+           tt-param.sit-total        = YES 
+           tt-param.sit-aberto       = YES   
+           tt-param.sit-parcial      = YES    
+           tt-param.sit-pendentes    = YES    
+           tt-param.sit-suspensos    = YES    
+           tt-param.sit-cancelados   = YES
+           tt-param.cond-credito     = "T"   
+           tt-param.cond-pagto       = "T"    
+           tt-param.mercado          = "A"    
+           tt-param.tp-pedido        = ""    
+           tt-param.aceita-parc      = "T"    
+           tt-param.qtd-minima       = 0    
+           tt-param.perc-minres      = 0    
+           tt-param.min-it-ares      = 0    
+           tt-param.max-it-ares      = 9999    
+           tt-param.it-reservados    = YES.
+
+    SESSION:SET-WAIT-STATE("general":U).
+
+    RUN pi-carrega-dados.
+    {include/i-rprun.i esrp/espd0002rp.p}
+
+    IF tt-param.destino = 3 THEN DO.
+       RUN utp/ut-utils.p PERSISTENT SET h-prog.
+       RUN EXECUTE IN h-prog(INPUT "notepad.exe", INPUT tt-param.arquivo).
+       DELETE PROCEDURE h-prog.
+    END.
+    SESSION:SET-WAIT-STATE("":U).
+   
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-vapra
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-vapra B-table-Win
+ON CHOOSE OF bt-vapra IN FRAME F-Main
+DO:
+  
+  CASE i-tp-relat:
+      WHEN 1 THEN DO:
+          RUN esdlg/d01essp0164.w (OUTPUT c-codigo, INPUT YES).
+          IF c-codigo <> "" THEN DO:
+             FIND FIRST tt-work WHERE
+                        tt-work.nr-pedcli-ped = c-codigo NO-LOCK NO-ERROR.
+             IF AVAIL tt-work THEN
+                h-query:REPOSITION-TO-ROWID(ROWID(tt-work)) NO-ERROR. 
+             ELSE
+                MESSAGE "O N£mero do Pedido " c-codigo ", n∆o est† contido na seleá∆o!"
+                        VIEW-AS ALERT-BOX INFO BUTTONS OK.
+          END.
+      END.
+      WHEN 2 THEN DO:
+          RUN esdlg/d01essp0164.w (OUTPUT c-codigo, INPUT NO).
+          IF c-codigo <> "" THEN DO:
+             FIND FIRST tt-work WHERE
+                        tt-work.nr-nota-fis = c-codigo NO-LOCK NO-ERROR.
+             IF AVAIL tt-work THEN
+                h-query:REPOSITION-TO-ROWID(ROWID(tt-work)) NO-ERROR. 
+             ELSE
+                MESSAGE "O N£mero da Nota Fiscal " c-codigo ", n∆o est† contido na seleá∆o!"
+                        VIEW-AS ALERT-BOX INFO BUTTONS OK.
+          END.
+      END.
+      WHEN 3 THEN DO:
+          RUN esdlg/d01essp0164.w (OUTPUT c-codigo, INPUT NO).
+          IF c-codigo <> "" THEN DO:
+             FIND FIRST tt-work WHERE
+                        tt-work.nr-nota-fis = c-codigo NO-LOCK NO-ERROR.
+             IF AVAIL tt-work THEN
+                h-query:REPOSITION-TO-ROWID(ROWID(tt-work)) NO-ERROR. 
+             ELSE
+                MESSAGE "O Numero da Nota Fiscal " c-codigo ", n∆o est† contido na seleá∆o!"
+                        VIEW-AS ALERT-BOX INFO BUTTONS OK.
+          END.
+      END.
+  END CASE.
+  
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&UNDEFINE SELF-NAME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _MAIN-BLOCK B-table-Win 
+
+
+/* ***************************  Main Block  *************************** */
+/*
+br-itens:NUM-LOCKED-COLUMNS = 2.
+*/
+ASSIGN h-query = br-work:QUERY.
+
+&IF DEFINED(UIB_IS_RUNNING) <> 0 &THEN          
+RUN dispatch IN THIS-PROCEDURE ('initialize':U).        
+&ENDIF
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+/* **********************  Internal Procedures  *********************** */
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE adm-open-query-cases B-table-Win  adm/support/_adm-opn.p
+PROCEDURE adm-open-query-cases :
+/*------------------------------------------------------------------------------
+  Purpose:     Opens different cases of the query based on attributes
+               such as the 'Key-Name', or 'SortBy-Case'
+  Parameters:  <none>
+------------------------------------------------------------------------------*/
+
+  /* No Foreign keys are accepted by this SmartObject. */
+
+  {&OPEN-QUERY-{&BROWSE-NAME}}
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE adm-row-available B-table-Win  _ADM-ROW-AVAILABLE
+PROCEDURE adm-row-available :
+/*------------------------------------------------------------------------------
+  Purpose:     Dispatched to this procedure when the Record-
+               Source has a new row available.  This procedure
+               tries to get the new row (or foriegn keys) from
+               the Record-Source and process it.
+  Parameters:  <none>
+------------------------------------------------------------------------------*/
+
+  /* Define variables needed by this internal procedure.             */
+  {src/adm/template/row-head.i}
+
+  /* Process the newly available records (i.e. display fields,
+     open queries, and/or pass records on to any RECORD-TARGETS).    */
+  {src/adm/template/row-end.i}
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE disable_UI B-table-Win  _DEFAULT-DISABLE
+PROCEDURE disable_UI :
+/*------------------------------------------------------------------------------
+  Purpose:     DISABLE the User Interface
+  Parameters:  <none>
+  Notes:       Here we clean-up the user-interface by deleting
+               dynamic widgets we have created and/or hide 
+               frames.  This procedure is usually called when
+               we are ready to "clean-up" after running.
+------------------------------------------------------------------------------*/
+  /* Hide all frames. */
+  HIDE FRAME F-Main.
+  IF THIS-PROCEDURE:PERSISTENT THEN DELETE PROCEDURE THIS-PROCEDURE.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-abre-excel B-table-Win 
+PROCEDURE pi-abre-excel :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ DEF INPUT PARAMETER p-arquivo AS CHAR.
+
+ DEF VAR h-prog AS HANDLE NO-UNDO.
+ RUN utp/ut-utils.p PERSISTENT SET h-prog.
+
+ RUN EXECUTE IN h-prog(INPUT "EXCEL.EXE", INPUT p-arquivo).
+
+ DELETE PROCEDURE h-prog.
+ PAUSE 5 NO-MESSAGE.
+
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-carrega-dados B-table-Win 
+PROCEDURE pi-carrega-dados :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+  {include/i-rprun.i esrp/espd0002arp.p}  
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-devolucao B-table-Win 
+PROCEDURE pi-devolucao :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ASSIGN fi-total-1 = 0
+       fi-total-2 = 0
+       fi-total-3 = 0
+       fi-total-4 = 0.
+
+FOR EACH docum-est WHERE
+         docum-est.dt-trans >= da-dt-entrega-ini AND
+         docum-est.dt-trans <= da-dt-entrega-fin NO-LOCK.
+
+    IF docum-est.cod-estabel <> "2" THEN NEXT. 
+    
+    FIND natur-oper WHERE
+         natur-oper.nat-operacao = docum-est.nat-operacao NO-LOCK NO-ERROR.
+    IF NOT AVAIL natur-oper THEN NEXT.
+    IF natur-oper.tipo-compra <> 3 THEN NEXT. /* Devoluá∆o Cliente */
+
+    IF docum-est.cod-emitente = 8 OR  /* Tear Textil */
+       docum-est.cod-emitente = 9 OR 
+       docum-est.cod-emitente = 3480 THEN NEXT.
+
+     FOR EACH item-doc-est OF docum-est NO-LOCK.
+
+        RUN pi-acompanhar IN h-acomp (INPUT "Data: "    + STRING(docum-est.dt-trans) +
+                                            " Nota Fiscal: " + item-doc-est.nro-docto).
+        FIND nota-fiscal WHERE
+             nota-fiscal.cod-estabel  = docum-est.cod-estabel   AND
+             nota-fiscal.serie        = item-doc-est.serie-comp AND
+             nota-fiscal.nr-nota-fis  = item-doc-est.nro-comp   NO-LOCK NO-ERROR.
+        IF AVAIL nota-fiscal THEN DO:
+            IF nota-fiscal.nr-pedcli = "" THEN NEXT. /* Nota Fiscal Triangular */
+            IF nota-fiscal.no-ab-reppri < c-no-ab-reppri-ini OR
+               nota-fiscal.no-ab-reppri > c-no-ab-reppri-fin THEN NEXT.
+            IF nota-fiscal.nome-ab-cli  < c-nome-abrev-ini OR
+               nota-fiscal.nome-ab-cli  > c-nome-abrev-fin  THEN NEXT.
+            IF nota-fiscal.nr-pedcli    < c-nr-pedcli-ini OR
+               nota-fiscal.nr-pedcli    > c-nr-pedcli-fin THEN NEXT.
+
+            FOR EACH it-nota-fisc OF nota-fiscal NO-LOCK.
+                ACCUMULATE it-nota-fisc.qt-faturada[1] (TOTAL).
+            END.
+        END.
+
+        FIND tt-itens WHERE
+             tt-itens.it-codigo = item-doc-est.it-codigo NO-ERROR.
+        IF NOT AVAIL tt-itens THEN DO:
+           CREATE tt-itens.
+           ASSIGN tt-itens.it-codigo = item-doc-est.it-codigo.
+        END.
+        ASSIGN tt-itens.qtd   = tt-itens.qtd   + item-doc-est.quantidade
+               tt-itens.valor = tt-itens.valor + item-doc-est.preco-total[1].
+
+
+        FIND tt-work WHERE
+             tt-work.nr-nota-fis = item-doc-est.nro-comp AND
+             tt-work.nro-docto   = item-doc-est.nro-docto NO-LOCK NO-ERROR.
+        IF NOT AVAIL tt-work THEN DO: 
+           CREATE tt-work.
+           ASSIGN  tt-work.dt-emis-nota = ?.
+           IF AVAIL nota-fiscal THEN  DO:
+              ASSIGN tt-work.nr-nota-fis  = nota-fiscal.nr-nota-fis   
+                     tt-work.dt-emis-nota = nota-fiscal.dt-emis-nota  
+                     tt-work.nome-ab-cli  = nota-fiscal.nome-ab-cli   
+                     tt-work.nr-pedcli    = nota-fiscal.nr-pedcli     
+                     tt-work.no-ab-reppri = nota-fiscal.no-ab-reppri  
+                     tt-work.qtd-nota     = ACCUM TOTAL it-nota-fisc.qt-faturada[1] 
+                     tt-work.vl-tot-nota  = nota-fiscal.vl-tot-nota.
+              ASSIGN fi-total-1 = fi-total-1 + ACCUM TOTAL it-nota-fisc.qt-faturada[1] 
+                     fi-total-2 = fi-total-2 + nota-fiscal.vl-tot-nota.
+           END.
+           ASSIGN tt-work.dt-devol     = docum-est.dt-trans
+                  tt-work.nro-docto    = item-doc-est.nro-docto
+                  tt-work.motivo       = SUBSTR(docum-est.observacao,1,70).
+
+           IF docum-est.despesa-nota <> 0 THEN  /* Frete */
+             ASSIGN tt-work.vlr-devol = docum-est.despesa-nota
+                    fi-total-4 = fi-total-4 + docum-est.despesa-nota.
+
+        END.
+        ASSIGN tt-work.qtd-devol = tt-work.qtd-devol + item-doc-est.quantidade
+               tt-work.vlr-devol = tt-work.vlr-devol + item-doc-est.preco-total[1]
+               fi-total-3        = fi-total-3        + item-doc-est.quantidade
+               fi-total-4        = fi-total-4        + item-doc-est.preco-total[1].
+
+    END.
+END.    
+
+DISPLAY fi-total-1
+        fi-total-2
+        fi-total-3
+        fi-total-4
+        WITH FRAME {&FRAME-NAME}.
+  
+  
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-gera-excel B-table-Win 
+PROCEDURE pi-gera-excel :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ DEF INPUT PARAMETER p-arq-saida AS CHAR FORMAT "x(45)".
+    
+ HIDE FRAME f-main.
+
+ DEFINE FRAME frm_excel WITH SIZE 2 BY 2 ROW 1 COLUMN 1.
+ ENABLE ALL WITH FRAME frm_excel.
+   
+ /* bloco principal do programa */
+ find first param-global no-lock no-error.
+ find first empresa
+      where empresa.ep-codigo = param-global.empresa-prin no-lock no-error. 
+    
+ ASSIGN c-empresa = (IF AVAIL empresa THEN empresa.razao-social ELSE "").
+    
+ RUN pi-abre-excel (INPUT "").
+ PAUSE 3 NO-MESSAGE.
+
+ DDE INITIATE sys FRAME FRAME frm_excel:HANDLE APPLICATION "EXCEL" TOPIC "System".
+ DDE INITIATE i-canal FRAME FRAME frm_excel:HANDLE APPLICATION "EXCEL" TOPIC "Pasta1".
+
+ RUN pi-monta-planilha.
+
+ OS-DELETE VALUE(p-arq-saida).
+ DDE EXECUTE   sys COMMAND '[save.as("' + p-arq-saida + '")]'.
+    
+ DDE EXECUTE   sys COMMAND "[close(0)]". 
+ DDE EXECUTE   sys COMMAND "[quit()]". 
+   
+ DDE TERMINATE sys.
+    
+ HIDE FRAME frm_excel.
+ CLEAR FRAME frm_excel.
+ DISABLE ALL WITH FRAME frm_excel.
+
+ VIEW FRAME f-main.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-imp-cabec B-table-Win 
+PROCEDURE pi-imp-cabec :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ DEF INPUT PARAMETER p-tipo-relat AS INT.
+
+ PUT "TEAR TEXTIL INDUSTRIA E COMERCIO LTDA."  AT   1
+     "DATA: "                                  AT  66
+     STRING(TODAY,"99/99/9999") FORMAT "X(10)" AT  72
+     "HORA: "                                  AT  88
+     STRING(TIME,"hh:mm:ss")                   AT  94
+     "PAGINA:"                                 AT 122
+     i-pag FORMAT "999"                        AT 130
+     SKIP(1).
+        
+ CASE p-tipo-relat:
+     WHEN 1 THEN DO:
+         PUT "Relatorio de Pedidos Cancelados" AT 54 SKIP(1).
+         PUT "Pedido Cliente      Representante Dt.Entr. Dt.Canc.  Quantidade Motivo do Cancelamento" AT 1.                          
+         PUT "------ ------------ ------------- -------- --------  ---------- ---------------------------------------------------------------------" AT 1.
+     END.
+     WHEN 2 THEN DO:
+         PUT "Relatorio de Notas Fiscais Canceladas" AT 44 SKIP(1).
+         PUT "N.Fiscal Dt.Emissao Dt.Cancela Cliente      Representante Pedido Quantidade Valor da NF Motivo do Cancelamento"  AT 1.
+         PUT "-------- ---------- ---------- ------------ ------------- ------ ---------- ----------- ---------------------------------------------" AT 1.
+     END.
+     WHEN 3 THEN DO:
+         PUT "Relatorio de Devoluá∆o Mercadorias" AT 45 SKIP(1).
+         PUT "N.Fiscal Dt.Emissao Cliente      Pedido Representante Quantidade Valor NF    Dt. Devol. NF Dev. Quantidade  Valor Dev. Motivo Devoluá∆o" AT 1.  
+         PUT "-------- ---------- ------------ ------ ------------- ---------- ----------- ---------- ------- ----------- ---------- ----------------" AT 1.
+     END.
+
+ END CASE.
+ ASSIGN i-pag = i-pag + 1.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-imprime B-table-Win 
+PROCEDURE pi-imprime :
+/*------------------------------F------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEF INPUT PARAMETER p-tipo-relat AS INT.
+
+    CASE p-tipo-relat:
+        WHEN 1 THEN 
+            RUN pi-relat-ped (INPUT p-tipo-relat).
+        WHEN 2 THEN 
+            RUN pi-relat-nf (INPUT p-tipo-relat).
+        WHEN 3 THEN 
+            RUN pi-relat-dev (INPUT p-tipo-relat).
+    END CASE.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-monta-planilha B-table-Win 
+PROCEDURE pi-monta-planilha :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+
+ /* Cabeáalho  da Planilha */
+ CASE i-tp-relat:
+     WHEN 1 THEN
+         ASSIGN c-Lin = c-empresa + "             " + " PEDIDOS CANCELADOS EM: "  + STRING(da-dt-entrega-ini, "99/99/9999") + " A " + STRING(da-dt-entrega-fin, "99/99/9999"). 
+     WHEN 2 THEN
+         ASSIGN c-Lin = c-empresa + "             " + " NF(s) CANCELADAS EM: "  + STRING(da-dt-entrega-ini, "99/99/9999") + " A " + STRING(da-dt-entrega-fin, "99/99/9999"). 
+     WHEN 3 THEN
+         ASSIGN c-Lin = c-empresa + "             " + " DEVOLUÄ«O DE MERCADORIAS EM: "  + STRING(da-dt-entrega-ini, "99/99/9999") + " A " + STRING(da-dt-entrega-fin, "99/99/9999"). 
+ END CASE.
+ DDE SEND i-canal SOURCE c-Lin ITEM "L1C1".
+ DDE EXECUTE i-canal COMMAND '[select("L1C1:L1C10")]'.
+ /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+ DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",10,True,False,False,False,3)]".
+
+ /* Cabeáalho dos Dados */
+ CASE i-tp-relat:
+     WHEN 1 THEN DO:
+         DDE SEND i-canal SOURCE "PEDIDO"                 ITEM "L3C1".
+         DDE SEND i-canal SOURCE "CLIENTE"                ITEM "L3C2".
+         DDE SEND i-canal SOURCE "REPRESENTANTE"          ITEM "L3C3".
+         DDE SEND i-canal SOURCE "DT ENTREGA"             ITEM "L3C4".
+         DDE SEND i-canal SOURCE "DT CANCELADO"           ITEM "L3C5".
+         DDE SEND i-canal SOURCE "QUANTIDADE"             ITEM "L3C6".
+         DDE SEND i-canal SOURCE "MOTIVO DO CANCELAMENTO" ITEM "L3C7".
+         /* Formataá∆o das Celulas do Cabeáalho de Dados */
+         DDE EXECUTE i-canal COMMAND '[select("L3C1:L3C7")]'.
+         /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+         DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,True,False,False,False,5)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C1~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(7.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C2~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(15.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C3~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(18.00)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C4~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(12.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C5~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(14.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C6~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(15.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C7~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(70.86)]".
+     END.
+     WHEN 2 THEN DO:
+         DDE SEND i-canal SOURCE "NF(s)"         ITEM "L3C1".
+         DDE SEND i-canal SOURCE "DT EMISSAO"    ITEM "L3C2".
+         DDE SEND i-canal SOURCE "DT CANCEL"     ITEM "L3C3".
+         DDE SEND i-canal SOURCE "CLIENTE"       ITEM "L3C4".
+         DDE SEND i-canal SOURCE "REPRESENTANTE" ITEM "L3C5".
+         DDE SEND i-canal SOURCE "PEDIDO"        ITEM "L3C6".
+         DDE SEND i-canal SOURCE "QUANTIDADE"    ITEM "L3C7".
+         DDE SEND i-canal SOURCE "VALOR"         ITEM "L3C8".
+         DDE SEND i-canal SOURCE "MOTIVO"        ITEM "L3C9".
+         /* Formataá∆o das Celulas do Cabeáalho de Dados */
+         DDE EXECUTE i-canal COMMAND '[select("L3C1:L3C9")]'.
+         /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+         DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,True,False,False,False,5)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C1~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(7.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C2~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(12.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C3~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(12.00)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C4~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(14.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C5~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(16.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C6~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(7.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C7~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(15.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C8~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(15.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C9~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(70.00)]".
+     END.
+     WHEN 3 THEN DO:
+         DDE SEND i-canal SOURCE "NF(s)"          ITEM "L3C1".
+         DDE SEND i-canal SOURCE "DT EMISSAO"     ITEM "L3C2".
+         DDE SEND i-canal SOURCE "CLIENTE"        ITEM "L3C3".
+         DDE SEND i-canal SOURCE "PEDIDO"         ITEM "L3C4".
+         DDE SEND i-canal SOURCE "REPRESENTANTE"  ITEM "L3C5".
+         DDE SEND i-canal SOURCE "QTDE NOTA"      ITEM "L3C6".
+         DDE SEND i-canal SOURCE "VALOR NOTA"     ITEM "L3C7".
+         DDE SEND i-canal SOURCE "DT DEVOLUÄ«O"   ITEM "L3C8".
+         DDE SEND i-canal SOURCE "Nro DOCTO"      ITEM "L3C9".
+         DDE SEND i-canal SOURCE "QTDE DEVOLUÄ«O" ITEM "L3C10".
+         DDE SEND i-canal SOURCE "VLR DEVOLUCAO"  ITEM "L3C11".
+         DDE SEND i-canal SOURCE "MOTIVO"         ITEM "L3C12".
+         
+         /* Formataá∆o das Celulas do Cabeáalho de Dados */
+         DDE EXECUTE i-canal COMMAND '[select("L3C1:L3C12")]'.
+         /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+         DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,True,False,False,False,5)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C1~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(7.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C2~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(12.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C3~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(14.00)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C4~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(7.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C5~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(16.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C6~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(16.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C7~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(16.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C8~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(14.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C9~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(10.00)]".
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C10~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(18.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C11~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(16.00)]".
+         DDE EXECUTE sys     COMMAND "[format.number(~"###.###.##0,00~")]".
+         DDE EXECUTE sys     COMMAND "[alignment(4,true,2,0)]". 
+
+         DDE EXECUTE i-canal COMMAND "[select(~"C12~")]". 
+         DDE EXECUTE sys     COMMAND "[column.width(70.00)]".
+
+     END. 
+ END CASE.
+
+ /* Montagem das Celulas de Dados */
+ ASSIGN i-Lin = 4.
+ FOR EACH tt-work NO-LOCK.
+     CASE i-tp-relat:
+         WHEN 1 THEN DO:
+             DDE SEND i-canal SOURCE tt-work.nr-pedcli-ped         ITEM "L" + TRIM(STRING(i-Lin)) + "C1". 
+             DDE SEND i-canal SOURCE tt-work.nome-ab-cli           ITEM "L" + TRIM(STRING(i-Lin)) + "C2".
+             DDE SEND i-canal SOURCE tt-work.no-ab-reppri          ITEM "L" + TRIM(STRING(i-Lin)) + "C3".
+             DDE SEND i-canal SOURCE STRING(tt-work.dt-entrega)    ITEM "L" + TRIM(STRING(i-Lin)) + "C4".
+             DDE SEND i-canal SOURCE STRING(tt-work.dt-cancel-ped) ITEM "L" + TRIM(STRING(i-Lin)) + "C5".
+             DDE SEND i-canal SOURCE STRING(tt-work.qtd-ped)       ITEM "L" + TRIM(STRING(i-Lin)) + "C6".
+             DDE SEND i-canal SOURCE STRING(tt-work.motivo)        ITEM "L" + TRIM(STRING(i-Lin)) + "C7".
+             ASSIGN aux-command = '[select("L' + TRIM(STRING(i-Lin)) + 'C1:L' + TRIM(STRING(i-Lin)) + 'C7")]'.
+             DDE EXECUTE i-canal COMMAND aux-command.
+             /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+             DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,False,False,False,False,0)]".
+
+             ASSIGN i-Lin = i-Lin + 1.
+
+             ACCUMULATE tt-work.qtd-ped (TOTAL).
+         END.
+         WHEN 2 THEN DO:
+             DDE SEND i-canal SOURCE tt-work.nr-nota-fis          ITEM "L" + TRIM(STRING(i-Lin)) + "C1". 
+             DDE SEND i-canal SOURCE STRING(tt-work.dt-emis-nota) ITEM "L" + TRIM(STRING(i-Lin)) + "C2".
+             DDE SEND i-canal SOURCE STRING(tt-work.dt-cancel)    ITEM "L" + TRIM(STRING(i-Lin)) + "C3".
+             DDE SEND i-canal SOURCE tt-work.nome-ab-cli          ITEM "L" + TRIM(STRING(i-Lin)) + "C4".
+             DDE SEND i-canal SOURCE tt-work.no-ab-reppri         ITEM "L" + TRIM(STRING(i-Lin)) + "C5".
+             DDE SEND i-canal SOURCE tt-work.nr-pedcli            ITEM "L" + TRIM(STRING(i-Lin)) + "C6".
+             DDE SEND i-canal SOURCE STRING(tt-work.qtd-nota)     ITEM "L" + TRIM(STRING(i-Lin)) + "C7".
+             DDE SEND i-canal SOURCE STRING(tt-work.vl-tot-nota)  ITEM "L" + TRIM(STRING(i-Lin)) + "C8".
+             DDE SEND i-canal SOURCE STRING(tt-work.motivo)       ITEM "L" + TRIM(STRING(i-Lin)) + "C9".
+             ASSIGN aux-command = '[select("L' + TRIM(STRING(i-Lin)) + 'C1:L' + TRIM(STRING(i-Lin)) + 'C9")]'.
+             DDE EXECUTE i-canal COMMAND aux-command.
+             /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+             DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,False,False,False,False,0)]".
+
+             ASSIGN i-Lin = i-Lin + 1.
+
+             ACCUMULATE tt-work.qtd-nota    (TOTAL).
+             ACCUMULATE tt-work.vl-tot-nota (TOTAL).
+         END.
+         WHEN 3 THEN DO:
+             IF tt-work.nr-nota-fis <> "" THEN
+                DDE SEND i-canal SOURCE STRING(tt-work.nr-nota-fis)  ITEM "L" + TRIM(STRING(i-Lin)) + "C1". 
+             IF tt-work.dt-emis-nota <> ? THEN
+                DDE SEND i-canal SOURCE STRING(tt-work.dt-emis-nota) ITEM "L" + TRIM(STRING(i-Lin)) + "C2".
+             DDE SEND i-canal SOURCE STRING(tt-work.nome-ab-cli)  ITEM "L" + TRIM(STRING(i-Lin)) + "C3".
+             IF tt-work.nr-pedcli <> "" THEN
+                DDE SEND i-canal SOURCE STRING(tt-work.nr-pedcli)    ITEM "L" + TRIM(STRING(i-Lin)) + "C4".
+             IF tt-work.no-ab-reppri <> "" THEN
+                DDE SEND i-canal SOURCE STRING(tt-work.no-ab-reppri) ITEM "L" + TRIM(STRING(i-Lin)) + "C5".
+             DDE SEND i-canal SOURCE STRING(tt-work.qtd-nota)     ITEM "L" + TRIM(STRING(i-Lin)) + "C6".
+             DDE SEND i-canal SOURCE STRING(tt-work.vl-tot-nota)  ITEM "L" + TRIM(STRING(i-Lin)) + "C7".
+             DDE SEND i-canal SOURCE STRING(tt-work.dt-devol)     ITEM "L" + TRIM(STRING(i-Lin)) + "C8".
+             DDE SEND i-canal SOURCE STRING(tt-work.nro-docto)    ITEM "L" + TRIM(STRING(i-Lin)) + "C9".
+             DDE SEND i-canal SOURCE STRING(tt-work.qtd-dev)      ITEM "L" + TRIM(STRING(i-Lin)) + "C10".
+             DDE SEND i-canal SOURCE STRING(tt-work.vlr-dev)      ITEM "L" + TRIM(STRING(i-Lin)) + "C11".
+             DDE SEND i-canal SOURCE STRING(tt-work.motivo)       ITEM "L" + TRIM(STRING(i-Lin)) + "C12".
+             ASSIGN aux-command = '[select("L' + TRIM(STRING(i-Lin)) + 'C1:L' + TRIM(STRING(i-Lin)) + 'C12")]'.
+             DDE EXECUTE i-canal COMMAND aux-command.
+             /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+             DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,False,False,False,False,0)]".
+
+             ASSIGN i-Lin = i-Lin + 1.
+
+             ACCUMULATE tt-work.qtd-nota    (TOTAL).
+             ACCUMULATE tt-work.vl-tot-nota (TOTAL).
+             ACCUMULATE tt-work.qtd-dev     (TOTAL).
+             ACCUMULATE tt-work.vlr-dev     (TOTAL).
+         END.
+     END CASE.
+ END.
+ CASE i-tp-relat:
+     WHEN 1 THEN DO:
+         DDE SEND i-canal SOURCE "Total Geral" ITEM "L" + TRIM(STRING(i-Lin)) + "C2".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.qtd-ped))   ITEM "L" + TRIM(STRING(i-Lin)) + "C6".
+         ASSIGN aux-command = '[select("L' + TRIM(STRING(i-Lin)) + 'C1:L' + TRIM(STRING(i-Lin)) + 'C7")]'.
+         DDE EXECUTE i-canal COMMAND aux-command.
+         /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+         DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,True,False,False,False,0)]".
+     END.
+     WHEN 2 THEN DO:
+         DDE SEND i-canal SOURCE "Total Geral" ITEM "L" + TRIM(STRING(i-Lin)) + "C5".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.qtd-nota))      ITEM "L" + TRIM(STRING(i-Lin)) + "C7".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.vl-tot-nota))   ITEM "L" + TRIM(STRING(i-Lin)) + "C8".
+         ASSIGN aux-command = '[select("L' + TRIM(STRING(i-Lin)) + 'C1:L' + TRIM(STRING(i-Lin)) + 'C8")]'.
+         DDE EXECUTE i-canal COMMAND aux-command.
+         /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+         DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,True,False,False,False,0)]".
+     END.
+     WHEN 3 THEN DO:
+         DDE SEND i-canal SOURCE "Total Geral" ITEM "L" + TRIM(STRING(i-Lin)) + "C3".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.qtd-nota))    ITEM "L" + TRIM(STRING(i-Lin)) + "C6".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.vl-tot-nota)) ITEM "L" + TRIM(STRING(i-Lin)) + "C7".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.qtd-dev))     ITEM "L" + TRIM(STRING(i-Lin)) + "C10".
+         DDE SEND i-canal SOURCE STRING((ACCUM TOTAL tt-work.vlr-dev))     ITEM "L" + TRIM(STRING(i-Lin)) + "C11".
+         
+         ASSIGN aux-command = '[select("L' + TRIM(STRING(i-Lin)) + 'C1:L' + TRIM(STRING(i-Lin)) + 'C11")]'.
+         DDE EXECUTE i-canal COMMAND aux-command.
+         /* Fonte, Tamanho, Negrito, It†lico, Sublinhado, Atachado, Cor(0=Autom†tico, 1=Preto, 2=Branco 3=Vermelho...) */
+         DDE EXECUTE sys COMMAND "[format.font(~"Verdana~",8,True,False,False,False,0)]".
+     END.
+ END CASE.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-nf-cancelada B-table-Win 
+PROCEDURE pi-nf-cancelada :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ ASSIGN fi-total-1 = 0
+        fi-total-2 = 0
+        fi-total-3 = 0
+        fi-total-4 = 0.
+
+ FOR EACH nota-fiscal WHERE
+          nota-fiscal.dt-emis-nota >= da-dt-entrega-ini   AND 
+          nota-fiscal.dt-emis-nota <= da-dt-entrega-fin 
+          NO-LOCK
+    BREAK BY nota-fiscal.nr-nota-fis.
+
+     RUN pi-acompanhar IN h-acomp (INPUT "Data: "    + STRING(nota-fiscal.dt-emis-nota) +
+                                         " Nota Fiscal: " + nota-fiscal.nr-nota-fis).
+
+     IF nota-fiscal.dt-cancela = ? OR
+        (nota-fiscal.cod-estabel <> "2" AND nota-fiscal.serie <> "1") THEN NEXT. 
+
+     IF nota-fiscal.nome-ab-cli  < c-nome-abrev-ini OR
+        nota-fiscal.nome-ab-cli  > c-nome-abrev-fin  THEN NEXT.
+     
+     IF nota-fiscal.no-ab-reppri < c-no-ab-reppri-ini OR
+        nota-fiscal.no-ab-reppri > c-no-ab-reppri-fin THEN NEXT.
+
+     IF nota-fiscal.nr-pedcli    < c-nr-pedcli-ini OR
+        nota-fiscal.nr-pedcli    > c-nr-pedcli-fin THEN NEXT.
+
+     IF l-dt-cancela = YES AND
+        (nota-fiscal.dt-cancela < da-dt-cancela-ini OR
+         nota-fiscal.dt-cancela > da-dt-cancela-fin ) THEN NEXT.
+
+     FOR EACH it-nota-fisc OF nota-fiscal NO-LOCK.
+         ACCUMULATE it-nota-fisc.qt-faturada[1] (TOTAL).
+     END.
+
+     ACCUMULATE nota-fiscal.vl-tot-nota (TOTAL).
+     ACCUMULATE nota-fiscal.nr-nota-fis (COUNT).
+
+     CREATE tt-work.
+     ASSIGN tt-work.nr-nota-fis  = nota-fiscal.nr-nota-fis
+            tt-work.dt-emis-nota = nota-fiscal.dt-emis-nota
+            tt-work.dt-cancel    = nota-fiscal.dt-cancela
+            tt-work.nome-ab-cli  = nota-fiscal.nome-ab-cli 
+            tt-work.no-ab-reppri = nota-fiscal.no-ab-reppri   
+            tt-work.nr-pedcli    = nota-fiscal.nr-pedcli  
+            tt-work.qtd-nota     = ACCUM TOTAL it-nota-fisc.qt-faturada[1]
+            tt-work.vl-tot-nota  = nota-fiscal.vl-tot-nota
+            tt-work.motivo       = nota-fiscal.desc-cancela.
+
+     ASSIGN fi-total-1 = fi-total-1 + ACCUM TOTAL it-nota-fisc.qt-faturada[1].
+
+ END.
+ ASSIGN fi-total-2 = ACCUM TOTAL nota-fiscal.vl-tot-nota
+        fi-total-4 = ACCUM COUNT nota-fiscal.nr-nota-fis.
+ DISPLAY fi-total-1
+         fi-total-2
+         fi-total-4 
+         WITH FRAME {&FRAME-NAME}.
+
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-ped-cancelado B-table-Win 
+PROCEDURE pi-ped-cancelado :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ ASSIGN fi-total-1 = 0
+        fi-total-2 = 0
+        fi-total-3 = 0
+        fi-total-4 = 0.
+
+ IF l-avalia-credito = YES  THEN DO: /* Credito n∆o Aprovados */ 
+
+    ASSIGN c-avalia-credito = "".
+    IF l-nao-avaliado = YES THEN
+       ASSIGN c-avalia-credito = c-avalia-credito + "1,".
+    IF l-nao-aprovado = YES THEN
+       ASSIGN c-avalia-credito = c-avalia-credito + "4,".
+    IF l-pendente = YES THEN
+       ASSIGN c-avalia-credito = c-avalia-credito + "5".
+
+    FOR EACH ped-venda USE-INDEX ch-pre-fat WHERE 
+             ped-venda.dt-entrega   >= da-dt-entrega-ini                 AND
+             ped-venda.dt-entrega   <= da-dt-entrega-fin                 AND
+             INDEX(c-avalia-credito, STRING(ped-venda.cod-sit-aval)) > 0 AND
+             ped-venda.nome-abrev   >= c-nome-abrev-ini                  AND
+             ped-venda.nome-abrev   <= c-nome-abrev-fin                  AND
+             ped-venda.nr-pedcli    >= c-nr-pedcli-ini                   AND
+             ped-venda.nr-pedcli    <= c-nr-pedcli-fin                   AND
+             ped-venda.no-ab-reppri >= c-no-ab-reppri-ini                AND
+             ped-venda.no-ab-reppri <= c-no-ab-reppri-fin 
+             NO-LOCK
+       BREAK BY ped-venda.dt-entrega
+             BY ped-venda.nr-pedcli.
+
+        /* Somente Pedidos (ABERTO, ATENDIDO PARCIAL OU SUSPENSO) */
+        IF INDEX("1,2,5", STRING(ped-venda.cod-sit-ped)) =  0 THEN NEXT. 
+
+        IF c-tp-pedido <> 'Todos' THEN DO.
+           FIND ped-venda-ext WHERE
+                ped-venda-ext.nr-pedido = ped-venda.nr-pedido NO-LOCK NO-ERROR.
+           IF NOT AVAIL ped-venda-ext OR
+              ped-venda-ext.tp-pedido <> c-tp-pedido THEN NEXT.
+        END.
+        
+        RUN pi-acompanhar IN h-acomp (INPUT "Data: "    + STRING(ped-venda.dt-entrega) +
+                                            " Pedido: " + ped-venda.nr-pedcli).
+
+        ASSIGN de-total = 0.
+        FOR EACH ped-item OF ped-venda WHERE
+                 ped-item.it-codigo >= c-it-codigo-ini AND
+                 ped-item.it-codigo <= c-it-codigo-fin AND
+                 ped-item.cod-refer >= c-cod-refer-ini AND
+                 ped-item.cod-refer <= c-cod-refer-fin NO-LOCK.
+
+            /* SOMENTE ITENS EM ABERTO OU SUSPENSO */
+            IF INDEX("1,5", STRING(ped-item.cod-sit-item)) = 0 THEN NEXT. 
+            ASSIGN de-total = de-total + ped-item.qt-pedida.
+
+        END.
+
+        IF de-total = 0  THEN NEXT.
+
+        CREATE tt-work.
+        ASSIGN tt-work.nr-pedcli-ped = ped-venda.nr-pedcli
+               tt-work.nome-ab-cli   = ped-venda.nome-abrev 
+               tt-work.no-ab-reppri  = ped-venda.no-ab-reppri   
+               tt-work.dt-entrega    = ped-venda.dt-implant  
+               tt-work.dt-cancel-ped = ped-venda.dt-entrega 
+               tt-work.qtd-ped       = de-total
+               tt-work.motivo        = ped-venda.desc-bloq-c.
+
+        ASSIGN fi-total-1 = fi-total-1 + de-total. 
+    END.
+ END.
+ ELSE DO: /* Pedidos Cancelados */
+
+      /* A Data de Cancelamento Pedido pode ser   */
+      /* TODAS as datas ou a data de cancelamento */
+      ASSIGN da-dt-can-ini = 01/01/0001
+             da-dt-can-fin = 12/31/9999.
+      IF l-dt-cancela = YES THEN
+         ASSIGN da-dt-can-ini = da-dt-cancela-ini
+                da-dt-can-fin = da-dt-cancela-fin.
+
+    FOR EACH ped-venda USE-INDEX ch-pre-fat WHERE 
+             ped-venda.dt-entrega   >= da-dt-entrega-ini   AND
+             ped-venda.dt-entrega   <= da-dt-entrega-fin   AND
+             ped-venda.nr-pedcli    >= c-nr-pedcli-ini    AND
+             ped-venda.nr-pedcli    <= c-nr-pedcli-fin    AND
+             ped-venda.nome-abrev   >= c-nome-abrev-ini   AND
+             ped-venda.nome-abrev   <= c-nome-abrev-fin   AND
+             ped-venda.no-ab-reppri >= c-no-ab-reppri-ini AND
+             ped-venda.no-ab-reppri <= c-no-ab-reppri-fin 
+             NO-LOCK
+       BREAK BY ped-venda.dt-entrega
+             BY ped-venda.nr-pedcli.
+
+        IF c-tp-pedido <> 'Todos' THEN DO.
+           FIND ped-venda-ext WHERE
+                ped-venda-ext.nr-pedido = ped-venda.nr-pedido NO-LOCK NO-ERROR.
+           IF NOT AVAIL ped-venda-ext OR
+              ped-venda-ext.tp-pedido <> c-tp-pedido THEN NEXT.
+        END.
+
+        RUN pi-acompanhar IN h-acomp (INPUT "Data: "    + STRING(ped-venda.dt-entrega) +
+                                            " Pedido: " + ped-venda.nr-pedcli).
+
+
+        ASSIGN l-achei-item-can = NO.
+        IF CAN-FIND(FIRST ped-item OF ped-venda WHERE
+                          ped-item.cod-sit-item  = 6             AND
+                          ped-item.dt-canseq    >= da-dt-can-ini AND
+                          ped-item.dt-canseq    <= da-dt-can-fin) THEN
+           ASSIGN l-achei-item-can = YES.
+
+        IF l-dt-cancela             = NO  AND 
+           l-cancelados             = YES AND
+           ped-venda.cod-sit-ped   <> 6   AND 
+                l-achei-item-can    = NO  THEN NEXT.
+
+        IF (l-dt-cancela = YES AND l-achei-item-can = NO)  AND
+           (ped-venda.dt-cancela < da-dt-cancela-ini  OR
+            ped-venda.dt-cancela > da-dt-cancela-fin) THEN NEXT.
+
+        IF (l-cancelados = YES AND l-achei-item-can = NO)  AND
+           ped-venda.cod-sit-ped <> 6 THEN DO:
+           NEXT.
+        END.
+
+        ASSIGN de-total     = 0
+               c-motivo     = ""
+               da-dt-cancel = ped-venda.dt-cancela.
+        FOR EACH ped-item OF ped-venda WHERE
+                 ped-item.cod-sit-item = 6                      AND
+                 ped-item.dt-canseq   >= da-dt-can-ini          AND
+                 ped-item.dt-canseq   <= da-dt-can-fin          AND 
+                 ped-item.it-codigo   >= c-it-codigo-ini AND
+                 ped-item.it-codigo   <= c-it-codigo-fin AND
+                 ped-item.cod-refer   >= c-cod-refer-ini AND
+                 ped-item.cod-refer   <= c-cod-refer-fin NO-LOCK.
+
+             ASSIGN de-total = de-total + ped-item.qt-pedida.
+
+             IF c-motivo = "" THEN
+                ASSIGN c-motivo     = ped-item.desc-cancela
+                       da-dt-cancel = ped-item.dt-canseq.
+        END.
+
+        IF de-total = 0  THEN NEXT.
+
+        CREATE tt-work.
+        ASSIGN tt-work.nr-pedcli-ped = ped-venda.nr-pedcli
+               tt-work.nome-ab-cli   = ped-venda.nome-abrev 
+               tt-work.no-ab-reppri  = ped-venda.no-ab-reppri   
+               tt-work.dt-entrega    = ped-venda.dt-entrega  
+               tt-work.dt-cancel-ped = da-dt-cancel 
+               tt-work.qtd-ped       = de-total
+               tt-work.motivo        = c-motivo.
+
+        ASSIGN fi-total-1 = fi-total-1 + de-total. 
+        
+    END.
+ END.
+ DISPLAY fi-total-1
+         WITH FRAME {&FRAME-NAME}.
+
+
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-processa B-table-Win 
+PROCEDURE pi-processa :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+
+  DEF INPUT PARAMETER p-tp-relat         AS INT.
+  DEF INPUT PARAMETER p-dt-entrega-ini   AS DATE.
+  DEF INPUT PARAMETER p-dt-entrega-fin   AS DATE.
+  DEF INPUT PARAMETER p-nr-pedcli-ini    AS CHAR.                              
+  DEF INPUT PARAMETER p-nr-pedcli-fin    AS CHAR.
+  DEF INPUT PARAMETER p-it-codigo-ini    AS CHAR.                              
+  DEF INPUT PARAMETER p-it-codigo-fin    AS CHAR.                              
+  DEF INPUT PARAMETER p-cod-refer-ini    AS CHAR.                              
+  DEF INPUT PARAMETER p-cod-refer-fin    AS CHAR.
+  DEF INPUT PARAMETER p-nome-abrev-ini   AS CHAR.                              
+  DEF INPUT PARAMETER p-nome-abrev-fin   AS CHAR.
+  DEF INPUT PARAMETER p-no-ab-reppri-ini AS CHAR.                              
+  DEF INPUT PARAMETER p-no-ab-reppri-fin AS CHAR.
+  DEF INPUT PARAMETER p-tp-pedido        AS CHAR.
+  DEF INPUT PARAMETER p-cancelados       AS LOG.
+  DEF INPUT PARAMETER p-avalia-credito   AS LOG.                              
+  DEF INPUT PARAMETER p-nao-avaliado     AS LOG.
+  DEF INPUT PARAMETER p-nao-aprovado     AS LOG.
+  DEF INPUT PARAMETER p-pendente         AS LOG.
+  DEF INPUT PARAMETER p-dt-cancela       AS LOG.
+  DEF INPUT PARAMETER p-dt-cancela-ini   AS DATE.
+  DEF INPUT PARAMETER p-dt-cancela-fin   AS DATE.
+
+  /* Esconde todos os campos do Browse */
+  tt-work.nr-nota-fis:VISIBLE IN BROWSE br-work   = NO.  
+  tt-work.dt-entrega:VISIBLE IN BROWSE br-work    = NO.   
+  tt-work.dt-cancel:VISIBLE IN BROWSE br-work     = NO.    
+  tt-work.dt-cancel-ped:VISIBLE IN BROWSE br-work = NO.    
+  tt-work.dt-emis-nota:VISIBLE IN BROWSE br-work  = NO. 
+  tt-work.nome-ab-cli:VISIBLE IN BROWSE br-work   = NO.  
+  tt-work.nr-pedcli:VISIBLE IN BROWSE br-work     = NO.    
+  tt-work.nr-pedcli-ped:VISIBLE IN BROWSE br-work = NO.    
+  tt-work.no-ab-reppri:VISIBLE IN BROWSE br-work  = NO. 
+  tt-work.qtd-nota:VISIBLE IN BROWSE br-work      = NO.     
+  tt-work.vl-tot-nota:VISIBLE IN BROWSE br-work   = NO.  
+  tt-work.dt-devol:VISIBLE IN BROWSE br-work      = NO.     
+  tt-work.nro-docto:VISIBLE IN BROWSE br-work     = NO.    
+  tt-work.qtd-devol:VISIBLE IN BROWSE br-work     = NO.    
+  tt-work.vlr-devol:VISIBLE IN BROWSE br-work     = NO.    
+  tt-work.qtd-ped:VISIBLE IN BROWSE br-work       = NO.      
+  tt-work.motivo:VISIBLE IN BROWSE br-work        = NO.
+  fi-total-1:VISIBLE IN FRAME {&FRAME-NAME} = NO.
+  fi-total-2:VISIBLE IN FRAME {&FRAME-NAME} = NO.
+  fi-total-3:VISIBLE IN FRAME {&FRAME-NAME} = NO.
+  fi-total-4:VISIBLE IN FRAME {&FRAME-NAME} = NO.
+  bt-pre-nota:SENSITIVE IN FRAME {&FRAME-NAME}  = NO.
+  bt-pedido:SENSITIVE IN FRAME {&FRAME-NAME}    = NO.
+  bt-nota:SENSITIVE IN FRAME {&FRAME-NAME}      = NO.
+  bt-item:SENSITIVE IN FRAME {&FRAME-NAME}      = NO.
+  bt-devolucao:SENSITIVE IN FRAME {&FRAME-NAME} = NO.
+  bt-imprime:SENSITIVE IN FRAME {&FRAME-NAME}   = YES.
+  bt-vapra:SENSITIVE IN FRAME {&FRAME-NAME}     = YES.
+  bt-excel:SENSITIVE IN FRAME {&FRAME-NAME}     = YES.
+
+  EMPTY TEMP-TABLE tt-work.
+  EMPTY TEMP-TABLE tt-itens.
+
+  assign i-tp-relat           = p-tp-relat         
+         da-dt-entrega-ini    = p-dt-entrega-ini   
+         da-dt-entrega-fin    = p-dt-entrega-fin   
+         c-nr-pedcli-ini      = p-nr-pedcli-ini    
+         c-nr-pedcli-fin      = p-nr-pedcli-fin    
+         c-it-codigo-ini      = p-it-codigo-ini    
+         c-it-codigo-fin      = p-it-codigo-fin    
+         c-cod-refer-ini      = p-cod-refer-ini    
+         c-cod-refer-fin      = p-cod-refer-fin    
+         c-nome-abrev-ini     = p-nome-abrev-ini   
+         c-nome-abrev-fin     = p-nome-abrev-fin   
+         c-no-ab-reppri-ini   = p-no-ab-reppri-ini 
+         c-no-ab-reppri-fin   = p-no-ab-reppri-fin 
+         c-tp-pedido          = p-tp-pedido        
+         l-cancelados         = p-cancelados       
+         l-avalia-credito     = p-avalia-credito   
+         l-nao-avaliado       = p-nao-avaliado     
+         l-nao-aprovado       = p-nao-aprovado     
+         l-pendente           = p-pendente         
+         l-dt-cancela         = p-dt-cancela       
+         da-dt-cancela-ini    = p-dt-cancela-ini   
+         da-dt-cancela-fin    = p-dt-cancela-fin.
+
+ EMPTY TEMP-TABLE tt-work.
+
+ RUN utp/ut-acomp.p PERSISTENT SET h-acomp.
+
+ {utp/ut-liter.i Gerando_Relat¢rio *}
+ RUN pi-inicializar IN h-acomp (INPUT RETURN-VALUE).
+  
+ CASE i-tp-relat:
+     WHEN 1 THEN DO:
+         &SCOPED-DEFINE BREAK-BY tt-work.dt-entrega tt-work.nr-pedcli-ped 
+         tt-work.nr-pedcli-ped:VISIBLE IN BROWSE br-work = YES.    
+         tt-work.nome-ab-cli:VISIBLE IN BROWSE br-work   = YES.  
+         tt-work.no-ab-reppri:VISIBLE IN BROWSE br-work  = YES. 
+         tt-work.dt-entrega:VISIBLE IN BROWSE br-work    = YES.   
+         tt-work.dt-cancel-ped:VISIBLE IN BROWSE br-work = YES.    
+         tt-work.qtd-ped:VISIBLE IN BROWSE br-work       = YES.      
+         tt-work.motivo:VISIBLE IN BROWSE br-work        = YES.
+         fi-total-1:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-1:LABEL IN FRAME {&FRAME-NAME} = "Qtd Cancelada: ".
+         ASSIGN  br-work:TITLE IN FRAME {&FRAME-NAME} = "RELAT‡RIO DE PEDIDOS CANCELADOS".
+         RUN pi-ped-cancelado.
+     END.
+     WHEN 2 THEN DO:
+         &SCOPED-DEFINE BREAK-BY tt-work.nr-nota-fis 
+         tt-work.nr-nota-fis:VISIBLE IN BROWSE br-work  = YES.  
+         tt-work.dt-cancel:VISIBLE IN BROWSE br-work    = YES.    
+         tt-work.dt-emis-nota:VISIBLE IN BROWSE br-work = YES. 
+         tt-work.nome-ab-cli:VISIBLE IN BROWSE br-work  = YES.  
+         tt-work.nr-pedcli:VISIBLE IN BROWSE br-work    = YES.    
+         tt-work.no-ab-reppri:VISIBLE IN BROWSE br-work = YES. 
+         tt-work.qtd-nota:VISIBLE IN BROWSE br-work     = YES.     
+         tt-work.vl-tot-nota:VISIBLE IN BROWSE br-work  = YES.  
+         tt-work.motivo:VISIBLE IN BROWSE br-work       = YES.
+         fi-total-1:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-2:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-4:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-1:LABEL IN FRAME {&FRAME-NAME} = "Qt(M) NFS: ".
+         fi-total-2:LABEL IN FRAME {&FRAME-NAME} = "Valor NFs: ".
+         fi-total-4:LABEL IN FRAME {&FRAME-NAME} = "Notas CAN: ".
+         ASSIGN br-work:TITLE IN FRAME {&FRAME-NAME}  = "RELAT‡RIO DE NOTAS FISCAIS CANCELADAS".
+         RUN pi-nf-cancelada.
+     END.
+     WHEN 3 THEN DO:
+         &SCOPED-DEFINE BREAK-BY tt-work.dt-devol 
+         tt-work.nr-nota-fis:VISIBLE IN BROWSE br-work  = YES.  
+         tt-work.dt-emis-nota:VISIBLE IN BROWSE br-work = YES. 
+         tt-work.nome-ab-cli:VISIBLE IN BROWSE br-work  = YES.  
+         tt-work.nr-pedcli:VISIBLE IN BROWSE br-work    = YES.    
+         tt-work.no-ab-reppri:VISIBLE IN BROWSE br-work = YES. 
+         tt-work.qtd-nota:VISIBLE IN BROWSE br-work     = YES.     
+         tt-work.vl-tot-nota:VISIBLE IN BROWSE br-work  = YES.  
+         tt-work.dt-devol:VISIBLE IN BROWSE br-work     = YES.     
+         tt-work.nro-docto:VISIBLE IN BROWSE br-work    = YES.    
+         tt-work.qtd-devol:VISIBLE IN BROWSE br-work    = YES.    
+         tt-work.vlr-devol:VISIBLE IN BROWSE br-work    = YES.    
+         tt-work.motivo:VISIBLE IN BROWSE br-work       = YES.       
+         fi-total-1:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-2:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-3:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-4:VISIBLE IN FRAME {&FRAME-NAME} = YES.
+         fi-total-1:LABEL IN FRAME {&FRAME-NAME} = "Qt(M) NFS: ".
+         fi-total-2:LABEL IN FRAME {&FRAME-NAME} = "Valor NFs: ".
+         fi-total-3:LABEL IN FRAME {&FRAME-NAME} = "Qt(M) Dev: ".
+         fi-total-4:LABEL IN FRAME {&FRAME-NAME} = "Valor Dev: ".
+         ASSIGN  br-work:TITLE IN FRAME {&FRAME-NAME} = "RELAT‡RIO DE DEVOLUÄ«O DE MERCADORIAS".
+         RUN pi-devolucao.
+     END.
+ END CASE.
+ 
+ RUN pi-finalizar in h-acomp.
+ RUN adm-open-query-cases.
+ APPLY 'value-changed' TO br-work IN FRAME {&FRAME-NAME}.
+ APPLY 'entry' TO br-work IN FRAME {&FRAME-NAME}.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-relat-dev B-table-Win 
+PROCEDURE pi-relat-dev :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+
+ DEF INPUT PARAMETER p-tipo-relat AS INT.
+ DEF VAR h-prog AS HANDLE NO-UNDO.
+ DEF VAR i-ct   AS INT.
+
+ RUN utp/ut-utils.p PERSISTENT SET h-prog.
+
+
+ RUN esapi/saida-imp.p (OUTPUT i-saida,
+                        OUTPUT c-saida,
+                        OUTPUT i-num-copias,
+                        OUTPUT l-ok).
+
+ CASE i-saida:
+     WHEN 1 THEN DO.
+         OUTPUT TO PRINTER CONVERT TARGET "ibm850" PAGED PAGE-SIZE 64.
+         PUT CONTROL "~033E~033(s18H".    
+     END.
+     WHEN 2 THEN
+         OUTPUT TO VALUE(c-saida).
+     WHEN 3 THEN DO.
+         ASSIGN c-saida = SESSION:TEMP-DIRECTORY + "essp0183.tmp".
+         OUTPUT TO VALUE(c-saida).
+     END.
+ END CASE.
+ DO i-ct = 1 TO i-num-copias.
+    ASSIGN i-lin = 99
+           i-pag = 1.
+    FOR EACH tt-work NO-LOCK 
+        BREAK BY tt-work.dt-devol.
+        IF i-lin > 64 THEN DO:
+           RUN pi-imp-cabec (INPUT p-tipo-relat).
+           ASSIGN i-lin = 7.
+        END.
+        PUT tt-work.nr-nota-fis  FORMAT "x(7)"        AT   1
+            tt-work.dt-emis-nota                      AT  10
+            tt-work.nome-ab-cli                       AT  21
+            tt-work.nr-pedcli    FORMAT "x(6)"        AT  34
+            tt-work.no-ab-reppri                      AT  41
+            tt-work.qtd-nota                          AT  55
+            tt-work.vl-tot-nota  FORMAT "->>>,>>9.99" AT  66
+            tt-work.dt-devol                          AT  78
+            tt-work.nro-docto    FORMAT "x(7)"        AT  89
+            tt-work.qtd-dev                           AT  98
+            tt-work.vlr-dev                           AT 109
+            tt-work.motivo       FORMAT "x(16)"       AT 120.
+
+        ACCUMULATE tt-work.qtd-nota    (TOTAL).
+        ACCUMULATE tt-work.vl-tot-nota (TOTAL).
+        ACCUMULATE tt-work.qtd-dev     (TOTAL).
+        ACCUMULATE tt-work.vlr-dev     (TOTAL).
+
+        ASSIGN i-lin = i-lin + 1.
+
+    END.
+    IF (ACCUM TOTAL tt-work.qtd-nota) > 0 THEN DO:
+       IF i-lin > 63 THEN DO:
+          PAGE.
+          RUN pi-cab-devol.
+          ASSIGN i-lin = 7.
+       END.
+       PUT "----------------------                    ----------------------" AT  55 SKIP.
+       PUT ACCUM TOTAL tt-work.qtd-nota    AT  55.
+       PUT ACCUM TOTAL tt-work.vl-tot-nota AT  67.
+       PUT ACCUM TOTAL tt-work.qtd-dev     AT  98. 
+       PUT ACCUM TOTAL tt-work.vlr-dev     AT 109 SKIP.
+    END.
+    IF i-saida = 1 THEN DO:
+        PAGE.
+        PUT "" AT 1.
+    END.
+
+ END.
+ IF i-saida = 3 THEN DO.
+    RUN EXECUTE IN h-prog(INPUT "notepad.exe",
+                          INPUT c-saida).
+    DELETE PROCEDURE h-prog.
+ END.
+ OUTPUT CLOSE.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-relat-nf B-table-Win 
+PROCEDURE pi-relat-nf :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ DEF INPUT PARAMETER p-tipo-relat AS INT.
+
+ DEF VAR h-prog AS HANDLE NO-UNDO.
+ DEF VAR i-ct   AS INT.
+
+ RUN utp/ut-utils.p PERSISTENT SET h-prog.
+
+
+ RUN esapi/saida-imp.p (OUTPUT i-saida,
+                        OUTPUT c-saida,
+                        OUTPUT i-num-copias,
+                        OUTPUT l-ok).
+
+ CASE i-saida:
+     WHEN 1 THEN DO.
+         OUTPUT TO PRINTER CONVERT TARGET "ibm850" PAGED PAGE-SIZE 64.
+         PUT CONTROL "~033E~033(s18H".    
+     END.
+     WHEN 2 THEN
+         OUTPUT TO VALUE(c-saida).
+     WHEN 3 THEN DO.
+         ASSIGN c-saida = SESSION:TEMP-DIRECTORY + "essp0183.tmp".
+         OUTPUT TO VALUE(c-saida).
+     END.
+ END CASE.
+ DO i-ct = 1 TO i-num-copias.
+    ASSIGN i-lin = 99
+           i-pag = 1.
+    FOR EACH tt-work NO-LOCK.
+        IF i-lin > 64 THEN DO:
+           RUN pi-imp-cabec (INPUT p-tipo-relat).
+           ASSIGN i-lin = 7.
+        END.
+        PUT tt-work.nr-nota-fis FORMAT "x(7)"         AT  1
+            tt-work.dt-emis-nota                      AT 10
+            tt-work.dt-cancel   FORMAT "99/99/9999"   AT 21
+            tt-work.nome-ab-cli                       AT 32
+            tt-work.no-ab-reppri                      AT 45
+            tt-work.nr-pedcli   FORMAT "x(6)"         AT 59
+            tt-work.qtd-nota    FORMAT "->>>,>>9.99"  AT 65
+            tt-work.vl-tot-nota FORMAT "->>>,>>9.99"  AT 77
+            tt-work.motivo      FORMAT "x(55)"        AT 89 SKIP.
+        ASSIGN i-lin = i-lin + 1.
+        ACCUMULATE tt-work.qtd-nota (TOTAL).
+        ACCUMULATE tt-work.vl-tot-nota (TOTAL).
+        ACCUMULATE tt-work.nr-nota-fis (COUNT).
+    END.
+    IF (ACCUM TOTAL tt-work.qtd-nota) > 0 THEN DO:
+       IF i-lin > 63 THEN DO:
+          PAGE.
+          RUN pi-imp-cabec (INPUT p-tipo-relat).
+          ASSIGN i-lin = 7.
+       END.
+       IF i-lin <> 7  THEN
+          PUT  "----------- -----------" AT 65 SKIP.
+       PUT "Total Geral"  AT 21.
+       PUT (ACCUM TOTAL tt-work.qtd-nota)    FORMAT ">,>>>,>>9.99" AT  64.
+       PUT (ACCUM TOTAL tt-work.vl-tot-nota) FORMAT ">,>>>,>>9.99" AT  76.
+       PUT "Notas Canceladas:"                                     AT  89.
+       PUT (ACCUM COUNT tt-work.nr-nota-fis) FORMAT ">,>>9"        AT 107.
+    END.
+    IF i-saida = 1 THEN DO:
+        PAGE.
+        PUT "" AT 1.
+    END.
+ END.
+ IF i-saida = 3 THEN DO.
+    RUN EXECUTE IN h-prog(INPUT "notepad.exe",
+                          INPUT c-saida).
+    DELETE PROCEDURE h-prog.
+ END.
+ OUTPUT CLOSE.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-relat-ped B-table-Win 
+PROCEDURE pi-relat-ped :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+ DEF INPUT PARAMETER p-tipo-relat AS INT.
+
+ DEF VAR h-prog AS HANDLE NO-UNDO.
+ DEF VAR i-ct   AS INT.
+
+ RUN utp/ut-utils.p PERSISTENT SET h-prog.
+
+
+ RUN esapi/saida-imp.p (OUTPUT i-saida,
+                        OUTPUT c-saida,
+                        OUTPUT i-num-copias,
+                        OUTPUT l-ok).
+
+ CASE i-saida:
+     WHEN 1 THEN DO.
+         OUTPUT TO PRINTER CONVERT TARGET "ibm850" PAGED PAGE-SIZE 64.
+         PUT CONTROL "~033E~033(s18H".    
+     END.
+     WHEN 2 THEN
+         OUTPUT TO VALUE(c-saida).
+     WHEN 3 THEN DO.
+         ASSIGN c-saida = SESSION:TEMP-DIRECTORY + "essp0183.tmp".
+         OUTPUT TO VALUE(c-saida).
+     END.
+ END CASE.
+ DO i-ct = 1 TO i-num-copias.
+    ASSIGN i-lin = 99
+           i-pag = 1.
+    FOR EACH tt-work NO-LOCK.
+        IF i-lin > 64 THEN DO:
+           RUN pi-imp-cabec (INPUT p-tipo-relat).
+           ASSIGN i-lin = 7.
+        END.
+
+        PUT tt-work.nr-pedcli-ped FORMAT "x(6)"     AT  1
+            tt-work.nome-ab-cli                     AT  8
+            tt-work.no-ab-reppri                    AT 21
+            tt-work.dt-entrega    FORMAT "99/99/99" AT 35
+            tt-work.dt-cancel-ped FORMAT "99/99/99" AT 44
+            tt-work.qtd-ped                         AT 54
+            tt-work.motivo FORMAT "x(65)"           AT 65 SKIP.
+        ASSIGN i-lin = i-lin + 1.
+        ACCUMULATE tt-work.qtd-ped (TOTAL).
+    END.
+    IF (ACCUM TOTAL tt-work.qtd-ped) > 0 THEN DO:
+       IF i-lin > 63 THEN DO:
+          PAGE.
+          RUN pi-imp-cabec (INPUT p-tipo-relat).
+          ASSIGN i-lin = 7.
+       END.
+       IF i-lin <> 7  THEN
+          PUT  "------------" AT 52 SKIP.
+       PUT "Total Geral"  AT 21.
+       PUT (ACCUM TOTAL tt-work.qtd-ped) FORMAT ">,>>>,>>9.99" AT 52.
+    END.
+    IF i-saida = 1 THEN DO:
+        PAGE.
+        PUT "" AT 1.
+    END.
+ END.
+
+ IF i-saida = 3 THEN DO.
+    RUN EXECUTE IN h-prog(INPUT "notepad.exe",
+                          INPUT c-saida).
+    DELETE PROCEDURE h-prog.
+ END.
+ OUTPUT CLOSE.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE send-key B-table-Win  adm/support/_key-snd.p
+PROCEDURE send-key :
+/*------------------------------------------------------------------------------
+  Purpose:     Sends a requested KEY value back to the calling
+               SmartObject.
+  Parameters:  <see adm/template/sndkytop.i>
+------------------------------------------------------------------------------*/
+
+  /* Define variables needed by this internal procedure.             */
+  {src/adm/template/sndkytop.i}
+
+  /* Return the key value associated with each key case.             */
+  {src/adm/template/sndkycas.i "nr-ord-produ" "ped-item" "nr-ord-produ"}
+  {src/adm/template/sndkycas.i "nr-programa" "ped-item" "nr-programa"}
+  {src/adm/template/sndkycas.i "it-codigo" "ped-item" "it-codigo"}
+
+  /* Close the CASE statement and end the procedure.                 */
+  {src/adm/template/sndkyend.i}
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE send-records B-table-Win  _ADM-SEND-RECORDS
+PROCEDURE send-records :
+/*------------------------------------------------------------------------------
+  Purpose:     Send record ROWID's for all tables used by
+               this file.
+  Parameters:  see template/snd-head.i
+------------------------------------------------------------------------------*/
+
+  /* Define variables needed by this internal procedure.               */
+  {src/adm/template/snd-head.i}
+
+  /* For each requested table, put it's ROWID in the output list.      */
+  {src/adm/template/snd-list.i "tt-work"}
+
+  /* Deal with any unexpected table requests before closing.           */
+  {src/adm/template/snd-end.i}
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE state-changed B-table-Win 
+PROCEDURE state-changed :
+/* -----------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+-------------------------------------------------------------*/
+  DEFINE INPUT PARAMETER p-issuer-hdl AS HANDLE    NO-UNDO.
+  DEFINE INPUT PARAMETER p-state      AS CHARACTER NO-UNDO.
+
+  CASE p-state:
+      /* Object instance CASEs can go here to replace standard behavior
+         or add new cases. */
+      {src/adm/template/bstates.i}
+  END CASE.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+/* ************************  Function Implementations ***************** */
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _FUNCTION fn-cor B-table-Win 
+FUNCTION fn-cor RETURNS CHARACTER
+  ( /* parameter-definitions */ ) :
+/*------------------------------------------------------------------------------
+  Purpose:  
+    Notes:  
+------------------------------------------------------------------------------*/
+
+  RETURN "4".   /* Function return value. */
+
+END FUNCTION.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+

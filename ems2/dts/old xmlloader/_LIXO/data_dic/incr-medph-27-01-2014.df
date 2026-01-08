@@ -1,0 +1,16 @@
+ADD INDEX "idx-pesq-princ" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "ep-codigo" ASCENDING
+  INDEX-FIELD "log-situacao" ASCENDING
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "serie-docto" ASCENDING
+  INDEX-FIELD "nro-docto" ASCENDING
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "chave-xml" ASCENDING
+  INDEX-FIELD "dt-emissao" ASCENDING
+
+.
+PSC
+cpstream=ibm850
+.
+0000005612

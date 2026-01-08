@@ -1,0 +1,906 @@
+ADD TABLE "dt-cfop-bloqueio-emit"
+  AREA "Schema Area"
+  LABEL "CFOP Bloqueio"
+  DESCRIPTION "CFOP Bloqueio"
+  DUMP-NAME "dt-cfop-bloqueio-emit"
+
+ADD FIELD "cod-emitente" OF "dt-cfop-bloqueio-emit" AS integer 
+  DESCRIPTION "Codigo do cliente"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cod emitente"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod emitente"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "cod-cfop" OF "dt-cfop-bloqueio-emit" AS character 
+  FORMAT "x(10)"
+  INITIAL ""
+  LABEL "CFOP"
+  POSITION 3
+  MAX-WIDTH 20
+  COLUMN-LABEL "CFOP"
+  ORDER 20
+
+ADD FIELD "int-2" OF "dt-cfop-bloqueio-emit" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "int-1" OF "dt-cfop-bloqueio-emit" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "dec-1" OF "dt-cfop-bloqueio-emit" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "dec-2" OF "dt-cfop-bloqueio-emit" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "log-1" OF "dt-cfop-bloqueio-emit" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 8
+  MAX-WIDTH 1
+  ORDER 70
+
+ADD FIELD "log-2" OF "dt-cfop-bloqueio-emit" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "char-1" OF "dt-cfop-bloqueio-emit" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 10
+  MAX-WIDTH 512
+  ORDER 90
+
+ADD FIELD "char-2" OF "dt-cfop-bloqueio-emit" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "date-1" OF "dt-cfop-bloqueio-emit" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 12
+  MAX-WIDTH 4
+  ORDER 110
+
+ADD FIELD "date-2" OF "dt-cfop-bloqueio-emit" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD INDEX "codigo-cfop" ON "dt-cfop-bloqueio-emit" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "cod-cfop" ASCENDING 
+
+ADD INDEX "id-cfop" ON "dt-cfop-bloqueio-emit" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-cfop" ASCENDING 
+
+ADD INDEX "id-emitente" ON "dt-cfop-bloqueio-emit" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+
+ADD TABLE "dt-doc-refer-compl"
+  AREA "Schema Area"
+  LABEL "Doc Ref NF Complementar"
+  DESCRIPTION "Documentos referenciados Nota Complementar de Valor e Quantidade"
+  DUMP-NAME "dt-doc-refer-compl"
+
+ADD FIELD "serie-docto" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Série"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Ser"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Documento"
+  POSITION 3
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "cod-emitente" OF "dt-doc-refer-compl" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Emitente"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emit"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "nat-operacao" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(06)"
+  INITIAL ""
+  LABEL "Nat Operação"
+  POSITION 5
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper"
+  ORDER 40
+  MANDATORY
+
+ADD FIELD "nf-serie" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Serie NF"
+  POSITION 6
+  MAX-WIDTH 10
+  COLUMN-LABEL "Serie NF"
+  ORDER 50
+  MANDATORY
+
+ADD FIELD "nf-nro" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Numero NF"
+  POSITION 7
+  MAX-WIDTH 32
+  COLUMN-LABEL "Numero NF"
+  ORDER 60
+  MANDATORY
+
+ADD FIELD "nf-emitente" OF "dt-doc-refer-compl" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Emitente NF"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emitente NF"
+  HELP "Emitente da Nota Fiscal"
+  ORDER 70
+  MANDATORY
+
+ADD FIELD "nf-nat-oper" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(06)"
+  INITIAL ""
+  LABEL "Natureza NF"
+  POSITION 9
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper NF"
+  ORDER 80
+  MANDATORY
+
+ADD FIELD "char-1" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  POSITION 10
+  MAX-WIDTH 200
+  ORDER 90
+
+ADD FIELD "char-2" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 200
+  ORDER 100
+
+ADD FIELD "dec-1" OF "dt-doc-refer-compl" AS decimal 
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  POSITION 12
+  MAX-WIDTH 23
+  DECIMALS 8
+  ORDER 110
+
+ADD FIELD "dec-2" OF "dt-doc-refer-compl" AS decimal 
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  POSITION 13
+  MAX-WIDTH 23
+  DECIMALS 8
+  ORDER 120
+
+ADD FIELD "int-1" OF "dt-doc-refer-compl" AS integer 
+  FORMAT "->>>>>>>>>9"
+  INITIAL "0"
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 130
+
+ADD FIELD "int-2" OF "dt-doc-refer-compl" AS integer 
+  FORMAT "->>>>>>>>>9"
+  INITIAL "0"
+  POSITION 15
+  MAX-WIDTH 4
+  ORDER 140
+
+ADD FIELD "log-1" OF "dt-doc-refer-compl" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  POSITION 16
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  ORDER 150
+
+ADD FIELD "log-2" OF "dt-doc-refer-compl" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  POSITION 17
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  ORDER 160
+
+ADD FIELD "data-1" OF "dt-doc-refer-compl" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 18
+  MAX-WIDTH 4
+  ORDER 170
+
+ADD FIELD "data-2" OF "dt-doc-refer-compl" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 19
+  MAX-WIDTH 4
+  ORDER 180
+
+ADD FIELD "check-sum" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Check-sum"
+  POSITION 20
+  MAX-WIDTH 40
+  ORDER 190
+
+ADD FIELD "chave-doc-compl" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Chave NF Compl"
+  POSITION 21
+  MAX-WIDTH 120
+  COLUMN-LABEL "Chave NF Compl"
+  HELP "Chave Noa Fiscal Complementar"
+  ORDER 200
+
+ADD FIELD "chave-doc-ref" OF "dt-doc-refer-compl" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Chave Doc Ref"
+  POSITION 22
+  MAX-WIDTH 120
+  COLUMN-LABEL "Chave Doc Ref"
+  HELP "Chave Doc Ref"
+  ORDER 210
+
+ADD FIELD "l-nota-padrao" OF "dt-doc-refer-compl" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "NF Ref Atual Padr"
+  POSITION 23
+  MAX-WIDTH 1
+  COLUMN-LABEL "NF Ref Atual Padr"
+  HELP "NF Referenciada Atualizada no Produto Padrão"
+  ORDER 220
+
+ADD FIELD "l-nota-loader" OF "dt-doc-refer-compl" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "NF Ref Loader"
+  POSITION 24
+  MAX-WIDTH 1
+  COLUMN-LABEL "NF Ref Loader"
+  HELP "Nota Fiscal Referenciada existe Loader"
+  ORDER 230
+
+ADD FIELD "nf-dat-emissao" OF "dt-doc-refer-compl" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Emissão Ref"
+  POSITION 25
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Emis Ref"
+  HELP "Data de Emissão do Doc Referenciado"
+  ORDER 240
+
+ADD INDEX "documento" ON "dt-doc-refer-compl" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "nf-serie" ASCENDING 
+  INDEX-FIELD "nf-nro" ASCENDING 
+  INDEX-FIELD "nf-emitente" ASCENDING 
+  INDEX-FIELD "nf-nat-oper" ASCENDING 
+
+ADD INDEX "chave-doc-compl" ON "dt-doc-refer-compl" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-doc-compl" ASCENDING 
+
+ADD INDEX "chave-doc-ref" ON "dt-doc-refer-compl" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-doc-ref" ASCENDING 
+
+ADD INDEX "nf-doc-compl" ON "dt-doc-refer-compl" 
+  AREA "Schema Area"
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+
+ADD INDEX "nf-docto-ref" ON "dt-doc-refer-compl" 
+  AREA "Schema Area"
+  INDEX-FIELD "nf-serie" ASCENDING 
+  INDEX-FIELD "nf-nro" ASCENDING 
+  INDEX-FIELD "nf-emitente" ASCENDING 
+  INDEX-FIELD "nf-nat-oper" ASCENDING 
+
+ADD TABLE "dt-emitente-loader"
+  AREA "Schema Area"
+  LABEL "Emitente Loader"
+  DUMP-NAME "dt-emitente-loader"
+
+ADD FIELD "cod-emitente" OF "dt-emitente-loader" AS integer 
+  DESCRIPTION "Codigo do cliente"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cod emitente"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod emitente"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "l-atualiza-estoq" OF "dt-emitente-loader" AS logical 
+  DESCRIPTION "Atualiza documento automaticamente no Estoque"
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Atualiza Doc Estoque"
+  POSITION 3
+  MAX-WIDTH 1
+  COLUMN-LABEL "Atualiza Doc Estoque"
+  ORDER 20
+
+ADD FIELD "l-rejeita-sem-oc" OF "dt-emitente-loader" AS logical 
+  DESCRIPTION "Rejeita Automaticamente Documeto sem OC"
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Rejeita Doc sem OC"
+  POSITION 4
+  MAX-WIDTH 1
+  COLUMN-LABEL "Rejeita Doc sem OC"
+  HELP "Rejeita Automaticamente Documeto sem OC"
+  ORDER 30
+
+ADD FIELD "l-manifesto-rejeicao" OF "dt-emitente-loader" AS logical 
+  DESCRIPTION "Efetua automaticamente manifesto de rejeição para documentos sem OC"
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Efetua Manifesto Rejeição"
+  POSITION 5
+  MAX-WIDTH 1
+  COLUMN-LABEL "Efetua Manifesto Rejeição"
+  HELP "Efetua automaticamente Manifesto de Rejeição para doc sem OC"
+  ORDER 40
+
+ADD FIELD "justif-rejeicao" OF "dt-emitente-loader" AS character 
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Justif Rejeição"
+  POSITION 6
+  MAX-WIDTH 4000
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Justif Rejeição"
+  HELP "Justificativa Rejeição"
+  ORDER 50
+
+ADD FIELD "l-envia-email" OF "dt-emitente-loader" AS logical 
+  DESCRIPTION "Envia e-mail de documentos sem OC"
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Envia E-mail sem OC"
+  POSITION 7
+  MAX-WIDTH 1
+  COLUMN-LABEL "Envia E-mail sem OC"
+  HELP "Envia e-mail de documentos sem OC"
+  ORDER 60
+
+ADD FIELD "txt-email-sem-oc" OF "dt-emitente-loader" AS character 
+  FORMAT "x(20000)"
+  INITIAL ""
+  LABEL "Text E-mail sem OC"
+  POSITION 8
+  MAX-WIDTH 31995
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Text E-mail sem OC"
+  HELP "Text E-mail sem OC"
+  ORDER 70
+
+ADD FIELD "int-2" OF "dt-emitente-loader" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 80
+
+ADD FIELD "int-1" OF "dt-emitente-loader" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 4
+  ORDER 90
+
+ADD FIELD "dec-1" OF "dt-emitente-loader" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 100
+
+ADD FIELD "dec-2" OF "dt-emitente-loader" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 12
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 110
+
+ADD FIELD "log-1" OF "dt-emitente-loader" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 13
+  MAX-WIDTH 1
+  ORDER 120
+
+ADD FIELD "log-2" OF "dt-emitente-loader" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 14
+  MAX-WIDTH 1
+  ORDER 130
+
+ADD FIELD "char-1" OF "dt-emitente-loader" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 15
+  MAX-WIDTH 512
+  ORDER 140
+
+ADD FIELD "char-2" OF "dt-emitente-loader" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 16
+  MAX-WIDTH 512
+  ORDER 150
+
+ADD FIELD "date-1" OF "dt-emitente-loader" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 160
+
+ADD FIELD "date-2" OF "dt-emitente-loader" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 18
+  MAX-WIDTH 4
+  ORDER 170
+
+ADD FIELD "l-rejeita-oc-invalida" OF "dt-emitente-loader" AS logical 
+  DESCRIPTION "Rejeita Automaticamente Documeto onde OC é considerada inválida (quantidade, valor, item)"
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Rejeita Doc com OC Inválida"
+  POSITION 19
+  MAX-WIDTH 1
+  COLUMN-LABEL "Rejeita Doc comm OC Inválida"
+  HELP "Rejeita Automaticamente Documeto com OC Inválida"
+  ORDER 180
+
+ADD FIELD "l-manif-operacao-realiz" OF "dt-emitente-loader" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Manifesta Operação Realizada"
+  POSITION 20
+  MAX-WIDTH 1
+  COLUMN-LABEL "Manif Op Realizada"
+  HELP "Manifesta ao atualizar documento no Estoque"
+  ORDER 190
+
+ADD FIELD "dest-mail-recusa" OF "dt-emitente-loader" AS character 
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Destinatários e-mail"
+  POSITION 21
+  MAX-WIDTH 4000
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Destinatários e-mail"
+  HELP "Destinatários de e-mail para recusa"
+  ORDER 200
+
+ADD FIELD "remetente-mail-recusa" OF "dt-emitente-loader" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Remetente e-mail"
+  POSITION 22
+  MAX-WIDTH 4000
+  VIEW-AS ""
+  COLUMN-LABEL "Remetente e-mail"
+  HELP "Remetente de e-mail para recusa"
+  ORDER 210
+
+ADD FIELD "l-atualiza-of" OF "dt-emitente-loader" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Atual OF"
+  POSITION 23
+  MAX-WIDTH 1
+  COLUMN-LABEL "Atual OF"
+  HELP "Atualiza Somente OF"
+  ORDER 220
+
+ADD INDEX "codigo" ON "dt-emitente-loader" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-emitente" ASCENDING 
+
+ADD TABLE "dt-restricao-cfop"
+  AREA "Schema Area"
+  LABEL "Cadastro de CFOPs Restritas"
+  DESCRIPTION "Cadastro de CFOPs Restritas que podem ser bloqueadas para entrada no RE1001"
+  DUMP-NAME "dt-restricao-cfop"
+
+ADD FIELD "cod-estabel" OF "dt-restricao-cfop" AS character 
+  DESCRIPTION "Estabelecimento - * para todos"
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabel"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estabel"
+  ORDER 10
+
+ADD FIELD "cod-cfop" OF "dt-restricao-cfop" AS character 
+  FORMAT "X(4)"
+  INITIAL ""
+  LABEL "CFOP"
+  POSITION 3
+  MAX-WIDTH 8
+  COLUMN-LABEL "CFOP"
+  ORDER 20
+
+ADD FIELD "bloqueia" OF "dt-restricao-cfop" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Bloqueia"
+  POSITION 4
+  MAX-WIDTH 1
+  COLUMN-LABEL "Bloqueia"
+  ORDER 30
+
+ADD FIELD "int-2" OF "dt-restricao-cfop" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "int-1" OF "dt-restricao-cfop" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 50
+
+ADD FIELD "dec-1" OF "dt-restricao-cfop" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "dec-2" OF "dt-restricao-cfop" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "log-1" OF "dt-restricao-cfop" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "log-2" OF "dt-restricao-cfop" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 10
+  MAX-WIDTH 1
+  ORDER 90
+
+ADD FIELD "char-1" OF "dt-restricao-cfop" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "char-2" OF "dt-restricao-cfop" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 512
+  ORDER 110
+
+ADD FIELD "date-1" OF "dt-restricao-cfop" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD FIELD "date-2" OF "dt-restricao-cfop" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 130
+
+ADD INDEX "id-codigo" ON "dt-restricao-cfop" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "cod-cfop" ASCENDING 
+
+ADD INDEX "idx-cod-cfop" ON "dt-restricao-cfop" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-cfop" ASCENDING 
+
+ADD FIELD "l-docum-rejeitado" OF "dt-docum-est" AS logical
+  FORMAT "Sim/Não"
+  POSITION 107
+  INITIAL "Não"
+  HELP "Documento Rejeitado"
+  LABEL "Doc Rejeitado"
+  COLUMN-LABEL "Doc Rejeitado"
+  ORDER 1050
+  MAX-WIDTH 1
+
+ADD FIELD "motivo-rejeicao" OF "dt-docum-est" AS integer
+  FORMAT ">>9"
+  POSITION 108
+  INITIAL "0"
+  HELP "Motivo da Rejeição"
+  LABEL "Mot Rejeição"
+  COLUMN-LABEL "Motivo Rejeição"
+  ORDER 1060
+  MAX-WIDTH 4
+
+ADD FIELD "serie-docto" OF "dt-duplic-nfe" AS character
+  DESCRIPTION "Série do Documento"
+  FORMAT "X(5)"
+  POSITION 18
+  INITIAL ""
+  HELP "Série do Documento"
+  LABEL "Série Documento"
+  COLUMN-LABEL "Série"
+  ORDER 170
+  MANDATORY
+  MAX-WIDTH 10
+
+ADD FIELD "nro-docto" OF "dt-duplic-nfe" AS character
+  DESCRIPTION "Número do documento"
+  FORMAT "X(16)"
+  POSITION 19
+  INITIAL ""
+  HELP "Número do documento"
+  LABEL "Número Documento"
+  COLUMN-LABEL "Nr Docto"
+  ORDER 180
+  MANDATORY
+  MAX-WIDTH 32
+
+ADD FIELD "cod-emitente" OF "dt-duplic-nfe" AS integer
+  DESCRIPTION "Código do emitente"
+  FORMAT ">>>>>>>>9"
+  POSITION 20
+  INITIAL "0"
+  HELP "Código do emitente"
+  LABEL "Emitente"
+  COLUMN-LABEL "Emitente"
+  ORDER 190
+  MANDATORY
+  MAX-WIDTH 4
+
+ADD FIELD "nat-operacao" OF "dt-duplic-nfe" AS character
+  DESCRIPTION "Natureza da operação"
+  FORMAT "x(06)"
+  POSITION 21
+  INITIAL ""
+  HELP "Natureza da operação"
+  LABEL "Natureza Operação"
+  COLUMN-LABEL "Nat Oper"
+  ORDER 200
+  MANDATORY
+  MAX-WIDTH 12
+
+ADD FIELD "vl-original" OF "dt-duplic-nfe" AS decimal
+  FORMAT ">>>>>>>>>>>>9.99"
+  POSITION 22
+  INITIAL "0"
+  HELP "Valor Original"
+  LABEL "Valor Original"
+  COLUMN-LABEL "Valor Original"
+  DECIMALS 2
+  ORDER 210
+  MAX-WIDTH 17
+
+ADD FIELD "vl-liquido" OF "dt-duplic-nfe" AS decimal
+  FORMAT ">>>>>>>>>>>>9.99"
+  POSITION 23
+  INITIAL "0"
+  HELP "Valor Liquido"
+  LABEL "Valor Liquido"
+  COLUMN-LABEL "Valor Liquido"
+  DECIMALS 2
+  ORDER 220
+  MAX-WIDTH 17
+
+ADD FIELD "vl-desconto" OF "dt-duplic-nfe" AS decimal
+  FORMAT ">>>>>>>>>>>>9.99"
+  POSITION 24
+  INITIAL "0"
+  HELP "Valor Desconto"
+  LABEL "Valor Desconto"
+  COLUMN-LABEL "Valor Desconto"
+  DECIMALS 2
+  ORDER 230
+  MAX-WIDTH 17
+
+ADD FIELD "l-duplic-docum" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 87
+  INITIAL "Não"
+  HELP "Usa Duplicatas do Documento XML"
+  LABEL "Usa Dupl Docum"
+  COLUMN-LABEL "Usa Dupl Docum"
+  ORDER 1300
+  MAX-WIDTH 1
+
+ADD FIELD "l-bloq-var-quant" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 88
+  INITIAL "Não"
+  HELP "Bloqueia quando Quantidade fora da Variação permitida"
+  LABEL "Bloq Diverg Quantidade"
+  COLUMN-LABEL "Bloq Diverg Quantidade"
+  ORDER 1310
+  MAX-WIDTH 1
+
+ADD FIELD "l-bloq-var-valor" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 89
+  INITIAL "Não"
+  HELP "Bloqueia quando Valor fora da Variação permitida"
+  LABEL "Bloq Diverg Valor"
+  COLUMN-LABEL "Bloq Diverg Valor"
+  ORDER 1320
+  MAX-WIDTH 1
+
+ADD FIELD "l-bloq-estab-diveg" OF "dt-empresa" AS logical
+  DESCRIPTION "Bloqueia quando estabelecimento OC divergente do Estabelecimento informado no XML"
+  FORMAT "Sim/Não"
+  POSITION 90
+  INITIAL "Não"
+  HELP "Bloqueia quando Estab OC divergir do Estab do XML"
+  LABEL "Bloqueia Estab OC Div"
+  COLUMN-LABEL "Bloq Estab OC"
+  ORDER 1330
+  MAX-WIDTH 1
+
+ADD FIELD "l-zera-ipi-outros" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 91
+  INITIAL "Não"
+  HELP "Zerar Valor IPI quando Tributação for Outros"
+  LABEL "Zera Valor IPI Outros"
+  COLUMN-LABEL "Zera Valor IPI Outros"
+  ORDER 1340
+  MAX-WIDTH 1
+
+UPDATE FIELD "l-fornec-estoq" OF "dt-ext-emitente-loader"
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+
+ADD FIELD "l-rejeita-documento" OF "dt-msg-audit-xml" AS logical
+  FORMAT "Sim/Não"
+  POSITION 44
+  INITIAL "Não"
+  LABEL "Rejeita Doc"
+  COLUMN-LABEL "Rejeita Doc"
+  ORDER 800
+  MAX-WIDTH 1
+
+ADD FIELD "texto-mail-fornec" OF "dt-msg-audit-xml" AS character
+  FORMAT "x(5000)"
+  POSITION 45
+  INITIAL ""
+  HELP "Texto e-mail"
+  LABEL "Texto Mail"
+  COLUMN-LABEL "Texto Mail"
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  ORDER 810
+  MAX-WIDTH 10000
+
+ADD FIELD "l-variacao-valor" OF "dt-msg-audit-xml" AS logical
+  DESCRIPTION "Ponto para controle do Envio de Mensagens = messageria"
+  FORMAT "Sim/Não"
+  POSITION 46
+  INITIAL "Não"
+  LABEL "Variação Valor"
+  COLUMN-LABEL "Variação Valor"
+  ORDER 820
+  MAX-WIDTH 1
+
+ADD FIELD "l-variacao-qtde" OF "dt-msg-audit-xml" AS logical
+  DESCRIPTION "Variação de quantidade - ponto de messageria"
+  FORMAT "Sim/Não"
+  POSITION 47
+  INITIAL "Não"
+  LABEL "Variação Quant"
+  COLUMN-LABEL "Variação Quant"
+  ORDER 830
+  MAX-WIDTH 1
+
+ADD FIELD "l-estab-diverg" OF "dt-msg-audit-xml" AS logical
+  FORMAT "Sim/Não"
+  POSITION 48
+  INITIAL "Não"
+  LABEL "Estab Divergente"
+  COLUMN-LABEL "Estab Divergente"
+  ORDER 840
+  MAX-WIDTH 1
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000020970

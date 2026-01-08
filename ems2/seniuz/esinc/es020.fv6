@@ -1,0 +1,6 @@
+/* Include: es020.fv6
+** Tabela.: mov-est-acbd
+*/
+
+can-find(espec.defeito where espec.defeito.cod-tipo-def = espec.mov-est-acbd.cod-tipo-def
+                         and espec.defeito.cod-defeito  = espec.mov-est-acbd.cod-defeito)

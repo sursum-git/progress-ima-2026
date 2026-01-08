@@ -1,0 +1,5 @@
+/* Include: es022.fv4
+** Tabela.: mov-man
+*/
+
+can-find(espec.area-mec where espec.area-mec.codigo = espec.mov-man.cod-area)

@@ -1,0 +1,93 @@
+ADD FIELD "dt-importa-manual" OF "dt-docum-est" AS date
+  FORMAT "99/99/9999"
+  POSITION 92
+  INITIAL ?
+  HELP "Data da Importação Manual"
+  LABEL "Dt Importa Manual"
+  COLUMN-LABEL "Dt Importa Manual"
+  ORDER 920
+  MAX-WIDTH 4
+
+ADD FIELD "hr-importa-manual" OF "dt-docum-est" AS character
+  DESCRIPTION "Hr Importa Manual"
+  FORMAT "x(8)"
+  POSITION 93
+  INITIAL ""
+  HELP "Hr Importa Manual"
+  LABEL "Hr Importa Manual"
+  COLUMN-LABEL "Hr Importa Manual"
+  ORDER 930
+  MAX-WIDTH 16
+
+ADD FIELD "cod-usuario-manual" OF "dt-docum-est" AS character
+  DESCRIPTION "Usuário que Efetuou a marcação do título como importado no DTS0918 sem importá-lo pelo sistema"
+  FORMAT "x(12)"
+  POSITION 94
+  INITIAL ""
+  HELP "Usuário que Efetuou a marcação do título como importado"
+  LABEL "Usuario Importa Manual"
+  COLUMN-LABEL "Usuar Importa Manual"
+  ORDER 910
+  MAX-WIDTH 24
+
+ADD FIELD "log-importa-manual" OF "dt-docum-est" AS logical
+  FORMAT "Sim/Não"
+  POSITION 95
+  INITIAL "Não"
+  HELP "Documento marcado manualmente como importado?"
+  LABEL "Importado Manualmente?"
+  COLUMN-LABEL "Importado Manualmente?"
+  ORDER 940
+  MAX-WIDTH 1
+
+ADD FIELD "arq-certificado" OF "dt-empresa" AS blob
+  DESCRIPTION "Arquivo Certificado Digital"
+  FORMAT "x(8)"
+  POSITION 57
+  INITIAL ?
+  ORDER 1000
+  LOB-AREA "Schema Area"
+  LOB-BYTES 104857600
+  LOB-SIZE 100M
+
+ADD FIELD "pasta-log" OF "dt-empresa" AS character
+  DESCRIPTION "Diretório de Gravação do Arquivo de LOG"
+  FORMAT "x(80)"
+  POSITION 58
+  INITIAL ""
+  LABEL "Diretório Arq LOG"
+  COLUMN-LABEL "LOG"
+  ORDER 1010
+  MAX-WIDTH 160
+
+ADD FIELD "log-bloq-un-divergente" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 59
+  INITIAL "Não"
+  HELP "Bloqueia UN Divergente caso não esteja cadastrada"
+  LABEL "Bloq UN Divergente"
+  COLUMN-LABEL "Bloq UN Divergente"
+  ORDER 1020
+  MAX-WIDTH 1
+
+ADD FIELD "log-altera-ncm" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 60
+  INITIAL "Não"
+  HELP "Altera NCM do Item substituindo pelo NCM do Fornecedor"
+  LABEL "Altera NCM do Item"
+  COLUMN-LABEL "Altera NCM do Item"
+  ORDER 1030
+  MAX-WIDTH 1
+
+ADD INDEX "ch-dt-emissao" ON "dt-notas-destinadas"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "ind-download" ASCENDING
+  INDEX-FIELD "dt-emissao" ASCENDING
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000002376

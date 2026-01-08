@@ -1,0 +1,137 @@
+ADD TABLE "lisa-integra"
+  AREA "Schema Area"
+  LABEL "Lisa Integra"
+  DUMP-NAME "lisa-integra"
+
+ADD FIELD "cod-trans" OF "lisa-integra" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Transação"
+  POSITION 2
+  MAX-WIDTH 16
+  ORDER 10
+
+ADD FIELD "chave" OF "lisa-integra" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Chave"
+  POSITION 3
+  MAX-WIDTH 16
+  ORDER 20
+
+ADD FIELD "acao" OF "lisa-integra" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Ação"
+  POSITION 4
+  MAX-WIDTH 16
+  ORDER 30
+
+ADD INDEX "idx1" ON "lisa-integra" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-trans" ASCENDING 
+  INDEX-FIELD "chave" ASCENDING 
+
+ADD INDEX "idx2" ON "lisa-integra" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-trans" ASCENDING 
+  INDEX-FIELD "acao" ASCENDING 
+
+ADD TABLE "lisa-log-integr"
+  AREA "Schema Area"
+  LABEL "Lisa Log Integra"
+  DUMP-NAME "lisa-log-integr"
+
+ADD FIELD "cod-trans" OF "lisa-log-integr" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Transação"
+  POSITION 2
+  MAX-WIDTH 16
+  ORDER 10
+
+ADD FIELD "data" OF "lisa-log-integr" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data"
+  POSITION 3
+  MAX-WIDTH 4
+  ORDER 20
+
+ADD FIELD "hora" OF "lisa-log-integr" AS integer 
+  FORMAT ">>>,>>9"
+  INITIAL "0"
+  LABEL "Hora"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "usuario" OF "lisa-log-integr" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Usuario"
+  POSITION 5
+  MAX-WIDTH 16
+  ORDER 40
+
+ADD FIELD "acao" OF "lisa-log-integr" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "A‡Æo"
+  POSITION 6
+  MAX-WIDTH 16
+  ORDER 50
+
+ADD FIELD "log-erro" OF "lisa-log-integr" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  LABEL "Erro"
+  POSITION 7
+  MAX-WIDTH 1
+  ORDER 60
+
+ADD FIELD "narrativa" OF "lisa-log-integr" AS character 
+  FORMAT "x(200)"
+  INITIAL ""
+  LABEL "Narrativa"
+  POSITION 8
+  MAX-WIDTH 400
+  ORDER 70
+
+ADD TABLE "lisa-param"
+  AREA "Schema Area"
+  LABEL "Lisa Param"
+  DUMP-NAME "lisa-param"
+
+ADD FIELD "cod-param" OF "lisa-param" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Parƒmetro"
+  POSITION 2
+  MAX-WIDTH 40
+  ORDER 10
+
+ADD FIELD "des-param" OF "lisa-param" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Descri‡Æo"
+  POSITION 3
+  MAX-WIDTH 120
+  COLUMN-LABEL "Descricao"
+  ORDER 15
+
+ADD FIELD "val-param" OF "lisa-param" AS character 
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Valor"
+  POSITION 4
+  MAX-WIDTH 1000
+  ORDER 20
+
+.
+PSC
+cpstream=ibm850
+.
+0000002562

@@ -1,0 +1,491 @@
+ADD TABLE "dt-param-ge-ncm"
+  AREA "Schema Area"
+  LABEL "Parâmetros Relac GE/NCM"
+  DESCRIPTION "Parâmetros para Relacionamento entre Grupos de Estoque e NCM para atualização via XML Loader"
+  DUMP-NAME "dt-param-ge-ncm"
+
+ADD FIELD "ge-codigo" OF "dt-param-ge-ncm" AS integer 
+  FORMAT "99"
+  INITIAL "0"
+  LABEL "Grupo Estoque"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "GE"
+  HELP "Grupo de estoque"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "class-fiscal" OF "dt-param-ge-ncm" AS character 
+  FORMAT "9999.99.99"
+  INITIAL "00000000"
+  LABEL "Classificação Fiscal"
+  POSITION 3
+  MAX-WIDTH 20
+  COLUMN-LABEL "Class Fisc"
+  HELP "Classificação Fiscal"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "int-2" OF "dt-param-ge-ncm" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "int-1" OF "dt-param-ge-ncm" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 50
+
+ADD FIELD "dec-1" OF "dt-param-ge-ncm" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "dec-2" OF "dt-param-ge-ncm" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "log-1" OF "dt-param-ge-ncm" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "log-2" OF "dt-param-ge-ncm" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 10
+  MAX-WIDTH 1
+  ORDER 90
+
+ADD FIELD "char-1" OF "dt-param-ge-ncm" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "char-2" OF "dt-param-ge-ncm" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 512
+  ORDER 110
+
+ADD FIELD "date-1" OF "dt-param-ge-ncm" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD FIELD "date-2" OF "dt-param-ge-ncm" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 130
+
+ADD INDEX "idx-ge-ncm" ON "dt-param-ge-ncm" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "ge-codigo" ASCENDING 
+  INDEX-FIELD "class-fiscal" ASCENDING 
+
+ADD INDEX "class-fiscal" ON "dt-param-ge-ncm" 
+  AREA "Schema Area"
+  INDEX-FIELD "class-fiscal" ASCENDING 
+
+ADD INDEX "codigo" ON "dt-param-ge-ncm" 
+  AREA "Schema Area"
+  INDEX-FIELD "ge-codigo" ASCENDING 
+
+ADD TABLE "dt-pendencia-xml"
+  AREA "Schema Area"
+  LABEL "Pendências XML"
+  DESCRIPTION "Pendências XML para tratar cancelamento"
+  DUMP-NAME "dt-pendencia-xml"
+
+ADD FIELD "chave-xml" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  LABEL "Chave Documento"
+  POSITION 2
+  MAX-WIDTH 512
+  COLUMN-LABEL "Chave Documento"
+  HELP "Chave Documento"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "dt-cancel" OF "dt-pendencia-xml" AS date 
+  DESCRIPTION "Data Cancelamento"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Cancela"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Cancela"
+  HELP "Data Cancelamento"
+  ORDER 20
+
+ADD FIELD "protocolo-cancel" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  LABEL "Protocolo Cancel"
+  POSITION 4
+  MAX-WIDTH 512
+  COLUMN-LABEL "Protocolo Cancelamento"
+  HELP "Protocolo Cancelamento"
+  ORDER 30
+
+ADD FIELD "log-pendente" OF "dt-pendencia-xml" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "Não"
+  LABEL "Pendente"
+  POSITION 5
+  MAX-WIDTH 1
+  COLUMN-LABEL "Pendente"
+  HELP "Pendente de solução"
+  ORDER 40
+
+ADD FIELD "int-2" OF "dt-pendencia-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "int-1" OF "dt-pendencia-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 70
+
+ADD FIELD "dec-1" OF "dt-pendencia-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 80
+
+ADD FIELD "dec-2" OF "dt-pendencia-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 90
+
+ADD FIELD "log-1" OF "dt-pendencia-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 10
+  MAX-WIDTH 1
+  ORDER 100
+
+ADD FIELD "log-2" OF "dt-pendencia-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 11
+  MAX-WIDTH 1
+  ORDER 110
+
+ADD FIELD "char-1" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 512
+  ORDER 120
+
+ADD FIELD "char-2" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 13
+  MAX-WIDTH 512
+  ORDER 130
+
+ADD FIELD "date-1" OF "dt-pendencia-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 140
+
+ADD FIELD "date-2" OF "dt-pendencia-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 15
+  MAX-WIDTH 4
+  ORDER 150
+
+ADD FIELD "dt-pendencia" OF "dt-pendencia-xml" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Pendência"
+  POSITION 16
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Pendência"
+  HELP "Data da geração pendência"
+  ORDER 50
+
+ADD FIELD "serie-docto" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Serie"
+  POSITION 17
+  MAX-WIDTH 10
+  COLUMN-LABEL "Serie"
+  HELP "Serie Documento"
+  ORDER 160
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Nr Documento"
+  POSITION 18
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  HELP "Número Documento"
+  ORDER 170
+  MANDATORY
+
+ADD FIELD "cod-emitente" OF "dt-pendencia-xml" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cliente"
+  POSITION 19
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cliente"
+  ORDER 180
+  MANDATORY
+
+ADD FIELD "cod-estabel" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 20
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 190
+
+ADD FIELD "nat-operacao" OF "dt-pendencia-xml" AS character 
+  FORMAT "x(6)"
+  INITIAL ""
+  LABEL "Natureza Operação"
+  POSITION 21
+  MAX-WIDTH 12
+  COLUMN-LABEL "Natur Oper"
+  ORDER 200
+  MANDATORY
+
+ADD INDEX "idx-chave-doc" ON "dt-pendencia-xml" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "chave-xml" ASCENDING 
+
+ADD INDEX "docum" ON "dt-pendencia-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+
+ADD INDEX "idx-pendente" ON "dt-pendencia-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "log-pendente" ASCENDING 
+
+UPDATE FIELD "protocolo" OF "dt-docum-est"
+  HELP "Protocolo Documento"
+  LABEL "Protocolo"
+  COLUMN-LABEL "Protocolo"
+
+ADD FIELD "arq-xml-cancel" OF "dt-docum-est" AS blob
+  DESCRIPTION "Armazena o XML Cancelamento"
+  FORMAT "x(8)"
+  POSITION 83
+  INITIAL ?
+  ORDER 830
+  LOB-AREA "Schema Area"
+  LOB-BYTES 104857600
+  LOB-SIZE 100M
+
+ADD FIELD "protocolo-cancel" OF "dt-docum-est" AS character
+  FORMAT "x(15)"
+  POSITION 84
+  INITIAL ""
+  HELP "Protocolo Cancelamento"
+  LABEL "Protocolo Cancel"
+  COLUMN-LABEL "Protocolo Cancelamento"
+  ORDER 840
+  MAX-WIDTH 512
+
+ADD FIELD "log-cancelado" OF "dt-docum-est" AS logical
+  DESCRIPTION "Documento Cancelado"
+  FORMAT "Sim/Não"
+  POSITION 85
+  INITIAL "Não"
+  HELP "Documento Cancelado"
+  LABEL "Documento Cancelado"
+  COLUMN-LABEL "Documento Cancelado"
+  ORDER 820
+  MAX-WIDTH 1
+
+ADD FIELD "dt-cancel-doc" OF "dt-docum-est" AS date
+  FORMAT "99/99/9999"
+  POSITION 86
+  INITIAL ?
+  HELP "Data de Cancelamento do Documento"
+  LABEL "Dt Cancela"
+  COLUMN-LABEL "Dt Cancel"
+  ORDER 850
+  MAX-WIDTH 4
+
+ADD FIELD "cod-usuario-cancel" OF "dt-docum-est" AS character
+  FORMAT "x(12)"
+  POSITION 87
+  INITIAL ""
+  HELP "Usuário Cancelamento"
+  LABEL "Usuario Cancelamento"
+  COLUMN-LABEL "Usuario Cancela"
+  ORDER 870
+  MAX-WIDTH 24
+
+ADD FIELD "cod-usuario-importa" OF "dt-docum-est" AS character
+  FORMAT "x(12)"
+  POSITION 88
+  INITIAL ""
+  HELP "Usuário Importação"
+  LABEL "Usuario Importação"
+  COLUMN-LABEL "Usuario Importação"
+  ORDER 860
+  MAX-WIDTH 24
+
+ADD FIELD "nome-arq-cancel" OF "dt-docum-est" AS character
+  FORMAT "X(80)"
+  POSITION 89
+  INITIAL ""
+  LABEL "Arquivo XML"
+  COLUMN-LABEL "Arquivo XML"
+  ORDER 880
+  MAX-WIDTH 160
+
+ADD FIELD "dt-importa" OF "dt-docum-est" AS date
+  FORMAT "99/99/9999"
+  POSITION 90
+  INITIAL ?
+  HELP "Data da Importação do Arquivo"
+  LABEL "Dt Importação"
+  COLUMN-LABEL "Dt Importação"
+  ORDER 890
+  MAX-WIDTH 4
+
+ADD INDEX "idx-cancelado" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "log-cancelado" ASCENDING
+
+ADD INDEX "idx-log" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "log-situacao" ASCENDING
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "nro-docto" ASCENDING
+  INDEX-FIELD "dt-emissao" ASCENDING
+  INDEX-FIELD "log-cancelado" ASCENDING
+
+ADD INDEX "idx-pesq-princ-2" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "ep-codigo" ASCENDING
+  INDEX-FIELD "log-situacao" ASCENDING
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "serie-docto" ASCENDING
+  INDEX-FIELD "nro-docto" ASCENDING
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "chave-xml" ASCENDING
+  INDEX-FIELD "dt-emissao" ASCENDING
+  INDEX-FIELD "log-cancelado" ASCENDING
+
+ADD FIELD "log-bloqueio-ncm-diverg" OF "dt-empresa" AS logical
+  DESCRIPTION "Bloqueia NCM Divergente"
+  FORMAT "Sim/Não"
+  POSITION 45
+  INITIAL "Não"
+  HELP "Bloqueia NCM Divergente"
+  LABEL "Bloqueia NCM Divergente"
+  COLUMN-LABEL "Bloqueia NCM Divergente"
+  ORDER 880
+  MAX-WIDTH 1
+
+ADD FIELD "log-depos-devol" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 46
+  INITIAL "Não"
+  HELP "Define Depósito de Devolução"
+  LABEL "Define Depos Devol"
+  COLUMN-LABEL "Define Depos Devol"
+  ORDER 890
+  MAX-WIDTH 1
+
+ADD FIELD "cod-depos-dev" OF "dt-empresa" AS character
+  DESCRIPTION "Código do Depósito para Devolução"
+  FORMAT "x(3)"
+  POSITION 47
+  INITIAL ""
+  HELP "Código do Depósito para Devolução - devolução NF Própria"
+  LABEL "Deposito Devolução"
+  COLUMN-LABEL "Deposito Devolução"
+  ORDER 900
+  MAX-WIDTH 6
+
+ADD FIELD "log-qt-manual" OF "dt-empresa" AS logical
+  DESCRIPTION "Libera Quantidade para Preenchimento Manual (Recebimento)"
+  FORMAT "Sim/Não"
+  POSITION 48
+  INITIAL "Sim"
+  HELP "Libera Quantidade para Preenchimento Manual (Recebimento)"
+  LABEL "Qtd Manual"
+  COLUMN-LABEL "Qtd Manual"
+  ORDER 910
+  MAX-WIDTH 1
+
+ADD FIELD "pasta-grava-log" OF "dt-empresa" AS character
+  DESCRIPTION "Pasta onde serão armazenados os arquivos de LOG do Produto - LOG JAVA e-mail e destinadas"
+  FORMAT "x(80)"
+  POSITION 49
+  INITIAL ""
+  HELP "Pasta de Gravação de LOG"
+  LABEL "Pasta de Log"
+  COLUMN-LABEL "LOG"
+  ORDER 920
+  MAX-WIDTH 160
+
+ADD FIELD "l-cancela-doc" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 20
+  INITIAL "Não"
+  HELP "Usuário Cancela Documento"
+  LABEL "Cancela Documento"
+  COLUMN-LABEL "Cancela Documento"
+  ORDER 750
+  MAX-WIDTH 1
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000011244

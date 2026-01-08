@@ -1,0 +1,33 @@
+
+
+ADD FIELD "log-alt-ncm" OF "dt-ge-alt-ncm" AS logical
+  FORMAT "Sim/Não"
+  POSITION 14
+  INITIAL "Não"
+  HELP "Altera NCM Item"
+  LABEL "Altera NCM"
+  COLUMN-LABEL "Altera NCM"
+  ORDER 130
+  MAX-WIDTH 1
+
+ADD FIELD "log-alt-ean" OF "dt-ge-alt-ncm" AS logical
+  FORMAT "Sim/Não"
+  POSITION 15
+  INITIAL "Não"
+  HELP "Altera EAN/GTIN Item"
+  LABEL "Altera EAN/GTIN"
+  COLUMN-LABEL "Altera EAN/GTIN"
+  ORDER 140
+  MAX-WIDTH 1
+
+ADD FIELD "cod-ean-fornec" OF "dt-it-docum-est" AS character
+  FORMAT "x(16)"
+  POSITION 94
+  INITIAL ""
+  HELP "EAN Fornecedor"
+  LABEL "EAN Fornec"
+  COLUMN-LABEL "EAN Fornec"
+  ORDER 930
+  MAX-WIDTH 32
+  
+ 

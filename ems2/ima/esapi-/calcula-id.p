@@ -1,0 +1,5 @@
+DEF OUTPUT PARAMETER p-id AS CHAR.
+ASSIGN p-id = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(STRING(NOW),"/",""),":",""),",",""),"-","")," ","").
+ASSIGN p-id = SUBSTR(p-id,1,LENGTH(p-id) - 4) + STRING(RANDOM(0,9999),"9999").
+
+

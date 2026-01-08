@@ -1,0 +1,67 @@
+ADD TABLE "giv-log-integr"
+  AREA "schema area"
+  LABEL "GIV Log Integra"
+  DUMP-NAME "giv-log-integr"
+
+ADD FIELD "cod-tabela" OF "giv-log-integr" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Tabela"
+  POSITION 2
+  MAX-WIDTH 40
+  COLUMN-LABEL "Tab"
+  ORDER 10
+
+ADD FIELD "data" OF "giv-log-integr" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data"
+  POSITION 3
+  MAX-WIDTH 4
+  ORDER 20
+
+ADD FIELD "hora" OF "giv-log-integr" AS integer 
+  FORMAT ">>>,>>9"
+  INITIAL "0"
+  LABEL "Hora"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "usuairo" OF "giv-log-integr" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Usuario"
+  POSITION 5
+  MAX-WIDTH 16
+  ORDER 40
+
+ADD FIELD "acao" OF "giv-log-integr" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "A‡Æo"
+  POSITION 6
+  MAX-WIDTH 16
+  ORDER 50
+
+ADD FIELD "log-erro" OF "giv-log-integr" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  LABEL "Erro"
+  POSITION 7
+  MAX-WIDTH 1
+  ORDER 60
+
+ADD FIELD "narrativa" OF "giv-log-integr" AS character 
+  FORMAT "x(200)"
+  INITIAL ""
+  LABEL "Narrativa"
+  POSITION 8
+  MAX-WIDTH 400
+  ORDER 70
+
+.
+PSC
+cpstream=ibm850
+.
+0000001162

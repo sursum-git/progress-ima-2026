@@ -1,0 +1,16 @@
+DEF VAR i-ct AS INTEGER.
+DEF VAR l-erro AS LOGICAL.
+
+DO i-ct = 1 TO NUM-ENTRIES(PROPATH).
+    FILE-INFO:FILE-NAME = ENTRY(i-ct,PROPATH).
+
+    IF FILE-INFO:FILE-TYPE = ? THEN DO.
+       MESSAGE "ERRO... Pasta:" ENTRY(i-ct,PROPATH) " NÆo Existe..."
+           VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+       ASSIGN l-erro = YES.
+    END.
+END.
+
+IF NOT l-erro THEN
+   MESSAGE 'PROPATH est  OK'
+       VIEW-AS ALERT-BOX INFO BUTTONS OK.

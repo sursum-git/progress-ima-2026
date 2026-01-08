@@ -1,0 +1,159 @@
+ADD TABLE "dt-log-importa-xml"
+  AREA "Schema Area"
+  LABEL "LOG Importa‡Æo XML"
+  DESCRIPTION "LOG Importa‡Æo XML Loader"
+  DUMP-NAME "dt-log-importa-xml"
+
+ADD FIELD "nome-arq" OF "dt-log-importa-xml" AS character 
+  FORMAT "X(80)"
+  INITIAL ""
+  LABEL "Arquivo XML"
+  POSITION 2
+  MAX-WIDTH 160
+  COLUMN-LABEL "Arquivo XML"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "desc-erro" OF "dt-log-importa-xml" AS character 
+  DESCRIPTION "Descri‡Æo Erro"
+  FORMAT "x(1000)"
+  INITIAL ""
+  LABEL "Descri‡Æo Erro"
+  POSITION 3
+  MAX-WIDTH 2000
+  COLUMN-LABEL "Desc Erro"
+  HELP "Descri‡Æo Erro"
+  ORDER 20
+
+ADD FIELD "sit-arquivo" OF "dt-log-importa-xml" AS integer 
+  DESCRIPTION "1 - Importado;
+2 - Erro"
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Situa‡Æo"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Situa‡Æo"
+  ORDER 30
+
+ADD FIELD "dt-processo" OF "dt-log-importa-xml" AS date 
+  DESCRIPTION "Data do Processamento"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Processamento"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Proces"
+  HELP "Data do Processamento"
+  ORDER 40
+
+ADD FIELD "hs-processo" OF "dt-log-importa-xml" AS character 
+  DESCRIPTION "Hora do Processamento"
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hr Processamento"
+  POSITION 6
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hr Processo"
+  HELP "Hora do Processamento"
+  ORDER 50
+
+ADD FIELD "usuar-processo" OF "dt-log-importa-xml" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Usu rio"
+  POSITION 7
+  MAX-WIDTH 16
+  COLUMN-LABEL "Usu rio"
+  ORDER 60
+
+ADD FIELD "int-2" OF "dt-log-importa-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 4
+  ORDER 70
+
+ADD FIELD "int-1" OF "dt-log-importa-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 80
+
+ADD FIELD "dec-1" OF "dt-log-importa-xml" AS decimal 
+  FORMAT "->>,>>9.9999"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 90
+
+ADD FIELD "dec-2" OF "dt-log-importa-xml" AS decimal 
+  FORMAT "->>,>>9.9999"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 100
+
+ADD FIELD "log-1" OF "dt-log-importa-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 12
+  MAX-WIDTH 1
+  ORDER 110
+
+ADD FIELD "log-2" OF "dt-log-importa-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 13
+  MAX-WIDTH 1
+  ORDER 120
+
+ADD FIELD "char-1" OF "dt-log-importa-xml" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 14
+  MAX-WIDTH 16
+  ORDER 130
+
+ADD FIELD "char-2" OF "dt-log-importa-xml" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 15
+  MAX-WIDTH 16
+  ORDER 140
+
+ADD FIELD "date-1" OF "dt-log-importa-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 16
+  MAX-WIDTH 4
+  ORDER 150
+
+ADD FIELD "date-2" OF "dt-log-importa-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 160
+
+ADD INDEX "idx-arquivo" ON "dt-log-importa-xml" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "nome-arq" ASCENDING 
+
+ADD INDEX "idx-dt-processo" ON "dt-log-importa-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "dt-processo" ASCENDING 
+
+ADD INDEX "idx-sit-arq" ON "dt-log-importa-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "sit-arquivo" ASCENDING 
+
+.
+PSC
+cpstream=ibm850
+.
+0000003300

@@ -1,0 +1,11 @@
+UPDATE FIELD "char-1" OF "dt-docum-est"
+  FORMAT "x(256)"
+
+UPDATE FIELD "char-2" OF "dt-docum-est"
+  FORMAT "x(256)"
+
+.
+PSC
+cpstream=ibm850
+.
+0000000127

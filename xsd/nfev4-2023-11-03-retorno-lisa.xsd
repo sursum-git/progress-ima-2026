@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.portalfiscal.inf.br/nfe" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="nfeProc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NFe">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="infNFe">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ide">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="cUF" type="xs:unsignedByte" />
+                          <xs:element name="cNF" type="xs:unsignedInt" />
+                          <xs:element name="natOp" type="xs:string" />
+                          <xs:element name="mod" type="xs:unsignedByte" />
+                          <xs:element name="serie" type="xs:unsignedByte" />
+                          <xs:element name="nNF" type="xs:unsignedInt" />
+                          <xs:element name="dhEmi" type="xs:dateTime" />
+                          <xs:element name="dhSaiEnt" type="xs:dateTime" />
+                          <xs:element name="tpNF" type="xs:unsignedByte" />
+                          <xs:element name="idDest" type="xs:unsignedByte" />
+                          <xs:element name="cMunFG" type="xs:unsignedInt" />
+                          <xs:element name="tpImp" type="xs:unsignedByte" />
+                          <xs:element name="tpEmis" type="xs:unsignedByte" />
+                          <xs:element name="cDV" type="xs:unsignedByte" />
+                          <xs:element name="tpAmb" type="xs:unsignedByte" />
+                          <xs:element name="finNFe" type="xs:unsignedByte" />
+                          <xs:element name="indFinal" type="xs:unsignedByte" />
+                          <xs:element name="indPres" type="xs:unsignedByte" />
+                          <xs:element name="indIntermed" type="xs:unsignedByte" />
+                          <xs:element name="procEmi" type="xs:unsignedByte" />
+                          <xs:element name="verProc" type="xs:string" />
+                          <xs:element name="NFref">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="refNFe" type="xs:integer" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="emit">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CNPJ" type="xs:unsignedLong" />
+                          <xs:element name="xNome" type="xs:string" />
+                          <xs:element name="xFant" type="xs:string" />
+                          <xs:element name="enderEmit">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="xLgr" type="xs:string" />
+                                <xs:element name="nro" type="xs:unsignedShort" />
+                                <xs:element name="xCpl" type="xs:string" />
+                                <xs:element name="xBairro" type="xs:string" />
+                                <xs:element name="cMun" type="xs:unsignedInt" />
+                                <xs:element name="xMun" type="xs:string" />
+                                <xs:element name="UF" type="xs:string" />
+                                <xs:element name="CEP" type="xs:unsignedInt" />
+                                <xs:element name="cPais" type="xs:unsignedShort" />
+                                <xs:element name="xPais" type="xs:string" />
+                                <xs:element name="fone" type="xs:unsignedLong" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="IE" type="xs:unsignedInt" />
+                          <xs:element name="IM" type="xs:unsignedInt" />
+                          <xs:element name="CNAE" type="xs:unsignedInt" />
+                          <xs:element name="CRT" type="xs:unsignedByte" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dest">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CNPJ" type="xs:unsignedLong" />
+                          <xs:element name="xNome" type="xs:string" />
+                          <xs:element name="enderDest">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="xLgr" type="xs:string" />
+                                <xs:element name="nro" type="xs:unsignedShort" />
+                                <xs:element name="xCpl" type="xs:string" />
+                                <xs:element name="xBairro" type="xs:string" />
+                                <xs:element name="cMun" type="xs:unsignedInt" />
+                                <xs:element name="xMun" type="xs:string" />
+                                <xs:element name="UF" type="xs:string" />
+                                <xs:element name="CEP" type="xs:unsignedInt" />
+                                <xs:element name="cPais" type="xs:unsignedShort" />
+                                <xs:element name="xPais" type="xs:string" />
+                                <xs:element name="fone" type="xs:unsignedInt" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="indIEDest" type="xs:unsignedByte" />
+                          <xs:element name="IE" type="xs:unsignedInt" />
+                          <xs:element name="email" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="det">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="prod">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cProd" type="xs:unsignedInt" />
+                                <xs:element name="cEAN" type="xs:string" />
+                                <xs:element name="xProd" type="xs:string" />
+                                <xs:element name="NCM" type="xs:unsignedInt" />
+                                <xs:element name="cBenef" type="xs:string" />
+                                <xs:element name="CFOP" type="xs:unsignedShort" />
+                                <xs:element name="uCom" type="xs:string" />
+                                <xs:element name="qCom" type="xs:decimal" />
+                                <xs:element name="vUnCom" type="xs:decimal" />
+                                <xs:element name="vProd" type="xs:decimal" />
+                                <xs:element name="cEANTrib" type="xs:string" />
+                                <xs:element name="uTrib" type="xs:string" />
+                                <xs:element name="qTrib" type="xs:decimal" />
+                                <xs:element name="vUnTrib" type="xs:decimal" />
+                                <xs:element name="indTot" type="xs:unsignedByte" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="imposto">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ICMS">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ICMS40">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="orig" type="xs:unsignedByte" />
+                                            <xs:element name="CST" type="xs:unsignedByte" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="IPI">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="cEnq" type="xs:unsignedByte" />
+                                      <xs:element name="IPINT">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="CST" type="xs:unsignedByte" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="PIS">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="PISOutr">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="CST" type="xs:unsignedByte" />
+                                            <xs:element name="vBC" type="xs:unsignedByte" />
+                                            <xs:element name="pPIS" type="xs:unsignedByte" />
+                                            <xs:element name="vPIS" type="xs:unsignedByte" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="COFINS">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="COFINSOutr">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="CST" type="xs:unsignedByte" />
+                                            <xs:element name="vBC" type="xs:unsignedByte" />
+                                            <xs:element name="pCOFINS" type="xs:unsignedByte" />
+                                            <xs:element name="vCOFINS" type="xs:unsignedByte" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="infAdProd" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="nItem" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="total">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ICMSTot">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="vBC" type="xs:unsignedByte" />
+                                <xs:element name="vICMS" type="xs:unsignedByte" />
+                                <xs:element name="vICMSDeson" type="xs:unsignedByte" />
+                                <xs:element name="vFCPUFDest" type="xs:unsignedByte" />
+                                <xs:element name="vICMSUFDest" type="xs:unsignedByte" />
+                                <xs:element name="vICMSUFRemet" type="xs:unsignedByte" />
+                                <xs:element name="vFCP" type="xs:unsignedByte" />
+                                <xs:element name="vBCST" type="xs:unsignedByte" />
+                                <xs:element name="vST" type="xs:unsignedByte" />
+                                <xs:element name="vFCPST" type="xs:unsignedByte" />
+                                <xs:element name="vFCPSTRet" type="xs:unsignedByte" />
+                                <xs:element name="vProd" type="xs:decimal" />
+                                <xs:element name="vFrete" type="xs:unsignedByte" />
+                                <xs:element name="vSeg" type="xs:unsignedByte" />
+                                <xs:element name="vDesc" type="xs:unsignedByte" />
+                                <xs:element name="vII" type="xs:unsignedByte" />
+                                <xs:element name="vIPI" type="xs:unsignedByte" />
+                                <xs:element name="vIPIDevol" type="xs:unsignedByte" />
+                                <xs:element name="vPIS" type="xs:unsignedByte" />
+                                <xs:element name="vCOFINS" type="xs:unsignedByte" />
+                                <xs:element name="vOutro" type="xs:unsignedByte" />
+                                <xs:element name="vNF" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="transp">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="modFrete" type="xs:unsignedByte" />
+                          <xs:element name="vol">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="qVol" type="xs:unsignedByte" />
+                                <xs:element name="esp" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pag">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="detPag">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="indPag" type="xs:unsignedByte" />
+                                <xs:element name="tPag" type="xs:unsignedByte" />
+                                <xs:element name="xPag" type="xs:string" />
+                                <xs:element name="vPag" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="infAdic">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="infAdFisco" type="xs:string" />
+                          <xs:element name="infCpl" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="infRespTec">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CNPJ" type="xs:unsignedLong" />
+                          <xs:element name="xContato" type="xs:string" />
+                          <xs:element name="email" type="xs:string" />
+                          <xs:element name="fone" type="xs:unsignedInt" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="versao" type="xs:decimal" use="required" />
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="versao" type="xs:decimal" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

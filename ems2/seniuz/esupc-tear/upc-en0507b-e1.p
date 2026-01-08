@@ -1,0 +1,7 @@
+DEF INPUT PARAMETER h-objeto AS HANDLE.
+
+IF VALID-HANDLE(h-objeto) THEN
+   ASSIGN h-objeto:SCREEN-VALUE = '0'.
+
+
+

@@ -1,0 +1,50 @@
+
+** ABL Stack Trace **
+
+--> pi_system_dialog_get_file men/men702dc.w (R:\fnd\men\men702dc.r) at line 2123
+    USER-INTERFACE-TRIGGER men/men702dc.w (R:\fnd\men\men702dc.r) at line 1338
+    men/men702dc.w (R:\fnd\men\men702dc.r) at line 2096
+    executeProgram men/men906za.p (R:\fnd\men\men906za.r) at line 1864
+    protocolBroker men/men906za.p (R:\fnd\men\men906za.r) at line 2471
+    readProcedure men/men906za.p (R:\fnd\men\men906za.r) at line 2513
+    men/men906za.p (R:\fnd\men\men906za.r) at line 1495
+    R:\scripts-8080\datasul-alias.p (R:\scripts-8080\datasul-alias.r) at line 55
+
+** Persistent procedures/Classes **
+
+Handle  File Name
+001086  R:\fnd\men\men702dc.r
+001068  R:\hcm\prghur\fpp\fp9200.r
+001033  R:\fnd\btb\btb920aa.r
+001028  R:\fnd\prgtec\btb\btb901zo.r
+001005  R:\fnd\utp\ut-func.r
+001004  R:\fnd\utp\ut-win.r
+001002  R:\fnd\btb\btb901zo.r
+001000  R:\fnd\utp\ut-globalsession.r
+
+//=====================================================
+PROGRESS stack trace as of Wed Aug 13 15:34:33 2014
+//=====================================================
+Exception code: C0000005 ACCESS_VIOLATION
+Fault address:  6ECF150C 01:0000050C C:\Windows\SysWOW64\thumbcache.dll
+
+Registers:
+EAX:0B9EC028
+EBX:0B9EBDA0
+ECX:77B33CD3
+EDX:00000000
+ESI:00000000
+EDI:8007000E
+CS:EIP:0023:6ECF150C
+SS:ESP:002B:0ACBFFDC  EBP:0ACBF838
+DS:002B  ES:002B  FS:0053  GS:002B
+Flags:00010246
+
+Call Stack:
+Address   Frame
+6ECF150C  0ACBFFD8  0001:0000050C C:\Windows\SysWOW64\thumbcache.dll
+77B53E85  0ACBFFDC  TpCallbackIndependent+238
+00598A00  0ACBFFE0  0000:00000000 
+FFFFFFFF  0ACBFFE4  0000:00000000 
+77BC7428  0ACBFFE8  RtlRemoteCall+249
+

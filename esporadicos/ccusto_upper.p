@@ -1,0 +1,11 @@
+DEFINE VARIABLE cLinha AS CHARACTER   NO-UNDO  FORMAT 'x(60)'.
+DEFINE STREAM s1.
+OUTPUT STREAM s1 TO c:\temp\ccustonovo.txt.
+INPUT FROM c:\temp\ccusto.txt.
+REPEAT:
+  IMPORT UNFORM cLinha.
+  ASSIGN cLinha = UPPER(cLinha).
+  PUT STREAM s1 cLinha SKIP.
+END.
+INPUT CLOSE.
+OUTPUT STREAM s1 CLOSE.

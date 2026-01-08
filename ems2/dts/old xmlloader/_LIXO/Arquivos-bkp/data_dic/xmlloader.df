@@ -1,0 +1,15 @@
+ADD FIELD "cod-refer" OF "dt-it-docum-est" AS character
+  DESCRIPTION "Informe o codigo da Referencia - prod acabado controlado por referencia"
+  FORMAT "x(8)"
+  POSITION 53
+  INITIAL ""
+  LABEL "Referˆncia"
+  COLUMN-LABEL "Ref"
+  ORDER 530
+  MAX-WIDTH 16
+
+.
+PSC
+cpstream=ibm850
+.
+0000000270

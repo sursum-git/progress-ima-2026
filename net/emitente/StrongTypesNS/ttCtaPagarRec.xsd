@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ttCtaPagarRecDataSet" targetNamespace="ttCtaPagarRecNS" xmlns:mstns="ttCtaPagarRecNS" xmlns="ttCtaPagarRecNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="ttCtaPagarRecDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ttCtaPagarRec">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="da-maior" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="de-vl-maior" type="xs:decimal" minOccurs="0" />
+              <xs:element name="da-ultimo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="de-vl-ultimo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="i-atraso-medio" type="xs:int" minOccurs="0" />
+              <xs:element name="r-rowid" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

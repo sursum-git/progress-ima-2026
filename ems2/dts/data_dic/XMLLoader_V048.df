@@ -1,0 +1,590 @@
+ADD TABLE "dt-funcao"
+  AREA "Schema Area"
+  LABEL "Tabela Gravação de Funções"
+  DESCRIPTION "Tabela Gravação de Funções"
+  DUMP-NAME "dt-funcao"
+
+ADD FIELD "funcao" OF "dt-funcao" AS character 
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Função"
+  POSITION 2
+  MAX-WIDTH 24
+  COLUMN-LABEL "Função"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "det-funcao" OF "dt-funcao" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Detalhe"
+  POSITION 3
+  MAX-WIDTH 120
+  COLUMN-LABEL "Detalhe"
+  ORDER 20
+
+ADD FIELD "situacao" OF "dt-funcao" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Situação"
+  POSITION 4
+  MAX-WIDTH 32
+  COLUMN-LABEL "Situação"
+  ORDER 30
+
+ADD FIELD "int-1" OF "dt-funcao" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "int-2" OF "dt-funcao" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 50
+
+ADD FIELD "dec-1" OF "dt-funcao" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "dec-2" OF "dt-funcao" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "log-1" OF "dt-funcao" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "log-2" OF "dt-funcao" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 10
+  MAX-WIDTH 1
+  ORDER 90
+
+ADD FIELD "char-1" OF "dt-funcao" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "char-2" OF "dt-funcao" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 512
+  ORDER 110
+
+ADD FIELD "date-1" OF "dt-funcao" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD FIELD "date-2" OF "dt-funcao" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 130
+
+ADD INDEX "idx-id-funcao" ON "dt-funcao" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "funcao" ASCENDING 
+  INDEX-FIELD "det-funcao" ASCENDING 
+
+ADD INDEX "idx-funcao" ON "dt-funcao" 
+  AREA "Schema Area"
+  INDEX-FIELD "funcao" ASCENDING 
+
+ADD TABLE "dt-log-nfse"
+  AREA "Schema Area"
+  LABEL "LOG Download NFS-e via Webserv"
+  DESCRIPTION "LOG Download NFS-e via Webservice"
+  DUMP-NAME "dt-log-nfse"
+
+ADD FIELD "cod-estabel" OF "dt-log-nfse" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "data-consulta" OF "dt-log-nfse" AS date 
+  DESCRIPTION "Data da Consulta"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Consulta"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data Consulta"
+  HELP "Data da Consulta"
+  ORDER 20
+
+ADD FIELD "hr-consulta" OF "dt-log-nfse" AS character 
+  DESCRIPTION "Hora da Consulta"
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hora Consulta"
+  POSITION 4
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora Consulta"
+  HELP "Hora da Consulta"
+  ORDER 30
+
+ADD FIELD "prefeitura" OF "dt-log-nfse" AS character 
+  FORMAT "x(4)"
+  INITIAL ""
+  LABEL "Prefeitura"
+  POSITION 5
+  MAX-WIDTH 60
+  VIEW-AS "VIEW-AS COMBO-BOX LIST-ITEM-PAIRS 
+     ""São Paulo"", ""1"",
+     ""Rio de Janeiro"", ""2"",
+     ""Belo Horizonte"", ""3"",
+     ""Goiânia"", ""4"""
+  COLUMN-LABEL "Prefeitura"
+  ORDER 40
+
+ADD FIELD "sequencia" OF "dt-log-nfse" AS int64 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  LABEL "Sequência"
+  POSITION 6
+  MAX-WIDTH 8
+  COLUMN-LABEL "Seq"
+  ORDER 50
+
+ADD FIELD "cod-usuario" OF "dt-log-nfse" AS character 
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Usuario"
+  POSITION 7
+  MAX-WIDTH 24
+  COLUMN-LABEL "Usuario"
+  ORDER 60
+
+ADD FIELD "int-1" OF "dt-log-nfse" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 4
+  ORDER 70
+
+ADD FIELD "int-2" OF "dt-log-nfse" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 80
+
+ADD FIELD "dec-1" OF "dt-log-nfse" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 90
+
+ADD FIELD "dec-2" OF "dt-log-nfse" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 100
+
+ADD FIELD "log-1" OF "dt-log-nfse" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 12
+  MAX-WIDTH 1
+  ORDER 110
+
+ADD FIELD "log-2" OF "dt-log-nfse" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 13
+  MAX-WIDTH 1
+  ORDER 120
+
+ADD FIELD "char-1" OF "dt-log-nfse" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 14
+  MAX-WIDTH 512
+  ORDER 130
+
+ADD FIELD "char-2" OF "dt-log-nfse" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 15
+  MAX-WIDTH 512
+  ORDER 140
+
+ADD FIELD "date-1" OF "dt-log-nfse" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 16
+  MAX-WIDTH 4
+  ORDER 150
+
+ADD FIELD "date-2" OF "dt-log-nfse" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 160
+
+ADD FIELD "status-retorno" OF "dt-log-nfse" AS integer 
+  DESCRIPTION "Status Retorno"
+  FORMAT ">>9"
+  INITIAL "0"
+  LABEL "Status Retorno"
+  POSITION 18
+  MAX-WIDTH 4
+  COLUMN-LABEL "Status Retorno"
+  HELP "Status Retorno"
+  ORDER 170
+
+ADD FIELD "desc-retorno" OF "dt-log-nfse" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  LABEL "Descrição"
+  POSITION 19
+  MAX-WIDTH 512
+  COLUMN-LABEL "Descrição"
+  HELP "Descrição do Retorno"
+  ORDER 180
+
+ADD INDEX "idx-log-nfse" ON "dt-log-nfse" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+  INDEX-FIELD "prefeitura" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "idx-periodo" ON "dt-log-nfse" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+
+ADD INDEX "idx-periodo-prefeitura" ON "dt-log-nfse" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+  INDEX-FIELD "prefeitura" ASCENDING 
+
+ADD TABLE "dt-log-nfse-det"
+  AREA "Schema Area"
+  LABEL "Detalhe LOG Download NFS-e"
+  DESCRIPTION "Detalhe LOG Download NFS-e"
+  DUMP-NAME "dt-log-nfse-det"
+
+ADD FIELD "cod-estabel" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "data-consulta" OF "dt-log-nfse-det" AS date 
+  DESCRIPTION "Data da Consulta"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Consulta"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data Consulta"
+  HELP "Data da Consulta"
+  ORDER 20
+
+ADD FIELD "hr-consulta" OF "dt-log-nfse-det" AS character 
+  DESCRIPTION "Hora da Consulta"
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hora Consulta"
+  POSITION 4
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora Consulta"
+  HELP "Hora da Consulta"
+  ORDER 30
+
+ADD FIELD "prefeitura" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(4)"
+  INITIAL ""
+  LABEL "Prefeitura"
+  POSITION 5
+  MAX-WIDTH 8
+  VIEW-AS "VIEW-AS COMBO-BOX LIST-ITEM-PAIRS 
+     ""São Paulo"", ""1"",
+     ""Rio de Janeiro"", ""2"",
+     ""Belo Horizonte"", ""3"",
+     ""Goiânia"", ""4"""
+  COLUMN-LABEL "Prefeitura"
+  ORDER 40
+
+ADD FIELD "sequencia" OF "dt-log-nfse-det" AS int64 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  LABEL "Sequência"
+  POSITION 6
+  MAX-WIDTH 8
+  COLUMN-LABEL "Seq"
+  ORDER 50
+
+ADD FIELD "documento" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Documento"
+  POSITION 7
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  ORDER 60
+
+ADD FIELD "cnpj-prestador" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(19)"
+  INITIAL ""
+  LABEL "Prestador"
+  POSITION 8
+  MAX-WIDTH 36
+  COLUMN-LABEL "Prestador"
+  ORDER 70
+
+ADD FIELD "int-1" OF "dt-log-nfse-det" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 80
+
+ADD FIELD "int-2" OF "dt-log-nfse-det" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 4
+  ORDER 90
+
+ADD FIELD "dec-1" OF "dt-log-nfse-det" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 100
+
+ADD FIELD "dec-2" OF "dt-log-nfse-det" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 12
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 110
+
+ADD FIELD "log-1" OF "dt-log-nfse-det" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 13
+  MAX-WIDTH 1
+  ORDER 120
+
+ADD FIELD "log-2" OF "dt-log-nfse-det" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 14
+  MAX-WIDTH 1
+  ORDER 130
+
+ADD FIELD "char-1" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 15
+  MAX-WIDTH 512
+  ORDER 140
+
+ADD FIELD "char-2" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 16
+  MAX-WIDTH 512
+  ORDER 150
+
+ADD FIELD "date-1" OF "dt-log-nfse-det" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 160
+
+ADD FIELD "date-2" OF "dt-log-nfse-det" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 18
+  MAX-WIDTH 4
+  ORDER 170
+
+ADD FIELD "dt-emissao" OF "dt-log-nfse-det" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Emissão"
+  POSITION 19
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Emissão"
+  ORDER 180
+
+ADD FIELD "nome-arquivo" OF "dt-log-nfse-det" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  LABEL "Arquivo"
+  POSITION 20
+  MAX-WIDTH 200
+  COLUMN-LABEL "Arquivo"
+  ORDER 190
+
+ADD INDEX "idx-det-log-nfse" ON "dt-log-nfse-det" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+  INDEX-FIELD "prefeitura" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "documento" ASCENDING 
+  INDEX-FIELD "cnpj-prestador" ASCENDING 
+
+ADD INDEX "idx-log-nfse" ON "dt-log-nfse-det" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+  INDEX-FIELD "prefeitura" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD FIELD "tp-emis" OF "dt-docum-est" AS integer
+  DESCRIPTION "Campo para tratar quando for emissão em Contigência - 6/7
+1=Emissão normal (não em contingência);
+2=Contingência FS-IA, com impressão do DANFE em Formulário de Segurança - Impressor Autônomo;
+4=Contingência EPEC (Evento Prévio da Emissão em Contingência);
+5=Contingência FS-DA, com impressão do DANFE em Formulário de Segurança - Documento Auxiliar;
+6=Contingência SVC-AN (SEFAZ Virtual de Contingência do AN);
+7=Contingência SVC-RS (SEFAZ Virtual de Contingência do RS);
+9=Contingência off-line da NFC-e; Observação: Para a NFC-e somente é válida a opção de contingência: 9-Contingência Off-Line e, a critério da UF, opção 4-Contingência EPEC."
+  FORMAT ">9"
+  POSITION 91
+  INITIAL "0"
+  LABEL "Tipo Emissão"
+  COLUMN-LABEL "Tp Emissão"
+  ORDER 900
+  MAX-WIDTH 4
+
+ADD FIELD "usuario-proxy" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 52
+  INITIAL ""
+  HELP "Usuário Proxy - se usar domínio: dominio/usuario"
+  LABEL "Usuário Proxy"
+  COLUMN-LABEL "Usuário Proxy"
+  ORDER 980
+  MAX-WIDTH 160
+
+ADD FIELD "cod-senha-proxy" OF "dt-empresa" AS character
+  FORMAT "x(60)"
+  POSITION 53
+  INITIAL ""
+  HELP "Senha Proxy"
+  LABEL "Senha Proxy"
+  COLUMN-LABEL "Senha Proxy"
+  ORDER 990
+  MAX-WIDTH 120
+
+ADD FIELD "l-utiliza-proxy" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 54
+  INITIAL "Não"
+  HELP "Utiliza Proxy nas conexões"
+  LABEL "Utiliza Proxy"
+  COLUMN-LABEL "Utiliza Proxy"
+  ORDER 950
+  MAX-WIDTH 1
+
+ADD FIELD "servidor-proxy" OF "dt-empresa" AS character
+  DESCRIPTION "Servidor de Proxy"
+  FORMAT "x(100)"
+  POSITION 55
+  INITIAL ""
+  HELP "Servidor de Proxy"
+  LABEL "Servidor Proxy"
+  COLUMN-LABEL "Servidor Proxy"
+  ORDER 960
+  MAX-WIDTH 200
+
+ADD FIELD "porta-proxy" OF "dt-empresa" AS integer
+  FORMAT ">>>>9"
+  POSITION 56
+  INITIAL "0"
+  HELP "Porta do Servidor de Proxy"
+  LABEL "Porta"
+  COLUMN-LABEL "Porta"
+  ORDER 970
+  MAX-WIDTH 4
+
+UPDATE TABLE "dt-rat-lote"
+  DUMP-NAME "dt-rat-lote"
+
+UPDATE FIELD "tipo-nota" OF "dt-rat-lote"
+  VIEW-AS "view-as radio-set horizontal radio-buttons 
+""Compra"",                  1,  
+""Devolução"",               2,  
+""Transferência"",           3,  
+""Entrada Benef"",           4,  
+""Retorno Benef"",           5,  
+""Entrada Consig"",          6,  
+""Fatura Consig"",           7,  
+""Devolução Consig"",        8,  
+""Nota de Rateio"",          9,  
+""Rem. Entrega Futura"",    10, 
+""Rem. Fat. Antecipado"",   11"
+
+UPDATE FIELD "cod-localiz-dev" OF "dt-empresa"
+  FORMAT "x(20)"
+
+ADD FIELD "l-arquiva-xml" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 21
+  INITIAL "Não"
+  HELP "Arquiva XML"
+  LABEL "Arquiva XML"
+  COLUMN-LABEL "Arquiva XML"
+  ORDER 760
+  MAX-WIDTH 1
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000013017

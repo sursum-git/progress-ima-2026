@@ -1,0 +1,7 @@
+/* Include: es001.fv2
+** Tabela.: amostra-fam
+*/
+
+substr(ano-mes,1,4) > "1900" and
+substr(ano-mes,5,2) >= "01" and substr(ano-mes,5,2) <= "12"
+

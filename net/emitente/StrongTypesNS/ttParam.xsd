@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ttParamDataSet" targetNamespace="ttParamNS" xmlns:mstns="ttParamNS" xmlns="ttParamNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="ttParamDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ttParam">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod-estab-ini" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-estab-fim" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-esp-ini" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-esp-fim" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-port-ini" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-port-fim" type="xs:int" minOccurs="0" />
+              <xs:element name="dt-emissao-ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dt-emissao-fim" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

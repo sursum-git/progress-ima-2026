@@ -1,0 +1,48 @@
+ADD FIELD "estab-de-or" OF "dt-docum-est" AS character
+  DESCRIPTION "Estabelecimento de Origem ou Destino - para recebimento f¡sico"
+  FORMAT "x(3)"
+  POSITION 57
+  INITIAL ""
+  HELP "Estabelecimento de Origem ou Destino"
+  LABEL "Est Origem/Destino"
+  COLUMN-LABEL "Est"
+  ORDER 570
+  MAX-WIDTH 6
+
+ADD FIELD "tipo-receb" OF "dt-docum-est" AS integer
+  DESCRIPTION "Tipo Recebimento:
+1 - Fiscal;
+2 - Fisico"
+  FORMAT "9"
+  POSITION 58
+  INITIAL "0"
+  HELP "Tipo Recebimento"
+  LABEL "Tipo Receb"
+  COLUMN-LABEL "Tipo Receb"
+  ORDER 580
+  MAX-WIDTH 4
+
+ADD INDEX "idx-pesq-princ" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "ep-codigo" ASCENDING
+  INDEX-FIELD "log-situacao" ASCENDING
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "serie-docto" ASCENDING
+  INDEX-FIELD "nro-docto" ASCENDING
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "chave-xml" ASCENDING
+  INDEX-FIELD "dt-emissao" ASCENDING
+
+UPDATE FIELD "dec-1" OF "dt-it-docum-est"
+  FORMAT "->>>,>>>,>>9.9999"
+  DECIMALS 4
+
+UPDATE FIELD "dec-2" OF "dt-it-docum-est"
+  FORMAT "->>>,>>>,>>9.9999"
+  DECIMALS 4
+
+.
+PSC
+cpstream=ibm850
+.
+0000001134

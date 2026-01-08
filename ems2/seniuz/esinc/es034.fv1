@@ -1,0 +1,5 @@
+/* Include: es034.fv1
+** Tabela.: teste-pkup
+*/
+
+can-find(espec.maq-benef where espec.maq-benef.codigo = espec.teste-pkup.cod-maq)

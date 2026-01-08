@@ -1,0 +1,147 @@
+escr0011;Cartas de Notifica‡Æo de T¡tulos em Aberto;escr0011;esp/escr0011.w;Cartas Notifica‡Æo T¡ts Aberto;17
+escr0012;Etiquetas de Cadastro de Clientes;escr0012;esp/escr0012.w;Etiquetas Cadastro de Clientes;17
+escr0003;Notas de D‚bito por Representante;escr0003;esp/escr0003.w;Notas de D‚bito p/Representante;17
+escr0005;Resumo de T¡tulos por Portador/Vencimento;escr0005;esp/escr0005.w;Resumo de T¡tulos p/Port/Venc;17
+escr0001;T¡tulos a Receber com C lculo de Juros s/Atraso;escr0001;esp/escr0001.w;T¡tulos Receber c/C lculo Juros;17
+escr0013;T¡tulos a Receber por CEP de Cobran‡a;escr0013;esp/escr0013.w;T¡tulos Receber p/CEP Cobran‡a;17
+escr0014;T¡tulos a Receber por Cidade de Cobran‡a;escr0014;esp/escr0014.w;T¡tulos Receber p/Cid Cobran‡a;17
+escr0008;T¡tulos a Receber por Cliente;escr0008;esp/escr0008.w;T¡tulos Receber p/Cliente;17
+escr0006;T¡tulos a Receber por Portador;escr0006;esp/escr0006.w;T¡tulos Receber p/Portador;17
+escr0002;T¡tulos a Receber por Representante;escr0002;esp/escr0002.w;T¡tulos Receber p/Representante;17
+escr0007;T¡tulos a Receber por Portador/Vencimento;escr0007;esp/escr0007.w;T¡tulos Receber p/Port/Venc;17
+esap0001;T¡tulos a Pagar por Grupo de Fornecedor;esap0001;esp/esap0001.w;T¡tulos Pagar p/Grupo Fornecedor;17
+esft0014;Cadastro de Clientes;esft0014;esp/esft0014.w;Cadastro de Clientes;17
+esft0030;Cadastro de Clientes Ativos por Representante;esft0030;esp/esft0030.w;Cadastro de Clientes Ativ p/Repr;17
+esft0006;Distribui‡Æo do Faturamento;esft0006;esp/esft0006.w;Distribui‡Æo do Faturamento;17
+esft0007;Faturamento por Natureza de Opera‡Æo/Vencimento;esft0007;esp/esft0007.w;Faturamento p/Nat Oper/Venc;17
+esft0004;Faturamento por Representante;esft0004;esp/esft0004.w;Faturamento p/Representante;17
+esft0018;Faturamento por Representante com Prazo M‚dio;esft0018;esp/esft0018.w;Faturamento p/Representante c/PM;17
+esft0027;Faturamento por Representante/Estado;esft0027;esp/esft0027.w;Faturamento p/Representante/Est;17
+esft0012;Mercadorias para Embarque;esft0012;esp/esft0012.w;Mercadorias para Embarque;17
+esft0022;Notas Fiscais Emitidas por Cliente;esft0022;esp/esft0022.w;Notas Fiscais Emitidas p/Cliente;17
+esft0005;Notas Fiscais Emitidas por Representante;esft0005;esp/esft0005.w;Notas Fiscais Emitidas p/Repres;17
+esft0008;Os Maiores Clientes do Faturamento;esft0008;esp/esft0008.w;Os Maiores Clientes Faturamento;17
+esft0009;Os Maiores Clientes do Faturamento/C.Receber;esft0009;esp/esft0009.w;Os Maiores Clientes Fatur/C.Recb;17
+esft0010;Ranking do Faturamento por Representante;esft0010;esp/esft0010.w;Ranking do Faturamento p/Repres;17
+esft0001;Resumo do Faturamento;esft0001;esp/esft0001.w;Resumo do Faturamento;17
+esft0029;Resumo do Faturamento por Al¡quota de ICMS;esft0029;esp/esft0029.w;Resumo do Faturamento p/Al¡q ICM;17
+esft0002;Resumo do Faturamento por Natureza de Opera‡Æo;esft0002;esp/esft0002.w;Resumo do Faturamento p/Nat Oper;17
+esft0032;Resumo do Faturamento, Carteira e Reserva;esft0032;esp/esft0032.w;Resumo do Faturamento,Cart/Res;17
+espd0012;Lotes para Programa‡Æo de Produ‡Æo;espd0012;esp/espd0012.w;Lotes para Programa‡Æo Produ‡Æo;14
+espd0010;Clientes com Pedidos/Faturamento;espd0010;esp/espd0010.w;Clientes com Pedidos/Faturamento;15
+espd0003;Pedidos de Vendas por Cliente;espd0003;esp/espd0003.w;Pedidos de Vendas por Cliente;15
+espd0007;Aviso de Programa‡Æo do Beneficiamento;espd0007;esp/espd0007.w;Aviso de Programa‡Æo do Benefic;17
+espd0006;Estat¡stica de Pedidos de Vendas;espd0006;esp/espd0006.w;Estat¡stica de Pedidos de Vendas;17
+espd0009;Estat¡stica de Pedidos de Vendas Cancelados;espd0009;esp/espd0009.w;Estat¡stica de Ped Vendas Cancel;17
+espd0008;Estat¡stica de Pedidos de Vendas x Atendimento;espd0008;esp/espd0008.w;Estat¡stica de Ped Vend x Atend;17
+espd0017;Pedidos de Vendas … Vista p/Solicita‡Æo de Dep¢sito;espd0017;esp/espd0017.w;Pedidos Vendas … Vista p/Sol.Dep;17
+espd0013;Pedidos de Vendas a Faturar por Volume;espd0013;esp/espd0013.w;Pedidos Vendas a Faturar p/Vol;17
+espd0019;Pedidos de Vendas por Fam¡lia/Cota;espd0019;esp/espd0019.w;Pedidos Vendas por Fam¡lia/Cota;17
+espd0014;Pedidos de Vendas por Repres/Cliente/Reserva;espd0014;esp/espd0014.w;Pedidos Vendas por Rep/Cli/Resrv;17
+espd0004;Pedidos de Vendas p/ Separa‡Æo de Mercadorias;espd0004;esp/espd0004.w;Pedidos Vendas p/Separa‡Æo Merc;17
+espd0002;Pre-Nota de Faturamento;espd0002;esp/espd0002.w;Pre-Nota de Faturamento;17
+espd0001;Programa‡Æo de Produ‡Æo;espd0001;esp/espd0001.w;Programa‡Æo de Produ‡Æo;17
+espd0015;Programa‡Æo de Produ‡Æo com Processo/Pronto;espd0015;esp/espd0015.w;Programa‡Æo de Produ‡Æo ProcPron;17
+espd0011;Programa‡Æo de Produ‡Æo por Periodos;espd0011;esp/espd0011.w;Programa‡Æo de Produ‡Æo p/Period;17
+espd0005;Resumo de Pedidos de Vendas em Carteira ;espd0005;esp/espd0005.w;Resumo Pedidos de Vendas em Cart ;17
+esce0006;Estoque Atual por Fam¡lia/Qualidade;esce0006;esp/esce0006.w;Estoque Atual por Fam¡lia/Qualid;17
+esce0005;Estoque Atual/Dispon¡vel por Item;esce0005;esp/esce0005.w;Estoque Atual/Dispon¡vel p/Item;17
+esce0011;Estoque Disponivel por Fam¡lia;esce0011;esp/esce0011.w;Estoque Disponivel por Fam¡lia;17
+esce0012;Estoque Disponivel por Item;esce0012;esp/esce0012.w;Estoque Disponivel por Item;17
+esce0001;Estoque no éltimo Fechamento por Fam¡lia;esce0001;esp/esce0001.w;Estoque éltimo Fechamento p/Fam;17
+esce0004;Movimento de Estoque por Centro de Custo;esce0004;esp/esce0004.w;Movimento de Estoque por CCusto;17
+esce0003;Movimento de Estoque por Dep¢sito/Esp‚cie;esce0003;esp/esce0003.w;Movimento de Estoque p/Dep/Esp‚c;17
+esce0007;Necessidade de Compra por Item;esce0007;esp/esce0007.w;Necessidade de Compra por Item;17
+esce0002;Reservas Por Ordem de Produ‡Æo/Item;esce0002;esp/esce0002.w;Reservas Por Ordem Produ‡Æo/Item;17
+esce0008;Saldo F¡sico Atual por Ötem;esce0008;esp/esce0008.w;Saldo F¡sico Atual por Ötem;17
+escc0001;Ötens com éltima Compra;escc0001;esp/escc0001.w;Ötens com éltima Compra;17
+escc0002;Ötens com éltima Compra/Varia‡Æo de Pre‡o;escc0002;esp/escc0002.w;Ötens com éltima Compr/Var Pre‡o;17
+escc0305;Pedidos de Compra;escc0305;esp/escc0305.w;Pedidos de Compra;17
+essp0019;Composi‡äes de Ötens;essp0019;esp/essp0019.w;Composi‡äes de Ötens;2
+essp0021;Controles de SAC;essp0021;esp/essp0021.w;Controles de SAC;4
+essp0024;Cotas de Vendas por Fam¡lia;essp0024;esp/essp0024.w;Cotas de Vendas por Fam¡lia;2
+essp0026;Fam¡lias - Dados Complementares;essp0026;esp/essp0026.w;Fam¡lias - Dados Complementares;3
+essp0056;Invent rio de Produtos Acabados;essp0056;esp/essp0056.w;Invent rio de Produtos Acabados;2
+essp0060;Ötens - Dados Complementares;essp0060;esp/essp0060.w;Ötens - Dados Complementares;3
+essp0027;Pedidos - Dados Complementares;essp0027;esp/essp0027.w;Pedidos - Dados Complementares;3
+essp0062;Pedidos - Reservas;essp0062;esp/essp0062.w;Pedidos - Reservas;3
+essp0089;Tipos de Embalagens;essp0089;esp/essp0089.w;Tipos de Embalagens;2
+essp0020;Composi‡äes de Ötens;essp0020;esp/essp0020.w;Composi‡äes de Ötens;14
+essp0022;Controles de SAC;essp0022;esp/essp0022.w;Controles de SAC;15
+essp0025;Cotas de Vendas por Fam¡lia;essp0025;esp/essp0025.w;Cotas de Vendas por Fam¡lia;14
+essp0064;Invent rio de Produtos Acabados;essp0064;esp/essp0064.w;Invent rio de Produtos Acabados;14
+essp0087;Conferˆncia do Invent rio da Expedi‡Æo;essp0087;esp/essp0087.w;Conferˆncia do Invent rio da Exp;17
+essp0088;Invent rio por Item/Referencia;essp0088;esp/essp0088.w;Invent rio por Item/Referencia;17
+essp0017;µreas da Mecƒnica;essp0017;esp/essp0017.w;µreas da Mecƒnica;2
+essp0030;M quinas da Mecƒnica;essp0030;esp/essp0030.w;M quinas da Mecƒnica;2
+essp0006;Movimentos da Manuten‡Æo;essp0006;esp/essp0006.w;Movimentos da Manuten‡Æo;4
+essp0034;Setores da Mecƒnica;essp0034;esp/essp0034.w;Setores da Mecƒnica;2
+essp0036;Sub-sistemas da Mecƒnica;essp0036;esp/essp0036.w;Sub-sistemas da Mecƒnica;2
+essp0018;µreas da Mecƒnica;essp0018;esp/essp0018.w;µreas da Mecƒnica;14
+essp0031;M quinas da Mecƒnica;essp0031;esp/essp0031.w;M quinas da Mecƒnica;14
+essp0007;Movimentos da Manuten‡Æo;essp0007;esp/essp0007.w;Movimentos da Manuten‡Æo;15
+essp0035;Setores da Mecƒnica;essp0035;esp/essp0035.w;Setores da Mecƒnica;14
+essp0037;Sub-sistemas da Mecƒnica;essp0037;esp/essp0037.w;Sub-sistemas da Mecƒnica;14
+essp0086;Curva ABC de Manuten‡Æo por M quina;essp0086;esp/essp0086.w;Curva ABC Manuten‡Æo p/M quina;17
+essp0085;Curva ABC de Manuten‡Æo por SubSistema;essp0085;esp/essp0085.w;Curva ABC Manuten‡Æo p/SubSistem;17
+essp0082;Incidˆncia de Manuten‡Æo por Funcion rio;essp0082;esp/essp0082.w;Incidˆncia Manuten‡Æo p/Funcion;17
+essp0079;Incidˆncia de Manuten‡Æo por M quina;essp0079;esp/essp0079.w;Incidˆncia Manuten‡Æo p/M quina;17
+essp0083;Incidˆncia de Manuten‡Æo por Operador;essp0083;esp/essp0083.w;Incidˆncia Manuten‡Æo p/Operador;17
+essp0084;Incidˆncia de Manuten‡Æo por Sistema;essp0084;esp/essp0084.w;Incidˆncia Manuten‡Æo p/Sistema;17
+essp0080;Incidˆncia de Manuten‡Æo por SubSistema;essp0080;esp/essp0080.w;Incidˆncia Manuten‡Æo p/SubSist;17
+essp0081;Incidˆncia de Manuten‡Æo por Tipo de Manuten‡Æo;essp0081;esp/essp0081.w;Incidˆncia Manuten‡Æo p/Tipo Man;17
+essp0002;Amostras por Fam¡lia;essp0002;esp/essp0002.w;Amostras por Fam¡lia;2
+essp0001;Testes de Amostras;essp0001;esp/essp0001.w;Testes de Amostras;2
+essp0008;Testes de ASTM;essp0008;esp/essp0008.w;Testes de ASTM;2
+essp0028;Testes de Carga de Goma;essp0028;esp/essp0028.w;Testes de Carga de Goma;2
+essp0041;Testes de Goma;essp0041;esp/essp0041.w;Testes de Goma;2
+essp0045;Testes de Hidrofilidade;essp0045;esp/essp0045.w;Testes de Hidrofilidade;2
+essp0049;Testes de NIP;essp0049;esp/essp0049.w;Testes de NIP;2
+essp0009;Testes de Pick-Up;essp0009;esp/essp0009.w;Testes de Pick-Up;2
+essp0004;Testes de Produtos;essp0004;esp/essp0004.w;Testes de Produtos;2
+essp0053;Testes de Resistˆncia;essp0053;esp/essp0053.w;Testes de Resistˆncia;2
+essp0011;Amostras por Fam¡lia;essp0011;esp/essp0011.w;Amostras por Fam¡lia;14
+essp0010;Testes de Amostras;essp0010;esp/essp0010.w;Testes de Amostras;14
+essp0016;Testes de ASTM;essp0016;esp/essp0016.w;Testes de ASTM;14
+essp0029;Testes de Carga de Goma;essp0029;esp/essp0029.w;Testes de Carga de Goma;14
+essp0042;Testes de Goma;essp0042;esp/essp0042.w;Testes de Goma;14
+essp0046;Testes de Hidrofilidade;essp0046;esp/essp0046.w;Testes de Hidrofilidade;14
+essp0050;Testes de NIP;essp0050;esp/essp0050.w;Testes de NIP;14
+essp0023;Testes de Pick-Up;essp0023;esp/essp0023.w;Testes de Pick-Up;14
+essp0013;Testes de Produtos;essp0013;esp/essp0013.w;Testes de Produtos;14
+essp0054;Testes de Resistˆncia;essp0054;esp/essp0054.w;Testes de Resistˆncia;14
+essp0039;Amostras por Fam¡lia;essp0039;esp/essp0039.w;Amostras por Fam¡lia;17
+essp0038;Testes de Amostras;essp0038;esp/essp0038.w;Testes de Amostras;17
+essp0066;Testes de ASTM;essp0066;esp/essp0066.w;Testes de ASTM;17
+essp0058;Testes de Carga de Goma;essp0058;esp/essp0058.w;Testes de Carga de Goma;17
+essp0043;Testes de Goma;essp0043;esp/essp0043.w;Testes de Goma;17
+essp0047;Testes de Hidrofilidade;essp0047;esp/essp0047.w;Testes de Hidrofilidade;17
+essp0051;Testes de NIP;essp0051;esp/essp0051.w;Testes de NIP;17
+essp0068;Testes de Pick-Up;essp0068;esp/essp0068.w;Testes de Pick-Up;17
+essp0069;Testes de Produtos;essp0069;esp/essp0069.w;Testes de Produtos;17
+essp0055;Testes de Resistˆncia;essp0055;esp/essp0055.w;Testes de Resistˆncia;17
+essp0040;Amostras por Fam¡lia;essp0040;esp/essp0040.w;Amostras por Fam¡lia;17
+essp0065;Testes de Amostras;essp0065;esp/essp0065.w;Testes de Amostras;17
+essp0067;Testes de ASTM;essp0067;esp/essp0067.w;Testes de ASTM;17
+essp0059;Testes de Carga de Goma;essp0059;esp/essp0059.w;Testes de Carga de Goma;17
+essp0044;Testes de Goma;essp0044;esp/essp0044.w;Testes de Goma;17
+essp0048;Testes de Hidrofilidade;essp0048;esp/essp0048.w;Testes de Hidrofilidade;17
+essp0052;Testes de NIP;essp0052;esp/essp0052.w;Testes de NIP;17
+essp0061;Testes de Pick-Up;essp0061;esp/essp0061.w;Testes de Pick-Up;17
+essp0070;Testes de Produtos;essp0070;esp/essp0070.w;Testes de Produtos;17
+essp0063;Testes de Resistˆncia;essp0063;esp/essp0063.w;Testes de Resistˆncia;17
+essp0005;Defeitos de Fabrica‡Æo;essp0005;esp/essp0005.w;Defeitos de Fabrica‡Æo;8
+essp0032;M quinas do Beneficiamento;essp0032;esp/essp0032.w;M quinas do Beneficiamento;2
+essp0057;Movimento do Estoque de Acabados;essp0057;esp/essp0057.w;Movimento do Estoque de Acabados;8
+essp0003;Produtos do Beneficiamento;essp0003;esp/essp0003.w;Produtos do Beneficiamento;2
+essp0014;Defeitos de Fabrica‡Æo;essp0014;esp/essp0014.w;Defeitos de Fabrica‡Æo;16
+essp0033;M quinas do Beneficiamento;essp0033;esp/essp0033.w;M quinas do Beneficiamento;14
+essp0012;Produtos do Beneficiamento;essp0012;esp/essp0012.w;Produtos do Beneficiamento;14
+essp0075;Curva ABC Defeitos por Fam¡lia;essp0075;esp/essp0075.w;Curva ABC Defeitos por Fam¡lia;17
+essp0072;Defeitos por Fam¡lia/Tipo Defeito;essp0072;esp/essp0072.w;Defeitos por Fam¡lia/Tip Defeito;17
+essp0073;Defeitos por Tipo Defeito;essp0073;esp/essp0073.w;Defeitos por Tipo Defeito;17
+essp0074;Defeitos Por Tipo Defeito/Lote;essp0074;esp/essp0074.w;Defeitos Por Tipo Defeito/Lote;17
+essp0078;Produ‡Æo por Fam¡lia/Nuance;essp0078;esp/essp0078.w;Produ‡Æo por Fam¡lia/Nuance;17
+essp0076;Produ‡Æo Tecido Estampado por Fam¡lia;essp0076;esp/essp0076.w;Produ‡Æo Tecido Estampado p/Fam;17
+essp0077;Produ‡Æo Tecido Liso por Fam¡lia;essp0077;esp/essp0077.w;Produ‡Æo Tecido Liso por Fam¡lia;17
+essp0071;Produ‡Æo/Defeitos por Fam¡lia;essp0071;esp/essp0071.w;Produ‡Æo/Defeitos por Fam¡lia;17

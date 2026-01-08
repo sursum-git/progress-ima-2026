@@ -1,0 +1,3 @@
+DEF NEW GLOBAL SHARED VAR c-aprov-canc AS CHAR NO-UNDO.
+
+ASSIGN c-aprov-canc = SELF:SCREEN-VALUE.

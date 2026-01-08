@@ -1,0 +1,147 @@
+escr0011;Cartas de Notifica‡Æo de T¡tulos em Aberto;Cartas Notifica‡Æo T¡ts Aberto;M06
+escr0012;Etiquetas de Cadastro de Clientes;Etiquetas Cadastro de Clientes;M06
+escr0003;Notas de D‚bito por Representante;Notas de D‚bito p/Representante;M06
+escr0005;Resumo de T¡tulos por Portador/Vencimento;Resumo de T¡tulos p/Port/Venc;M06
+escr0001;T¡tulos a Receber com C lculo de Juros s/Atraso;T¡tulos Receber c/C lculo Juros;M06
+escr0013;T¡tulos a Receber por CEP de Cobran‡a;T¡tulos Receber p/CEP Cobran‡a;M06
+escr0014;T¡tulos a Receber por Cidade de Cobran‡a;T¡tulos Receber p/Cid Cobran‡a;M06
+escr0008;T¡tulos a Receber por Cliente;T¡tulos Receber p/Cliente;M06
+escr0006;T¡tulos a Receber por Portador;T¡tulos Receber p/Portador;M06
+escr0002;T¡tulos a Receber por Representante;T¡tulos Receber p/Representante;M06
+escr0007;T¡tulos a Receber por Portador/Vencimento;T¡tulos Receber p/Port/Venc;M06
+esap0001;T¡tulos a Pagar por Grupo de Fornecedor;T¡tulos Pagar p/Grupo Fornecedor;M08
+esft0014;Cadastro de Clientes;Cadastro de Clientes;M10
+esft0030;Cadastro de Clientes Ativos por Representante;Cadastro de Clientes Ativ p/Repr;M10
+esft0006;Distribui‡Æo do Faturamento;Distribui‡Æo do Faturamento;M10
+esft0007;Faturamento por Natureza de Opera‡Æo/Vencimento;Faturamento p/Nat Oper/Venc;M10
+esft0004;Faturamento por Representante;Faturamento p/Representante;M10
+esft0018;Faturamento por Representante com Prazo M‚dio;Faturamento p/Representante c/PM;M10
+esft0027;Faturamento por Representante/Estado;Faturamento p/Representante/Est;M10
+esft0012;Mercadorias para Embarque;Mercadorias para Embarque;M10
+esft0022;Notas Fiscais Emitidas por Cliente;Notas Fiscais Emitidas p/Cliente;M10
+esft0005;Notas Fiscais Emitidas por Representante;Notas Fiscais Emitidas p/Repres;M10
+esft0008;Os Maiores Clientes do Faturamento;Os Maiores Clientes Faturamento;M10
+esft0009;Os Maiores Clientes do Faturamento/C.Receber;Os Maiores Clientes Fatur/C.Recb;M10
+esft0010;Ranking do Faturamento por Representante;Ranking do Faturamento p/Repres;M10
+esft0001;Resumo do Faturamento;Resumo do Faturamento;M10
+esft0029;Resumo do Faturamento por Al¡quota de ICMS;Resumo do Faturamento p/Al¡q ICM;M10
+esft0002;Resumo do Faturamento por Natureza de Opera‡Æo;Resumo do Faturamento p/Nat Oper;M10
+esft0032;Resumo do Faturamento, Carteira e Reserva;Resumo do Faturamento,Cart/Res;M10
+espd0012;Lotes para Programa‡Æo de Produ‡Æo;Lotes para Programa‡Æo Produ‡Æo;M11
+espd0010;Clientes com Pedidos/Faturamento;Clientes com Pedidos/Faturamento;M11
+espd0003;Pedidos de Vendas por Cliente;Pedidos de Vendas por Cliente;M11
+espd0007;Aviso de Programa‡Æo do Beneficiamento;Aviso de Programa‡Æo do Benefic;M11
+espd0006;Estat¡stica de Pedidos de Vendas;Estat¡stica de Pedidos de Vendas;M11
+espd0009;Estat¡stica de Pedidos de Vendas Cancelados;Estat¡stica de Ped Vendas Cancel;M11
+espd0008;Estat¡stica de Pedidos de Vendas x Atendimento;Estat¡stica de Ped Vend x Atend;M11
+espd0017;Pedidos de Vendas … Vista p/Solicita‡Æo de Dep¢sito;Pedidos Vendas … Vista p/Sol.Dep;M11
+espd0013;Pedidos de Vendas a Faturar por Volume;Pedidos Vendas a Faturar p/Vol;M11
+espd0019;Pedidos de Vendas por Fam¡lia/Cota;Pedidos Vendas por Fam¡lia/Cota;M11
+espd0014;Pedidos de Vendas por Repres/Cliente/Reserva;Pedidos Vendas por Rep/Cli/Resrv;M11
+espd0004;Pedidos de Vendas p/ Separa‡Æo de Mercadorias;Pedidos Vendas p/Separa‡Æo Merc;M11
+espd0002;Pre-Nota de Faturamento;Pre-Nota de Faturamento;M11
+espd0001;Programa‡Æo de Produ‡Æo;Programa‡Æo de Produ‡Æo;M11
+espd0015;Programa‡Æo de Produ‡Æo com Processo/Pronto;Programa‡Æo de Produ‡Æo ProcPron;M11
+espd0011;Programa‡Æo de Produ‡Æo por Periodos;Programa‡Æo de Produ‡Æo p/Period;M11
+espd0005;Resumo de Pedidos de Vendas em Carteira ;Resumo Pedidos de Vendas em Cart ;M11
+esce0006;Estoque Atual por Fam¡lia/Qualidade;Estoque Atual por Fam¡lia/Qualid;M20
+esce0005;Estoque Atual/Dispon¡vel por Item;Estoque Atual/Dispon¡vel p/Item;M20
+esce0011;Estoque Disponivel por Fam¡lia;Estoque Disponivel por Fam¡lia;M20
+esce0012;Estoque Disponivel por Item;Estoque Disponivel por Item;M20
+esce0001;Estoque no éltimo Fechamento por Fam¡lia;Estoque éltimo Fechamento p/Fam;M20
+esce0004;Movimento de Estoque por Centro de Custo;Movimento de Estoque por CCusto;M20
+esce0003;Movimento de Estoque por Dep¢sito/Esp‚cie;Movimento de Estoque p/Dep/Esp‚c;M20
+esce0007;Necessidade de Compra por Item;Necessidade de Compra por Item;M20
+esce0002;Reservas Por Ordem de Produ‡Æo/Item;Reservas Por Ordem Produ‡Æo/Item;M20
+esce0008;Saldo F¡sico Atual por Ötem;Saldo F¡sico Atual por Ötem;M20
+escc0001;Ötens com éltima Compra;Ötens com éltima Compra;M21
+escc0002;Ötens com éltima Compra/Varia‡Æo de Pre‡o;Ötens com éltima Compr/Var Pre‡o;M21
+escc0305;Pedidos de Compra;Pedidos de Compra;M21
+essp0019;Composi‡äes de Ötens;Composi‡äes de Ötens;M22
+essp0021;Controles de SAC;Controles de SAC;M22
+essp0024;Cotas de Vendas por Fam¡lia;Cotas de Vendas por Fam¡lia;M22
+essp0026;Fam¡lias - Dados Complementares;Fam¡lias - Dados Complementares;M22
+essp0056;Invent rio de Produtos Acabados;Invent rio de Produtos Acabados;M22
+essp0060;Ötens - Dados Complementares;Ötens - Dados Complementares;M22
+essp0027;Pedidos - Dados Complementares;Pedidos - Dados Complementares;M22
+essp0062;Pedidos - Reservas;Pedidos - Reservas;M22
+essp0089;Tipos de Embalagens;Tipos de Embalagens;M22
+essp0020;Composi‡äes de Ötens;Composi‡äes de Ötens;M22
+essp0022;Controles de SAC;Controles de SAC;M22
+essp0025;Cotas de Vendas por Fam¡lia;Cotas de Vendas por Fam¡lia;M22
+essp0064;Invent rio de Produtos Acabados;Invent rio de Produtos Acabados;M22
+essp0087;Conferˆncia do Invent rio da Expedi‡Æo;Conferˆncia do Invent rio da Exp;M22
+essp0088;Invent rio por Item/Referencia;Invent rio por Item/Referencia;M22
+essp0017;µreas da Mecƒnica;µreas da Mecƒnica;M23
+essp0030;M quinas da Mecƒnica;M quinas da Mecƒnica;M23
+essp0006;Movimentos da Manuten‡Æo;Movimentos da Manuten‡Æo;M23
+essp0034;Setores da Mecƒnica;Setores da Mecƒnica;M23
+essp0036;Sub-sistemas da Mecƒnica;Sub-sistemas da Mecƒnica;M23
+essp0018;µreas da Mecƒnica;µreas da Mecƒnica;M23
+essp0031;M quinas da Mecƒnica;M quinas da Mecƒnica;M23
+essp0007;Movimentos da Manuten‡Æo;Movimentos da Manuten‡Æo;M23
+essp0035;Setores da Mecƒnica;Setores da Mecƒnica;M23
+essp0037;Sub-sistemas da Mecƒnica;Sub-sistemas da Mecƒnica;M23
+essp0086;Curva ABC de Manuten‡Æo por M quina;Curva ABC Manuten‡Æo p/M quina;M23
+essp0085;Curva ABC de Manuten‡Æo por SubSistema;Curva ABC Manuten‡Æo p/SubSistem;M23
+essp0082;Incidˆncia de Manuten‡Æo por Funcion rio;Incidˆncia Manuten‡Æo p/Funcion;M23
+essp0079;Incidˆncia de Manuten‡Æo por M quina;Incidˆncia Manuten‡Æo p/M quina;M23
+essp0083;Incidˆncia de Manuten‡Æo por Operador;Incidˆncia Manuten‡Æo p/Operador;M23
+essp0084;Incidˆncia de Manuten‡Æo por Sistema;Incidˆncia Manuten‡Æo p/Sistema;M23
+essp0080;Incidˆncia de Manuten‡Æo por SubSistema;Incidˆncia Manuten‡Æo p/SubSist;M23
+essp0081;Incidˆncia de Manuten‡Æo por Tipo de Manuten‡Æo;Incidˆncia Manuten‡Æo p/Tipo Man;M23
+essp0002;Amostras por Fam¡lia;Amostras por Fam¡lia;M24
+essp0001;Testes de Amostras;Testes de Amostras;M24
+essp0008;Testes de ASTM;Testes de ASTM;M24
+essp0028;Testes de Carga de Goma;Testes de Carga de Goma;M24
+essp0041;Testes de Goma;Testes de Goma;M24
+essp0045;Testes de Hidrofilidade;Testes de Hidrofilidade;M24
+essp0049;Testes de NIP;Testes de NIP;M24
+essp0009;Testes de Pick-Up;Testes de Pick-Up;M24
+essp0004;Testes de Produtos;Testes de Produtos;M24
+essp0053;Testes de Resistˆncia;Testes de Resistˆncia;M24
+essp0011;Amostras por Fam¡lia;Amostras por Fam¡lia;M24
+essp0010;Testes de Amostras;Testes de Amostras;M24
+essp0016;Testes de ASTM;Testes de ASTM;M24
+essp0029;Testes de Carga de Goma;Testes de Carga de Goma;M24
+essp0042;Testes de Goma;Testes de Goma;M24
+essp0046;Testes de Hidrofilidade;Testes de Hidrofilidade;M24
+essp0050;Testes de NIP;Testes de NIP;M24
+essp0023;Testes de Pick-Up;Testes de Pick-Up;M24
+essp0013;Testes de Produtos;Testes de Produtos;M24
+essp0054;Testes de Resistˆncia;Testes de Resistˆncia;M24
+essp0039;Amostras por Fam¡lia;Amostras por Fam¡lia;M24
+essp0038;Testes de Amostras;Testes de Amostras;M24
+essp0066;Testes de ASTM;Testes de ASTM;M24
+essp0058;Testes de Carga de Goma;Testes de Carga de Goma;M24
+essp0043;Testes de Goma;Testes de Goma;M24
+essp0047;Testes de Hidrofilidade;Testes de Hidrofilidade;M24
+essp0051;Testes de NIP;Testes de NIP;M24
+essp0068;Testes de Pick-Up;Testes de Pick-Up;M24
+essp0069;Testes de Produtos;Testes de Produtos;M24
+essp0055;Testes de Resistˆncia;Testes de Resistˆncia;M24
+essp0040;Amostras por Fam¡lia;Amostras por Fam¡lia;M24
+essp0065;Testes de Amostras;Testes de Amostras;M24
+essp0067;Testes de ASTM;Testes de ASTM;M24
+essp0059;Testes de Carga de Goma;Testes de Carga de Goma;M24
+essp0044;Testes de Goma;Testes de Goma;M24
+essp0048;Testes de Hidrofilidade;Testes de Hidrofilidade;M24
+essp0052;Testes de NIP;Testes de NIP;M24
+essp0061;Testes de Pick-Up;Testes de Pick-Up;M24
+essp0070;Testes de Produtos;Testes de Produtos;M24
+essp0063;Testes de Resistˆncia;Testes de Resistˆncia;M24
+essp0005;Defeitos de Fabrica‡Æo;Defeitos de Fabrica‡Æo;M25
+essp0032;M quinas do Beneficiamento;M quinas do Beneficiamento;M25
+essp0057;Movimento do Estoque de Acabados;Movimento do Estoque de Acabados;M25
+essp0003;Produtos do Beneficiamento;Produtos do Beneficiamento;M25
+essp0014;Defeitos de Fabrica‡Æo;Defeitos de Fabrica‡Æo;M25
+essp0033;M quinas do Beneficiamento;M quinas do Beneficiamento;M25
+essp0012;Produtos do Beneficiamento;Produtos do Beneficiamento;M25
+essp0075;Curva ABC Defeitos por Fam¡lia;Curva ABC Defeitos por Fam¡lia;M25
+essp0072;Defeitos por Fam¡lia/Tipo Defeito;Defeitos por Fam¡lia/Tip Defeito;M25
+essp0073;Defeitos por Tipo Defeito;Defeitos por Tipo Defeito;M25
+essp0074;Defeitos Por Tipo Defeito/Lote;Defeitos Por Tipo Defeito/Lote;M25
+essp0078;Produ‡Æo por Fam¡lia/Nuance;Produ‡Æo por Fam¡lia/Nuance;M25
+essp0076;Produ‡Æo Tecido Estampado por Fam¡lia;Produ‡Æo Tecido Estampado p/Fam;M25
+essp0077;Produ‡Æo Tecido Liso por Fam¡lia;Produ‡Æo Tecido Liso por Fam¡lia;M25
+essp0071;Produ‡Æo/Defeitos por Fam¡lia;Produ‡Æo/Defeitos por Fam¡lia;M25

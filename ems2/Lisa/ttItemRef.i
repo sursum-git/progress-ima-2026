@@ -1,0 +1,3 @@
+DEFINE TEMP-TABLE ttItemRef NO-UNDO
+    FIELD itCodigo  AS CHAR
+    FIELD codRefer  AS CHAR.

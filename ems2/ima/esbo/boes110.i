@@ -1,0 +1,2 @@
+DEFINE TEMP-TABLE {1} NO-UNDO LIKE regras_frete
+FIELD r-rowid AS ROWID.

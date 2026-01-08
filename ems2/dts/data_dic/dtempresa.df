@@ -1,0 +1,155 @@
+ADD FIELD "pasta-entrada-lnx" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 66
+  INITIAL ""
+  HELP "Pasta de Entrada Linux"
+  LABEL "Pasta de Entrada Linux"
+  COLUMN-LABEL "Entrada Linux"
+  ORDER 1110
+  MAX-WIDTH 160
+
+ADD FIELD "pasta-arq-config-lnx" OF "dt-empresa" AS character
+  DESCRIPTION "Pasta de arquivos de configuração para conexão Receita Federal"
+  FORMAT "x(80)"
+  POSITION 67
+  INITIAL ""
+  HELP "Pasta de arquivos de configuração Linux"
+  LABEL "Pasta Arq Config Linux"
+  COLUMN-LABEL "Pasta Arq Config Lnx"
+  ORDER 1120
+  MAX-WIDTH 160
+
+ADD FIELD "nome-arq-config-lnx" OF "dt-empresa" AS character
+  DESCRIPTION "Nome do arquivo de configuração (caminho e arquivo) Linux"
+  FORMAT "x(200)"
+  POSITION 68
+  INITIAL ""
+  HELP "Nome do arquivo de configuração (caminho e arquivo) Linux"
+  LABEL "Nome Arq Config Linux"
+  COLUMN-LABEL "Nome Arq Config Lnx"
+  ORDER 1130
+  MAX-WIDTH 400
+
+ADD FIELD "pasta-grava-log-linux" OF "dt-empresa" AS character
+  DESCRIPTION "Pasta onde serão armazenados os arquivos de LOG do Produto - LOG JAVA e-mail e destinadas"
+  FORMAT "x(80)"
+  POSITION 69
+  INITIAL ""
+  HELP "Pasta de Gravação de LOG Linux"
+  LABEL "Pasta de Log Linux"
+  COLUMN-LABEL "LOG Linux"
+  ORDER 1140
+  MAX-WIDTH 160
+
+ADD FIELD "pasta-erros-lnx" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 70
+  INITIAL ""
+  HELP "Pasta de Erros para execução de RPW em Linux"
+  LABEL "Pasta de Erros Linux"
+  COLUMN-LABEL "Erros Lnx"
+  ORDER 1090
+  MAX-WIDTH 160
+
+ADD FIELD "pasta-armaz-lnx" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 71
+  INITIAL ""
+  HELP "Pasta de Armazenagem Linux"
+  LABEL "Pasta de Armazenagem Linux"
+  COLUMN-LABEL "Armazena Lnx"
+  ORDER 1100
+  MAX-WIDTH 160
+
+ADD FIELD "cod-arq-certificado-lnx" OF "dt-empresa" AS character
+  FORMAT "x(200)"
+  POSITION 72
+  INITIAL ""
+  HELP "Arquivo Certificado Linux"
+  LABEL "Arquivo Certificado Linux"
+  COLUMN-LABEL "Arquivo Certificado Lnx"
+  ORDER 1150
+  MAX-WIDTH 400
+
+ADD FIELD "l-usa-linux-rpw" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 73
+  INITIAL "Não"
+  HELP "Usa SO Linux em servidor de RPW?"
+  LABEL "Usa Linux RPW"
+  COLUMN-LABEL "Usa Linux RPW"
+  ORDER 1160
+  MAX-WIDTH 1
+
+ADD FIELD "l-email-eventos" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 74
+  INITIAL "Não"
+  HELP "Envia E-Mail Eventos"
+  LABEL "Envia E-Mail Eventos"
+  COLUMN-LABEL "Envia E-Mail Eventos"
+  ORDER 1170
+  MAX-WIDTH 1
+
+ADD FIELD "l-valida-atualizacao" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 75
+  INITIAL "Não"
+  HELP "Valida a NF-e no momento da Atualização"
+  LABEL "Valia NF Atual"
+  COLUMN-LABEL "Valida NF Atual"
+  ORDER 1180
+  MAX-WIDTH 1
+
+ADD FIELD "l-copia-gfe" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 76
+  INITIAL "Não"
+  HELP "Copia arquivo XML de CT-e para pasta GFE"
+  LABEL "Copia CT-e para GFE"
+  COLUMN-LABEL "Copia CT-e para GFE"
+  ORDER 1190
+  MAX-WIDTH 1
+
+ADD FIELD "pasta-gfe" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 77
+  INITIAL ""
+  HELP "Pasta Cópia GFE"
+  LABEL "Pasta Cópia GFE"
+  COLUMN-LABEL "Pasta Cópia GFE"
+  ORDER 1200
+  MAX-WIDTH 160
+
+
+ADD FIELD "l-impostos-capa" OF "dt-empresa" AS logical
+  DESCRIPTION "Mantém Impostos XML na Capa da Nota Fiscal no RE1001, sem recalcular"
+  FORMAT "Sim/Não"
+  POSITION 79
+  INITIAL "Não"
+  HELP "Mantém Impostos do XML na Capa da Nota Fiscal no RE1001"
+  LABEL "Mantém Impostos XML na Capa"
+  COLUMN-LABEL "Mantém Impostos XML na Capa"
+  ORDER 1220
+  MAX-WIDTH 1
+
+ADD FIELD "log-altera-ean-gtin" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 80
+  INITIAL "Não"
+  HELP "Altera EAN/GTIN do Item substituindo pelo do Fornecedor"
+  LABEL "Altera EAN/GTIN do Item"
+  COLUMN-LABEL "Altera EAN/GTIN do Item"
+  ORDER 1230
+  MAX-WIDTH 1
+
+ADD FIELD "l-bloqueia-op-finaliz" OF "dt-empresa" AS logical
+  DESCRIPTION "Bloqueia OP Finaliz/Terminada"
+  FORMAT "Sim/Não"
+  POSITION 81
+  INITIAL "Não"
+  HELP "Bloqueia Documento quando OP Finalizada ou Terminada"
+  LABEL "Bloqueia OP Finaliz/Terminada"
+  COLUMN-LABEL "Bloqueia OP Finaliz/Terminada"
+  ORDER 1240
+  MAX-WIDTH 1

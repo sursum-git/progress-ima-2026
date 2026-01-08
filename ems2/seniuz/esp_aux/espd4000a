@@ -1,0 +1,1354 @@
+&ANALYZE-SUSPEND _VERSION-NUMBER UIB_v8r12 GUI ADM1
+&ANALYZE-RESUME
+&Scoped-define WINDOW-NAME CURRENT-WINDOW
+&Scoped-define FRAME-NAME D-Dialog
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _DEFINITIONS D-Dialog 
+/*:T*******************************************************************************
+** Copyright DATASUL S.A. (1997)
+** Todos os Direitos Reservados.
+**
+** Este fonte e de propriedade exclusiva da DATASUL, sua reproducao
+** parcial ou total por qualquer meio, so podera ser feita mediante
+** autorizacao expressa.
+*******************************************************************************/
+{include/i-prgvrs.i D99XX999 9.99.99.999}
+
+/* Create an unnamed pool to store all the widgets created 
+     by this procedure. This is a good default which assures
+     that this procedure's triggers and internal procedures 
+     will execute in this procedure's storage, and that proper
+     cleanup will occur on deletion of the procedure. */
+
+CREATE WIDGET-POOL.
+
+/* ***************************  Definitions  ************************** */
+
+/* Parameters Definitions ---                                           */
+
+/* Local Variable Definitions ---                                       */
+
+DEF TEMP-TABLE tt-cond-ped LIKE cond-ped
+    FIELD r-rowid AS ROWID.
+
+DEF TEMP-TABLE wt-cond-ped LIKE tt-cond-ped.
+
+DEF BUFFER b-cond-ped FOR tt-cond-ped.
+
+DEFINE INPUT-OUTPUT PARAMETER TABLE FOR tt-cond-ped.  
+DEFINE INPUT        PARAMETER i-cond-pagto AS INT. 
+
+DEF VAR de-perc-pagto AS DEC INIT 100.
+DEF VAR i-dias-venc AS INT INIT 30.
+DEF VAR i-ct AS INT.
+DEF VAR i-ind AS INT.
+DEF VAR i-qtd-seq AS INT.
+
+/* Agrupa os campos comuns em Preprocessors */
+&Scoped-define lista1 fi-nr-seq[1] IN FRAME {&FRAME-NAME} fi-tp-vencto[1] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[1] IN FRAME {&FRAME-NAME} fi-perc-pagto[1] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista2 fi-nr-seq[2] IN FRAME {&FRAME-NAME} fi-tp-vencto[2] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[2] IN FRAME {&FRAME-NAME} fi-perc-pagto[2] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista3 fi-nr-seq[3] IN FRAME {&FRAME-NAME} fi-tp-vencto[3] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[3] IN FRAME {&FRAME-NAME} fi-perc-pagto[3] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista4 fi-nr-seq[4] IN FRAME {&FRAME-NAME} fi-tp-vencto[4] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[4] IN FRAME {&FRAME-NAME} fi-perc-pagto[4] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista5 fi-nr-seq[5] IN FRAME {&FRAME-NAME} fi-tp-vencto[5] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[5] IN FRAME {&FRAME-NAME} fi-perc-pagto[5] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista6 fi-nr-seq[6] IN FRAME {&FRAME-NAME} fi-tp-vencto[6] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[6] IN FRAME {&FRAME-NAME} fi-perc-pagto[6] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista7 fi-nr-seq[7] IN FRAME {&FRAME-NAME} fi-tp-vencto[7] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[7] IN FRAME {&FRAME-NAME} fi-perc-pagto[7] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista8 fi-nr-seq[8] IN FRAME {&FRAME-NAME} fi-tp-vencto[8] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[8] IN FRAME {&FRAME-NAME} fi-perc-pagto[8] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista9 fi-nr-seq[9] IN FRAME {&FRAME-NAME} fi-tp-vencto[9] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[9] IN FRAME {&FRAME-NAME} fi-perc-pagto[9] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista10 fi-nr-seq[10] IN FRAME {&FRAME-NAME} fi-tp-vencto[10] IN FRAME {&FRAME-NAME} ~
+                       fi-dias-vencto[10] IN FRAME {&FRAME-NAME} fi-perc-pagto[10] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista11 fi-nr-seq[11] IN FRAME {&FRAME-NAME} fi-tp-vencto[11] IN FRAME {&FRAME-NAME} ~
+                      fi-dias-vencto[11] IN FRAME {&FRAME-NAME} fi-perc-pagto[11] IN FRAME {&FRAME-NAME}
+
+&Scoped-define lista12 fi-nr-seq[12] IN FRAME {&FRAME-NAME} fi-tp-vencto[12] IN FRAME {&FRAME-NAME} ~
+                       fi-dias-vencto[12] IN FRAME {&FRAME-NAME} fi-perc-pagto[12] IN FRAME {&FRAME-NAME}
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-PREPROCESSOR-BLOCK 
+
+/* ********************  Preprocessor Definitions  ******************** */
+
+&Scoped-define PROCEDURE-TYPE SmartDialog
+&Scoped-define DB-AWARE no
+
+&Scoped-define ADM-CONTAINER DIALOG-BOX
+
+/* Name of first Frame and/or Browse and/or first Query                 */
+&Scoped-define FRAME-NAME D-Dialog
+
+/* Standard List Definitions                                            */
+&Scoped-Define ENABLED-OBJECTS tg-dias-fixos tg-intervalo tg-add-dias ~
+tg-parc-venc bt-add bt-del bt-ok bt-cancela bt-ajuda RECT-6 RECT-7 ~
+rt-buttom 
+&Scoped-Define DISPLAYED-OBJECTS tg-dias-fixos fi-dia-f1 fi-dia-f2 ~
+fi-dia-f3 fi-dia-f4 fi-dia-f5 fi-dia-f6 tg-intervalo fi-intervalo ~
+tg-add-dias fi-add-dias tg-parc-venc fi-qt-parc 
+
+/* Custom List Definitions                                              */
+/* List-1,List-2,List-3,List-4,List-5,List-6                            */
+&Scoped-define List-1 fi-dia-f1 fi-dia-f2 fi-dia-f3 fi-dia-f4 fi-dia-f5 ~
+fi-dia-f6 fi-qt-parc 
+
+/* _UIB-PREPROCESSOR-BLOCK-END */
+&ANALYZE-RESUME
+
+
+
+/* ***********************  Control Definitions  ********************** */
+
+/* Define a dialog box                                                  */
+
+/* Definitions of the field level widgets                               */
+DEFINE BUTTON bt-add 
+     IMAGE-UP FILE "image/im-add.bmp":U
+     LABEL "Button 1" 
+     SIZE 4 BY 1.13.
+
+DEFINE BUTTON bt-ajuda 
+     LABEL "&Ajuda" 
+     SIZE 10 BY 1
+     BGCOLOR 8 .
+
+DEFINE BUTTON bt-cancela AUTO-END-KEY 
+     LABEL "&Cancelar" 
+     SIZE 10 BY 1
+     BGCOLOR 8 .
+
+DEFINE BUTTON bt-del 
+     IMAGE-UP FILE "image/im-era.bmp":U
+     LABEL "Button 2" 
+     SIZE 4 BY 1.13.
+
+DEFINE BUTTON bt-ok AUTO-GO 
+     LABEL "&OK" 
+     SIZE 10 BY 1
+     BGCOLOR 8 .
+
+DEFINE VARIABLE fi-add-dias AS INTEGER FORMAT "->>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dia-f1 AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dia-f2 AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dia-f3 AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dia-f4 AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dia-f5 AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dia-f6 AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-dias-vencto AS INTEGER FORMAT ">>>":U INITIAL 0  EXTENT 12
+     VIEW-AS FILL-IN 
+     SIZE 5 BY .88 TOOLTIP "Tecle <ENTER> para nova Sequˆncia" NO-UNDO.
+
+DEFINE VARIABLE fi-intervalo AS INTEGER FORMAT ">>":U INITIAL 0 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-nr-seq AS INTEGER FORMAT ">>9":U INITIAL 0  EXTENT 12
+     VIEW-AS FILL-IN 
+     SIZE 4.14 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-perc-pagto AS DECIMAL FORMAT ">>9.99":U INITIAL 0  EXTENT 12
+     VIEW-AS FILL-IN 
+     SIZE 7 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-qt-parc AS INTEGER FORMAT ">>":U INITIAL 1 
+     VIEW-AS FILL-IN 
+     SIZE 4 BY .88 NO-UNDO.
+
+DEFINE VARIABLE fi-tp-vencto AS CHARACTER FORMAT "X(12)":U  EXTENT 12
+     VIEW-AS FILL-IN 
+     SIZE 15 BY .88 NO-UNDO.
+
+DEFINE RECTANGLE RECT-6
+     EDGE-PIXELS 2 GRAPHIC-EDGE  NO-FILL 
+     SIZE 53 BY 13.25.
+
+DEFINE RECTANGLE RECT-7
+     EDGE-PIXELS 2 GRAPHIC-EDGE  
+     SIZE 16 BY 11.75
+     BGCOLOR 8 .
+
+DEFINE RECTANGLE rt-buttom
+     EDGE-PIXELS 2 GRAPHIC-EDGE  
+     SIZE 53 BY 1.42
+     BGCOLOR 7 .
+
+DEFINE VARIABLE tg-add-dias AS LOGICAL INITIAL no 
+     LABEL "(+)  Dias" 
+     VIEW-AS TOGGLE-BOX
+     SIZE 9 BY .83
+     BGCOLOR 8  NO-UNDO.
+
+DEFINE VARIABLE tg-dias-fixos AS LOGICAL INITIAL no 
+     LABEL "Dias Vencto Fixo" 
+     VIEW-AS TOGGLE-BOX
+     SIZE 14 BY .83
+     BGCOLOR 8  NO-UNDO.
+
+DEFINE VARIABLE tg-intervalo AS LOGICAL INITIAL no 
+     LABEL "Intervalo" 
+     VIEW-AS TOGGLE-BOX
+     SIZE 13 BY .83
+     BGCOLOR 8  NO-UNDO.
+
+DEFINE VARIABLE tg-parc-venc AS LOGICAL INITIAL no 
+     LABEL "Parc. por Vencto" 
+     VIEW-AS TOGGLE-BOX
+     SIZE 14 BY .83
+     BGCOLOR 8  NO-UNDO.
+
+
+/* ************************  Frame Definitions  *********************** */
+
+DEFINE FRAME D-Dialog
+     fi-nr-seq[1] AT ROW 2.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[1] AT ROW 2.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[1] AT ROW 2.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[1] AT ROW 2.25 COL 28 COLON-ALIGNED NO-LABEL
+     tg-dias-fixos AT ROW 2.46 COL 39
+     fi-nr-seq[2] AT ROW 3.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[2] AT ROW 3.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[2] AT ROW 3.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[2] AT ROW 3.25 COL 28 COLON-ALIGNED NO-LABEL
+     fi-dia-f1 AT ROW 3.33 COL 37.29 COLON-ALIGNED NO-LABEL
+     fi-dia-f2 AT ROW 3.33 COL 42 COLON-ALIGNED NO-LABEL
+     fi-dia-f3 AT ROW 3.33 COL 46.72 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[3] AT ROW 4.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[3] AT ROW 4.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[3] AT ROW 4.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[3] AT ROW 4.25 COL 28 COLON-ALIGNED NO-LABEL
+     fi-dia-f4 AT ROW 4.38 COL 37.29 COLON-ALIGNED NO-LABEL
+     fi-dia-f5 AT ROW 4.38 COL 42 COLON-ALIGNED NO-LABEL
+     fi-dia-f6 AT ROW 4.38 COL 46.72 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[4] AT ROW 5.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[4] AT ROW 5.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[4] AT ROW 5.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[4] AT ROW 5.25 COL 28 COLON-ALIGNED NO-LABEL
+     tg-intervalo AT ROW 5.83 COL 39
+     fi-nr-seq[5] AT ROW 6.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[5] AT ROW 6.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[5] AT ROW 6.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[5] AT ROW 6.25 COL 28 COLON-ALIGNED NO-LABEL
+     fi-intervalo AT ROW 6.67 COL 40 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[6] AT ROW 7.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[6] AT ROW 7.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[6] AT ROW 7.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[6] AT ROW 7.25 COL 28 COLON-ALIGNED NO-LABEL
+     tg-add-dias AT ROW 8.08 COL 39
+     fi-nr-seq[7] AT ROW 8.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[7] AT ROW 8.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[7] AT ROW 8.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[7] AT ROW 8.25 COL 28 COLON-ALIGNED NO-LABEL
+     fi-add-dias AT ROW 8.92 COL 40 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[8] AT ROW 9.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[8] AT ROW 9.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[8] AT ROW 9.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[8] AT ROW 9.25 COL 28 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[9] AT ROW 10.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[9] AT ROW 10.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[9] AT ROW 10.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+    WITH VIEW-AS DIALOG-BOX KEEP-TAB-ORDER 
+         SIDE-LABELS NO-UNDERLINE THREE-D  SCROLLABLE 
+         FONT 1.
+
+/* DEFINE FRAME statement is approaching 4K Bytes.  Breaking it up   */
+DEFINE FRAME D-Dialog
+     fi-perc-pagto[9] AT ROW 10.25 COL 28 COLON-ALIGNED NO-LABEL
+     tg-parc-venc AT ROW 10.25 COL 39
+     fi-qt-parc AT ROW 11.04 COL 40 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[10] AT ROW 11.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[10] AT ROW 11.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[10] AT ROW 11.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[10] AT ROW 11.25 COL 28 COLON-ALIGNED NO-LABEL
+     fi-nr-seq[11] AT ROW 12.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[11] AT ROW 12.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[11] AT ROW 12.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[11] AT ROW 12.25 COL 28 COLON-ALIGNED NO-LABEL
+     bt-add AT ROW 12.5 COL 41
+     bt-del AT ROW 12.5 COL 47
+     fi-nr-seq[12] AT ROW 13.25 COL 1 COLON-ALIGNED NO-LABEL
+     fi-tp-vencto[12] AT ROW 13.25 COL 6 COLON-ALIGNED NO-LABEL
+     fi-dias-vencto[12] AT ROW 13.25 COL 22 COLON-ALIGNED HELP
+          "Tele <ENTER> para nova Sequencia" NO-LABEL
+     fi-perc-pagto[12] AT ROW 13.25 COL 28 COLON-ALIGNED NO-LABEL
+     bt-ok AT ROW 15 COL 3
+     bt-cancela AT ROW 15 COL 14
+     bt-ajuda AT ROW 15 COL 44
+     RECT-6 AT ROW 1.25 COL 2
+     RECT-7 AT ROW 2.25 COL 38
+     rt-buttom AT ROW 14.75 COL 2
+     "Seq" VIEW-AS TEXT
+          SIZE 4 BY .75 AT ROW 1.5 COL 3
+          FGCOLOR 3 FONT 6
+     "Tipo Vencto" VIEW-AS TEXT
+          SIZE 14 BY .75 AT ROW 1.5 COL 8
+          FGCOLOR 3 FONT 6
+     "% Pagto" VIEW-AS TEXT
+          SIZE 8 BY .75 AT ROW 1.5 COL 30
+          FGCOLOR 3 FONT 6
+     "Dias" VIEW-AS TEXT
+          SIZE 5 BY .75 AT ROW 1.5 COL 24
+          FGCOLOR 3 FONT 6
+     SPACE(26.99) SKIP(14.16)
+    WITH VIEW-AS DIALOG-BOX KEEP-TAB-ORDER 
+         SIDE-LABELS NO-UNDERLINE THREE-D  SCROLLABLE 
+         FONT 1
+         TITLE "Condi‡äes Especiais de Pagto"
+         DEFAULT-BUTTON bt-ok.
+
+
+/* *********************** Procedure Settings ************************ */
+
+&ANALYZE-SUSPEND _PROCEDURE-SETTINGS
+/* Settings for THIS-PROCEDURE
+   Type: SmartDialog
+   Allow: Basic,Browse,DB-Fields,Query,Smart
+   Other Settings: COMPILE
+ */
+&ANALYZE-RESUME _END-PROCEDURE-SETTINGS
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _INCLUDED-LIB D-Dialog 
+/* ************************* Included-Libraries *********************** */
+
+{src/adm/method/containr.i}
+{include/d-dialog.i}
+{utp/ut-glob.i}
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+
+
+/* ***********  Runtime Attributes and AppBuilder Settings  *********** */
+
+&ANALYZE-SUSPEND _RUN-TIME-ATTRIBUTES
+/* SETTINGS FOR DIALOG-BOX D-Dialog
+   L-To-R                                                               */
+ASSIGN 
+       FRAME D-Dialog:SCROLLABLE       = FALSE
+       FRAME D-Dialog:HIDDEN           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-add-dias IN FRAME D-Dialog
+   NO-ENABLE                                                            */
+/* SETTINGS FOR FILL-IN fi-dia-f1 IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-dia-f2 IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-dia-f3 IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-dia-f4 IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-dia-f5 IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-dia-f6 IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-dias-vencto[10] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[10]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[11] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[11]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[12] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[12]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[1] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[1]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[2] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[2]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[3] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[3]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[4] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[4]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[5] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[5]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[6] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[6]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[7] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[7]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[8] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[8]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-dias-vencto[9] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-dias-vencto[9]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-intervalo IN FRAME D-Dialog
+   NO-ENABLE                                                            */
+/* SETTINGS FOR FILL-IN fi-nr-seq[10] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[10]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[11] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[11]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[12] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[12]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[1] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[1]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[2] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[2]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[3] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[3]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[4] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[4]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[5] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[5]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[6] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[6]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[7] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[7]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[8] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[8]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-nr-seq[9] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-nr-seq[9]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[10] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[10]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[11] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[11]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[12] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[12]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[1] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[1]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[2] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[2]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[3] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[3]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[4] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[4]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[5] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[5]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[6] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[6]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[7] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[7]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[8] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[8]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-perc-pagto[9] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-perc-pagto[9]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-qt-parc IN FRAME D-Dialog
+   NO-ENABLE 1                                                          */
+/* SETTINGS FOR FILL-IN fi-tp-vencto[10] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[10]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[11] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[11]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[12] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[12]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[1] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[1]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[2] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[2]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[3] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[3]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[4] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[4]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[5] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[5]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[6] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[6]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[7] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[7]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[8] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[8]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* SETTINGS FOR FILL-IN fi-tp-vencto[9] IN FRAME D-Dialog
+   NO-DISPLAY NO-ENABLE                                                 */
+ASSIGN 
+       fi-tp-vencto[9]:HIDDEN IN FRAME D-Dialog           = TRUE.
+
+/* _RUN-TIME-ATTRIBUTES-END */
+&ANALYZE-RESUME
+
+
+/* Setting information for Queries and Browse Widgets fields            */
+
+&ANALYZE-SUSPEND _QUERY-BLOCK DIALOG-BOX D-Dialog
+/* Query rebuild information for DIALOG-BOX D-Dialog
+     _Options          = "SHARE-LOCK"
+     _Query            is NOT OPENED
+*/  /* DIALOG-BOX D-Dialog */
+&ANALYZE-RESUME
+
+ 
+
+
+
+/* ************************  Control Triggers  ************************ */
+
+&Scoped-define SELF-NAME D-Dialog
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL D-Dialog D-Dialog
+ON WINDOW-CLOSE OF FRAME D-Dialog /* Condi‡äes Especiais de Pagto */
+DO:  
+  /* Add Trigger to equate WINDOW-CLOSE to END-ERROR. */
+  APPLY "END-ERROR":U TO SELF.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-add
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-add D-Dialog
+ON CHOOSE OF bt-add IN FRAME D-Dialog /* Button 1 */
+DO:
+  RUN pi-busca-qtd-seq.
+
+  FIND LAST tt-cond-ped WHERE
+            tt-cond-ped.nr-dias-venc > 0 NO-ERROR.
+
+  IF AVAIL tt-cond-ped THEN DO.
+    CREATE b-cond-ped.
+    BUFFER-COPY tt-cond-ped TO b-cond-ped
+                ASSIGN b-cond-ped.nr-sequencia = tt-cond-ped.nr-sequencia + 1
+                       b-cond-ped.nr-dias-venc = tt-cond-ped.nr-dias-venc + fi-intervalo:INPUT-VALUE.
+  END.
+  ELSE DO.
+     CREATE tt-cond-ped.
+     ASSIGN tt-cond-ped.nr-pedido = 9999
+            tt-cond-ped.nr-sequencia = 10
+            tt-cond-ped.nr-dias-venc = 30
+            tt-cond-ped.perc-pagto = de-perc-pagto.
+  END.
+
+  IF i-qtd-seq = EXTENT(fi-nr-seq) - 1 THEN
+     ASSIGN bt-add:SENSITIVE IN FRAME {&FRAME-NAME} = NO.
+
+  ASSIGN bt-del:SENSITIVE IN FRAME {&FRAME-NAME} = YES
+         tg-add-dias:SENSITIVE IN FRAME {&FRAME-NAME} = YES
+         tg-dias-fixos:SENSITIVE IN FRAME {&FRAME-NAME} = YES
+         tg-parc-venc:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+
+  RUN pi-mostra.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-ajuda
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-ajuda D-Dialog
+ON CHOOSE OF bt-ajuda IN FRAME D-Dialog /* Ajuda */
+OR HELP OF FRAME {&FRAME-NAME}
+DO: /* Call Help Function (or a simple message). */
+  {include/ajuda.i}
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-cancela
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-cancela D-Dialog
+ON CHOOSE OF bt-cancela IN FRAME D-Dialog /* Cancelar */
+DO:
+  IF adm-new-record THEN DO.
+     FOR EACH tt-cond-ped.
+         DELETE tt-cond-ped.
+     END.
+  END.
+  ELSE DO.
+     FOR EACH tt-cond-ped.
+         DELETE tt-cond-ped.
+     END.
+     FOR EACH wt-cond-ped.
+         CREATE tt-cond-ped.
+         BUFFER-COPY wt-cond-ped TO tt-cond-ped.
+     END.
+  END.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME bt-del
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL bt-del D-Dialog
+ON CHOOSE OF bt-del IN FRAME D-Dialog /* Button 2 */
+DO:
+    FIND LAST tt-cond-ped EXCLUSIVE-LOCK NO-ERROR.
+
+    DELETE tt-cond-ped.
+
+    IF NOT CAN-FIND(FIRST tt-cond-ped) THEN
+       ASSIGN bt-del:SENSITIVE IN FRAME {&FRAME-NAME} = NO
+              tg-add-dias:SENSITIVE IN FRAME {&FRAME-NAME} = NO
+              tg-dias-fixos:SENSITIVE IN FRAME {&FRAME-NAME} = NO
+              tg-parc-venc:SENSITIVE IN FRAME {&FRAME-NAME} = NO.
+
+    ASSIGN bt-add:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+
+    RUN pi-mostra.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-add-dias
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-add-dias D-Dialog
+ON LEAVE OF fi-add-dias IN FRAME D-Dialog
+DO:
+   FIND FIRST tt-cond-ped NO-LOCK NO-ERROR.
+   IF tt-cond-ped.nr-dias-venc + fi-add-dias:INPUT-VALUE < 1 THEN DO.
+      MESSAGE 'Opera‡Æo Inv lida!!!' SKIP
+              'Prazo Solicitado menor que Permitido...' SKIP
+           VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+      APPLY 'entry' TO SELF.
+      RETURN NO-APPLY.
+   END.
+
+   FOR EACH tt-cond-ped.
+       ASSIGN tt-cond-ped.nr-dias-venc = tt-cond-ped.nr-dias-venc + fi-add-dias:INPUT-VALUE.
+   END.
+   RUN pi-mostra.
+
+   ASSIGN tg-add-dias:SCREEN-VALUE = 'no'.
+   APPLY 'value-changed' TO tg-add-dias.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-dia-f1
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-dia-f1 D-Dialog
+ON LEAVE OF fi-dia-f1 IN FRAME D-Dialog
+DO:
+   RUN pi-valida.
+   IF RETURN-VALUE = 'ADM-ERROR' THEN DO.
+      MESSAGE 'Dia do Mˆs Inv lido...'
+          VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+      APPLY 'ENTRY' TO SELF.
+      RETURN NO-APPLY.
+   END.
+   ASSIGN INPUT FRAME {&FRAME-NAME} fi-dia-f1.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-dia-f2
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-dia-f2 D-Dialog
+ON LEAVE OF fi-dia-f2 IN FRAME D-Dialog
+DO:
+  RUN pi-valida.
+  IF RETURN-VALUE = 'ADM-ERROR' THEN DO.
+     MESSAGE 'Dia do Mˆs Inv lido...'
+         VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+     APPLY 'ENTRY' TO SELF.
+     RETURN NO-APPLY.
+  END.
+  ASSIGN INPUT FRAME {&FRAME-NAME} fi-dia-f2.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-dia-f3
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-dia-f3 D-Dialog
+ON LEAVE OF fi-dia-f3 IN FRAME D-Dialog
+DO:
+  RUN pi-valida.
+  IF RETURN-VALUE = 'ADM-ERROR' THEN DO.
+     MESSAGE 'Dia do Mˆs Inv lido...'
+         VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+     APPLY 'ENTRY' TO SELF.
+     RETURN NO-APPLY.
+  END.
+  ASSIGN INPUT FRAME {&FRAME-NAME} fi-dia-f3.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-dia-f4
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-dia-f4 D-Dialog
+ON LEAVE OF fi-dia-f4 IN FRAME D-Dialog
+DO:
+   RUN pi-valida.
+   IF RETURN-VALUE = 'ADM-ERROR' THEN DO.
+      MESSAGE 'Dia do Mˆs Inv lido...'
+          VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+      APPLY 'ENTRY' TO SELF.
+      RETURN NO-APPLY.
+   END.
+   ASSIGN INPUT FRAME {&FRAME-NAME} fi-dia-f4.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-dia-f5
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-dia-f5 D-Dialog
+ON LEAVE OF fi-dia-f5 IN FRAME D-Dialog
+DO:
+  RUN pi-valida.
+  IF RETURN-VALUE = 'ADM-ERROR' THEN DO.
+     MESSAGE 'Dia do Mˆs Inv lido...'
+         VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+     APPLY 'ENTRY' TO SELF.
+     RETURN NO-APPLY.
+  END.
+  ASSIGN INPUT FRAME {&FRAME-NAME} fi-dia-f5.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-dia-f6
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-dia-f6 D-Dialog
+ON LEAVE OF fi-dia-f6 IN FRAME D-Dialog
+DO:
+  RUN pi-valida.
+  IF RETURN-VALUE = 'ADM-ERROR' THEN DO.
+     MESSAGE 'Dia do Mˆs Inv lido...'
+         VIEW-AS ALERT-BOX ERROR BUTTONS OK.
+     APPLY 'ENTRY' TO SELF.
+     RETURN NO-APPLY.
+  END.
+  ASSIGN INPUT FRAME {&FRAME-NAME} fi-dia-f6.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-intervalo
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-intervalo D-Dialog
+ON LEAVE OF fi-intervalo IN FRAME D-Dialog
+DO:
+   IF SELF:INPUT-VALUE <> 0 THEN DO.
+      FOR EACH tt-cond-ped WHERE tt-cond-ped.nr-sequencia > 10.
+          FIND LAST b-cond-ped WHERE
+                    b-cond-ped.nr-sequencia < tt-cond-ped.nr-sequencia NO-ERROR.
+          ASSIGN tt-cond-ped.nr-dias-venc = (SELF:INPUT-VALUE + b-cond-ped.nr-dias-venc).
+      END.
+      RUN pi-mostra.
+   END.
+
+   ASSIGN tg-intervalo:SCREEN-VALUE = 'no'.
+   APPLY 'value-changed' TO tg-intervalo.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME fi-qt-parc
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL fi-qt-parc D-Dialog
+ON LEAVE OF fi-qt-parc IN FRAME D-Dialog
+DO:
+  ASSIGN i-ind = 0.
+  FOR EACH tt-cond-ped BREAK BY tt-cond-ped.nr-dias-venc
+                             BY tt-cond-ped.nr-sequencia.
+      IF FIRST-OF(tt-cond-ped.nr-dias-venc) THEN 
+         ASSIGN i-ind = i-ind + 1.
+  END.
+  ASSIGN i-ind = i-ind * fi-qt-parc:INPUT-VALUE.
+
+  IF i-ind > EXTENT(fi-nr-seq) THEN DO.
+     MESSAGE "Permitido apenas 12 Vencimentos por Nota Fiscal..."
+         VIEW-AS ALERT-BOX INFO BUTTONS OK.
+     DISP fi-qt-parc WITH FRAME {&FRAME-NAME}.
+     APPLY 'entry' TO SELF.
+     RETURN NO-APPLY.
+  END.
+
+  FOR EACH tt-cond-ped BREAK BY tt-cond-ped.nr-dias-venc
+                             BY tt-cond-ped.nr-sequencia.
+      IF NOT FIRST-OF(tt-cond-ped.nr-dias-venc) THEN 
+         DELETE tt-cond-ped.
+  END.
+
+  DO i-ct = 1 TO (fi-qt-parc:INPUT-VALUE - 1).
+     FOR EACH tt-cond-ped BREAK BY tt-cond-ped.nr-dias-venc BY tt-cond-ped.nr-sequencia.
+         IF LAST-OF(tt-cond-ped.nr-dias-venc) THEN DO.
+            CREATE b-cond-ped.
+            BUFFER-COPY tt-cond-ped TO b-cond-ped
+                        ASSIGN b-cond-ped.nr-sequencia = tt-cond-ped.nr-sequencia + 1.
+         END.
+     END.
+  END.
+  ASSIGN tg-parc-venc:SCREEN-VALUE = 'NO'.
+  APPLY 'value-changed' TO tg-parc-venc.
+
+  RUN pi-mostra.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME tg-add-dias
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL tg-add-dias D-Dialog
+ON VALUE-CHANGED OF tg-add-dias IN FRAME D-Dialog /* (+)  Dias */
+DO:
+   IF SELF:INPUT-VALUE = YES THEN DO.
+      ASSIGN fi-add-dias:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+      APPLY 'entry' TO fi-add-dias.
+      RETURN NO-APPLY.
+   END.
+   ELSE
+      ASSIGN fi-add-dias:SCREEN-VALUE IN FRAME {&FRAME-NAME} = '0'
+             fi-add-dias:SENSITIVE IN FRAME {&FRAME-NAME} = NO.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME tg-dias-fixos
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL tg-dias-fixos D-Dialog
+ON VALUE-CHANGED OF tg-dias-fixos IN FRAME D-Dialog /* Dias Vencto Fixo */
+DO:
+  IF SELF:INPUT-VALUE = YES THEN DO.
+     ENABLE {&list-1} WITH FRAME {&FRAME-NAME}.
+     APPLY 'entry' TO fi-dia-f1.
+     RETURN NO-APPLY.
+  END.
+  ELSE DO.
+     ASSIGN fi-dia-f1:SCREEN-VALUE IN FRAME {&FRAME-NAME} = '0'
+            fi-dia-f2:SCREEN-VALUE IN FRAME {&FRAME-NAME} = '0'
+            fi-dia-f3:SCREEN-VALUE IN FRAME {&FRAME-NAME} = '0'
+            fi-dia-f4:SCREEN-VALUE IN FRAME {&FRAME-NAME} = '0'
+            fi-dia-f5:SCREEN-VALUE IN FRAME {&FRAME-NAME} = '0'.
+
+     DISABLE {&list-1} WITH FRAME {&FRAME-NAME}.
+  END.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME tg-intervalo
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL tg-intervalo D-Dialog
+ON VALUE-CHANGED OF tg-intervalo IN FRAME D-Dialog /* Intervalo */
+DO:
+   IF SELF:INPUT-VALUE = YES THEN DO.
+      ASSIGN fi-intervalo:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+      APPLY 'entry' TO fi-intervalo.
+      RETURN NO-APPLY.
+   END.
+   ELSE
+      ASSIGN fi-intervalo:SENSITIVE IN FRAME {&FRAME-NAME} = NO.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define SELF-NAME tg-parc-venc
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL tg-parc-venc D-Dialog
+ON VALUE-CHANGED OF tg-parc-venc IN FRAME D-Dialog /* Parc. por Vencto */
+DO:
+  IF SELF:INPUT-VALUE = YES THEN DO.
+     ASSIGN fi-qt-parc:SENSITIVE IN FRAME {&FRAME-NAME} = YES.
+     APPLY 'entry' TO fi-qt-parc.
+     RETURN NO-APPLY.
+  END.
+  ELSE
+     ASSIGN fi-qt-parc:SENSITIVE IN FRAME {&FRAME-NAME} = NO.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&UNDEFINE SELF-NAME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _MAIN-BLOCK D-Dialog 
+
+
+/* ***************************  Main Block  *************************** */
+ON 'RETURN':U ANYWHERE DO:
+    APPLY 'TAB' TO SELF.
+    RETURN NO-APPLY.
+END.
+{src/adm/template/dialogmn.i}
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+/* **********************  Internal Procedures  *********************** */
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE adm-create-objects D-Dialog  _ADM-CREATE-OBJECTS
+PROCEDURE adm-create-objects :
+/*------------------------------------------------------------------------------
+  Purpose:     Create handles for all SmartObjects used in this procedure.
+               After SmartObjects are initialized, then SmartLinks are added.
+  Parameters:  <none>
+------------------------------------------------------------------------------*/
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE adm-row-available D-Dialog  _ADM-ROW-AVAILABLE
+PROCEDURE adm-row-available :
+/*------------------------------------------------------------------------------
+  Purpose:     Dispatched to this procedure when the Record-
+               Source has a new row available.  This procedure
+               tries to get the new row (or foriegn keys) from
+               the Record-Source and process it.
+  Parameters:  <none>
+------------------------------------------------------------------------------*/
+
+  /* Define variables needed by this internal procedure.             */
+  {src/adm/template/row-head.i}
+
+  /* Process the newly available records (i.e. display fields,
+     open queries, and/or pass records on to any RECORD-TARGETS).    */
+  {src/adm/template/row-end.i}
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE disable_UI D-Dialog  _DEFAULT-DISABLE
+PROCEDURE disable_UI :
+/*------------------------------------------------------------------------------
+  Purpose:     DISABLE the User Interface
+  Parameters:  <none>
+  Notes:       Here we clean-up the user-interface by deleting
+               dynamic widgets we have created and/or hide 
+               frames.  This procedure is usually called when
+               we are ready to "clean-up" after running.
+------------------------------------------------------------------------------*/
+  /* Hide all frames. */
+  HIDE FRAME D-Dialog.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE enable_UI D-Dialog  _DEFAULT-ENABLE
+PROCEDURE enable_UI :
+/*------------------------------------------------------------------------------
+  Purpose:     ENABLE the User Interface
+  Parameters:  <none>
+  Notes:       Here we display/view/enable the widgets in the
+               user-interface.  In addition, OPEN all queries
+               associated with each FRAME and BROWSE.
+               These statements here are based on the "Other 
+               Settings" section of the widget Property Sheets.
+------------------------------------------------------------------------------*/
+  DISPLAY tg-dias-fixos fi-dia-f1 fi-dia-f2 fi-dia-f3 fi-dia-f4 fi-dia-f5 
+          fi-dia-f6 tg-intervalo fi-intervalo tg-add-dias fi-add-dias 
+          tg-parc-venc fi-qt-parc 
+      WITH FRAME D-Dialog.
+  ENABLE tg-dias-fixos tg-intervalo tg-add-dias tg-parc-venc bt-add bt-del 
+         bt-ok bt-cancela bt-ajuda RECT-6 RECT-7 rt-buttom 
+      WITH FRAME D-Dialog.
+  VIEW FRAME D-Dialog.
+  {&OPEN-BROWSERS-IN-QUERY-D-Dialog}
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE local-destroy D-Dialog 
+PROCEDURE local-destroy :
+/*------------------------------------------------------------------------------
+  Purpose:     Override standard ADM method
+  Notes:       
+------------------------------------------------------------------------------*/
+
+  /* Code placed here will execute PRIOR to standard behavior. */
+
+  /* Dispatch standard ADM method.                             */
+  RUN dispatch IN THIS-PROCEDURE ( INPUT 'destroy':U ) .
+  {include/i-logfin.i}
+
+  /* Code placed here will execute AFTER standard behavior.    */
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE local-initialize D-Dialog 
+PROCEDURE local-initialize :
+/*------------------------------------------------------------------------------
+  Purpose:     Override standard ADM method
+  Notes:       
+------------------------------------------------------------------------------*/
+
+  /* Code placed here will execute PRIOR to standard behavior. */
+
+/*  {utp/ut9000.i "D99XX999" "9.99.99.999"} */
+
+  FIND FIRST tt-cond-ped NO-LOCK NO-ERROR.
+  IF NOT AVAIL tt-cond-ped THEN DO.
+     ASSIGN adm-new-record = YES.
+     FIND cond-pagto WHERE
+          cond-pagto.cod-cond-pag = i-cond-pagto NO-LOCK NO-ERROR.
+
+     IF AVAIL cond-pagto THEN DO.
+        DO i-ct = 1 TO EXTENT(fi-nr-seq).
+           IF cond-pagto.prazos[i-ct] <> 0 THEN DO.
+              CREATE tt-cond-ped.
+              ASSIGN tt-cond-ped.nr-pedido = 9999
+                     tt-cond-ped.nr-sequencia = i-ct * 10
+                     tt-cond-ped.nr-dias-venc = cond-pagto.prazos[i-ct]
+                     tt-cond-ped.perc-pagto = cond-pagto.per-pg-dup[i-ct].
+           END.
+        END.
+     END.
+     ELSE DO.
+        CREATE tt-cond-ped.
+        ASSIGN tt-cond-ped.nr-pedido = 9999
+               tt-cond-ped.nr-sequencia = 10
+               tt-cond-ped.nr-dias-venc = i-dias-venc
+               tt-cond-ped.perc-pagto = de-perc-pagto
+               fi-intervalo = i-dias-venc.
+     END.
+  END.
+  ELSE DO.
+      FOR EACH tt-cond-ped.
+          CREATE wt-cond-ped.
+          BUFFER-COPY tt-cond-ped TO wt-cond-ped.
+      END.
+  END.
+                             
+  /* Dispatch standard ADM method.                             */
+  RUN dispatch IN THIS-PROCEDURE ( INPUT 'initialize':U ) .
+
+  /* Code placed here will execute AFTER standard behavior.    */
+
+  RUN pi-mostra.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-busca-qtd-seq D-Dialog 
+PROCEDURE pi-busca-qtd-seq :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+    FOR EACH b-cond-ped.
+        ACCUMULATE b-cond-ped.nr-sequencia (COUNT).
+    END.
+    ASSIGN i-qtd-seq = (ACCUM COUNT b-cond-ped.nr-sequencia).
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-esconde D-Dialog 
+PROCEDURE pi-esconde :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+  IF fi-perc-pagto[1] = 0 THEN HIDE {&lista1}.
+  IF fi-perc-pagto[2] = 0 THEN HIDE {&lista2}.
+  IF fi-perc-pagto[3] = 0 THEN HIDE {&lista3}.
+  IF fi-perc-pagto[4] = 0 THEN HIDE {&lista4}.
+  IF fi-perc-pagto[5] = 0 THEN HIDE {&lista5}.
+  IF fi-perc-pagto[6] = 0 THEN HIDE {&lista6}.
+  IF fi-perc-pagto[7] = 0 THEN HIDE {&lista7}.
+  IF fi-perc-pagto[8] = 0 THEN HIDE {&lista8}.
+  IF fi-perc-pagto[9] = 0 THEN HIDE {&lista9}.
+  IF fi-perc-pagto[10] = 0 THEN HIDE {&lista10}.
+  IF fi-perc-pagto[11] = 0 THEN HIDE {&lista11}.
+  IF fi-perc-pagto[12] = 0 THEN HIDE {&lista12}.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-mostra D-Dialog 
+PROCEDURE pi-mostra :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+     RUN pi-busca-qtd-seq.
+     FOR EACH tt-cond-ped BY tt-cond-ped.nr-sequencia DESCENDING.
+         ASSIGN tt-cond-ped.nr-sequencia = tt-cond-ped.nr-sequencia * 10. /* Desconsidera Sequencia */
+     END.
+
+     ASSIGN i-ct = 1.
+     FOR EACH tt-cond-ped. 
+         ASSIGN tt-cond-ped.nr-sequencia = i-ct * 10  /* Acerta Sequencia */
+                tt-cond-ped.perc-pagto = 100 / i-qtd-seq 
+                i-ct = i-ct + 1.
+     END.
+
+     ASSIGN fi-nr-seq = 0
+            fi-dias-vencto = 0
+            fi-perc-pagto = 0.
+
+     FIND FIRST tt-cond-ped NO-ERROR.
+     DO i-ct = 1 TO EXTENT(fi-nr-seq).
+        IF AVAIL tt-cond-ped THEN DO.
+           ASSIGN fi-nr-seq[i-ct] = tt-cond-ped.nr-sequencia
+                  fi-tp-vencto[i-ct] = 'Dias da Data' 
+                  fi-dias-vencto[i-ct] = tt-cond-ped.nr-dias-venc
+                  fi-perc-pagto[i-ct] = tt-cond-ped.perc-pagto.
+
+           DISP fi-nr-seq[i-ct] 
+                fi-tp-vencto[i-ct]
+                fi-dias-vencto[i-ct]
+                fi-perc-pagto[i-ct]
+                WITH FRAME {&FRAME-NAME}.
+        END.
+        FIND NEXT tt-cond-ped NO-ERROR.
+     END.
+     RUN pi-esconde.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-valida D-Dialog 
+PROCEDURE pi-valida :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+    IF SELF:SCREEN-VALUE <> '' THEN DO.
+       IF SELF:INPUT-VALUE < 1 OR SELF:INPUT-VALUE > 30 THEN
+          RETURN 'ADM-ERROR'.
+
+       IF (SELF:NAME <> 'fi-dia-f1' AND SELF:INPUT-VALUE = fi-dia-f1) OR
+          (SELF:NAME <> 'fi-dia-f2' AND SELF:INPUT-VALUE = fi-dia-f2) OR
+          (SELF:NAME <> 'fi-dia-f3' AND SELF:INPUT-VALUE = fi-dia-f3) OR
+          (SELF:NAME <> 'fi-dia-f4' AND SELF:INPUT-VALUE = fi-dia-f4) OR
+          (SELF:NAME <> 'fi-dia-f5' AND SELF:INPUT-VALUE = fi-dia-f5) OR
+          (SELF:NAME <> 'fi-dia-f6' AND SELF:INPUT-VALUE = fi-dia-f6) THEN
+          RETURN 'ADM-ERROR'.
+    END.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE send-records D-Dialog  _ADM-SEND-RECORDS
+PROCEDURE send-records :
+/*------------------------------------------------------------------------------
+  Purpose:     Send record ROWID's for all tables used by
+               this file.
+  Parameters:  see template/snd-head.i
+------------------------------------------------------------------------------*/
+
+  /* SEND-RECORDS does nothing because there are no External
+     Tables specified for this SmartDialog, and there are no
+     tables specified in any contained Browse, Query, or Frame. */
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE state-changed D-Dialog 
+PROCEDURE state-changed :
+/* -----------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+-------------------------------------------------------------*/
+  DEFINE INPUT PARAMETER p-issuer-hdl AS HANDLE NO-UNDO.
+  DEFINE INPUT PARAMETER p-state AS CHARACTER NO-UNDO.
+  
+  run pi-trata-state (p-issuer-hdl, p-state).
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+

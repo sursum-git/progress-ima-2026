@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ttCta_canal_clienDataSet" targetNamespace="ttCta_canal_clienNS" xmlns:mstns="ttCta_canal_clienNS" xmlns="ttCta_canal_clienNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="ttCta_canal_clienDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ttCta_canal_clien">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_pessoa_erp" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

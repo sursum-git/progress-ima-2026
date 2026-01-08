@@ -1,0 +1,52 @@
+/********************* Temporary Table Definition Begin *********************/
+def temp-table tt_param_program_formul no-undo
+   field tta_cdn_segment_edi              as Integer format ">>>>>9" initial 0 label "Segmento" column-label "Segmento"
+   field tta_cdn_element_edi              as Integer format ">>>>>9" initial 0 label "Elemento" column-label "Elemento"
+   field tta_des_label_utiliz_formul_edi  as character format "x(10)" label "Label Utiliz Formula" column-label "Label Utiliz Formula"
+   field ttv_des_contdo                   as character format "x(100)" label "Conteudo" column-label "Conteudo"
+   index tt_param_program_formul_id       is primary
+         tta_cdn_segment_edi              ascending
+         tta_cdn_element_edi              ascending.
+/********************** Temporary Table Definition End **********************/
+
+/************************ Parameter Definition Begin ************************/
+def Input param p_cdn_mapa_edi
+    as Integer
+    format ">>>>>9"
+    no-undo.
+
+def Input param p_cdn_segment_edi
+    as Integer
+    format ">>>>>9"
+    no-undo.
+
+def Input param p_cdn_element_edi
+    as Integer
+    format ">>>>>9"
+    no-undo.
+/************************* Parameter Definition End *************************/
+
+/************************* Variable Definition Begin *************************/
+
+DEF NEW GLOBAL SHARED VAR contador AS INTEGER no-undo.
+
+/************************* Variable Definition End *************************/
+
+/****************************** Main Code Begin *****************************/
+ASSIGN contador = contador + 1.
+
+IF contador < 10 THEN DO:
+    RETURN "0000" + string(contador).
+END.
+IF contador < 100 THEN DO:
+    RETURN "000" + string(contador).
+END.
+IF contador < 1000 THEN DO:
+    RETURN "00" + string(contador).
+END.
+ELSE DO:
+    RETURN "0" + string(contador).
+END.
+
+RETURN STRING(contador).
+/****************************** Main Code End *****************************/

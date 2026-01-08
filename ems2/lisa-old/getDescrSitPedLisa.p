@@ -1,0 +1,38 @@
+DEFINE INPUT  PARAMETER pSit        AS CHARACTER   NO-UNDO.
+DEFINE OUTPUT PARAMETER retorno     AS CHARACTER   NO-UNDO.
+
+CASE pSit:
+    WHEN 'A' THEN
+      ASSIGN retorno = "ALTERADO".
+    WHEN 'S' THEN
+      ASSIGN retorno = "SEPARANDO".
+    WHEN 'W' THEN
+      ASSIGN retorno = "AGUARDANDO".
+    WHEN 'P' THEN
+      ASSIGN retorno = "APROVADO" .
+    WHEN 'R' THEN
+      ASSIGN retorno = "REPROVADO " .
+    WHEN 'G' THEN
+      ASSIGN retorno = "GERADO" .
+    WHEN 'E' THEN
+      ASSIGN retorno = "ERRO" .
+    WHEN '' THEN
+      ASSIGN retorno = "ENVIADO".
+    WHEN 'N' THEN
+      ASSIGN retorno = "AGUARDANDO NF".
+    WHEN 'C' THEN
+      ASSIGN retorno = "SOLICITADO CANCELAMENTO".
+
+END CASE.
+
+
+/*A-ALTERADO
+S-SEPARANDO
+W-AGUARDANDO
+P-APROVADO
+R-REPROVADO
+G-GERADO
+E-ERRO
+""-ENVIADO
+N-AGUARDANDONF
+C-SOLICITADO CANCELAMENTO*/

@@ -1,0 +1,415 @@
+DROP TABLE "dt-au-docum-est"
+DROP TABLE "dt-xml-docum-est"
+
+UPDATE TABLE "dt-dados-motorista"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts012.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts012.p" CRC "?"
+
+UPDATE TABLE "dt-doc-refer-compl"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts003.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts003.p" CRC "?"
+
+UPDATE TABLE "dt-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts001.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts001.p" CRC "?"
+
+ADD FIELD "cod-reg-trib" OF "dt-docum-est" AS character
+  FORMAT "x(1)"
+  POSITION 109
+  INITIAL ""
+  LABEL "CRT"
+  COLUMN-LABEL "CRT"
+  ORDER 1070
+  MAX-WIDTH 2
+
+ADD FIELD "cnpj-entrega" OF "dt-docum-est" AS character
+  FORMAT "x(19)"
+  POSITION 110
+  INITIAL ""
+  LABEL "CNPJ Entrega"
+  COLUMN-LABEL "CNPJ Entrega"
+  ORDER 1080
+  MAX-WIDTH 38
+
+ADD FIELD "municipio-entrega" OF "dt-docum-est" AS character
+  FORMAT "x(25)"
+  POSITION 111
+  INITIAL ""
+  LABEL "Municipio Entrega"
+  COLUMN-LABEL "Municipio Entrega"
+  ORDER 1090
+  MAX-WIDTH 50
+
+ADD FIELD "uf-entrega" OF "dt-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 112
+  INITIAL ""
+  LABEL "UF Entrega"
+  COLUMN-LABEL "UF Entrega"
+  ORDER 1100
+  MAX-WIDTH 4
+
+ADD FIELD "cnpj-retirada" OF "dt-docum-est" AS character
+  FORMAT "x(19)"
+  POSITION 113
+  INITIAL ""
+  LABEL "CNPJ Retirada"
+  COLUMN-LABEL "CNPJ Retirada"
+  ORDER 1110
+  MAX-WIDTH 38
+
+ADD FIELD "municipio-retirada" OF "dt-docum-est" AS character
+  FORMAT "x(25)"
+  POSITION 114
+  INITIAL ""
+  LABEL "Municipio Retirada"
+  COLUMN-LABEL "Municipio Retirada"
+  ORDER 1120
+  MAX-WIDTH 50
+
+ADD FIELD "uf-retirada" OF "dt-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 115
+  INITIAL ""
+  LABEL "UF Retirada"
+  COLUMN-LABEL "UF Retirada"
+  ORDER 1130
+  MAX-WIDTH 4
+
+ADD FIELD "inf-adicionais" OF "dt-docum-est" AS character
+  FORMAT "x(2000)"
+  POSITION 116
+  INITIAL ""
+  LABEL "Inf Adicionais"
+  COLUMN-LABEL "Inf Adicionais"
+  ORDER 1140
+  MAX-WIDTH 4000
+
+ADD FIELD "inf-complement" OF "dt-docum-est" AS character
+  FORMAT "x(5000)"
+  POSITION 117
+  INITIAL ""
+  LABEL "Informações Compl"
+  COLUMN-LABEL "Informações Compl"
+  ORDER 1150
+  MAX-WIDTH 10000
+
+UPDATE TABLE "dt-duplic-nfe"
+  LABEL "Duplicata da Nota Entrada XML"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts004.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts004.p" CRC "?"
+
+ADD FIELD "l-peso-doc-fisico" OF "dt-empresa" AS logical
+  DESCRIPTION "Grava o peso (tot-peso) informado no XML na capa do documento do recebimento físico"
+  FORMAT "Sim/Não"
+  POSITION 92
+  INITIAL "Não"
+  HELP "Grava Pesos Recebimento Físico na capa do Documento"
+  LABEL "Peso Recebimento Fisico"
+  COLUMN-LABEL "Grava Pesos Recebimento Físico"
+  ORDER 1350
+  MAX-WIDTH 1
+
+ADD FIELD "l-subst-ncm-dd" OF "dt-empresa" AS logical
+  DESCRIPTION "Usa NCM Fornecedor Débito Direto"
+  FORMAT "Sim/Não"
+  POSITION 93
+  INITIAL "Não"
+  HELP "Usa NCM Fornecedor Débito Direto"
+  LABEL "Usa NCM Fornecedor Débito Direto"
+  COLUMN-LABEL "Usa NCM Forne DD"
+  ORDER 1360
+  MAX-WIDTH 1
+
+UPDATE TABLE "dt-it-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts002.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts002.p" CRC "?"
+
+ADD FIELD "cod-ean-trib" OF "dt-it-docum-est" AS character
+  FORMAT "x(16)"
+  POSITION 104
+  INITIAL ""
+  HELP "EAN Tributado"
+  LABEL "EAN Trib"
+  COLUMN-LABEL "EAN Trib"
+  ORDER 1030
+  MAX-WIDTH 32
+
+ADD FIELD "qtd-trib" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>>,>>>,>>9.9999"
+  POSITION 105
+  INITIAL "0"
+  LABEL "Qt Trib"
+  COLUMN-LABEL "Qt Trib"
+  DECIMALS 4
+  ORDER 1040
+  MAX-WIDTH 19
+
+ADD FIELD "vl-un-trib" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>>,>>>,>>9.99"
+  POSITION 106
+  INITIAL "0"
+  LABEL "Valor Un Trib"
+  COLUMN-LABEL "Valor Un Trib"
+  DECIMALS 2
+  ORDER 1050
+  MAX-WIDTH 17
+
+ADD FIELD "cod-ext-ipi" OF "dt-it-docum-est" AS character
+  FORMAT "x(3)"
+  POSITION 107
+  INITIAL ""
+  HELP "Código EX Tipi"
+  LABEL "Código EX Tipi"
+  COLUMN-LABEL "Código EX Tipi"
+  ORDER 1060
+  MAX-WIDTH 6
+
+ADD FIELD "un-trib" OF "dt-it-docum-est" AS character
+  FORMAT "x(6)"
+  POSITION 108
+  INITIAL ""
+  HELP "Unidade Tributável"
+  LABEL "Unidade Tributável"
+  COLUMN-LABEL "Unidade Tributável"
+  ORDER 1070
+  MAX-WIDTH 12
+
+ADD FIELD "cod-sit-trib-ipi" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 109
+  INITIAL ""
+  HELP "Código Situação Tributária IPI"
+  LABEL "Código Situação Tributária IPI"
+  COLUMN-LABEL "CST IPI"
+  ORDER 1080
+  MAX-WIDTH 4
+
+ADD FIELD "cod-sit-trib-cofins" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 110
+  INITIAL ""
+  HELP "Código Situação Trib. Cofins"
+  LABEL "Código Situação Trib. Cofins"
+  COLUMN-LABEL "CST Cofins"
+  ORDER 1090
+  MAX-WIDTH 4
+
+ADD FIELD "cod-sit-trib-pis" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 111
+  INITIAL ""
+  HELP "Código Situação Trib. PIS"
+  LABEL "Código Situação Trib. PIS"
+  COLUMN-LABEL "CST PIS"
+  ORDER 1100
+  MAX-WIDTH 4
+
+ADD FIELD "qtd-tot-ipi" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Quantidade total na unidade padrão para tributação"
+  FORMAT ">>>>>>,>>>,>>9.9999"
+  POSITION 112
+  INITIAL "0"
+  HELP "Qtd Total Unidade Padrão Para Tributação"
+  LABEL "Qtd Total Unidade Padrão Para Tributação"
+  COLUMN-LABEL "Qtd Total Unid Trib"
+  DECIMALS 4
+  ORDER 1110
+  MAX-WIDTH 19
+
+ADD FIELD "vl-unid-ipi" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor Base IPI"
+  FORMAT ">>,>>>,>>>,>>9.9999"
+  POSITION 113
+  INITIAL "0"
+  HELP "Valor Base IPI"
+  LABEL "Valor Base IPI"
+  COLUMN-LABEL "Valor Base IPI"
+  DECIMALS 4
+  ORDER 1120
+  MAX-WIDTH 19
+
+ADD FIELD "icms-mod-bc" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 114
+  INITIAL ""
+  HELP "Modalidade Base ICMS"
+  LABEL "Modalidade Base ICMS"
+  COLUMN-LABEL "Modalidade Base ICMS"
+  ORDER 1130
+  MAX-WIDTH 4
+
+ADD FIELD "mod-bc-st" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 115
+  INITIAL ""
+  HELP "Modalidade Base ICMS ST"
+  LABEL "Modalidade Base ICMS ST"
+  COLUMN-LABEL "Modalidade Base ICMS ST"
+  ORDER 1140
+  MAX-WIDTH 4
+
+ADD FIELD "perc-vl-adic-icms" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>9.99999"
+  POSITION 116
+  INITIAL "0"
+  HELP "Percentual Redução BC ICMS ST"
+  LABEL "Percentual Redução BC ICMS ST"
+  COLUMN-LABEL "Percentual Redução BC ICMS ST"
+  DECIMALS 5
+  ORDER 1150
+  MAX-WIDTH 20
+
+ADD FIELD "perc-reduc-bc" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>9.99999"
+  POSITION 117
+  INITIAL "0"
+  HELP "Percentual Redução da BC"
+  LABEL "Percentual Redução da BC"
+  COLUMN-LABEL "Percentual Redução da BC"
+  DECIMALS 5
+  ORDER 1160
+  MAX-WIDTH 20
+
+ADD FIELD "perc-red-bc-icms-st" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>9.99999"
+  POSITION 118
+  INITIAL "0"
+  HELP "Percentual Redução BC ICMS ST"
+  LABEL "Percentual Redução BC ICMS ST"
+  COLUMN-LABEL "Percentual Redução BC ICMS ST"
+  DECIMALS 5
+  ORDER 1170
+  MAX-WIDTH 20
+
+ADD FIELD "vl-bc-st-ret" OF "dt-it-docum-est" AS decimal
+  FORMAT "->,>>>,>>>,>>>,>>9.99"
+  POSITION 119
+  INITIAL "0"
+  LABEL "Vl BC St Retido"
+  COLUMN-LABEL "Vl BC St Retido"
+  DECIMALS 2
+  ORDER 1180
+  MAX-WIDTH 17
+
+ADD FIELD "vl-icms-st-ret" OF "dt-it-docum-est" AS decimal
+  FORMAT "->,>>>,>>>,>>>,>>9.99"
+  POSITION 120
+  INITIAL "0"
+  LABEL "Vl ICMS ST Ret"
+  COLUMN-LABEL "Vl ICMS ST Ret"
+  DECIMALS 2
+  ORDER 1190
+  MAX-WIDTH 17
+
+ADD FIELD "peso-liq" OF "dt-it-docum-est" AS decimal
+  FORMAT "->,>>>,>>9.99999"
+  POSITION 121
+  INITIAL "0"
+  LABEL "Peso Liq"
+  COLUMN-LABEL "Peso Liq"
+  DECIMALS 5
+  ORDER 1200
+  MAX-WIDTH 20
+
+ADD FIELD "peso-bru" OF "dt-it-docum-est" AS decimal
+  FORMAT "->,>>>,>>9.99999"
+  POSITION 122
+  INITIAL "0"
+  LABEL "Peso Bruto"
+  COLUMN-LABEL "Peso Bruto"
+  DECIMALS 5
+  ORDER 1210
+  MAX-WIDTH 20
+
+ADD FIELD "icms-orig" OF "dt-it-docum-est" AS character
+  FORMAT "x(1)"
+  POSITION 123
+  INITIAL ""
+  LABEL "Origem da Mercadoria"
+  COLUMN-LABEL "Origem da Mercadoria"
+  ORDER 1220
+  MAX-WIDTH 2
+
+ADD FIELD "icms-cst" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 124
+  INITIAL ""
+  HELP "Tributação pelo ICMS"
+  LABEL "Tributação pelo ICMS"
+  COLUMN-LABEL "Tributação pelo ICMS"
+  ORDER 1230
+  MAX-WIDTH 4
+
+ADD FIELD "nro-fci" OF "dt-it-docum-est" AS character
+  FORMAT "x(36)"
+  POSITION 125
+  INITIAL ""
+  HELP "Número FCI"
+  LABEL "Nro FCI"
+  COLUMN-LABEL "Nro FCI"
+  ORDER 1240
+  MAX-WIDTH 72
+
+ADD FIELD "vl-bc-fcp-uf-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor da Base de Cálculo do FCP na UF do destinatário"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 126
+  INITIAL "0"
+  HELP "Valor da Base de Cálculo do FCP na UF do destinatário"
+  LABEL "Vl BC FCP UF Dest"
+  COLUMN-LABEL "Vl BC FCP UF Dest"
+  DECIMALS 2
+  ORDER 1250
+  MAX-WIDTH 17
+
+ADD FIELD "valor-seguro" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>>,>>>,>>9.99"
+  POSITION 127
+  INITIAL "0"
+  LABEL "Valor Seguro"
+  COLUMN-LABEL "Vl Seguro"
+  DECIMALS 2
+  ORDER 1260
+  MAX-WIDTH 17
+
+UPDATE FIELD "idi-tipo-processo" OF "dt-log-sefaz"
+  DESCRIPTION "1 - Consulta Destinadas;
+2 - Ciência Operação;
+3 - Download Documento;
+4 - Manifestação Destinatário;
+5 - Desacordo CT-e"
+
+UPDATE TABLE "dt-manifest-documento"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts005.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts005.p" CRC "?"
+
+UPDATE TABLE "dt-monitor-eventos"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts006.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts006.p" CRC "?"
+
+UPDATE TABLE "dt-notas-destinadas"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts007.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts007.p" CRC "?"
+
+UPDATE TABLE "dt-ocorrencia-painel"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts008.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts008.p" CRC "?"
+
+UPDATE TABLE "dt-rat-docum"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts009.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts009.p" CRC "?"
+
+UPDATE TABLE "dt-rat-lote"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts010.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts010.p" CRC "?"
+
+UPDATE TABLE "dt-rat-ordem-compra"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts011.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts011.p" CRC "?"
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000011080

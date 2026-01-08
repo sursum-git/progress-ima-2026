@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="matematica" targetNamespace="urn:imaws" xmlns:tns="urn:imaws" xmlns:S2="urn:imaws:matematica" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:S1="urn:soap-fault:details" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:documentation>Author=tadeu silva parreiras, EncodingType=DOC_LITERAL, Proxygen_Product=Progress Version 10.2B</wsdl:documentation>
+  <wsdl:types>
+<schema elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details" xmlns="http://www.w3.org/2001/XMLSchema"><element name="FaultDetail"><complexType><sequence><element name="errorMessage" type="xsd:string"/><element name="requestID" type="xsd:string"/></sequence></complexType></element></schema>
+<schema elementFormDefault="qualified" targetNamespace="urn:imaws:matematica" xmlns="http://www.w3.org/2001/XMLSchema"><element name="matematica"><complexType><sequence><element name="n1" nillable="true" type="xsd:decimal"/><element name="n2" nillable="true" type="xsd:decimal"/><element name="operacao" nillable="true" type="xsd:string"/></sequence></complexType></element><element name="matematicaResponse"><complexType><sequence><element name="result" nillable="true" type="xsd:string"/><element name="resultado" nillable="true" type="xsd:decimal"/></sequence></complexType></element></schema>
+  </wsdl:types>
+  <wsdl:message name="matematica_matematica">
+    <wsdl:part name="parameters" element="S2:matematica"/>
+  </wsdl:message>
+  <wsdl:message name="FaultDetailMessage">
+    <wsdl:part name="FaultDetail" element="S1:FaultDetail"/>
+  </wsdl:message>
+  <wsdl:message name="matematica_matematicaResponse">
+    <wsdl:part name="parameters" element="S2:matematicaResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="matematicaObj">
+    <wsdl:operation name="matematica">
+      <wsdl:input message="tns:matematica_matematica"/>
+      <wsdl:output message="tns:matematica_matematicaResponse"/>
+      <wsdl:fault name="matematicaFault" message="tns:FaultDetailMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="matematicaObj" type="tns:matematicaObj">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="matematica">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="matematicaFault">
+        <soap:fault name="matematicaFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="matematicaService">
+    <wsdl:port name="matematicaObj" binding="tns:matematicaObj">
+<wsdl:documentation></wsdl:documentation>
+      <soap:address location="http:// ima-srv-ts3.wima/wsa/wima"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

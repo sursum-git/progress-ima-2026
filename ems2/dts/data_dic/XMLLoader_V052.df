@@ -1,0 +1,64 @@
+ADD FIELD "ativa" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 61
+  INITIAL "Sim"
+  LABEL "Empresa Ativa"
+  COLUMN-LABEL "Empresa Ativa"
+  ORDER 1040
+  MAX-WIDTH 1
+
+ADD FIELD "l-pasta-log" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 62
+  INITIAL "Não"
+  LABEL "Usa Pasta de LOG"
+  COLUMN-LABEL "Usa Pasta de LOG"
+  ORDER 1050
+  MAX-WIDTH 1
+
+ADD FIELD "l-fixa-lote" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 63
+  INITIAL "Não"
+  LABEL "Insere Lote Fixo"
+  COLUMN-LABEL "Insere Lote Fixo"
+  ORDER 1060
+  MAX-WIDTH 1
+
+ADD FIELD "lote" OF "dt-empresa" AS character
+  FORMAT "x(40)"
+  POSITION 64
+  INITIAL ""
+  LABEL "Lote Fixo"
+  COLUMN-LABEL "Lote"
+  ORDER 1070
+  MAX-WIDTH 80
+
+ADD FIELD "dt-valid-lote" OF "dt-empresa" AS date
+  FORMAT "99/99/9999"
+  POSITION 65
+  INITIAL ?
+  LABEL "Dt Valid Lote Fixo"
+  COLUMN-LABEL "Dt Valid Lote"
+  ORDER 1080
+  MAX-WIDTH 4
+
+DROP FIELD "pasta-log" OF "dt-empresa"
+
+UPDATE FIELD "quantidade" OF "dt-it-docum-est"
+  DECIMALS 4
+
+ADD FIELD "un-med-forn" OF "dt-it-docum-est" AS character
+  FORMAT "x(10)"
+  POSITION 80
+  INITIAL ""
+  LABEL "Un Med Forn"
+  COLUMN-LABEL "Un Med Forn"
+  ORDER 800
+  MAX-WIDTH 20
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000001246

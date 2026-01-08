@@ -1,0 +1,34 @@
+N
+q836
+Q485,25
+S4
+D11
+ZB
+X20,10,5,820,475
+A60,50,0,1,3,4,N,"MEDTEXTIL IMP. EXP. LTDA"
+LO20,100,800,5
+A30,110,0,2,1,1,N,"CLIENTE"
+A30,140,0,4,1,1,N,"AVELINA SIQUEIRA SILVA"
+LO20,170,800,5
+LO700,170,5,70
+A30,180,0,2,1,1,N,"CIDADE"
+A730,180,0,2,1,1,N,"ESTADO"
+A30,210,0,4,1,1,N,"BELO HORIZONTE"
+A740,210,0,4,1,1,N,"MG"
+LO20,240,800,5
+LO480,240,5,70
+A30,275,0,4,1,1,N,"PEDIDO"
+A180,255,0,1,3,4,N,"13244"
+A500,275,0,4,1,1,N,"PE€AS"
+A620,255,0,1,3,4,N,"19"
+LO20,310,800,5
+A30,350,0,4,1,1,N,"VOLUME:"
+A180,330,0,1,3,4,N,"1"
+A300,350,0,4,1,1,N,"DE"
+A370,330,0,1,3,4,N,"19"
+LO20,385,800,5
+A25,395,0,4,1,1,N,"Importante:"
+A210,400,0,2,1,1,N,"Ao receber a mercadoria, favor conferir o total de"
+A27,425,0,2,1,1,N,"volumes e a quantidade de pe‡as. Caso haja viola‡Æo do volume,com"
+A27,450,0,2,1,1,N,"falta de pe‡as, entre em contato com a MEDTEXTIL 0xx(27)3366-2425"
+P1

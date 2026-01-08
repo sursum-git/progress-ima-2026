@@ -1,0 +1,715 @@
+ADD TABLE "dt-controle-consumo-nsu"
+  AREA "Schema Area"
+  LABEL "Controle Consumo NSU"
+  DUMP-NAME "dt-controle-consumo-nsu"
+
+ADD FIELD "cod-estabel" OF "dt-controle-consumo-nsu" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "num-nsu-enviado" OF "dt-controle-consumo-nsu" AS int64 
+  DESCRIPTION "Número NSU Enviado"
+  FORMAT ">>>>>>>>>>>>>>9"
+  INITIAL "0"
+  LABEL "Nr NSU Envio"
+  POSITION 3
+  MAX-WIDTH 8
+  COLUMN-LABEL "Nr NSU Envio"
+  HELP "Número NSU Enviado"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "dt-consulta" OF "dt-controle-consumo-nsu" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Consulta"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Consulta"
+  ORDER 30
+
+ADD FIELD "hr-consulta" OF "dt-controle-consumo-nsu" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hr Consulta"
+  POSITION 5
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hr Consulta"
+  ORDER 40
+
+ADD FIELD "num-nsu-retorno" OF "dt-controle-consumo-nsu" AS int64 
+  DESCRIPTION "Número NSU Retorno"
+  FORMAT ">>>>>>>>>>>>>>9"
+  INITIAL "0"
+  LABEL "Nr NSU Retorno"
+  POSITION 16
+  MAX-WIDTH 8
+  COLUMN-LABEL "Nr NSU Retorno"
+  HELP "Número NSU Retorno"
+  ORDER 50
+
+ADD FIELD "int-2" OF "dt-controle-consumo-nsu" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "int-1" OF "dt-controle-consumo-nsu" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 18
+  MAX-WIDTH 4
+  ORDER 70
+
+ADD FIELD "dec-1" OF "dt-controle-consumo-nsu" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 19
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 80
+
+ADD FIELD "dec-2" OF "dt-controle-consumo-nsu" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 20
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 90
+
+ADD FIELD "log-1" OF "dt-controle-consumo-nsu" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 21
+  MAX-WIDTH 1
+  ORDER 100
+
+ADD FIELD "log-2" OF "dt-controle-consumo-nsu" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 22
+  MAX-WIDTH 1
+  ORDER 110
+
+ADD FIELD "char-1" OF "dt-controle-consumo-nsu" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 23
+  MAX-WIDTH 512
+  ORDER 120
+
+ADD FIELD "char-2" OF "dt-controle-consumo-nsu" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 24
+  MAX-WIDTH 512
+  ORDER 130
+
+ADD FIELD "date-1" OF "dt-controle-consumo-nsu" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 25
+  MAX-WIDTH 4
+  ORDER 140
+
+ADD FIELD "date-2" OF "dt-controle-consumo-nsu" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 26
+  MAX-WIDTH 4
+  ORDER 150
+
+ADD INDEX "id-time-consulta" ON "dt-controle-consumo-nsu" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "dt-consulta" ASCENDING 
+  INDEX-FIELD "hr-consulta" ASCENDING 
+
+ADD TABLE "dt-diverg-item-rec"
+  AREA "Schema Area"
+  LABEL "Divergência Item Receb"
+  DESCRIPTION "Armazena as divergências dos itens no Recebimento"
+  DUMP-NAME "dt-diverg-item-rec"
+
+ADD FIELD "serie-docto" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Serie Documento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Serie"
+  HELP "Serie Documento."
+  ORDER 10
+
+ADD FIELD "nro-docto" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Nro Documento"
+  POSITION 3
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  HELP "Nro Documento."
+  ORDER 20
+
+ADD FIELD "nat-operacao" OF "dt-diverg-item-rec" AS character 
+  DESCRIPTION "Natureza de Operação"
+  FORMAT "x(6)"
+  INITIAL ""
+  LABEL "Natureza Operação"
+  POSITION 4
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper"
+  HELP "Natureza de Operação."
+  ORDER 100
+
+ADD FIELD "cod-emitente" OF "dt-diverg-item-rec" AS integer 
+  DESCRIPTION "Código Emitente"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Código Emitente"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod.Emitente"
+  HELP "Código Emitente."
+  ORDER 30
+
+ADD FIELD "sequencia" OF "dt-diverg-item-rec" AS integer 
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Seq"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq"
+  HELP "Permite informar a seqüência do item."
+  ORDER 50
+
+ADD FIELD "it-codigo" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item"
+  POSITION 7
+  MAX-WIDTH 32
+  COLUMN-LABEL "Item"
+  HELP "Código do Item."
+  ORDER 60
+
+ADD FIELD "cod-div-rec" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Divergência"
+  POSITION 8
+  MAX-WIDTH 10
+  COLUMN-LABEL "Divergência"
+  HELP "Informe o código da divergência do item."
+  ORDER 70
+
+ADD FIELD "cod-estabel" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 19
+  MAX-WIDTH 10
+  VIEW-AS ""
+  COLUMN-LABEL "Estab."
+  HELP "Informe o código do estabelecimento."
+  ORDER 110
+
+ADD FIELD "cod-chave-acesso" OF "dt-diverg-item-rec" AS character 
+  DESCRIPTION "Leitura do código de barras da NF na portaria."
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Chave Acesso NF-e"
+  POSITION 20
+  MAX-WIDTH 120
+  COLUMN-LABEL "Chave Acesso NF-e"
+  HELP "Código Chave Acesso Nota fiscal Eletrônica."
+  ORDER 120
+
+ADD FIELD "dtt-datahora" OF "dt-diverg-item-rec" AS datetime 
+  FORMAT "99/99/9999 HH:MM:SS.SSS"
+  INITIAL "now"
+  LABEL "Data Hora"
+  POSITION 21
+  MAX-WIDTH 8
+  COLUMN-LABEL "Dt Hr"
+  HELP "Data e hora da divergência."
+  ORDER 160
+
+ADD FIELD "data" OF "dt-diverg-item-rec" AS date 
+  FORMAT "99/99/9999"
+  INITIAL "today"
+  LABEL "Data"
+  POSITION 22
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data"
+  HELP "Data da divergência."
+  ORDER 170
+
+ADD FIELD "hora" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hora"
+  POSITION 23
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora"
+  HELP "Hora da divergência."
+  ORDER 180
+
+ADD FIELD "usuario" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Usuário"
+  POSITION 24
+  MAX-WIDTH 24
+  COLUMN-LABEL "Usuário"
+  HELP "Código do usuário da divergência."
+  ORDER 190
+
+ADD FIELD "ind-tabela" OF "dt-diverg-item-rec" AS character 
+  DESCRIPTION "docum-est ou dt-docum-est."
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Tabela"
+  POSITION 25
+  MAX-WIDTH 32
+  VIEW-AS ""
+  COLUMN-LABEL "Tabela"
+  HELP "Indica em qual tabela foi localizada a nota fiscal."
+  ORDER 130
+
+ADD FIELD "ind-origem" OF "dt-diverg-item-rec" AS character 
+  DESCRIPTION "dts0912 ou re1001."
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Origem"
+  POSITION 26
+  MAX-WIDTH 16
+  VIEW-AS ""
+  COLUMN-LABEL "Origem"
+  HELP "Indica onde ocorreu a divergência (Loader ou Receb.Fiscal)."
+  ORDER 140
+
+ADD FIELD "numero-ordem" OF "dt-diverg-item-rec" AS integer 
+  FORMAT "zzzzz9,99"
+  INITIAL "0"
+  LABEL "Ordem"
+  POSITION 27
+  MAX-WIDTH 4
+  VIEW-AS ""
+  COLUMN-LABEL "Ordem"
+  HELP "Informe o número da ordem de compra."
+  ORDER 90
+
+ADD FIELD "descricao" OF "dt-diverg-item-rec" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição"
+  POSITION 28
+  MAX-WIDTH 100
+  VIEW-AS ""
+  COLUMN-LABEL "Descrição"
+  ORDER 80
+
+ADD FIELD "tipo-docum" OF "dt-diverg-item-rec" AS character 
+  DESCRIPTION "NF-e/CT-e/NFS-e"
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Tipo Documento"
+  POSITION 29
+  MAX-WIDTH 10
+  COLUMN-LABEL "Tipo Documento"
+  ORDER 200
+
+ADD FIELD "dt-emissao" OF "dt-diverg-item-rec" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Emissão"
+  POSITION 30
+  MAX-WIDTH 4
+  COLUMN-LABEL "Dt Emissão"
+  ORDER 210
+
+ADD INDEX "idx-documento" ON "dt-diverg-item-rec" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "it-codigo" ASCENDING 
+  INDEX-FIELD "cod-div-rec" ASCENDING 
+
+ADD INDEX "idx-chave-acesso" ON "dt-diverg-item-rec" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-chave-acesso" ASCENDING 
+
+ADD INDEX "idx-item" ON "dt-diverg-item-rec" 
+  AREA "Schema Area"
+  INDEX-FIELD "it-codigo" ASCENDING 
+
+ADD TABLE "dt-divergencia-rec"
+  AREA "Schema Area"
+  LABEL "Divergência Recebimento"
+  DESCRIPTION "Tabela do cadastro dos códigos de Divergência do Recebimento e da NF "
+  DUMP-NAME "dt-divergencia-rec"
+
+ADD FIELD "cod-div-rec" OF "dt-divergencia-rec" AS character 
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Divergência"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Divergência"
+  HELP "Informe o código da divergência."
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "des-div-rec" OF "dt-divergencia-rec" AS character 
+  FORMAT "x(50)"
+  INITIAL ""
+  LABEL "Descrição"
+  POSITION 3
+  MAX-WIDTH 80
+  COLUMN-LABEL "Descrição"
+  HELP "Informe a descrição da divergência."
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "int-2" OF "dt-divergencia-rec" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "int-1" OF "dt-divergencia-rec" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "dec-1" OF "dt-divergencia-rec" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "dec-2" OF "dt-divergencia-rec" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "log-1" OF "dt-divergencia-rec" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 8
+  MAX-WIDTH 1
+  ORDER 70
+
+ADD FIELD "log-2" OF "dt-divergencia-rec" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "char-1" OF "dt-divergencia-rec" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 10
+  MAX-WIDTH 512
+  ORDER 90
+
+ADD FIELD "char-2" OF "dt-divergencia-rec" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "date-1" OF "dt-divergencia-rec" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 12
+  MAX-WIDTH 4
+  ORDER 110
+
+ADD FIELD "date-2" OF "dt-divergencia-rec" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD INDEX "idx-pu" ON "dt-divergencia-rec" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-div-rec" ASCENDING 
+
+ADD INDEX "idx-descricao" ON "dt-divergencia-rec" 
+  AREA "Schema Area"
+  INDEX-FIELD "des-div-rec" ASCENDING 
+
+UPDATE TABLE "dt-dados-motorista"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts012.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts012.p" CRC "?"
+
+UPDATE TABLE "dt-doc-refer-compl"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts003.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts003.p" CRC "?"
+
+UPDATE TABLE "dt-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts001.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts001.p" CRC "?"
+
+ADD FIELD "dt-liberacao-prioriz" OF "dt-docum-est" AS date
+  DESCRIPTION "Data da Liberação do documento na priorização - somente se a função estiver ativa"
+  FORMAT "99/99/9999"
+  POSITION 118
+  INITIAL ?
+  HELP "Data Liberação Documento"
+  LABEL "Dt Liberação"
+  COLUMN-LABEL "Dt Liberação"
+  ORDER 1160
+  MAX-WIDTH 4
+
+ADD FIELD "hr-liberacao-prioriz" OF "dt-docum-est" AS character
+  DESCRIPTION "Hora Liberação Priorização - somente se função ativa"
+  FORMAT "x(8)"
+  POSITION 119
+  INITIAL ""
+  HELP "Hora Liberação Priorização"
+  LABEL "Hr Libera Prioriz"
+  COLUMN-LABEL "Hr Libera Prioriz"
+  ORDER 1170
+  MAX-WIDTH 16
+
+ADD FIELD "user-liberacao-prioriz" OF "dt-docum-est" AS character
+  DESCRIPTION "Usuario Liberação Priorização - somente se função ativa"
+  FORMAT "x(12)"
+  POSITION 120
+  INITIAL ""
+  HELP "Usuario Liberação Priorização"
+  LABEL "Usuario Liberação"
+  COLUMN-LABEL "Usuario Liberação"
+  ORDER 1180
+  MAX-WIDTH 24
+
+ADD FIELD "dt-atualiza-erp" OF "dt-docum-est" AS date
+  FORMAT "99/99/9999"
+  POSITION 121
+  INITIAL ?
+  HELP "Data de Atualização do Documento no ERP"
+  LABEL "Data Atualiza ERP"
+  COLUMN-LABEL "Dt Atualiza ERP"
+  ORDER 1190
+  MAX-WIDTH 4
+
+ADD FIELD "hr-atualiza-erp" OF "dt-docum-est" AS character
+  FORMAT "x(8)"
+  POSITION 122
+  INITIAL ""
+  HELP "Hora de Atualização do Documento no ERP"
+  LABEL "Hr Atualiza ERP"
+  COLUMN-LABEL "Hr Atualiza ERP"
+  ORDER 1200
+  MAX-WIDTH 16
+
+ADD FIELD "usuario-atualiza" OF "dt-docum-est" AS character
+  FORMAT "x(12)"
+  POSITION 123
+  INITIAL ""
+  HELP "Usuário que efetuou atualização ERP"
+  LABEL "Usuário Atualiza ERP"
+  COLUMN-LABEL "Usuário Atualiza ERP"
+  ORDER 1210
+  MAX-WIDTH 24
+
+ADD FIELD "l-documento-prioriz" OF "dt-docum-est" AS logical
+  FORMAT "Sim/Não"
+  POSITION 124
+  INITIAL "Não"
+  HELP "Doc Priorizado"
+  LABEL "Doc Priorizado"
+  COLUMN-LABEL "Doc Priorizado"
+  ORDER 1220
+  MAX-WIDTH 1
+
+ADD FIELD "dt-confirmacao" OF "dt-docum-est" AS date
+  DESCRIPTION "Data da Confirmação do documento "
+  FORMAT "99/99/9999"
+  POSITION 125
+  INITIAL ?
+  HELP "Data Confirmação Documento"
+  LABEL "Dt Confirmação"
+  COLUMN-LABEL "Dt Confirmação"
+  ORDER 1230
+  MAX-WIDTH 4
+
+ADD FIELD "hr-confirmacao" OF "dt-docum-est" AS character
+  DESCRIPTION "Hora Confirmação"
+  FORMAT "x(8)"
+  POSITION 126
+  INITIAL ""
+  HELP "Hora Liberação Priorização"
+  LABEL "Hr Confirmação"
+  COLUMN-LABEL "Hr Confirmação"
+  ORDER 1240
+  MAX-WIDTH 16
+
+ADD FIELD "user-confirmacao" OF "dt-docum-est" AS character
+  DESCRIPTION "Usuario Confirmação"
+  FORMAT "x(12)"
+  POSITION 127
+  INITIAL ""
+  HELP "Usuario Confirmação"
+  LABEL "Usuario Confirmação"
+  COLUMN-LABEL "Usuario Confirmação"
+  ORDER 1250
+  MAX-WIDTH 24
+
+ADD FIELD "l-documento-confir" OF "dt-docum-est" AS logical
+  FORMAT "Sim/Não"
+  POSITION 128
+  INITIAL "Não"
+  HELP "Doc Confirmado"
+  LABEL "Doc Confirmado"
+  COLUMN-LABEL "Doc Confirmado"
+  ORDER 1260
+  MAX-WIDTH 1
+
+ADD INDEX "idx-confirmado" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "l-documento-confir" ASCENDING
+
+ADD INDEX "idx-priorizado" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "l-documento-prioriz" ASCENDING
+
+ADD INDEX "idx-trrf001" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "ep-codigo" ASCENDING
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "serie-docto" ASCENDING
+  INDEX-FIELD "nro-docto" ASCENDING
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "nat-operacao" ASCENDING
+
+UPDATE TABLE "dt-duplic-nfe"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts004.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts004.p" CRC "?"
+
+ADD FIELD "l-prioriza-documento" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 94
+  INITIAL "Não"
+  HELP "Habilita Funcionalidade de Priorização de Documentos"
+  LABEL "Prioriza Documento"
+  COLUMN-LABEL "Prioriza Documento"
+  ORDER 1370
+  MAX-WIDTH 1
+
+RENAME INDEX "ch-cnpj" TO "temp-80833" ON "dt-empresa"
+
+ADD INDEX "ch-cnpj" ON "dt-empresa"
+  AREA "Schema Area"
+  INDEX-FIELD "cgc" ASCENDING
+
+ADD INDEX "ch-cnpj-ie" ON "dt-empresa"
+  AREA "Schema Area"
+  INDEX-FIELD "cgc" ASCENDING
+  INDEX-FIELD "inscr-estad" ASCENDING
+
+DROP INDEX "temp-80833" ON "dt-empresa"
+
+UPDATE TABLE "dt-it-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts002.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts002.p" CRC "?"
+
+ADD FIELD "cst-pis" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 128
+  INITIAL ""
+  LABEL "CST PIS"
+  COLUMN-LABEL "CST PIS"
+  ORDER 1270
+  MAX-WIDTH 4
+
+ADD FIELD "cst-cofins" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 129
+  INITIAL ""
+  LABEL "CST COFINS"
+  COLUMN-LABEL "CST COFINS"
+  ORDER 1280
+  MAX-WIDTH 4
+
+ADD FIELD "cst-ipi" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 130
+  INITIAL ""
+  LABEL "CST IPI"
+  COLUMN-LABEL "CST IPI"
+  ORDER 1290
+  MAX-WIDTH 4
+
+UPDATE TABLE "dt-manifest-documento"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts005.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts005.p" CRC "?"
+
+UPDATE TABLE "dt-monitor-eventos"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts006.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts006.p" CRC "?"
+
+UPDATE TABLE "dt-notas-destinadas"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts007.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts007.p" CRC "?"
+
+UPDATE TABLE "dt-ocorrencia-painel"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts008.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts008.p" CRC "?"
+
+UPDATE TABLE "dt-rat-docum"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts009.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts009.p" CRC "?"
+
+UPDATE TABLE "dt-rat-lote"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts010.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts010.p" CRC "?"
+
+UPDATE TABLE "dt-rat-ordem-compra"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database/tdp/tddts011.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database/twp/twdts011.p" CRC "?"
+
+ADD FIELD "l-prioriza-documento" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 27
+  INITIAL "Não"
+  HELP "Efetua a priorização de documentos"
+  LABEL "Prioriza Documento"
+  COLUMN-LABEL "Prioriza Documento"
+  ORDER 820
+  MAX-WIDTH 1
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000028320

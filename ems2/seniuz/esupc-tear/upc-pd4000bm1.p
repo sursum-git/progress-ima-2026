@@ -1,0 +1,6 @@
+DEF NEW GLOBAL SHARED VAR wh-preco-artigo  AS WIDGET-HANDLE NO-UNDO.
+DEF NEW GLOBAL SHARED VAR l-preco-unico AS LOG.
+
+ASSIGN l-preco-unico = LOGICAL(wh-preco-artigo:SCREEN-VALUE).
+
+APPLY 'CHOOSE' TO SELF.

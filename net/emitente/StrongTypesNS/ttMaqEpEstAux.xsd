@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ttMaqEpEstAuxDataSet" targetNamespace="ttMaqEpEstAuxNS" xmlns:mstns="ttMaqEpEstAuxNS" xmlns="ttMaqEpEstAuxNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="ttMaqEpEstAuxDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ttMaqEpEstAux">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cd-maquina" type="xs:int" minOccurs="0" />
+              <xs:element name="ep-codigo" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-estabel" type="xs:string" minOccurs="0" />
+              <xs:element name="tp-conexao" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

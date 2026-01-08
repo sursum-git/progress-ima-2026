@@ -1,0 +1,4 @@
+ DEFINE TEMP-TABLE ttTexto NO-UNDO
+     FIELD ordem AS INT
+     FIELD texto AS CHAR FORMAT 'x(32000)' 
+     INDEX ind AS PRIMARY  IS UNIQUE ordem .

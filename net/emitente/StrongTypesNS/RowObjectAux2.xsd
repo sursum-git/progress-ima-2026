@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="RowObjectAux2DataSet" targetNamespace="RowObjectAux2NS" xmlns:mstns="RowObjectAux2NS" xmlns="RowObjectAux2NS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="RowObjectAux2DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RowObjectAux2">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="r-rowid" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="cgc" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-emitente" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-gr-forn" type="xs:int" minOccurs="0" />
+              <xs:element name="identific" type="xs:int" minOccurs="0" />
+              <xs:element name="natureza" type="xs:int" minOccurs="0" />
+              <xs:element name="nome-abrev" type="xs:string" minOccurs="0" />
+              <xs:element name="nome-emit" type="xs:string" minOccurs="0" />
+              <xs:element name="nome-matriz" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

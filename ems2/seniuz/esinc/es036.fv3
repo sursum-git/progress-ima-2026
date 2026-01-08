@@ -1,0 +1,5 @@
+/* Include: es036.fv3
+** Tabela.: teste-resist
+*/
+
+can-find(espec.maq-benef where espec.maq-benef.codigo = espec.teste-resist.cod-maq)

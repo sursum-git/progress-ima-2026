@@ -1,0 +1,7 @@
+/* Include: es041.fv1
+** Tabela.: teste-astm
+*/
+
+can-find(mgind.familia where mgind.familia.fm-codigo = espec.teste-astm.fm-codigo)
+
+

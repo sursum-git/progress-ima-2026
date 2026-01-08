@@ -1,0 +1,3 @@
+DEFINE TEMP-TABLE ttIni
+    FIELD chave AS CHAR
+    FIELD valor AS CHAR.

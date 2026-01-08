@@ -1,0 +1,498 @@
+&ANALYZE-SUSPEND _VERSION-NUMBER UIB_v8r12
+&ANALYZE-RESUME
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _DEFINITIONS DBOProgram 
+/*:T--------------------------------------------------------------------------
+    File       : dbo.p
+    Purpose    : O DBO (Datasul Business Objects) Ç um programa PROGRESS 
+                 que contÇm a l¢gica de neg¢cio e acesso a dados para uma 
+                 tabela do banco de dados.
+
+    Parameters : 
+
+    Notes      : 
+  ------------------------------------------------------------------------*/
+/*          This .W file was created with the Progress UIB.               */
+/*------------------------------------------------------------------------*/
+
+/* ***************************  Definitions  **************************** */
+
+/*:T--- Diretrizes de definiá∆o ---*/
+&GLOBAL-DEFINE DBOName BOES110
+&GLOBAL-DEFINE DBOVersion 
+&GLOBAL-DEFINE DBOCustomFunctions 
+&GLOBAL-DEFINE TableName regras_frete
+&GLOBAL-DEFINE TableLabel 
+&GLOBAL-DEFINE QueryName qr{&TableName} 
+
+/* DBO-XML-BEGIN */
+/*:T Pre-processadores para ativar XML no DBO */
+/*:T Retirar o comentario para ativar 
+&GLOBAL-DEFINE XMLProducer YES    /*:T DBO atua como producer de mensagens para o Message Broker */
+&GLOBAL-DEFINE XMLTopic           /*:T Topico da Mensagem enviada ao Message Broker, geralmente o nome da tabela */
+&GLOBAL-DEFINE XMLTableName       /*:T Nome da tabela que deve ser usado como TAG no XML */ 
+&GLOBAL-DEFINE XMLTableNameMult   /*:T Nome da tabela no plural. Usado para multiplos registros */ 
+&GLOBAL-DEFINE XMLPublicFields    /*:T Lista dos campos (c1,c2) que podem ser enviados via XML. Ficam fora da listas os campos de especializacao da tabela */ 
+&GLOBAL-DEFINE XMLKeyFields       /*:T Lista dos campos chave da tabela (c1,c2) */
+&GLOBAL-DEFINE XMLExcludeFields   /*:T Lista de campos a serem excluidos do XML quando PublicFields = "" */
+
+&GLOBAL-DEFINE XMLReceiver YES    /*:T DBO atua como receiver de mensagens enviado pelo Message Broker (mÇtodo Receive Message) */
+&GLOBAL-DEFINE QueryDefault       /*:T Nome da Query que d† acessos a todos os registros, exceto os exclu°dos pela constraint de seguranáa. Usada para receber uma mensagem XML. */
+&GLOBAL-DEFINE KeyField1 cust-num /*:T Informar os campos da chave quando o Progress n∆o conseguir resolver find {&TableName} OF RowObject. */
+*/
+/* DBO-XML-END */
+
+/*:T--- Include com definiá∆o da temptable RowObject ---*/
+/*:T--- Este include deve ser copiado para o diret¢rio do DBO e, ainda, seu nome
+      deve ser alterado a fim de ser idàntico ao nome do DBO mas com 
+      extens∆o .i ---*/
+{esbo/boEs110.i RowObject}
+
+
+/*:T--- Include com definiá∆o da query para tabela {&TableName} ---*/
+/*:T--- Em caso de necessidade de alteraá∆o da definiá∆o da query, pode ser retirada
+      a chamada ao include a seguir e em seu lugar deve ser feita a definiá∆o 
+      manual da query ---*/
+{method/dboqry.i}
+
+
+/*:T--- Definiá∆o de buffer que ser† utilizado pelo mÇtodo goToKey ---*/
+DEFINE BUFFER bf{&TableName} FOR {&TableName}.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-PREPROCESSOR-BLOCK 
+
+/* ********************  Preprocessor Definitions  ******************** */
+
+&Scoped-define PROCEDURE-TYPE DBOProgram
+&Scoped-define DB-AWARE no
+
+
+
+/* _UIB-PREPROCESSOR-BLOCK-END */
+&ANALYZE-RESUME
+
+
+
+/* *********************** Procedure Settings ************************ */
+
+&ANALYZE-SUSPEND _PROCEDURE-SETTINGS
+/* Settings for THIS-PROCEDURE
+   Type: DBOProgram
+   Allow: 
+   Frames: 0
+   Add Fields to: Neither
+   Other Settings: CODE-ONLY COMPILE
+ */
+&ANALYZE-RESUME _END-PROCEDURE-SETTINGS
+
+/* *************************  Create Window  ************************** */
+
+&ANALYZE-SUSPEND _CREATE-WINDOW
+/* DESIGN Window definition (used by the UIB) 
+  CREATE WINDOW DBOProgram ASSIGN
+         HEIGHT             = 2
+         WIDTH              = 40.
+/* END WINDOW DEFINITION */
+                                                                        */
+&ANALYZE-RESUME
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _XFTR "DBO 2.0 Wizard" DBOProgram _INLINE
+/* Actions: wizard/dbowizard.w ? ? ? ? */
+/* DBO 2.0 Wizard (DELETE)*/
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _INCLUDED-LIB DBOProgram 
+/* ************************* Included-Libraries *********************** */
+
+{method/dbo.i}
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+ 
+
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _MAIN-BLOCK DBOProgram 
+
+
+/* ***************************  Main Block  *************************** */
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+/* **********************  Internal Procedures  *********************** */
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE beforeCreateRecord DBOProgram 
+PROCEDURE beforeCreateRecord :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+
+ASSIGN rowObject.regra_frete_id = NEXT-VALUE(seq_regra_frete).
+
+
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE beforeUpdateRecord DBOProgram 
+PROCEDURE beforeUpdateRecord :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+     
+
+
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getCharField DBOProgram 
+PROCEDURE getCharField :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valor de campos do tipo caracter
+  Parameters:  
+               recebe nome do campo
+               retorna valor do campo
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pFieldName AS CHARACTER NO-UNDO.
+    DEFINE OUTPUT PARAMETER pFieldValue AS CHARACTER NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+        RETURN "NOK":U.
+
+    CASE pFieldName:
+        WHEN "cod_estabel":U THEN ASSIGN pFieldValue = RowObject.cod_estabel.
+        WHEN "cod_tipo_pedido":U THEN ASSIGN pFieldValue = RowObject.cod_tipo_pedido.
+        WHEN "uf":U THEN ASSIGN pFieldValue = RowObject.uf.
+        OTHERWISE RETURN "NOK":U.
+    END CASE.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getDateField DBOProgram 
+PROCEDURE getDateField :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valor de campos do tipo data
+  Parameters:  
+               recebe nome do campo
+               retorna valor do campo
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pFieldName AS CHARACTER NO-UNDO.
+    DEFINE OUTPUT PARAMETER pFieldValue AS DATE NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+        RETURN "NOK":U.
+
+    CASE pFieldName:
+        OTHERWISE RETURN "NOK":U.
+    END CASE.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getDecField DBOProgram 
+PROCEDURE getDecField :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valor de campos do tipo decimal
+  Parameters:  
+               recebe nome do campo
+               retorna valor do campo
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pFieldName AS CHARACTER NO-UNDO.
+    DEFINE OUTPUT PARAMETER pFieldValue AS DECIMAL NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+        RETURN "NOK":U.
+
+    CASE pFieldName:
+        WHEN "perc_destaque_nf":U THEN ASSIGN pFieldValue = RowObject.perc_destaque_nf.
+        WHEN "perc_preco_tabela":U THEN ASSIGN pFieldValue = RowObject.perc_preco_tabela.
+        WHEN "vl_maximo_pedido":U THEN ASSIGN pFieldValue = RowObject.vl_maximo_pedido.
+        WHEN "vl_minimo_pedido":U THEN ASSIGN pFieldValue = RowObject.vl_minimo_pedido.
+        WHEN "perc_min_preco_tb":U THEN ASSIGN pFieldValue = RowObject.perc_min_preco_tb.
+        WHEN "per_max_preco_tb":U THEN ASSIGN pFieldValue = RowObject.per_max_preco_tb.
+        OTHERWISE RETURN "NOK":U.
+    END CASE.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getIntField DBOProgram 
+PROCEDURE getIntField :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valor de campos do tipo inteiro
+  Parameters:  
+               recebe nome do campo
+               retorna valor do campo
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pFieldName AS CHARACTER NO-UNDO.
+    DEFINE OUTPUT PARAMETER pFieldValue AS INTEGER NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+        RETURN "NOK":U.
+
+    CASE pFieldName:
+        WHEN "cod_tipo_frete":U THEN ASSIGN pFieldValue = RowObject.cod_tipo_frete.
+        WHEN "mo_codigo":U THEN ASSIGN pFieldValue = RowObject.mo_codigo.
+        WHEN "num_tipo_cobranca_frete":U THEN ASSIGN pFieldValue = RowObject.num_tipo_cobranca_frete.
+        WHEN "regra_frete_id":U THEN ASSIGN pFieldValue = RowObject.regra_frete_id.
+        WHEN "tb_preco_id":U THEN ASSIGN pFieldValue = RowObject.tb_preco_id.
+        WHEN "tp_preco":U THEN ASSIGN pFieldValue = RowObject.tp_preco.
+        OTHERWISE RETURN "NOK":U.
+    END CASE.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getKey DBOProgram 
+PROCEDURE getKey :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valores dos campos do °ndice primario
+  Parameters:  
+               retorna valor do campo regra_frete_id
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE OUTPUT PARAMETER pregra_frete_id LIKE regras_frete.regra_frete_id NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+       RETURN "NOK":U.
+
+    ASSIGN pregra_frete_id = RowObject.regra_frete_id.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getLogField DBOProgram 
+PROCEDURE getLogField :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valor de campos do tipo l¢gico
+  Parameters:  
+               recebe nome do campo
+               retorna valor do campo
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pFieldName AS CHARACTER NO-UNDO.
+    DEFINE OUTPUT PARAMETER pFieldValue AS LOGICAL NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+        RETURN "NOK":U.
+
+    CASE pFieldName:
+        WHEN "log_inativo":U THEN ASSIGN pFieldValue = RowObject.log_inativo.
+        OTHERWISE RETURN "NOK":U.
+    END CASE.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE getRawField DBOProgram 
+PROCEDURE getRawField :
+/*------------------------------------------------------------------------------
+  Purpose:     Retorna valor de campos do tipo raw
+  Parameters:  
+               recebe nome do campo
+               retorna valor do campo
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pFieldName AS CHARACTER NO-UNDO.
+    DEFINE OUTPUT PARAMETER pFieldValue AS RAW NO-UNDO.
+
+    /*--- Verifica se temptable RowObject est† dispon°vel, caso n∆o esteja ser†
+          retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE RowObject THEN 
+        RETURN "NOK":U.
+
+    CASE pFieldName:
+        OTHERWISE RETURN "NOK":U.
+    END CASE.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE goToKey DBOProgram 
+PROCEDURE goToKey :
+/*------------------------------------------------------------------------------
+  Purpose:     Reposiciona registro com base no °ndice primario
+  Parameters:  
+               recebe valor do campo regra_frete_id
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE INPUT PARAMETER pregra_frete_id LIKE regras_frete.regra_frete_id NO-UNDO.
+
+    FIND FIRST bfregras_frete WHERE 
+        bfregras_frete.regra_frete_id = pregra_frete_id NO-LOCK NO-ERROR.
+
+    /*--- Verifica se registro foi encontrado, em caso de erro ser† retornada flag "NOK":U ---*/
+    IF NOT AVAILABLE bfregras_frete THEN 
+        RETURN "NOK":U.
+
+    /*--- Reposiciona query atravÇs de rowid e verifica a ocorrància de erros, caso
+          existam erros ser† retornada flag "NOK":U ---*/
+    RUN repositionRecord IN THIS-PROCEDURE (INPUT ROWID(bfregras_frete)).
+    IF RETURN-VALUE = "NOK":U THEN
+        RETURN "NOK":U.
+
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE OpenQueryMain DBOProgram 
+PROCEDURE OpenQueryMain :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+OPEN QUERY {&queryName} FOR EACH {&tableName} NO-LOCK.
+
+RETURN "OK":u.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE substituirRegra DBOProgram 
+PROCEDURE substituirRegra :
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE validateRecord DBOProgram 
+PROCEDURE validateRecord :
+/*:T------------------------------------------------------------------------------
+  Purpose:     Validaá‰es pertinentes ao DBO
+  Parameters:  recebe o tipo de validaá∆o (Create, Delete, Update)
+  Notes:       
+------------------------------------------------------------------------------*/
+    
+    DEFINE INPUT PARAMETER pType AS CHARACTER NO-UNDO.
+    DEFINE BUFFER bf FOR regras_frete.
+    
+    
+    /*
+    1-definir o buffer
+    2- verificar apenas para o pType = create
+    3- usar o can find first para verificar se encontra regra ativa e valida
+    quanto a data  
+    
+             
+    */
+    
+    /*:T--- Utilize o parÉmetro pType para identificar quais as validaá‰es a serem
+          executadas ---*/
+    /*:T--- Os valores poss°veis para o parÉmetro s∆o: Create, Delete e Update ---*/
+    /*:T--- Devem ser tratados erros PROGRESS e erros do Produto, atravÇs do 
+          include: method/svc/errors/inserr.i ---*/
+    /*:T--- Inclua aqui as validaá‰es ---*/
+    
+    CASE pType:
+        WHEN 'create' THEN    DO:
+        
+            //1- validar campos que podem ser iguais juntamente com a data, considerando que os campos podem estar vazios
+             IF CAN-FIND( FIRST bf 
+                       WHERE bf.cod_estabel     = rowObject.cod_estabel
+                       AND   bf.uf              = rowObject.uf
+                       AND   bf.tb_preco_id     = rowObject.tb_preco_id
+                       AND   bf.tp_preco        = rowObject.tp_preco
+                       AND   bf.mo_codigo       = rowObject.mo_codigo
+                       AND   bf.cod_tipo_pedido = rowObject.cod_tipo_pedido
+                       AND   bf.log_inativo     = NO
+                       AND   bf.dt_hr_ini      <= NOW
+                       AND   bf.dt_hr_fim      >= NOW
+                       AND  ( (rowObject.vl_minimo_pedido >= bf.vl_minimo_pedido       AND  rowObject.vl_minimo_pedido  <= bf.vl_maximo_pedido)  
+                              OR ( rowObject.vl_maximo_pedido <= bf.vl_maximo_pedido   AND  rowObject.vl_maximo_pedido  >= bf.vl_minimo_pedido) 
+                             )                       
+                       AND  ( (rowObject.perc_min_preco_tb     >= bf.perc_min_preco_tb   AND  rowObject.perc_min_preco_tb <= bf.per_max_preco_tb)  
+                              OR ( rowObject.per_max_preco_tb <= bf.per_max_preco_tb     AND  rowObject.per_max_preco_tb >= bf.perc_min_preco_tb) 
+                             )                           
+                         ) 
+                         THEN  DO:
+                        {method/svc/errors/inserr.i
+                        &ErrorNumber="2"
+                        &ErrorDescription="J† existe Registro na faixa de valores do registro corrente"
+                        &ErrorType="Outros"
+                        &ErrorSubType="ERROR"
+                        &ErrorParameters="''"}    
+                        
+                 
+             END.
+            
+        END.
+        WHEN 'update' THEN     DO:
+             {method/svc/errors/inserr.i
+                    &ErrorNumber="1"
+                    &ErrorDescription="N∆o Ç permitido Alterar Registros nesta tabela"
+                    &ErrorType="Outros"
+                    &ErrorSubType="ERROR"
+                    &ErrorParameters="''"}            
+        END.
+    END CASE.
+    
+    
+    /*:T--- Verifica ocorrància de erros ---*/
+    IF CAN-FIND(FIRST RowErrors WHERE RowErrors.ErrorSubType = "ERROR":U) THEN
+        RETURN "NOK":U.
+    
+    RETURN "OK":U.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+

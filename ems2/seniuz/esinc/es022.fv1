@@ -1,0 +1,5 @@
+/* Include: es022.fv1
+** Tabela.: mov-man
+*/
+
+can-find(espec.set-mec where espec.set-mec.codigo = espec.mov-man.cod-set)

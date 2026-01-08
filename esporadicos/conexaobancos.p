@@ -1,0 +1,22 @@
+CONNECT value("-db eai       -ld eai2      -S 20001 -H 192.168.0.44 -N tcp").
+CONNECT value("-db ems2adt   -ld mgadt    -S 20002 -H 192.168.0.44 -N tcp").
+CONNECT value("-db ems2mp    -ld mgmp2     -S 20005 -H 192.168.0.44 -N tcp").
+CONNECT value("-db ems2sor   -ld mgsor    -S 20006 -H 192.168.0.44 -N tcp").
+CONNECT value("-db ems5cad   -ld emscad   -S 20007 -H 192.168.0.44 -N tcp").
+CONNECT value("-db ems5mov   -ld emsmov   -S 20008 -H 192.168.0.44 -N tcp").
+CONNECT value("-db emsdev    -ld emsdev   -S 20009 -H 192.168.0.44 -N tcp").
+CONNECT value("-db emsfnd    -ld emsfnd   -S 20010 -H 192.168.0.44 -N tcp").
+CONNECT value("-db emsinc    -ld emsinc   -S 20011 -H 192.168.0.44 -N tcp").
+CONNECT value("-db espec     -ld espec    -S 20012 -H 192.168.0.44 -N tcp").
+CONNECT value("-db finance   -ld finance  -S 20013 -H 192.168.0.44 -N tcp").  
+CONNECT value("-db hcm       -ld hcm      -S 20014 -H 192.168.0.44 -N tcp"). 
+CONNECT value("-db mdtcrm    -ld mdtcrm   -S 20015 -H 192.168.0.44 -N tcp").   
+CONNECT value("-db mdtfrw    -ld mdtfrw   -S 20016 -H 192.168.0.44 -N tcp").   
+CONNECT value("-db neogrid   -ld neogrid  -S 20017 -H 192.168.0.44 -N tcp").  
+CONNECT value("-db payroll   -ld payroll  -S 20018 -H 192.168.0.44 -N tcp").  
+CONNECT value("-db srcadger  -ld srcadger -S 20019 -H 192.168.0.44 -N tcp"). 
+CONNECT value("-db srmovfin  -ld srmovfin -S 20020 -H 192.168.0.44 -N tcp"). 
+CONNECT value("-db mdmerge   -ld mdmerge  -S 20021 -H 192.168.0.44 -N tcp").  
+CONNECT value("-db ems2ima   -ld mgcad    -S 20030 -H 192.168.0.44 -N tcp").    
+CONNECT value("-db ems2ima   -ld mgmov    -S 20030 -H 192.168.0.44 -N tcp").
+

@@ -1,0 +1,5 @@
+/* Include: es009.fv1
+** Tabela.: defeito
+*/
+
+can-find(epec.tipo-def of espec.defeito)

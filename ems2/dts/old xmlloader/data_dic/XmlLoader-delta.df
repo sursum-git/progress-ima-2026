@@ -1,0 +1,211 @@
+UPDATE FIELD "serie-docto" OF "dt-au-docum-est"
+  POSITION 3
+
+UPDATE FIELD "nro-docto" OF "dt-au-docum-est"
+  POSITION 4
+
+UPDATE FIELD "nat-operacao" OF "dt-au-docum-est"
+  POSITION 5
+
+UPDATE FIELD "dt-docto" OF "dt-au-docum-est"
+  POSITION 7
+
+UPDATE FIELD "dt-emissao" OF "dt-au-docum-est"
+  POSITION 8
+
+UPDATE FIELD "tipo-nat" OF "dt-au-docum-est"
+  POSITION 9
+
+UPDATE FIELD "log-xml" OF "dt-au-docum-est"
+  POSITION 10
+
+UPDATE FIELD "dt-xml" OF "dt-au-docum-est"
+  POSITION 11
+
+UPDATE FIELD "dt-sefaz" OF "dt-au-docum-est"
+  POSITION 12
+
+UPDATE FIELD "log-sefaz" OF "dt-au-docum-est"
+  POSITION 13
+
+UPDATE FIELD "ind-xml" OF "dt-au-docum-est"
+  POSITION 14
+
+UPDATE FIELD "ind-sefaz" OF "dt-au-docum-est"
+  POSITION 15
+
+UPDATE FIELD "ep-codigo" OF "dt-au-docum-est"
+  POSITION 16
+
+UPDATE FIELD "desc-oper" OF "dt-au-docum-est"
+  POSITION 17
+
+UPDATE FIELD "cod-emitente" OF "dt-au-docum-est"
+  POSITION 18
+
+UPDATE FIELD "cgc-emi" OF "dt-au-docum-est"
+  POSITION 19
+
+UPDATE FIELD "cod-estabel" OF "dt-au-docum-est"
+  POSITION 20
+
+ADD FIELD "dt-trans" OF "dt-docum-est" AS date
+  FORMAT "99/99/9999"
+  POSITION 56
+  INITIAL ?
+  LABEL "Dt Transacao"
+  COLUMN-LABEL "Dt Transacao"
+  ORDER 560
+  MAX-WIDTH 4
+
+UPDATE FIELD "pasta-erros" OF "dt-empresa"
+  POSITION 8
+
+UPDATE FIELD "cgc" OF "dt-empresa"
+  POSITION 9
+
+UPDATE FIELD "inscr-estad" OF "dt-empresa"
+  POSITION 10
+
+UPDATE FIELD "cod-estabel" OF "dt-empresa"
+  POSITION 11
+
+UPDATE FIELD "pasta-entrada" OF "dt-empresa"
+  POSITION 12
+
+UPDATE FIELD "servidor-email" OF "dt-empresa"
+  POSITION 13
+
+UPDATE FIELD "e-mail-nfe" OF "dt-empresa"
+  POSITION 14
+
+UPDATE FIELD "cod-senha-email" OF "dt-empresa"
+  POSITION 15
+
+UPDATE FIELD "tipo-certificado" OF "dt-empresa"
+  POSITION 16
+
+UPDATE FIELD "cod-senha-certificado" OF "dt-empresa"
+  POSITION 17
+
+UPDATE FIELD "pasta-arq-config" OF "dt-empresa"
+  POSITION 18
+
+UPDATE FIELD "l-atualiza-receb" OF "dt-empresa"
+  POSITION 19
+
+UPDATE FIELD "ins-municipal" OF "dt-empresa"
+  POSITION 28
+
+UPDATE FIELD "cd-armazena" OF "dt-empresa"
+  POSITION 29
+
+UPDATE FIELD "pasta-armaz" OF "dt-empresa"
+  POSITION 30
+
+ADD FIELD "nro-comp" OF "dt-it-docum-est" AS character
+  FORMAT "x(16)"
+  POSITION 49
+  INITIAL ""
+  LABEL "Numero Comp"
+  COLUMN-LABEL "Num Comp"
+  ORDER 490
+  MAX-WIDTH 32
+
+ADD FIELD "serie-comp" OF "dt-it-docum-est" AS character
+  FORMAT "x(5)"
+  POSITION 50
+  INITIAL ""
+  LABEL "SÇrie"
+  COLUMN-LABEL "Ser Comp"
+  ORDER 500
+  MAX-WIDTH 10
+
+ADD FIELD "nat-comp" OF "dt-it-docum-est" AS character
+  FORMAT "x(06)"
+  POSITION 51
+  INITIAL ""
+  HELP "Possui a natureza do documento de origem"
+  LABEL "Natureza Complementar"
+  COLUMN-LABEL "Nat Comp"
+  ORDER 510
+  MAX-WIDTH 12
+
+ADD FIELD "seq-comp" OF "dt-it-docum-est" AS integer
+  FORMAT ">>>>9"
+  POSITION 52
+  INITIAL "0"
+  HELP "SeqÅància Complementar"
+  LABEL "Seq Complem"
+  COLUMN-LABEL "Seq Comp"
+  ORDER 520
+  MAX-WIDTH 4
+
+ADD INDEX "componente" ON "dt-it-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "serie-comp" ASCENDING
+  INDEX-FIELD "nro-comp" ASCENDING
+  INDEX-FIELD "nat-comp" ASCENDING
+  INDEX-FIELD "seq-comp" ASCENDING
+  INDEX-FIELD "it-codigo" ASCENDING
+
+UPDATE FIELD "serie-docto" OF "dt-xml-docum-est"
+  POSITION 3
+
+UPDATE FIELD "nro-docto" OF "dt-xml-docum-est"
+  POSITION 4
+
+UPDATE FIELD "nat-operacao" OF "dt-xml-docum-est"
+  POSITION 5
+
+UPDATE FIELD "dt-docto" OF "dt-xml-docum-est"
+  POSITION 7
+
+UPDATE FIELD "dt-emissao" OF "dt-xml-docum-est"
+  POSITION 8
+
+UPDATE FIELD "tipo-nat" OF "dt-xml-docum-est"
+  POSITION 9
+
+UPDATE FIELD "log-xml" OF "dt-xml-docum-est"
+  POSITION 10
+
+UPDATE FIELD "dt-xml" OF "dt-xml-docum-est"
+  POSITION 11
+
+UPDATE FIELD "dt-sefaz" OF "dt-xml-docum-est"
+  POSITION 12
+
+UPDATE FIELD "log-sefaz" OF "dt-xml-docum-est"
+  POSITION 13
+
+UPDATE FIELD "ind-xml" OF "dt-xml-docum-est"
+  POSITION 14
+
+UPDATE FIELD "ind-sefaz" OF "dt-xml-docum-est"
+  POSITION 15
+
+UPDATE FIELD "ep-codigo" OF "dt-xml-docum-est"
+  POSITION 16
+
+UPDATE FIELD "arq-xml" OF "dt-xml-docum-est"
+  POSITION 17
+
+UPDATE FIELD "dt-rec" OF "dt-xml-docum-est"
+  POSITION 18
+
+UPDATE FIELD "cgc-emi" OF "dt-xml-docum-est"
+  POSITION 19
+
+UPDATE FIELD "chave-xml" OF "dt-xml-docum-est"
+  POSITION 20
+
+UPDATE FIELD "protocolo" OF "dt-xml-docum-est"
+  POSITION 21
+
+.
+PSC
+cpstream=ibm850
+.
+0000004476

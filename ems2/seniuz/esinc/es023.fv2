@@ -1,0 +1,5 @@
+/* Include: es023.fv2
+** Tabela.: mov-mec
+*/
+
+can-find(espec.serv-mec where espec.serv-mec.codigo = espec.mov-mec.cod-serv)

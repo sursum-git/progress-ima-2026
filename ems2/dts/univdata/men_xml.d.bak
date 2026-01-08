@@ -1,0 +1,697 @@
+[Header:XMLMenu M¢dulo - XML Loader   Data Geraá∆o21/06/2019]
+[Table="grp_usuar"]
+[Dados]*Todos os Usu†rios11yesyes??nono0000
+[Dados]supsup22yesyes??nono0000
+[Dados]sopCustomizador33yesyes??nono0000
+[Dados]FCUCliente Financeiro41yesyes??nono0000
+[Dados]FVEFornecedor Financeiro51yesyes??nono0000
+[Dados]REPRepresentante de Vendas61yesyes??nono0000
+[Dados]IMPPlanejador de Manutená∆o Ind.71yesyes??nono0000
+[Dados]IMAAprovador de Manutená∆o Ind.81yesyes??nono0000
+[Dados]IMCCliente de Manutená∆o Industrial91yesyes??nono0000
+[Dados]CSTAnalista de Custo101yesyes??nono0000
+[Dados]CLICliente de Compras111yesyes??nono0000
+[Dados]PLAPlanejador de Produá∆o121yesyes??nono0000
+[Dados]ENGEngenheiro de Produto131yesyes??nono0000
+[Dados]PRRRequisitante de Compras141yesyes??nono0000
+[Dados]CANAnalista de Contrato151yesyes??nono0000
+[Dados]CTPParte Contratante161yesyes??nono0000
+[Dados]FAUAuditor de Arquivos171yesyes??nono0000
+[Dados]FOPOperador de Arquivos181yesyes??nono0000
+[Dados]SLMVendedor191yesyes??nono0000
+[Dados]WKEAlmoxarife201yesyes??nono0000
+[Dados]COOCoordenador211yesyes??nono0000
+[Dados]QSQFuncion†rio221yesyes??nono0000
+[Dados]HRRH231yesyes??nono0000
+[Dados]FANAnalista Financeiro241yesyes??nono0000
+[Dados]FMGGerente Financeiro251yesyes??nono0000
+[Dados]IVRRequisitante de Estoque261yesyes??nono0000
+[Dados]pmiGerente de Produá∆o271yesyes??nono0000
+[Dados]imtTÇcnico de Manutená∆o Industrial281yesyes??nono0000
+[Dados]immGerente de Manutená∆o Industrial291yesyes??nono0000
+[Dados]imeEngenheiro de Manutená∆o Ind.301yesyes??nono0000
+[Dados]SFTSeparador Faturamento311yesyes??nono0000
+[Dados]MFTFaturista321yesyes??nono0000
+[Dados]PFTPreparador Faturamento331yesyes??nono0000
+[Dados]SASAssistente de Vendas341yesyes??nono0000
+[Dados]RASAssistente de Cadastro351yesyes??nono0000
+[Dados]PRSAtendimento ao Prestador361yesyes??nono0000
+[Dados]CRAAnalista de CrÇdito371yesyes??nono0000
+[Dados]APDAnalista de Pedido Vendas381yesyes??nono0000
+[Dados]CLVCliente Pedido391yesyes??nono0000
+[Dados]IPDImplantador de Pedido de Vendas401yesyes??nono0000
+[Dados]IBBComprador Interno411yesyes??nono0000
+[Dados]MADAdministrador de Materiais421yesyes??nono0000
+[Dados]IVDDigitador de Invent†rio431yesyes??nono0000
+[Dados]QANAnalista de Qualidade441yesyes??nono0000
+[Dados]HDCCoordenador de SAC451yesyes??nono0000
+[Dados]BOCCoordenador de Back-Office461yesyes??nono0000
+[Dados]HDSSupervisor de SAC471yesyes??nono0000
+[Dados]BOSSupervisor de Back-Office481yesyes??nono0000
+[Dados]HDAAtendente de SAC491yesyes??nono0000
+[Dados]BOAAtendente de Back-Office501yesyes??nono0000
+[Dados]CSAAnalista Satisfaá∆o do Cliente511yesyes??nono0000
+[Dados]CROOperador de Caixa521yesyes??nono0000
+[Dados]TAXAnalista Fiscal531yesyes??nono0000
+[Dados]MERAnalista Comercial541yesyes??nono0000
+[Dados]STOAnalista de Armazenagem551yesyes??nono0000
+[Dados]IANAnalista de Importaá∆o561yesyes??nono0000
+[Dados]AMKAgente de Marketing571yesyes??nono0000
+[Dados]AATAgente de Atendimento581yesyes??nono0000
+[Dados]GCMGestor Comercial591yesyes??nono0000
+[Dados]GCQGerente de Qualidade601yesyes??nono0000
+[Dados]APAAnalista de Contas a Pagar611yesyes??nono0000
+[Dados]AAMALESSANDRA ALMEIDA MAGALHAES621nono??nono0000
+[Dados]AAVALISON ALEXANDRE VALE631nono??nono0000
+[Dados]AHSALBERT HORTA SILVA641nono??nono0000
+[Dados]AJSAMAURY JOSê DE SOUZA JUNIOR651nono??nono0000
+[Dados]ALSANDRE LUIZ DA SILVA661nono??nono0000
+[Dados]APPANA PAULA DE SOUZA PAULA671nono??nono0000
+[Dados]AU1AUDIT ENVIO EMAIL ITENS681nono??nono0000
+[Dados]BCSBARBARA CARVALHO SANTOS691nono??nono0000
+[Dados]BFJBERNARDO FERREIRA JUNQUEIRA701nono??nono0000
+[Dados]BMFBRUNO MURADAS FERNAL711nono??nono0000
+[Dados]CBNCESAR BRANDAO DE SOUZA NARCISO721nono??nono0000
+[Dados]CMSCLAUDIA MIRANDA DE SOUZA731nono??nono0000
+[Dados]COMcom741nono??nono0000
+[Dados]CQPCONTROLE QUALIDADE PRODUTO751nono??nono0000
+[Dados]CRPCLEITON RAMOS PEREIRA761nono??nono0000
+[Dados]CUSCUSTOS771nono??nono0000
+[Dados]DASDELIENER ABREU E SILVA781nono??nono0000
+[Dados]DIRDIRETORIA791nono??nono0000
+[Dados]DTSCONSULTORIA DATASUL801nono??nono0000
+[Dados]EASEMANUELLE ALVES SILVA811nono??nono0000
+[Dados]ELHEDUARDO LUIS HONORIO821nono??nono0000
+[Dados]ERAEMERSON ROBERTO ALVARES831nono??nono0000
+[Dados]ERSEZEQUIEL ROSA DA SILVA841nono??nono0000
+[Dados]ESTESTOQUE851nono??nono0000
+[Dados]EXCExcess∆o do TimeOut861nono??nono0000
+[Dados]FE2FERRAMENTARIA ROTINAS871nono??nono0000
+[Dados]FERFERRAMENTARIA881nono??nono0000
+[Dados]FHLFERNANDO HORTA LATINI891nono??nono0000
+[Dados]FLGFRANCIS LENEN GOMES901nono??nono0000
+[Dados]FRSFABRICIA REZENDE MOREIRA SACRAME911nono??nono0000
+[Dados]GECGABRIEL EVANGELISTA DE CASTRO921nono??nono0000
+[Dados]GVBGILMARA GRAZIANA VILAS BOAS931nono??nono0000
+[Dados]INVINVENTARIO941nono??nono0000
+[Dados]JASJEAN CARLOS ALVES DE SOUZA951nono??nono0000
+[Dados]LBSLEANDRO BASTISTA SILVA961nono??nono0000
+[Dados]LCRLETICIA CHAVES SANTIAGO REHFELD971nono??nono0000
+[Dados]LFCLIGIA FLAVIA CUSTODIA CABRAL981nono??nono0000
+[Dados]LPJLUIZ PAULO JUNQUEIRA991nono??nono0000
+[Dados]LRSLOURENÄO RODRIGUES DA SILVA1001nono??nono0000
+[Dados]MABMARILSA APARECIDA BENTO1011nono??nono0000
+[Dados]MJFMARINA JUNQUEIRA GOMES FERNAL1021nono??nono0000
+[Dados]MPGMILTON PIMENTEL GOMES1031nono??nono0000
+[Dados]NLSNEILOR LUCAS DA SILVA1041nono??nono0000
+[Dados]PFEPROCESSO FECHAMENTO DE ESTOQUE1051nono??nono0000
+[Dados]RCFREGIANE CONCEICAO FELIX1061nono??nono0000
+[Dados]RECRECEBIMENTO CONTABIL1071nono??nono0000
+[Dados]REFRECEBIMENTO FISICO1081nono??nono0000
+[Dados]ROTROGERIO OTONI TAVEIRA1091nono??nono0000
+[Dados]RPWUSUARIO PARA ATIVAÄ«O DO RPW1101nono??nono0000
+[Dados]RRGRONALDO RIBEIRO GOMES1111nono??nono0000
+[Dados]RRORONAM RIBEIRO GOMES1121nono??nono0000
+[Dados]SBDSILVIA BASTOS DUTRA1131nono??nono0000
+[Dados]SCCSOLICITACAO DE COMPRAS1141nono??nono0000
+[Dados]SMMSUSANA MORGADO1151nono??nono0000
+[Dados]TELTESTE ELETRICO1161nono??nono0000
+[Dados]VCOVALCI CASTRO OLIVEIRA1171nono??nono0000
+[Dados]VMFVICTOR MARTINS FRANKLIN1181nono??nono0000
+[Dados]WCCWALDER DE CASTRO DO CARMO1191nono??nono0000
+[Dados]WVRWAGNA VERLAINE ROSA1201nono??nono0000
+[Dados]MIBMARIA ISABEL PINTO1211nono????0000
+[Dados]TITECNOLOGIA DA INFORMACAO1221yesno????0000
+[Dados]admAdministradores1231nono??nono0000
+[Dados]BESBarbara Emanuelle de C Santos1241nono??nono0000
+[Dados]HRSHORAS PRODUCAO1251nono??nono0000
+[Dados]JCSJean Carlos Alves Souza1261nono??nono0000
+[Dados]masMarilsa Aparecida Bento1271nono??nono0000
+[Dados]mgfMarina Gomes Junqueira Fernal1281nono??nono0000
+[Dados]tecTecnologia1291nono??nono0000
+[Dados]GSTGerenciador Metadados1301yesyes??nono0000
+[Dados]tmoTimeout1311nono??nono0000
+[Dados]EXAAnalista de Exportaá∆o1320yesyes??nono0000
+[Dados]MDTMÇdico Auditor1330yesyes??nono0000
+[Dados]CEPManutená∆o de CEP1341yesyes??nono0000
+[Table="produt_dtsul"]
+[Dados]DT_EMS2Datasul-EMS 2.00Datasul-EMS11??nono0000
+[Table="grp_aplicat_dtsul"]
+[Dados]LOGLog°sticaLog°stica3130??nono0000
+[Table="aplicat_dtsul"]
+[Dados]MATMateriaisLOGDT_EMS211yesyesMateriais1600??nono0000
+[Table="sist_dtsul"]
+[Dados]MTCControle de MateriaisMATyesyesCont. Materiais100??nono0000
+[Table="modul_dtsul"]
+[Dados]XMLXML LoaderMTC21/06/19?195noyesXML Loader00001BJDGòGMJMòLSSM??nono0000
+[Table="procedimento"]
+[Dados]DTS0917Transferància de Arquivo XML Loader x LocalXMLdts09171noyesTransferància de Arquivo XML Loa 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="procedimento"]
+[Dados]dts0927Download e-mail Loader (BATCH)XMLdts09271noyesDownload e-mail Loader (BATCH) 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0927Download e-mail Loader (BATCH)dts0927??-1358621950117nonononononono nonoyesnoDownload e-mail Loader (BATCH)dtp/dts0927.wDownload e-mail Loader (BATCH)001DEBDòJòNRQ??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0927*1624991358620nono??nono0000
+[Dados]dts0927sup1625002358620nono??nono0000
+[Table="procedimento"]
+[Dados]dts0921Emissor DANFEXMLdts09211noyesEmissor DANFE 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0921Emissor DANFEdts0921??-1358631950117nonononononono nonoyesnoEmissor DANFEdtp/dts0921.wEmissor DANFE001CDCGòMòLOPQ??nono000031
+[Table="prog_dtsul_segur"]
+[Dados]dts0921*1625011358630nono??nono0000
+[Dados]dts0921sup1625022358630nono??nono0000
+[Table="procedimento"]
+[Dados]dts0919Importaá∆o de Arquivos BATCHXMLdts09191noyesImportaá∆o de Arquivos BATCH 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0919Importaá∆o de Arquivos BATCHdts0919??0358601950126nonononononono nonoyesnoImportaá∆o de Arquivos BATCHdtp/dts0919.wImportaá∆o de Arquivos BATCH001BGDJòHFòMLRTˇ500BGGJòGòK??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]dts0919*1624951358600nono??nono0000
+[Dados]dts0919sup1624962358600nono??nono0000
+[Table="procedimento"]
+[Dados]Z01DTS0912SPesquisa Item Devoluá∆oXMLz01dts0912s1nonoPesquisa Item Devoluá∆o 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="procedimento"]
+[Dados]DTS0900Geraá∆o de Arquivo de Configuraá∆oXMLdts09001noyesGeraá∆o de Arquivo de Configuraá 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]DTS0900Geraá∆o de Arquivo de Configuraá∆odts0900??0358611950126nonononononono nonoyesnoGeraá∆o de Arquivo de Configuraá∆odtp/dts0900.wGeraá∆o de Arquivo de Configuraá∆o001BJDGòIKòLSQT??nono000021
+[Table="prog_dtsul_segur"]
+[Dados]DTS0900*1624971358610nono??nono0000
+[Dados]DTS0900sup1624982358610nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0909Relaá∆o de XML's arquivadosXMLdts09091noyesRelaá∆o de XML's arquivados 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0909Relaá∆o de XML's arquivadosdts0909??0358191950117nonononononono nonoyesnoRelaá∆o de XML's arquivadosdtp/dts0909.wRelaá∆o de XML's arquivados001BGEDòMòLSKM??nono110031
+[Table="prog_dtsul_segur"]
+[Dados]dts0909*1624131358190nono??nono0000
+[Dados]dts0909sup1624142358190nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0910Exporta Documentos XMLXMLdts09101noyesExporta Documentos XML 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0910Exporta Documentos XMLdts0910??0358201950117nonononononono nonoyesnoExporta Documentos XMLdtp/dts0910.wExporta Documentos XML00500BHCGòGòKˇ1BHCHòIGòLTNP??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]dts0910*1624151358200nono??nono0000
+[Dados]dts0910sup1624162358200nono??nono0000
+[Table="procedimento"]
+[Dados]Z01XML0912SPesquisa Item Devoluá∆oXMLz01XML0912s1nonoPesquisa Item Devoluá∆o 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="procedimento"]
+[Dados]DTS0911Consulta Documentos XMLXMLdts09111noyesConsulta Documentos XML 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0911Consulta Documentos XMLdts0911??0358211950115nonononononono nonoyesnoConsulta Documentos XMLdtp/dts0911.wConsulta Documentos XML001BGCCòGFMòMLQR??nono110011
+[Table="prog_dtsul_segur"]
+[Dados]dts0911*1624171358210nono??nono0000
+[Dados]dts0911sup1624182358210nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0911aNarrativa do Itemdts0911??0358241950119nonononononono nonononoNarrativa do Itemdtp/dts0911a.wNarrativa do Item00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0911a*1624231358240nono??nono0000
+[Dados]dts0911asup1624242358240nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0911cLote/Referància Itemdts0911??-1358251950119nonononononono nonononoLote/Referància Itemdtp/dts0911c.wLote/Referància Item00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0911c*1624251358250nono??nono0000
+[Dados]dts0911csup1624262358250nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0911dDetalhedts0911??-1358271950119nonononononono nonononoDetalhedtp/dts0911d.wDetalhe00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0911d*1624291358270nono??nono0000
+[Dados]dts0911dsup1624302358270nono??nono0000
+[Table="prog_dtsul"]
+[Dados]g01dt0911V† para Documentodts0911??-1358221950118nonononononono nonononoV† para Documentodtgo/g01dt0911.wV† para Documento00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]g01dt0911*1624191358220nono??nono0000
+[Dados]g01dt0911sup1624202358220nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dt0911Pesquisa Documentodts0911??-1358231950113nonononononono nonononoPesquisa Documentodtzoom/z01dt0911.wPesquisa Documento00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]z01dt0911*1624211358230nono??nono0000
+[Dados]z01dt0911sup1624222358230nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0911bInformaá‰es Adicionais Itemdts0911??-1358261950119nonononononono nonononoInformaá‰es Adicionais Itemdtp/dts0911b.wInformaá‰es Adicionais Item00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0911b*1624271358260nono??nono0000
+[Dados]dts0911bsup1624282358260nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0905Conciliaá∆o XML X RecebimentoXMLdts09051noyesXML-Conciliaá∆o XML X Recebiment 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0905Conciliaá∆o XML X Recebimentodts0905??0358151950117nonononononono nonoyesnoConciliaá∆o XML X Recebimentodtp/dts0905.wConciliaá∆o XML X Recebimento001BHCHòMòMKOS??nono110031
+[Table="prog_dtsul_segur"]
+[Dados]dts0905*1624051358150nono??nono0000
+[Dados]dts0905sup1624062358150nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0906Conciliaá∆o XML X Obrig FiscaisXMLdts09061noyesConciliaá∆o XML X Obrig Fiscais 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0906Conciliaá∆o XML X Obrig Fiscaisdts0906??0358161950117nonononononono nonoyesnoConciliaá∆o XML X Obrig Fiscaisdtp/dts0906.wConciliaá∆o XML X Obrig Fiscais001BHCHòJòSTP??nono110031
+[Table="prog_dtsul_segur"]
+[Dados]dts0906*1624071358160nono??nono0000
+[Dados]dts0906sup1624082358160nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0907Relaá∆o de DANFES em atrasoXMLdts09071noyesRelaá∆o de DANFES em atraso 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0907Relaá∆o de DANFES em atrasodts0907??0358171950117nonononononono nonoyesnoRelaá∆o de DANFES em atrasodtp/dts0907.wRelaá∆o de DANFES em atraso001BHCHòIòMKQM??nono110031
+[Table="prog_dtsul_segur"]
+[Dados]dts0907*1624091358170nono??nono0000
+[Dados]dts0907sup1624102358170nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0908Estat°sticas XMLXMLdts09081noyesEstat°sticas XML 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0908Estat°sticas XMLdts0908??0358181950117nonononononono nonoyesnoEstat°sticas XMLdtp/dts0908.wEstat°sticas XML001BGEDòJòTRT??nono110031
+[Table="prog_dtsul_segur"]
+[Dados]dts0908*1624111358180nono??nono0000
+[Dados]dts0908sup1624122358180nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0914ParÉmetros Usu†rio XML LoaderXMLdts09141noyesParÉmetros Usu†rio XML Loader 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]g01dt0914V† para Usu†riodts0914??-1358111950118nonononononono nonononoV† para Usu†riodtgo/g01dt0914.wV† para Usu†rio00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]g01dt0914*1623971358110nono??nono0000
+[Dados]g01dt0914sup1623982358110nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dt0914Pesquisa Usu†riodts0914??-1358121950113nonononononono nonononoPesquisa Usu†riodtzoom/z01dt0914.wPesquisa Usu†rio00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]z01dt0914*1623991358120nono??nono0000
+[Dados]z01dt0914sup1624002358120nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0914ParÉmetros Usu†rio XML Loaderdts0914??-135813195012nonononononono nonoyesnoParÉmetros Usu†rio XML Loaderdtp/dts0914.wParÉmetros Usu†rio XML Loader001BGCAòKHòMLSNˇ500BGCAòMòLKQ??nono110021
+[Table="prog_dtsul_segur"]
+[Dados]dts0914*1624011358130nono??nono0000
+[Dados]dts0914sup1624022358130nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0904Importaá∆o Documento XMLXMLdts09041noyesImportaá∆o Documento XML 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]DTS0904Importaá∆o Documento XMLdts0904??0358141950126nonononononono nonoyesnoImportaá∆o Documento XMLdtp/dts0904.wImportaá∆o Documento XML001BGEDòGOòLRQSˇ500BGGBòGòK??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]DTS0904*1624031358140nono??nono0000
+[Dados]DTS0904sup1624042358140nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0926Manutená∆o Cidades NFS-eXMLdts09261noyesManutená∆o Cidades NFS-e 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0926Manutená∆o Cidades NFS-edts0926??-135864195012nonononononono nonoyesnoManutená∆o Cidades NFS-edtp/dts0926.wManutená∆o Cidades NFS-e001CGBCòKJòLLRK??nono000021
+[Table="prog_dtsul_segur"]
+[Dados]dts0926*1625031358640nono??nono0000
+[Dados]dts0926sup1625042358640nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dt0926Pesquisa Cidade NFS-edts0926??-1358651950113nonononononono nonononoPesquisa Cidade NFS-edtzoom/z01dt0926.wPesquisa Cidade NFS-e00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]z01dt0926*1625051358650nono??nono0000
+[Dados]z01dt0926sup1625062358650nono??nono0000
+[Table="prog_dtsul"]
+[Dados]g01dt0926V† Para Cidade NFS-edts0926??-1358661950118nonononononono nonononoV† Para Cidade NFS-edtgo/g01dt0926.wV† Para Cidade NFS-e00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]g01dt0926*1625071358660nono??nono0000
+[Dados]g01dt0926sup1625082358660nono??nono0000
+[Table="procedimento"]
+[Dados]dts0923Consulta Disponibilidade SEFAZxmldts09233noyesConsulta Disponibilidade SEFAZ 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0923Consulta Disponibilidade SEFAZdts0923??-1358701950121nonononononono nonoyesnoConsulta Disponibilidade SEFAZdtp/dts0923.wConsulta Disponibilidade SEFAZ001CEDDòHKòLNOT??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0923*1625151358700nono??nono0000
+[Dados]dts0923sup1625162358700nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0918LOG Importaá∆o XML LoaderXMLdts09181noyesLOG Importaá∆o XML Loader 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0918aDetalhe Situaá∆o Arquivodts0918??0358571950119nonononononono nonononoDetalhe Situaá∆o Arquivodtp/dts0918a.wDetalhe Situaá∆o Arquivo00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0918a*1624891358570nono??nono0000
+[Dados]dts0918asup1624902358570nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0918eDetalhe LOG NFS-edts0918??-1358581950119nonononononono nonononoDetalhe LOG NFS-edtp/dts0918e.wDetalhe LOG NFS-e00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0918e*1624911358580nono??nono0000
+[Dados]dts0918esup1624922358580nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0918bDetalhe LOG XML Loaderdts0918??-1358591950119nonononononono nonononoDetalhe LOG XML Loaderdtp/dts0918b.wDetalhe LOG XML Loader00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0918b*1624931358590nono??nono0000
+[Dados]dts0918bsup1624942358590nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0918LOG Importaá∆o XML Loaderdts0918??0358561950121nonononononono nonoyesnoLOG Importaá∆o XML Loaderdtp/dts0918.wLOG Importaá∆o XML Loader001BGECòMNòMLROˇ500BGEGòIòK??nono110011
+[Table="prog_dtsul_segur"]
+[Dados]dts0918*1624871358560nono??nono0000
+[Dados]dts0918sup1624882358560nono??nono0000
+[Table="procedimento"]
+[Dados]dts0933Habilitaá∆o de Funá∆o XML Loaderxmldts09331noyesHabilitaá∆o de Funá∆o XML Loader 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0933Habilitaá∆o de Funá∆o XML Loaderdts0933??-1358741950117nonononononono nonoyesnoHabilitaá∆o de Funá∆o XML Loaderdtp\dts0933.wHabilitaá∆o de Funá∆o XML Loader001CIFIòGòK??nono000021
+[Table="prog_dtsul_segur"]
+[Dados]dts0933*1625231358740nono??nono0000
+[Dados]dts0933sup1625242358740nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0912Carga de Arquivos XMLXMLdts09121noyesCarga de Arquivos XML 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0912sRateio de Devoluá∆o de Itemdts0912??035841195011nonononononono nonononoRateio de Devoluá∆o de Itemdtp/dts0912s.wRateio de Devoluá∆o de Item001BJDFòIòK??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912s*1624571358410nono??nono0000
+[Dados]dts0912ssup1624582358410nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dts0912sPesquisa Item Devoluá∆odts0912??0358421950113nonononononono nonononoPesquisa Item Devoluá∆odtzoom/z01dts0912s.wPesquisa Item Devoluá∆o00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]z01dts0912s*1624591358420nono??nono0000
+[Dados]z01dts0912ssup1624602358420nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912bImportaá∆o NF-edts0912??-1358431950127nonononononono nonononoImportaá∆o NF-edtp/dts0912b.pImportaá∆o NF-e
+
+PARDINI- hpepc\hpdts0912b-epc.p00??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0912b*1624611358430nono??nono0000
+[Dados]dts0912bsup1624622358430nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912wDownload NFS-e Municipiosdts0912??-1358441950120nonononononono nonononoDownload NFS-e Municipiosdtp/dts0912w.wDownload NFS-e Municipios00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912w*1624631358440nono??nono0000
+[Dados]dts0912wsup1624642358440nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912hInformar Rateio de Lotesdts0912??-1358501950119nonononononono nonononoInformar Rateio de Lotesdtp/dts0912h.wInformar Rateio de Lotes00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912h*1624751358500nono??nono0000
+[Dados]dts0912hsup1624762358500nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912tRateio Referànciadts0912??-135851195011nonononononono nonononoRateio Referànciadtp/dts0912t.wRateio Referància00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912t*1624771358510nono??nono0000
+[Dados]dts0912tsup1624782358510nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912vNotas Destinadasdts0912??-1358521950120nonononononono nonononoNotas Destinadasdtp/dts0912v.wNotas Destinadas00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912v*1624791358520nono??nono0000
+[Dados]dts0912vsup1624802358520nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912verVers∆o XML Loaderdts0912??-1358531950119nonononononono nonononoVers∆o XML Loaderdtp/dts0912ver.wVers∆o XML Loader00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912ver*1624811358530nono??nono0000
+[Dados]dts0912versup1624822358530nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0925Devoluá∆o NF Faturamentodts0912??-1358541950120nonononononono nonononoDevoluá∆o NF Faturamentodtp/dts0925.wDevoluá∆o NF Faturamento00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0925*1624831358540nono??nono0000
+[Dados]dts0925sup1624842358540nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912o1Rateio de Ordem de Compra NFS-edts0912??-1358551950120nonononononono nonononoRateio de Ordem de Compra NFS-edtp/dts0912o1.wRateio de Ordem de Compra NFS-e00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912o1*1624851358550nono??nono0000
+[Dados]dts0912o1sup1624862358550nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912vaFiltrar Documentosdts0912??-1358451950120nonononononono nonononoFiltrar Documentosdtp/dts0912va.wFiltrar Documentos00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912va*1624651358450nono??nono0000
+[Dados]dts0912vasup1624662358450nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912kRateio CTedts0912??-1358461950120nonononononono nonononoRateio CTedtp/dts0912k.wRateio CTe00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912k*1624671358460nono??nono0000
+[Dados]dts0912ksup1624682358460nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912rGera Itens Devol Simb¢lica Estruturadts0912??-1358471950120nonononononono nonononoGera Itens Devol Simb¢lica Estruturadtp/dts0912r.wGera Itens de Devoluá∆o Simb¢lica pela Estrutura00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912r*1624691358470nono??nono0000
+[Dados]dts0912rsup1624702358470nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912vbEventos Documentodts0912??-1358481950120nonononononono nonononoEventos Documentodtp/dts0912vb.wEventos Documento00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912vb*1624711358480nono??nono0000
+[Dados]dts0912vbsup1624722358480nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912a2Cancela Documentodts0912??-1358491950119nonononononono nonononoCancela Documentodtp/dts0912a2.wCancela Documento00??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0912a2*1624731358490nono??nono0000
+[Dados]dts0912a2sup1624742358490nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912Carga de Arquivos XMLdts0912??-1358361950121nonononononono nonoyesnoCarga de Arquivos XMLdtp/dts0912.wCarga de Arquivos XML
+dtupc\upc-dts0912.p001BGCCòGGNJòMLTQˇ500BGDGòIIòLKS??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]dts0912*1624471358360nono??nono0000
+[Dados]dts0912sup1624482358360nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912aFiltro Documentosdts0912??0358371950120nonononononono nonononoFiltro Documentosdtp/dts0912a.wFiltro Documentos00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0912a*1624491358370nono??nono0000
+[Dados]dts0912asup1624502358370nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dts0912uPesquisa Saldo Terceirosdts0912??0358381950113nonononononono nonononoPesquisa Saldo Terceirosdtzoom/z01dts0912u.wPesquisa Saldo Terceiros00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]z01dts0912u*1624511358380nono??nono0000
+[Dados]z01dts0912usup1624522358380nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912uRateio de Retorno Beneficiamentodts0912??035839195011nonononononono nonononoRateio de Retorno Beneficiamentodtp/dts0912u.wRateio de Retorno Beneficiamento001BJDFòHòK??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912u*1624531358390nono??nono0000
+[Dados]dts0912usup1624542358390nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912a1V† Para Chave Documentodts0912??0358401950119nonononononono nonononoV† Para Chave Documentodtp/dts0912a1.wV† Para Chave Documento00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912a1*1624551358400nono??nono0000
+[Dados]dts0912a1sup1624562358400nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912lNota Original para Devoluá∆odts0912??0358341950120nonononononono nonononoNota Original para Devoluá∆odtp/dts0912l.wNota Original para Devoluá∆o00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0912l*1624431358340nono??nono0000
+[Dados]dts0912lsup1624442358340nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912dParÉmetros Eliminardts0912??0358281950120nonononononono nonononoParÉmetros Eliminardtp/dts0912d.wParÉmetros Eliminar00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0912d*1624311358280nono??nono0000
+[Dados]dts0912dsup1624322358280nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912mItens para Devoluá∆odts0912??-1358331950119nonononononono nonononoItens para Devoluá∆odtp/dts0912m.wItens para Devoluá∆o
+
+dtsupc\dtsindt0912m-upc.p00??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]dts0912m*1624411358330nono??nono0000
+[Dados]dts0912msup1624422358330nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0915Relacionamento Agregado X XMLdts0912??035829195011nonononononono nonoyesnoRelacionamento Agregado X XMLdtp/dts0915.wRelacionamento Agregado X XML00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0915*1624331358290nono??nono0000
+[Dados]dts0915sup1624342358290nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912jInformar Documento Agregadodts0912??0358301950119nonononononono nonononoInformar Documento Agregadodtp/dts0912j.wInformar Documento Agregado00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0912j*1624351358300nono??nono0000
+[Dados]dts0912jsup1624362358300nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912nRateio de Ordem de Produá∆odts0912??0358311950120nonononononono nonononoRateio de Ordem de Produá∆odtp/dts0912n.wRateio de Ordem de Produá∆o00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0912n*1624371358310nono??nono0000
+[Dados]dts0912nsup1624382358310nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912oRateio de Ordem de Compradts0912??0358321950120nonononononono nonononoRateio de Ordem de Compradtp/dts0912o.wRateio de Ordem de Compra00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]dts0912o*1624391358320nono??nono0000
+[Dados]dts0912osup1624402358320nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z02dt0912Pesquisa Ordem de Compradts0912??0358351950113nonononononono nonoyesnoPesquisa Ordem de Compradtzoom/z02dt0912.wPesquisa Ordem de Compra00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]z02dt0912*1624451358350nono??nono0000
+[Dados]z02dt0912sup1624462358350nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912cDetalhe Carga XMLdts0912??-1358791950120nonononononono nonononoDetalhe Carga XMLdtp/dts0912c.wDetalhe Carga XML
+
+XML INGLEZA - dtsupc\dtsindt0912c-upc.p 
+PARDINI  - hpepc\hpdts0912c-epc.p 
+ESTAMPARIA - upc\dts0912c-upc.p00??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]dts0912c*1625331358790nono??nono0000
+[Dados]dts0912csup1625342358790nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0912eImplantaá∆o de Documentodts0912??-1358801950127nonononononono nonononoDetalhe Carga XMLdtp/dts0912e.pImplantaá∆o de Documento XML Loader
+dtsupc/dtsindt0912e-upc.p
+PARDINI - hpepc\hpdts0912e-epc.p00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0912e*1625351358800nono??nono0000
+[Dados]dts0912esup1625362358800nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0903ParÉmetros XML LoaderXMLdts09031noyesParÉmetros XML Loader 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]g01dt0903V† Para Empresadts0903??-1358091950118nonononononono nonononoV† Para Empresadtgo/g01dt0903.wV† Para Empresa00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]g01dt0903*1623931358090nono??nono0000
+[Dados]g01dt0903sup1623942358090nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dt0903Pesquisa Empresadts0903??-1358101950113nonononononono nonononoPesquisa Empresadtzoom/z01dt0903.wPesquisa Empresa00??nono110001
+[Table="prog_dtsul_segur"]
+[Dados]z01dt0903*1623951358100nono??nono0000
+[Dados]z01dt0903sup1623962358100nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0903ParÉmetros XML Loaderdts0903??-135808195012nonononononono nonoyesnoParÉmetros XML Loaderdtp/dts0903.wParÉmetros XML Loader00500BGBJòMòMOˇ1BGBJòILOòMLTN??nono110021
+[Table="prog_dtsul_segur"]
+[Dados]dts0903*1623911358080nono??nono0000
+[Dados]dts0903sup1623922358080nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0936Arquivamento de Documentos j† Implantadosxmldts09361noyesArquiva Documentos Implantados 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0936Arquivamento de Documentos j† Implantadodts0936??-1358761950117nonononononono nonoyesnoArquivamento de Documentos j† Implantadodtp/dts0936.wArquivamento de Documentos j† Implantados001DBFBòJòL??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0936*1625271358760nono??nono0000
+[Dados]dts0936sup1625282358760nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0935Consulta NF Destinadas - SEFAZ (BATCH)xmldts09351noyesConsulta Destinada-SEFAZ (BATCH) 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0935Consulta NF Destinadas - SEFAZ (BATCH)dts0935??-1358751950117nonononononono nonoyesnoConsulta NF Destinadas - SEFAZ (BATCH)dtp/dts0935.wConsulta NF Destinadas - SEFAZ (BATCH)001DAGJòGMòNSO??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0935*1625251358750nono??nono0000
+[Dados]dts0935sup1625262358750nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0913Estat°stica de Implantaá∆o de DocumentosXMLdts09131noyesEstat°stica Implantaá∆o de Docum 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="procedimento"]
+[Dados]dts0931Relacionamento Grupo Estoq X Class Fiscalxmldts09313noyesRelacto Grupo Estoq X Class Fisc 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0931Relacto Grupo Estoq X Class Fiscdts0931??-135867195012nonononononono nonoyesnoRelacto Grupo Estoq X Class Fiscdtp\dts0931.wRelacto Grupo Estoq X Class Fisc001CGGBòNòLOL??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0931*1625091358670nono??nono0000
+[Dados]dts0931sup1625102358670nono??nono0000
+[Table="procedimento"]
+[Dados]dts0932Controle Pendàncias Cancelamentoxmldts09323noyesControle Pendàncias Cancelamento 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0932Controle Pendàncias Cancelamentodts0932??-1358681950121nonononononono nonoyesnoControle Pendàncias Cancelamentodtp\dts0932.wControle Pendàncias Cancelamento001CGGBòLòQR??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0932*1625111358680nono??nono0000
+[Dados]dts0932sup1625122358680nono??nono0000
+[Table="procedimento"]
+[Dados]dts0924Manutená∆o Natureza Op RelacionadaXMLdts09243noyesManutená∆o Natur Op Relacionada 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0924Manutená∆o Natureza Op Relacionadadts0924??-135871195012nonononononono nonoyesnoManutená∆o Natureza Op Relacionadadtp/dts0924.wManutená∆o Natureza Op Relacionada001CFADòNòLMRT??nono000021
+[Table="prog_dtsul_segur"]
+[Dados]dts0924*1625171358710nono??nono0000
+[Dados]dts0924sup1625182358710nono??nono0000
+[Table="prog_dtsul"]
+[Dados]z01dt0924Pesquisa Natureza Op Relacionadadts0924??-1358721950113nonononononono nonononoPesquisa Natureza Op Relacionadadtzoom/z01dt0924.wPesquisa Natureza Op Relacionada00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]z01dt0924*1625191358720nono??nono0000
+[Dados]z01dt0924sup1625202358720nono??nono0000
+[Table="prog_dtsul"]
+[Dados]g01dt0924V† Para Natureza Op Relacionadadts0924??-1358731950118nonononononono nonononoV† Para Natureza Op Relacionadadtgo/g01dt0924.wV† Para Natureza Op Relacionada00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]g01dt0924*1625211358730nono??nono0000
+[Dados]g01dt0924sup1625222358730nono??nono0000
+[Table="procedimento"]
+[Dados]dts0930Listagem Municipios NFS-e XML Loaderxmldts09303noyesLista Municipios NFS-e XML Loade 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0930Listagem Municipios NFS-e XML Loaderdts0930??-1358691950121nonononononono nonoyesnoListagem Municipios NFS-e XML Loaderdtp/dts0930.wListagem Municipios NFS-e XML Loader001CEAJòGJòTPM??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0930*1625131358690nono??nono0000
+[Dados]dts0930sup1625142358690nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0901Exporta Documentos FiscaisXMLdts09011noyesExporta Documentos Fiscais 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]DTS0901Exporta Documentos Fiscaisdts0901??0358051950126nonononononono nonoyesnoExporta Documentos Fiscaisdtp/dts0901.wExporta Documentos Fiscais00500BHCGòGòKˇ1BHCHòLòMKOS??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]DTS0901*1623851358050nono??nono0000
+[Dados]DTS0901sup1623862358050nono??nono0000
+[Table="prog_dtsul"]
+[Dados]DTS0913Estat°stica de Implantaá∆o de Documentosdts0901??-1358061950117nonononononono nonoyesnoEstat°stica de Implantaá∆o de Documentosdtp/dts0913.wEstat°stica de Implantaá∆o de Documentos001CDAAòHGòLORP??nono000031
+[Table="prog_dtsul_segur"]
+[Dados]DTS0913*1623871358060nono??nono0000
+[Dados]DTS0913sup1623882358060nono??nono0000
+[Table="procedimento"]
+[Dados]dts0937Atualizaá∆o ParÉmetros XML Loader em LotexmlDTS09371noyesAtualizaá∆o ParÉmetros XML Loade 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0937Atualizaá∆o ParÉmetros XML Loaderdts0937??-1358771950121nonononononono nonoyesnoAtualizaá∆o ParÉmetros XML Loaderdtp/dts0937.wAtualizaá∆o ParÉmetros XML Loader em Lote001DFJEòGòK??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0937*1625291358770nono??nono0000
+[Dados]dts0937sup1625302358770nono??nono0000
+[Table="procedimento"]
+[Dados]DTS0902Importa Documentos FiscaisXMLdts09021noyesImporta Documentos Fiscais 0??nono1000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0902Importa Documentos Fiscaisdts0902??0358071950126nonononononono nonoyesnoImporta Documentos Fiscaisdtp/dts0902.wImporta Documentos Fiscais001BGGBòOòTQL??nono110041
+[Table="prog_dtsul_segur"]
+[Dados]dts0902*1623891358070nono??nono0000
+[Dados]dts0902sup1623902358070nono??nono0000
+[Table="procedimento"]
+[Dados]dts0934Relaá∆o Grupo Estoq para alteraá∆o NCMxml1noyesRelaá∆o GE altera NCM 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0934Relaá∆o Grupo Estoq para alteraá∆o NCMdts0934??-135878195011nonononononono nonoyesnoRelaá∆o Grupo Estoq para alteraá∆o NCMdtp/dts0934.wRelaá∆o Grupo Estoq para alteraá∆o NCM001DGHJòHòR??nono000021
+[Table="prog_dtsul_segur"]
+[Dados]dts0934*1625311358780nono??nono0000
+[Dados]dts0934sup1625322358780nono??nono0000
+[Table="procedimento"]
+[Dados]dts0938Cadastro Eventos XML LoaderXMLdts09381noyesCadastro Eventos XML Loader 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0938Cadastro Eventos XML Loaderdts0938??-135882195012nonononononono nonoyesnoCadastro Eventos XML Loaderdtp/dts0938.rCadastro Eventos XML Loader00??nono000021
+[Table="prog_dtsul_segur"]
+[Dados]dts0938*1625381358820nono??nono0000
+[Table="prog_dtsul"]
+[Dados]dts0938aExporta Eventos XML Loaderdts0938??-1358851950120nonononononono nonoyesnoExporta Eventos XML Loaderdtp/dts0938a.rExporta Eventos XML Loader00??nono000011
+[Table="prog_dtsul_segur"]
+[Dados]dts0938a*1625411358850nono??nono0000
+[Table="procedimento"]
+[Dados]dts0939Monitor Eventos XML LoaderXMLdts09391noyesMonitor Eventos XML Loader 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0939Monitor Eventos XML Loaderdts0939??-1358831950117nonononononono nonoyesnoMonitor Eventos XML Loaderdtp/dts0939.rMonitor Eventos XML Loader00??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0939*1625391358830nono??nono0000
+[Table="procedimento"]
+[Dados]dts0940Manifestaá∆o de Documentosxmldts09401noyesManifestaá∆o de Documentos 0??nono0000
+[Table="proced_consult_proced"]
+[Table="proced_relat_proced"]
+[Table="prog_dtsul"]
+[Dados]dts0940Manifestaá∆o de Documentosdts0940??-135884195012nonononononono nonoyesnoManifestaá∆o de Documentosdtp/dts0940.rManifestaá∆o de Documentos00??nono000041
+[Table="prog_dtsul_segur"]
+[Dados]dts0940*1625401358840nono??nono0000

@@ -1,0 +1,6 @@
+/* Include: es004.fv8
+** Tabela.: contr-sac
+*/
+
+can-find(espec.defeito where espec.defeito.cod-tipo-def = espec.contr-sac.cod-tipo-def
+                         and espec.defeito.cod-defeito  = espec.contr-sac.cod-defeito)

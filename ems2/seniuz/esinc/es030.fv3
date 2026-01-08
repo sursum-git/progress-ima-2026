@@ -1,0 +1,5 @@
+/* Include: es030.fv3
+** Tabela.: teste-cgoma
+*/
+
+can-find(espec.maq-benef where espec.maq-benef.codigo = espec.teste-cgoma.cod-maq)

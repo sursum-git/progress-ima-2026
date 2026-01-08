@@ -1,0 +1,15 @@
+ADD FIELD "valor-frete" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>>,>>>,>>9.99"
+  POSITION 60
+  INITIAL "0"
+  LABEL "Valor Frete"
+  COLUMN-LABEL "Vl Frete"
+  DECIMALS 2
+  ORDER 600
+  MAX-WIDTH 17
+
+.
+PSC
+cpstream=ibm850
+.
+0000000213

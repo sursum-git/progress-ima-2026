@@ -1,0 +1,533 @@
+
+DEFINE TEMP-TABLE nfeProc NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD versao AS CHAR
+		XML-NODE-TYPE "ATTRIBUTE" .
+
+DEFINE TEMP-TABLE NFe NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD nfeProc_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE infNFe NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Id AS CHARACTER 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD versao AS CHAR
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD NFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE ide NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD cUF AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD cNF AS CHAR
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD natOp AS CHARACTER 
+	FIELD mod AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD serie AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD nNF AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD dhEmi    AS CHAR FORMAT 'x(20)'
+	FIELD dhSaiEnt AS CHAR FORMAT 'x(20)'
+	FIELD tpNF AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD idDest AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD cMunFG AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD tpImp AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD tpEmis AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD cDV AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD tpAmb AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD finNFe AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD indFinal AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD indPres AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD indIntermed AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD procEmi AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD verProc AS CHARACTER 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE NFref NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD refNFe AS CHAR
+		XML-DATA-TYPE "integer" 
+	FIELD ide_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE emit NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD CNPJ AS CHAR
+		XML-DATA-TYPE "unsignedLong" 
+	FIELD xNome AS CHARACTER 
+	FIELD xFant AS CHARACTER 
+	FIELD IE AS CHAR
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD IM AS CHAR
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD CNAE AS CHAR
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD CRT AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE enderEmit NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD xLgr AS CHARACTER 
+	FIELD nro AS INTEGER 
+		XML-DATA-TYPE "unsignedShort" 
+	FIELD xCpl AS CHARACTER 
+	FIELD xBairro AS CHARACTER 
+	FIELD cMun AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD xMun AS CHARACTER 
+	FIELD UF AS CHARACTER 
+	FIELD CEP AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD cPais AS INTEGER 
+		XML-DATA-TYPE "unsignedShort" 
+	FIELD xPais AS CHARACTER 
+	FIELD fone AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedLong" 
+	FIELD emit_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE dest NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD CNPJ  AS CHAR
+		XML-DATA-TYPE "unsignedLong" 
+	FIELD xNome AS CHARACTER 
+	FIELD indIEDest AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD IE AS  CHAR
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD email AS CHARACTER 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE enderDest NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD xLgr AS CHARACTER 
+	FIELD nro AS INTEGER 
+		XML-DATA-TYPE "unsignedShort" 
+	FIELD xCpl AS CHARACTER 
+	FIELD xBairro AS CHARACTER 
+	FIELD cMun AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD xMun AS CHARACTER 
+	FIELD UF AS CHARACTER 
+	FIELD CEP AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD cPais AS INTEGER 
+		XML-DATA-TYPE "unsignedShort" 
+	FIELD xPais AS CHARACTER 
+	FIELD fone AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD dest_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE det NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD nItem AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD infAdProd AS CHARACTER 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE prod NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD cProd AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD cEAN AS CHARACTER 
+	FIELD xProd AS CHARACTER 
+	FIELD NCM AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD cBenef AS CHARACTER 
+	FIELD CFOP AS INTEGER 
+		XML-DATA-TYPE "unsignedShort" 
+	FIELD uCom AS CHARACTER 
+	FIELD qCom AS DECIMAL 
+	FIELD vUnCom AS DECIMAL 
+	FIELD vProd AS DECIMAL 
+	FIELD cEANTrib AS CHARACTER 
+	FIELD uTrib AS CHARACTER 
+	FIELD qTrib AS DECIMAL 
+	FIELD vUnTrib AS DECIMAL 
+	FIELD indTot AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD det_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE imposto NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD det_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE ICMS NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD imposto_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE ICMS40 NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD orig AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD CST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD ICMS_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE IPI NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD cEnq AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD imposto_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE IPINT NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD CST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD IPI_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE PIS NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD imposto_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE PISOutr NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD CST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vBC AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD pPIS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vPIS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD PIS_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE COFINS NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD imposto_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE COFINSOutr NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD CST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vBC AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD pCOFINS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vCOFINS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD COFINS_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE total NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE ICMSTot NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD vBC AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vICMS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vICMSDeson AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vFCPUFDest AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vICMSUFDest AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vICMSUFRemet AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vFCP AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vBCST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vFCPST AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vFCPSTRet AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vProd AS DECIMAL 
+	FIELD vFrete AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vSeg AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vDesc AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vII AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vIPI AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vIPIDevol AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vPIS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vCOFINS AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vOutro AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD vNF AS DECIMAL 
+	FIELD total_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE transp NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD modFrete AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE vol NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD qVol AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD esp AS CHARACTER 
+	FIELD transp_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE pag NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE detPag NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD indPag AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD tPag AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD xPag AS CHARACTER 
+	FIELD vPag AS DECIMAL 
+	FIELD pag_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE infAdic NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD infAdFisco AS CHARACTER 
+	FIELD infCpl AS CHARACTER 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE infRespTec NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD CNPJ AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedLong" 
+	FIELD xContato AS CHARACTER 
+	FIELD email AS CHARACTER 
+	FIELD fone AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedInt" 
+	FIELD infNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE Signature NO-UNDO
+	NAMESPACE-URI "http://www.w3.org/2000/09/xmldsig#" 
+	FIELD SignatureValue AS CHARACTER 
+	FIELD NFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE SignedInfo NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Signature_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE CanonicalizationMethod NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Algorithm AS CHARACTER 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD SignedInfo_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE SignatureMethod NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Algorithm AS CHARACTER 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD SignedInfo_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE Reference NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD URI AS CHARACTER 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD DigestValue AS CHARACTER 
+	FIELD SignedInfo_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE Transforms NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Reference_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE Transform NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Algorithm AS CHARACTER 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD Transforms_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE DigestMethod NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Algorithm AS CHARACTER 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD Reference_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE KeyInfo NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD Signature_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE X509Data NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD X509Certificate AS CHARACTER 
+	FIELD KeyInfo_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE protNFe NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD versao AS DECIMAL 
+		XML-NODE-TYPE "ATTRIBUTE" 
+	FIELD nfeProc_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE TEMP-TABLE infProt NO-UNDO
+	NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	FIELD tpAmb AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD verAplic AS CHARACTER 
+	FIELD chNFe AS CHAR
+		XML-DATA-TYPE "integer" 
+	FIELD dhRecbto AS DATETIME-TZ 
+	FIELD nProt AS DECIMAL 
+		DECIMALS 0 
+		XML-DATA-TYPE "unsignedLong" 
+	FIELD digVal AS CHARACTER 
+	FIELD cStat AS INTEGER 
+		XML-DATA-TYPE "unsignedByte" 
+	FIELD xMotivo AS CHARACTER 
+	FIELD protNFe_id AS RECID 
+		XML-NODE-TYPE "HIDDEN" .
+
+DEFINE DATASET nfeProcDset NAMESPACE-URI "http://www.portalfiscal.inf.br/nfe" 
+	XML-NODE-TYPE "HIDDEN" 
+	FOR nfeProc, NFe, infNFe, ide, NFref, emit, enderEmit, dest, enderDest, det, prod, imposto, ICMS, ICMS40, IPI, IPINT, PIS, PISOutr, COFINS, COFINSOutr, total, ICMSTot, transp, vol, pag, detPag, infAdic, infRespTec, Signature, SignedInfo,
+ CanonicalizationMethod, SignatureMethod, Reference, Transforms, Transform, DigestMethod, KeyInfo, X509Data, protNFe, infProt
+	PARENT-ID-RELATION RELATION1 FOR ide, NFref
+		PARENT-ID-FIELD ide_id
+	PARENT-ID-RELATION RELATION2 FOR infNFe, ide
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION3 FOR emit, enderEmit
+		PARENT-ID-FIELD emit_id
+		PARENT-FIELDS-BEFORE (CNPJ,xNome,xFant)
+		PARENT-FIELDS-AFTER (IE,IM,CNAE,CRT)
+	PARENT-ID-RELATION RELATION4 FOR infNFe, emit
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION5 FOR dest, enderDest
+		PARENT-ID-FIELD dest_id
+		PARENT-FIELDS-BEFORE (CNPJ,xNome)
+		PARENT-FIELDS-AFTER (indIEDest,IE,email)
+	PARENT-ID-RELATION RELATION6 FOR infNFe, dest
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION7 FOR det, prod
+		PARENT-ID-FIELD det_id
+	PARENT-ID-RELATION RELATION8 FOR ICMS, ICMS40
+		PARENT-ID-FIELD ICMS_id
+	PARENT-ID-RELATION RELATION9 FOR imposto, ICMS
+		PARENT-ID-FIELD imposto_id
+	PARENT-ID-RELATION RELATION10 FOR IPI, IPINT
+		PARENT-ID-FIELD IPI_id
+	PARENT-ID-RELATION RELATION11 FOR imposto, IPI
+		PARENT-ID-FIELD imposto_id
+	PARENT-ID-RELATION RELATION12 FOR PIS, PISOutr
+		PARENT-ID-FIELD PIS_id
+	PARENT-ID-RELATION RELATION13 FOR imposto, PIS
+		PARENT-ID-FIELD imposto_id
+	PARENT-ID-RELATION RELATION14 FOR COFINS, COFINSOutr
+		PARENT-ID-FIELD COFINS_id
+	PARENT-ID-RELATION RELATION15 FOR imposto, COFINS
+		PARENT-ID-FIELD imposto_id
+	PARENT-ID-RELATION RELATION16 FOR det, imposto
+		PARENT-ID-FIELD det_id
+		PARENT-FIELDS-AFTER (infAdProd)
+	PARENT-ID-RELATION RELATION17 FOR infNFe, det
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION18 FOR total, ICMSTot
+		PARENT-ID-FIELD total_id
+	PARENT-ID-RELATION RELATION19 FOR infNFe, total
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION20 FOR transp, vol
+		PARENT-ID-FIELD transp_id
+	PARENT-ID-RELATION RELATION21 FOR infNFe, transp
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION22 FOR pag, detPag
+		PARENT-ID-FIELD pag_id
+	PARENT-ID-RELATION RELATION23 FOR infNFe, pag
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION24 FOR infNFe, infAdic
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION25 FOR infNFe, infRespTec
+		PARENT-ID-FIELD infNFe_id
+	PARENT-ID-RELATION RELATION26 FOR NFe, infNFe
+		PARENT-ID-FIELD NFe_id
+	PARENT-ID-RELATION RELATION27 FOR SignedInfo, CanonicalizationMethod
+		PARENT-ID-FIELD SignedInfo_id
+	PARENT-ID-RELATION RELATION28 FOR SignedInfo, SignatureMethod
+		PARENT-ID-FIELD SignedInfo_id
+	PARENT-ID-RELATION RELATION29 FOR Transforms, Transform
+		PARENT-ID-FIELD Transforms_id
+	PARENT-ID-RELATION RELATION30 FOR Reference, Transforms
+		PARENT-ID-FIELD Reference_id
+	PARENT-ID-RELATION RELATION31 FOR Reference, DigestMethod
+		PARENT-ID-FIELD Reference_id
+		PARENT-FIELDS-AFTER (DigestValue)
+	PARENT-ID-RELATION RELATION32 FOR SignedInfo, Reference
+		PARENT-ID-FIELD SignedInfo_id
+	PARENT-ID-RELATION RELATION33 FOR Signature, SignedInfo
+		PARENT-ID-FIELD Signature_id
+		PARENT-FIELDS-AFTER (SignatureValue)
+	PARENT-ID-RELATION RELATION34 FOR KeyInfo, X509Data
+		PARENT-ID-FIELD KeyInfo_id
+	PARENT-ID-RELATION RELATION35 FOR Signature, KeyInfo
+		PARENT-ID-FIELD Signature_id
+	PARENT-ID-RELATION RELATION36 FOR NFe, Signature
+		PARENT-ID-FIELD NFe_id
+	PARENT-ID-RELATION RELATION37 FOR nfeProc, NFe
+		PARENT-ID-FIELD nfeProc_id
+	PARENT-ID-RELATION RELATION38 FOR protNFe, infProt
+		PARENT-ID-FIELD protNFe_id
+	PARENT-ID-RELATION RELATION39 FOR nfeProc, protNFe
+		PARENT-ID-FIELD nfeProc_id.

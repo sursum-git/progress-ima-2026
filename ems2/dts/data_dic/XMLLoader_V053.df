@@ -1,0 +1,333 @@
+ADD TABLE "dt-controle-nsu-cte"
+  AREA "Schema Area"
+  LABEL "Controle NSU Documentos CT-e"
+  DESCRIPTION "Controle do NSU dos Documentos da Empresa CT-e"
+  DUMP-NAME "dt-controle-nsu-cte"
+
+ADD FIELD "cod-estabel" OF "dt-controle-nsu-cte" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "num-nsu-doc" OF "dt-controle-nsu-cte" AS int64 
+  DESCRIPTION "Número NSU do Documento na SEFAZ"
+  FORMAT ">>>>>>>>>>>>>>9"
+  INITIAL "0"
+  LABEL "Nr NSU"
+  POSITION 3
+  MAX-WIDTH 8
+  COLUMN-LABEL "Nr NSU"
+  HELP "Número NSU do Documento na SEFAZ"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "int-2" OF "dt-controle-nsu-cte" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "int-1" OF "dt-controle-nsu-cte" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "dec-1" OF "dt-controle-nsu-cte" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 50
+
+ADD FIELD "dec-2" OF "dt-controle-nsu-cte" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 60
+
+ADD FIELD "log-1" OF "dt-controle-nsu-cte" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 8
+  MAX-WIDTH 1
+  ORDER 70
+
+ADD FIELD "log-2" OF "dt-controle-nsu-cte" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 9
+  MAX-WIDTH 1
+  ORDER 80
+
+ADD FIELD "char-1" OF "dt-controle-nsu-cte" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 10
+  MAX-WIDTH 512
+  ORDER 90
+
+ADD FIELD "char-2" OF "dt-controle-nsu-cte" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 11
+  MAX-WIDTH 512
+  ORDER 100
+
+ADD FIELD "date-1" OF "dt-controle-nsu-cte" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 12
+  MAX-WIDTH 4
+  ORDER 110
+
+ADD FIELD "date-2" OF "dt-controle-nsu-cte" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 13
+  MAX-WIDTH 4
+  ORDER 120
+
+ADD INDEX "idx-nsu-empresa" ON "dt-controle-nsu-cte" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "num-nsu-doc" ASCENDING 
+
+ADD TABLE "dt-eventos-documento"
+  AREA "Schema Area"
+  LABEL "Eventos Documentos"
+  DESCRIPTION "Eventos vinculados aos documentos"
+  DUMP-NAME "dt-eventos-documento"
+
+ADD FIELD "chave-documento" OF "dt-eventos-documento" AS character 
+  DESCRIPTION "Chave Documento"
+  FORMAT "x(44)"
+  INITIAL ""
+  LABEL "Chave Documento"
+  POSITION 2
+  MAX-WIDTH 88
+  COLUMN-LABEL "Chave Documento"
+  HELP "Chave Documento"
+  ORDER 20
+
+ADD FIELD "cnpj-emitente" OF "dt-eventos-documento" AS character 
+  DESCRIPTION "CNPJ Emitente"
+  FORMAT "x(14)"
+  INITIAL ""
+  LABEL "CNPJ Emitente"
+  POSITION 3
+  MAX-WIDTH 28
+  COLUMN-LABEL "CNPJ Emitente"
+  HELP "CNPJ Emitente"
+  ORDER 30
+
+ADD FIELD "razao-social" OF "dt-eventos-documento" AS character 
+  DESCRIPTION "Razão Social do Emitente na SEFAZ"
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Razão Social"
+  POSITION 4
+  MAX-WIDTH 120
+  COLUMN-LABEL "Razão Social"
+  HELP "Razão Social do Emitente na SEFAZ"
+  ORDER 40
+
+ADD FIELD "cod-emitente" OF "dt-eventos-documento" AS integer 
+  DESCRIPTION "Código do Emitente - DATASUL"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cod Emitente"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Emitente"
+  HELP "Código do Emitente - DATASUL"
+  ORDER 50
+
+ADD FIELD "ie-emitente" OF "dt-eventos-documento" AS character 
+  DESCRIPTION "Ins Estadual"
+  FORMAT "x(14)"
+  INITIAL ""
+  LABEL "Ins Estadual"
+  POSITION 6
+  MAX-WIDTH 28
+  COLUMN-LABEL "Ins Estadual"
+  HELP "Ins Estadual"
+  ORDER 60
+
+ADD FIELD "dt-evento" OF "dt-eventos-documento" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Evento"
+  POSITION 7
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data Evento"
+  ORDER 260
+
+ADD FIELD "hr-evento" OF "dt-eventos-documento" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hora Evento"
+  POSITION 8
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora Evento"
+  ORDER 270
+
+ADD FIELD "nro-docto" OF "dt-eventos-documento" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Nr Documento"
+  POSITION 9
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  HELP "Número Documento"
+  ORDER 280
+  MANDATORY
+
+ADD FIELD "serie-docto" OF "dt-eventos-documento" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Serie"
+  POSITION 10
+  MAX-WIDTH 10
+  COLUMN-LABEL "Serie"
+  HELP "Serie Documento"
+  ORDER 290
+  MANDATORY
+
+ADD FIELD "tipo-docum" OF "dt-eventos-documento" AS integer 
+  DESCRIPTION "1 - NF-e;
+2 - CT-e"
+  FORMAT "9"
+  INITIAL "0"
+  LABEL "Tipo Doc"
+  POSITION 11
+  MAX-WIDTH 4
+  VIEW-AS "VIEW-AS RADIO-SET
+  RADIO-BUTTONS ""NF-e"", 1,
+""CT-e"", 2"
+  COLUMN-LABEL "Tipo Doc"
+  ORDER 310
+
+ADD FIELD "arq-xml" OF "dt-eventos-documento" AS blob 
+  DESCRIPTION "Armazena o XML Evento"
+  FORMAT "x(8)"
+  INITIAL ?
+  POSITION 12
+  LOB-AREA "Schema Area"
+  LOB-BYTES 104857600
+  LOB-SIZE 100M
+  ORDER 320
+
+ADD FIELD "tipo-evento" OF "dt-eventos-documento" AS integer 
+  FORMAT ">>>>>9"
+  INITIAL "0"
+  LABEL "Tipo Evento"
+  POSITION 13
+  MAX-WIDTH 4
+  COLUMN-LABEL "Tipo Evento"
+  ORDER 330
+
+ADD FIELD "protocolo-evento" OF "dt-eventos-documento" AS character 
+  DESCRIPTION "Número Protocolo Evento"
+  FORMAT "x(15)"
+  INITIAL ""
+  LABEL "Nr Protocolo Evento"
+  POSITION 14
+  MAX-WIDTH 30
+  COLUMN-LABEL "Nr Protocolo Evento"
+  HELP "Número Protocolo Evento"
+  ORDER 340
+
+ADD FIELD "descr-just" OF "dt-eventos-documento" AS character 
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Justificativa"
+  POSITION 15
+  MAX-WIDTH 4000
+  COLUMN-LABEL "Justificativa"
+  ORDER 350
+
+ADD INDEX "idx-evento-doc" ON "dt-eventos-documento" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "chave-documento" ASCENDING 
+  INDEX-FIELD "tipo-evento" ASCENDING 
+  INDEX-FIELD "tipo-docum" ASCENDING 
+  INDEX-FIELD "protocolo-evento" ASCENDING 
+
+ADD INDEX "idx-chave-doc" ON "dt-eventos-documento" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-documento" ASCENDING 
+
+ADD INDEX "idx-data-evento" ON "dt-eventos-documento" 
+  AREA "Schema Area"
+  INDEX-FIELD "dt-evento" ASCENDING 
+
+ADD FIELD "tipo-docum" OF "dt-log-sefaz" AS integer
+  DESCRIPTION "1 - NF-e;
+2 - CT-e"
+  FORMAT "9"
+  POSITION 21
+  INITIAL "0"
+  LABEL "Tipo Doc"
+  COLUMN-LABEL "Tipo Doc"
+  VIEW-AS "VIEW-AS RADIO-SET
+  RADIO-BUTTONS ""NF-e"", 1,
+""CT-e"", 2"
+  ORDER 200
+  MAX-WIDTH 4
+
+ADD INDEX "ch-nsu-sefaz-docum" ON "dt-log-sefaz"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "tipo-ambiente" ASCENDING
+  INDEX-FIELD "ult-nsu" ASCENDING
+  INDEX-FIELD "tipo-docum" ASCENDING
+
+ADD FIELD "tipo-docum" OF "dt-notas-destinadas" AS integer
+  DESCRIPTION "1 - NF-e;
+2 - CT-e"
+  FORMAT "9"
+  POSITION 32
+  INITIAL "0"
+  LABEL "Tipo Doc"
+  COLUMN-LABEL "Tipo Doc"
+  VIEW-AS "VIEW-AS RADIO-SET
+  RADIO-BUTTONS ""NF-e"", 1,
+""CT-e"", 2"
+  ORDER 310
+  MAX-WIDTH 4
+
+ADD FIELD "arq-xml-cte" OF "dt-notas-destinadas" AS blob
+  DESCRIPTION "Armazena XML CT-e - somente para o caso de CT-e"
+  FORMAT "x(8)"
+  POSITION 33
+  INITIAL ?
+  ORDER 320
+  LOB-AREA "Schema Area"
+  LOB-BYTES 104857600
+  LOB-SIZE 100M
+
+ADD INDEX "ch-tipo-doc" ON "dt-notas-destinadas"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "tipo-docum" ASCENDING
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000007541

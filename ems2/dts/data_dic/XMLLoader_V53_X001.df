@@ -1,0 +1,30 @@
+ADD FIELD "tipo-servico" OF "dt-it-docum-est" AS integer
+  DESCRIPTION "Código do Tipo de Serviço - REINF - constante no cadastro CD1050 e também no RE0106"
+  FORMAT ">9"
+  POSITION 82
+  INITIAL "0"
+  HELP "Código do Tipo de Serviço - REINF"
+  LABEL "Tipo Serviço"
+  COLUMN-LABEL "Tipo Serviço"
+  ORDER 810
+  MAX-WIDTH 4
+
+RENAME INDEX "ch-nsu-sefaz-docum" TO "temp-80833" ON "dt-log-sefaz"
+
+ADD INDEX "ch-nsu-sefaz-docum" ON "dt-log-sefaz"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "tipo-ambiente" ASCENDING
+  INDEX-FIELD "ult-nsu" ASCENDING
+  INDEX-FIELD "idi-tipo-processo" ASCENDING
+  INDEX-FIELD "tipo-docum" ASCENDING
+
+DROP INDEX "temp-80833" ON "dt-log-sefaz"
+
+UPDATE INDEX "ratlote-02" OF "dt-rat-lote"
+  DESCRIPTION ""
+.
+PSC
+cpstream=ibm850
+.
+0000000453

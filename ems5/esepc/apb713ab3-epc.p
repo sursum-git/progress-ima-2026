@@ -1,0 +1,3 @@
+MESSAGE 'esc n∆o deve funcionar'
+    VIEW-AS ALERT-BOX INFO BUTTONS OK.
+RETURN NO-APPLY.

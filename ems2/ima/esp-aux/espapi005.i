@@ -1,0 +1,73 @@
+def temp-table tt_emitente_ems2 no-undo
+    field cod_emitente              as integer   format ">>>>>>9"
+    field identific                 as integer   format ">9"
+    field nome_abrev                as character format "x(12)"
+    field nome_matriz               as character format "x(12)"
+    field natureza                  as integer   format ">9"
+    field cgc                       as character format "x(19)"
+    field ins_estadual              as character format "x(19)"
+    field cod_gr_cli                as integer   format ">9"
+    field cod_gr_forn               as integer   format ">9"
+    field data_implant              as date      format "99/99/9999"
+    field cod_rep                   as integer   format ">>>>9"
+
+    field estado                    as character format "x(04)"
+    field endereco                  as character format "x(40)"
+    field cep                       as character format "x(12)"
+    field cod_pais                  as character format "x(20)"
+    field nom_cidade                as character format "x(25)"
+    field endereco_cob              as character format "x(40)"
+    field pais_cob                  as character format "x(20)"
+    field estado_cob                as character format "x(04)"
+    field cidade_cob                as character format "x(25)"
+    field cod_num_ender_cob         as char      format "x(06)"
+    field compl_ender_cob	        as char      format "x(10)"
+    
+    field cod_num_ender             as char      format "x(06)"
+    field endereco2                 as character format "x(40)"
+    field ep_codigo                 as integer   format ">>9"
+    field cod_portador              as integer   format ">>>>9"
+    field modalidade                as integer   format "9"
+    field port_prefer               as integer   format ">>>>9"
+    field mod_prefer                as integer   format "9"
+    field cod_banco                 as integer   format "999"
+    field nome_mic_reg              as character format "x(12)"
+    field ramo_atividade            as character format "x(08)"
+    field tp_rec_padrao             as integer   format ">>9"
+    field tp_desp_padrao            as integer   format "99"
+    field ins_banc                  as integer   format ">>9"   extent 2
+
+    field num_tip_operac            as integer   format "9"
+    index codigo                    is primary unique
+          cod_emitente              ascending.
+
+
+def temp-table tt_retorno_validacao no-undo 
+    field ttv_cod_parameters               as character format "x(256)" 
+    field ttv_num_mensagem                 as integer format ">>>>,>>9"
+    field ttv_des_mensagem                 as character format "x(52)" label "Mensagem" column-label "Mensagem" 
+    field ttv_des_ajuda                    as character format "x(256)"
+                                           view-as editor max-chars 2000 scrollbar-vertical size 40 by 4 
+                                           label "Ajuda" column-label "Ajuda"
+    field ttv_cod_parameters_clien         as character format "x(2000)" 
+    field ttv_cod_parameters_fornec        as character format "x(2000)" 
+    field ttv_log_envdo                    as logical format "Sim/N’o" initial no 
+    field ttv_cod_parameters_clien_financ  as character format "x(2000)" 
+    field ttv_cod_parameters_fornec_financ as character format "x(2000)" 
+    field ttv_cod_parameters_pessoa_fisic  as character format "x(2000)" 
+    field ttv_cod_parameters_pessoa_jurid  as character format "x(2000)" 
+    field ttv_cod_parameters_estrut_clien  as character format "x(2000)" 
+    field ttv_cod_parameters_estrut_fornec as character format "x(2000)" 
+    field ttv_cod_parameters_contat        as character format "x(2000)" 
+    field ttv_cod_parameters_repres        as character format "x(2000)" 
+    field ttv_cod_parameters_ender_entreg  as character format "x(2000)" 
+    field ttv_cod_parameters_pessoa_ativid as character format "x(2000)" 
+    field ttv_cod_parameters_ramo_negoc    as character format "x(2000)" 
+    field ttv_cod_parameters_porte_pessoa  as character format "x(2000)" 
+    field ttv_cod_parameters_idiom_pessoa  as character format "x(2000)" 
+    field ttv_cod_parameters_clas_contat   as character format "x(2000)" 
+    field ttv_cod_parameters_idiom_contat  as character format "x(2000)" 
+    field ttv_cod_parameters_telef         as character format "x(2000)" 
+    field ttv_cod_parameters_telef_pessoa  as character format "x(2000)" 
+    field ttv_cod_parameters_histor_clien  as character format "x(4000)" 
+    field ttv_cod_parameters_histor_fornec as character format "x(4000)" . 

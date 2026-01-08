@@ -1,0 +1,7 @@
+DEFINE NEW GLOBAL SHARED VAR h-endereco     AS HANDLE.
+DEFINE NEW GLOBAL SHARED VAR h-cep          AS HANDLE.
+
+IF h-endereco:SCREEN-VALUE = "" THEN DO.
+   APPLY "entry" TO h-cep.
+   RETURN NO-APPLY.
+END.

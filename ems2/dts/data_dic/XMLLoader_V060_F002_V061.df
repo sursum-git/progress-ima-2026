@@ -1,0 +1,137 @@
+DROP TABLE "dt-au-docum-est"
+DROP TABLE "dt-xml-docum-est"
+
+UPDATE TABLE "dt-dados-motorista"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts012.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts012.p" CRC "?"
+
+UPDATE TABLE "dt-doc-refer-compl"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts003.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts003.p" CRC "?"
+
+UPDATE TABLE "dt-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts001.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts001.p" CRC "?"
+
+UPDATE TABLE "dt-duplic-nfe"
+  LABEL "Duplicata da Nota Entrada XML"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts004.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts004.p" CRC "?"
+
+ADD FIELD "l-peso-doc-fisico" OF "dt-empresa" AS logical
+  DESCRIPTION "Grava o peso (tot-peso) informado no XML na capa do documento do recebimento físico"
+  FORMAT "Sim/Não"
+  POSITION 92
+  INITIAL "Não"
+  HELP "Grava Pesos Recebimento Físico na capa do Documento"
+  LABEL "Peso Recebimento Fisico"
+  COLUMN-LABEL "Grava Pesos Recebimento Físico"
+  ORDER 1350
+  MAX-WIDTH 1
+
+ADD FIELD "l-subst-ncm-dd" OF "dt-empresa" AS logical
+  DESCRIPTION "Usa NCM Fornecedor Débito Direto"
+  FORMAT "Sim/Não"
+  POSITION 93
+  INITIAL "Não"
+  HELP "Usa NCM Fornecedor Débito Direto"
+  LABEL "Usa NCM Fornecedor Débito Direto"
+  COLUMN-LABEL "Usa NCM Forne DD"
+  ORDER 1360
+  MAX-WIDTH 1
+
+UPDATE TABLE "dt-it-docum-est"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts002.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts002.p" CRC "?"
+
+ADD FIELD "icms-orig" OF "dt-it-docum-est" AS character
+  FORMAT "x(1)"
+  POSITION 123
+  INITIAL ""
+  LABEL "Origem da Mercadoria"
+  COLUMN-LABEL "Origem da Mercadoria"
+  ORDER 1220
+  MAX-WIDTH 2
+
+ADD FIELD "icms-cst" OF "dt-it-docum-est" AS character
+  FORMAT "x(2)"
+  POSITION 124
+  INITIAL ""
+  HELP "Tributação pelo ICMS"
+  LABEL "Tributação pelo ICMS"
+  COLUMN-LABEL "Tributação pelo ICMS"
+  ORDER 1230
+  MAX-WIDTH 4
+
+ADD FIELD "nro-fci" OF "dt-it-docum-est" AS character
+  FORMAT "x(36)"
+  POSITION 125
+  INITIAL ""
+  HELP "Número FCI"
+  LABEL "Nro FCI"
+  COLUMN-LABEL "Nro FCI"
+  ORDER 1240
+  MAX-WIDTH 72
+
+ADD FIELD "vl-bc-fcp-uf-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor da Base de Cálculo do FCP na UF do destinatário"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 126
+  INITIAL "0"
+  HELP "Valor da Base de Cálculo do FCP na UF do destinatário"
+  LABEL "Vl BC FCP UF Dest"
+  COLUMN-LABEL "Vl BC FCP UF Dest"
+  DECIMALS 2
+  ORDER 1250
+  MAX-WIDTH 17
+
+ADD FIELD "valor-seguro" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>>,>>>,>>9.99"
+  POSITION 127
+  INITIAL "0"
+  LABEL "Valor Seguro"
+  COLUMN-LABEL "Vl Seguro"
+  DECIMALS 2
+  ORDER 1260
+  MAX-WIDTH 17
+
+UPDATE FIELD "idi-tipo-processo" OF "dt-log-sefaz"
+  DESCRIPTION "1 - Consulta Destinadas;
+2 - Ciência Operação;
+3 - Download Documento;
+4 - Manifestação Destinatário;
+5 - Desacordo CT-e"
+
+UPDATE TABLE "dt-manifest-documento"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts005.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts005.p" CRC "?"
+
+UPDATE TABLE "dt-monitor-eventos"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts006.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts006.p" CRC "?"
+
+UPDATE TABLE "dt-notas-destinadas"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts007.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts007.p" CRC "?"
+
+UPDATE TABLE "dt-ocorrencia-painel"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts008.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts008.p" CRC "?"
+
+UPDATE TABLE "dt-rat-docum"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts009.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts009.p" CRC "?"
+
+UPDATE TABLE "dt-rat-lote"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts010.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts010.p" CRC "?"
+
+UPDATE TABLE "dt-rat-ordem-compra"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "database\tdp\tddts011.p" CRC "?"
+  TABLE-TRIGGER "WRITE" NO-OVERRIDE PROCEDURE "database\twp\twdts011.p" CRC "?"
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000004615

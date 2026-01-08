@@ -1,0 +1,5 @@
+/* Include: es004.fv7
+** Tabela.: contr-sac
+*/
+
+can-find(espec.tipo-def where espec.tipo-def.cod-tipo-def = espec.contr-sac.cod-tipo-def)

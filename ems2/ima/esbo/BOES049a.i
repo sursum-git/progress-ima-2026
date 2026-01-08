@@ -1,0 +1,2 @@
+DEFINE TEMP-TABLE {1} LIKE ob-etiqueta
+FIELD r-rowid AS ROWID.

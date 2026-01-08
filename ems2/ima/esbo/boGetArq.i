@@ -1,0 +1,5 @@
+
+DEFINE TEMP-TABLE ttArquivos
+    FIELD nome AS CHAR.
+
+FUNCTION logachou RETURNS LOGICAL () IN {1}.

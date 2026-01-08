@@ -1,0 +1,8 @@
+DEF NEW GLOBAL SHARED VAR h-btPrev AS WIDGET-HANDLE NO-UNDO.
+DEF NEW GLOBAL SHARED VAR h-btNext AS WIDGET-HANDLE NO-UNDO.
+
+RUN esepc/epc-cc0300c2.w.   
+
+APPLY "choose" TO h-btPrev.
+APPLY "choose" TO h-btNext.
+

@@ -1,0 +1,402 @@
+ADD TABLE "dt-cidade-nfse"
+  AREA "Schema Area"
+  LABEL "Cidade NFS-e"
+  DESCRIPTION "Cidades para Tratamento NFS-e"
+  DUMP-NAME "dt-cidade-nfse"
+
+ADD FIELD "cidade" OF "dt-cidade-nfse" AS character 
+  FORMAT "x(25)"
+  INITIAL ""
+  LABEL "Cidade"
+  POSITION 2
+  MAX-WIDTH 50
+  COLUMN-LABEL "Cidade"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "estado" OF "dt-cidade-nfse" AS character 
+  FORMAT "x(4)"
+  INITIAL ""
+  LABEL "UF"
+  POSITION 3
+  MAX-WIDTH 8
+  COLUMN-LABEL "UF"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "pais" OF "dt-cidade-nfse" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "País"
+  POSITION 4
+  MAX-WIDTH 40
+  COLUMN-LABEL "Pais"
+  HELP "País"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "tipo-nfse" OF "dt-cidade-nfse" AS integer 
+  DESCRIPTION "1 - ABRASF;
+2 - GINFES;
+3 - PRÓPRIO"
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Tipo NFS-e"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Tipo NFS-e"
+  HELP "Tipo NFS-e adotado"
+  ORDER 40
+
+ADD FIELD "nome-arq-proprio" OF "dt-cidade-nfse" AS character 
+  FORMAT "x(40)"
+  INITIAL ""
+  LABEL "Nome Arq"
+  POSITION 6
+  MAX-WIDTH 80
+  COLUMN-LABEL "Nome Arq"
+  HELP "Nome do Arquivo Layout"
+  ORDER 50
+
+ADD FIELD "cdn-munpio-ibge" OF "dt-cidade-nfse" AS int64 
+  FORMAT ">>>>>>9"
+  INITIAL "0"
+  LABEL "Município IBGE"
+  POSITION 17
+  MAX-WIDTH 8
+  COLUMN-LABEL "Município IBGE"
+  HELP "Município IBGE"
+  ORDER 60
+  MANDATORY
+
+ADD FIELD "int-2" OF "dt-cidade-nfse" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 18
+  MAX-WIDTH 4
+  ORDER 70
+
+ADD FIELD "int-1" OF "dt-cidade-nfse" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 19
+  MAX-WIDTH 4
+  ORDER 80
+
+ADD FIELD "dec-1" OF "dt-cidade-nfse" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 20
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 90
+
+ADD FIELD "dec-2" OF "dt-cidade-nfse" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 21
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 100
+
+ADD FIELD "log-1" OF "dt-cidade-nfse" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 22
+  MAX-WIDTH 1
+  ORDER 110
+
+ADD FIELD "log-2" OF "dt-cidade-nfse" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 23
+  MAX-WIDTH 1
+  ORDER 120
+
+ADD FIELD "char-1" OF "dt-cidade-nfse" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 24
+  MAX-WIDTH 512
+  ORDER 130
+
+ADD FIELD "char-2" OF "dt-cidade-nfse" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 25
+  MAX-WIDTH 512
+  ORDER 140
+
+ADD FIELD "date-1" OF "dt-cidade-nfse" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 26
+  MAX-WIDTH 4
+  ORDER 150
+
+ADD FIELD "date-2" OF "dt-cidade-nfse" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 27
+  MAX-WIDTH 4
+  ORDER 160
+
+ADD INDEX "idx-cidade" ON "dt-cidade-nfse" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cidade" ASCENDING 
+  INDEX-FIELD "estado" ASCENDING 
+  INDEX-FIELD "pais" ASCENDING 
+
+ADD FIELD "vl-icms-deson" OF "dt-docum-est" AS decimal
+  DESCRIPTION "Valor Total do ICMS desonerado"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 74
+  INITIAL "0"
+  HELP "Valor Total do ICMS desonerado"
+  LABEL "Vl ICMS Deson"
+  COLUMN-LABEL "Vl ICMS Deson"
+  DECIMALS 2
+  ORDER 740
+  MAX-WIDTH 17
+
+ADD FIELD "vl-fcp-uf-dest" OF "dt-docum-est" AS decimal
+  DESCRIPTION "Valor total do ICMS relativo ao Fundo de Combate Pobreza (FCP) para a UF de destino"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 75
+  INITIAL "0"
+  HELP "Valor total do ICMS relativo ao Fundo de Combate Pobreza - Dest"
+  LABEL "Vl ICMS FCP Dest"
+  COLUMN-LABEL "Vl ICMS FCP D"
+  DECIMALS 2
+  ORDER 750
+  MAX-WIDTH 17
+
+ADD FIELD "vl-icms-uf-dest" OF "dt-docum-est" AS decimal
+  DESCRIPTION "Valor total do ICMS de partilha para a UF do destinatário"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 76
+  INITIAL "0"
+  HELP "Valor total do ICMS de partilha para a UF do destinatário"
+  LABEL "Vl ICMS UF Dest"
+  COLUMN-LABEL "Vl ICMS UF Dest"
+  DECIMALS 2
+  ORDER 760
+  MAX-WIDTH 17
+
+ADD FIELD "vl-icms-uf-rem" OF "dt-docum-est" AS decimal
+  DESCRIPTION "Valor total do ICMS de partilha para a UF do remetente"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 77
+  INITIAL "0"
+  HELP "Valor total do ICMS de partilha para a UF do remetente"
+  LABEL "Vl ICMS UF Rem"
+  COLUMN-LABEL "Vl ICMS UF Rem"
+  DECIMALS 2
+  ORDER 770
+  MAX-WIDTH 17
+
+ADD FIELD "vl-tot-trib" OF "dt-docum-est" AS decimal
+  DESCRIPTION "Valor aproximado total de tributos federais, estaduais e municipais - NT2013.003"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 78
+  INITIAL "0"
+  HELP "Valor aproximado total de tributos"
+  LABEL "Vl Aprox Trib"
+  COLUMN-LABEL "Vl Aprox Trib"
+  DECIMALS 2
+  ORDER 730
+  MAX-WIDTH 17
+
+ADD FIELD "cod-usuario" OF "dt-docum-est" AS character
+  FORMAT "x(12)"
+  POSITION 79
+  INITIAL ""
+  HELP "Usuário de Importação"
+  LABEL "Usuario"
+  COLUMN-LABEL "Usuario"
+  ORDER 780
+  MAX-WIDTH 24
+
+ADD FIELD "cod-placa" OF "dt-docum-est" AS character
+  DESCRIPTION "Placa"
+  FORMAT "x(12)"
+  POSITION 80
+  INITIAL ""
+  HELP "Placa"
+  LABEL "Placa"
+  COLUMN-LABEL "Placa"
+  EXTENT 3
+  ORDER 800
+  MAX-WIDTH 78
+
+ADD FIELD "cod-uf-placa" OF "dt-docum-est" AS character
+  FORMAT "!!"
+  POSITION 81
+  INITIAL ""
+  HELP "Estado da placa do veículo que transportará a mercadoria"
+  LABEL "UF"
+  COLUMN-LABEL "UF"
+  EXTENT 3
+  ORDER 810
+  MAX-WIDTH 18
+
+ADD FIELD "nome-transp" OF "dt-docum-est" AS character
+  FORMAT "x(12)"
+  POSITION 82
+  INITIAL ""
+  HELP "Nome Transportador"
+  LABEL "Transportador"
+  COLUMN-LABEL "Transportador"
+  ORDER 790
+  MAX-WIDTH 24
+
+ADD FIELD "encerra-pa" OF "dt-it-docum-est" AS logical
+  FORMAT "Sim/Não"
+  POSITION 65
+  INITIAL "Não"
+  HELP "Indica se a parcela da ordem de compra será encerrada"
+  LABEL "Encerra Parcela"
+  COLUMN-LABEL "En Pa"
+  ORDER 650
+  MAX-WIDTH 1
+
+ADD FIELD "vl-bc-icms-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor da Base de Cálculo do ICMS na UF do destinatário"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 67
+  INITIAL "0"
+  HELP "Valor da Base de Cálculo do ICMS na UF do destinatário"
+  LABEL "Vl BC ICMS UF Dest"
+  COLUMN-LABEL "Vl BC ICMS UF Dest"
+  DECIMALS 2
+  ORDER 670
+  MAX-WIDTH 17
+
+ADD FIELD "aliq-fcp-uf-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Percentual adicional inserido na aliquota interna da UF de destino, relativo ao Fundo de Combate Pobreza (FCP) naquela UF"
+  FORMAT "->>9.9999"
+  POSITION 68
+  INITIAL "0"
+  HELP "% Adc FCP UF Destino"
+  LABEL "% FCP UF Dest"
+  COLUMN-LABEL "% FCP UF Dest"
+  DECIMALS 4
+  ORDER 680
+  MAX-WIDTH 19
+
+ADD FIELD "aliq-icms-uf-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Aliquota adotada nas operações internas na UF do destinatário para o produto / mercadoria"
+  FORMAT "->>9.9999"
+  POSITION 69
+  INITIAL "0"
+  HELP "Aliquota ICMS para UF Destinatário"
+  LABEL "% ICMS UF Dest"
+  COLUMN-LABEL "% ICMS UF Dest"
+  DECIMALS 4
+  ORDER 690
+  MAX-WIDTH 19
+
+ADD FIELD "aliq-icms-inter" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Alíquota interestadual das UF envolvidas:
+4% Alíquota interestadual para produtos importados; 
+7% para os Estados de origem do Sul e Sudeste (exceto ES), destinado para os Estados do Norte e Nordeste  ou ES; 
+12% para os demais casos"
+  FORMAT "->>9.9999"
+  POSITION 70
+  INITIAL "0"
+  HELP "Alíquota interestadual das UF envolvidas"
+  LABEL "% ICMS Interest"
+  COLUMN-LABEL "% ICMS Interest"
+  DECIMALS 4
+  ORDER 700
+  MAX-WIDTH 19
+
+ADD FIELD "aliq-icms-inter-part" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Percentual de partilha para a UF do destinatário:
+40% em 2016; 
+60% em 2017; 
+80% em 2018; 
+100% a partir de 2019"
+  FORMAT "->>9.9999"
+  POSITION 71
+  INITIAL "0"
+  HELP "Percentual de partilha para a UF do destinatário"
+  LABEL "% ICMS Partilha"
+  COLUMN-LABEL "% ICMS Partilha"
+  DECIMALS 4
+  ORDER 710
+  MAX-WIDTH 19
+
+ADD FIELD "vl-fcp-uf-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor total do ICMS relativo ao Fundo de Combate Pobreza (FCP) para a UF de destino"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 72
+  INITIAL "0"
+  HELP "Valor total do ICMS relativo ao Fundo de Combate Pobreza - Dest"
+  LABEL "Vl ICMS FCP Dest"
+  COLUMN-LABEL "Vl ICMS FCP D"
+  DECIMALS 2
+  ORDER 720
+  MAX-WIDTH 17
+
+ADD FIELD "vl-icms-uf-dest" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor total do ICMS de partilha para a UF do destinatário"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 73
+  INITIAL "0"
+  HELP "Valor total do ICMS de partilha para a UF do destinatário"
+  LABEL "Vl ICMS UF Dest"
+  COLUMN-LABEL "Vl ICMS UF Dest"
+  DECIMALS 2
+  ORDER 730
+  MAX-WIDTH 17
+
+ADD FIELD "vl-icms-uf-rem" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor total do ICMS de partilha para a UF do remetente"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 74
+  INITIAL "0"
+  HELP "Valor total do ICMS de partilha para a UF do remetente"
+  LABEL "Vl ICMS UF Rem"
+  COLUMN-LABEL "Vl ICMS UF Rem"
+  DECIMALS 2
+  ORDER 740
+  MAX-WIDTH 17
+
+ADD FIELD "cod-cest" OF "dt-it-docum-est" AS character
+  FORMAT "99.999.99"
+  POSITION 75
+  INITIAL ""
+  HELP "Código CEST"
+  LABEL "CEST"
+  COLUMN-LABEL "CEST"
+  ORDER 750
+  MAX-WIDTH 18
+
+ADD FIELD "valor-pis" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  POSITION 76
+  INITIAL "0"
+  LABEL "Valor PIS"
+  COLUMN-LABEL "Valor PIS"
+  DECIMALS 2
+  ORDER 760
+  MAX-WIDTH 17
+
+ADD FIELD "val-cofins" OF "dt-it-docum-est" AS decimal
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  POSITION 77
+  INITIAL "0"
+  LABEL "Valor COFINS"
+  COLUMN-LABEL "Valor COFINS"
+  DECIMALS 2
+  ORDER 770
+  MAX-WIDTH 17
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000009771

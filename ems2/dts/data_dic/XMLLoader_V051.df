@@ -1,0 +1,64 @@
+ADD FIELD "cod-verificacao" OF "dt-docum-est" AS character
+  FORMAT "x(60)"
+  POSITION 96
+  INITIAL ""
+  HELP "Código de Verificação NFS-e"
+  LABEL "Código Verificação"
+  COLUMN-LABEL "Cod Verificacao"
+  ORDER 950
+  MAX-WIDTH 120
+
+ADD FIELD "log-implantado-manual" OF "dt-docum-est" AS logical
+  DESCRIPTION "Esse campo será preenchido quando, ao importar um XML via Loader o mesmo já estiver implantado manualmente no Fiscal ou no Físico"
+  FORMAT "Sim/Não"
+  POSITION 97
+  INITIAL "Não"
+  HELP "Doc Implantado Manualmente"
+  LABEL "Doc Implantado Manualmente"
+  COLUMN-LABEL "Doc Impl Manual"
+  ORDER 960
+  MAX-WIDTH 1
+
+ADD FIELD "dt-implanta-manual" OF "dt-docum-est" AS date
+  DESCRIPTION "Esse campo será preenchido quando, ao importar um XML via Loader o mesmo já estiver implantado manualmente no Fiscal ou no Físico - é a data da execução do programa que importa o XML no Loader"
+  FORMAT "99/99/9999"
+  POSITION 98
+  INITIAL ?
+  HELP "Data da Implantação Manual"
+  LABEL "Dt Implanta Manual"
+  COLUMN-LABEL "Dt Implanta Manual"
+  ORDER 970
+  MAX-WIDTH 4
+
+ADD INDEX "idx-cod-verificacao" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-verificacao" ASCENDING
+
+ADD INDEX "idx-situacao" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "log-situacao" ASCENDING
+
+ADD FIELD "ct-codigo" OF "dt-it-docum-est" AS character
+  FORMAT "x(20)"
+  POSITION 78
+  INITIAL ""
+  LABEL "Conta"
+  COLUMN-LABEL "Cta"
+  ORDER 780
+  MAX-WIDTH 40
+
+ADD FIELD "sc-codigo" OF "dt-it-docum-est" AS character
+  FORMAT "x(20)"
+  POSITION 79
+  INITIAL ""
+  LABEL "Sub-Conta"
+  COLUMN-LABEL "SC"
+  ORDER 790
+  MAX-WIDTH 40
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000001715

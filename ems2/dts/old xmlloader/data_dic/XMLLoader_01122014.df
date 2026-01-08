@@ -1,0 +1,16 @@
+ADD FIELD "cod-cst-item" OF "dt-it-docum-est" AS character
+  DESCRIPTION "Situa‡Æo Tribut ria ICMS - CST"
+  FORMAT "x(3)"
+  POSITION 54
+  INITIAL ""
+  HELP "Situa‡Æo Tribut ria ICMS - CST"
+  LABEL "Sit Trib ICMS (CST)"
+  COLUMN-LABEL "Sit Trib ICMS (CST)"
+  ORDER 540
+  MAX-WIDTH 6
+
+.
+PSC
+cpstream=ibm850
+.
+0000000297

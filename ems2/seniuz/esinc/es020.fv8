@@ -1,0 +1,5 @@
+/* Include: es020.fv8
+** Tabela.: mov-est-acbd
+*/
+
+can-find(mgind.item where mgind.item.it-codigo = espec.mov-est-acbd.it-codigo)

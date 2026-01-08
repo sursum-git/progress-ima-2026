@@ -1,0 +1,32 @@
+ADD FIELD "tipo-conexao-mail" OF "dt-empresa" AS integer
+  FORMAT "9"
+  POSITION 44
+  INITIAL "0"
+  HELP "Tipo de ConexÆo com e-mail"
+  LABEL "Tipo ConexÆo e-mail"
+  COLUMN-LABEL "Tipo ConexÆo e-mail"
+  VIEW-AS "VIEW-AS RADIO-SET
+  RADIO-BUTTONS ""SSL"", 1,
+""NÆo SSL"", 2"
+  ORDER 870
+  MAX-WIDTH 4
+
+UPDATE FIELD "dec-1" OF "dt-it-docum-est"
+  FORMAT ">>>>,>>>,>>9.9999"
+
+ADD FIELD "nat-of" OF "dt-it-docum-est" AS character
+  FORMAT "x(6)"
+  POSITION 59
+  INITIAL ""
+  LABEL "Natureza"
+  COLUMN-LABEL "Natureza"
+  ORDER 590
+  MAX-WIDTH 12
+
+UPDATE FIELD "quantidade" OF "dt-it-docum-est"
+  DECIMALS 4
+.
+PSC
+cpstream=ibm850
+.
+0000000570

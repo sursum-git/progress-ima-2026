@@ -1,0 +1,51 @@
+ADD FIELD "l-observacao" OF "dt-empresa" AS logical
+  DESCRIPTION "Importa Observa‡Æo do XML de Origem"
+  FORMAT "Sim/NÆo"
+  POSITION 43
+  INITIAL "NÆo"
+  HELP "Importa Observa‡Æo do XML de Origem"
+  LABEL "Importa Observa‡Æo"
+  COLUMN-LABEL "Importa Obseva‡Æo"
+  ORDER 860
+  MAX-WIDTH 1
+
+UPDATE FIELD "lote" OF "dt-it-docum-est"
+  FORMAT "x(40)"
+
+ADD FIELD "parcela" OF "dt-it-docum-est" AS integer
+  FORMAT ">>>>9"
+  POSITION 56
+  INITIAL "0"
+  HELP "Parcela da Ordem de Compra"
+  LABEL "Parcela"
+  COLUMN-LABEL "Parc"
+  ORDER 560
+  MAX-WIDTH 4
+
+ADD FIELD "l-benef-nf-propria" OF "dt-it-docum-est" AS logical
+  DESCRIPTION "Beneficiamento com Nota Pr¢pria"
+  FORMAT "Sim/NÆo"
+  POSITION 57
+  INITIAL "NÆo"
+  HELP "Beneficiamento com Nota Pr¢pria"
+  LABEL "Benef. NF Pr¢pria"
+  COLUMN-LABEL "Benef. NF Pr¢pria"
+  ORDER 570
+  MAX-WIDTH 1
+
+ADD FIELD "l-item-agregado" OF "dt-it-docum-est" AS logical
+  DESCRIPTION "Item Agregado"
+  FORMAT "Sim/NÆo"
+  POSITION 58
+  INITIAL "NÆo"
+  HELP "Item Agregado"
+  LABEL "Agregado"
+  COLUMN-LABEL "Agregado"
+  ORDER 580
+  MAX-WIDTH 1
+
+.
+PSC
+cpstream=ibm850
+.
+0000001122

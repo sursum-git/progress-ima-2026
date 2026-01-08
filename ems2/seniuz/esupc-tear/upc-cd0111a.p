@@ -1,0 +1,8 @@
+DEF NEW GLOBAL SHARED VAR wh-nr-seq-prod AS WIDGET-HANDLE NO-UNDO.
+
+ASSIGN wh-nr-seq-prod:SENSITIVE = LOGICAL(SELF:SCREEN-VALUE).
+
+IF wh-nr-seq-prod:SENSITIVE = NO THEN
+   ASSIGN wh-nr-seq-prod:SCREEN-VALUE = ''.
+ELSE
+   APPLY 'ENTRY' TO wh-nr-seq-prod.

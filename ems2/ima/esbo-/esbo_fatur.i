@@ -1,0 +1,60 @@
+DEF TEMP-TABLE tt-fatur      NO-UNDO
+    FIELD tipo                 AS CHAR
+    FIELD nr_nf                LIKE nota-fiscal.nr-nota-fis
+    FIELD serie                LIKE nota-fiscal.serie
+    FIELD cod_estabel          LIKE nota-fiscal.cod-estabel
+    FIELD dt_emis              LIKE nota-fiscal.dt-emis-nota
+    FIELD dia                  AS CHAR
+    FIELD mes                  AS CHAR
+    FIELD ano                  AS CHAR
+    FIELD semana_mes           AS CHAR
+    FIELD semana_ano           AS CHAR
+    FIELD bimestre             AS CHAR
+    FIELD trimestre            AS CHAR
+    FIELD semestre             AS CHAR
+    FIELD cod_cli              LIKE nota-fiscal.cod-emitente
+    FIELD nome_abrev           LIKE nota-fiscal.nome-abrev
+    FIELD nome_emit            LIKE emitente.nome-emit
+    FIELD cidade               LIKE nota-fiscal.cidade
+    FIELD estado               LIKE nota-fiscal.estado
+    FIELD categoria            AS CHAR
+    FIELD cnae                 AS CHAR
+    FIELD desc_cnae            AS CHAR
+    FIELD matriz_cli           AS CHAR
+    FIELD ramo_atividade       AS INT
+    FIELD desc_ramo_ativ       LIKE ramo-ativ.descricao 
+    FIELD atividade            LIKE emitente.atividade
+    FIELD desc_atividade       AS CHAR
+    FIELD cod_repres           LIKE nota-fiscal.cod-rep
+    FIELD nome_rep             LIKE nota-fiscal.no-ab-reppri
+    FIELD nome_rep_compl       AS CHAR
+    FIELD ativo                AS INT
+    FIELD tp_repres            LIKE repres.tipo-repres
+    FIELD comis_padrao         AS DEC
+    FIELD cod_item             LIKE it-nota-fisc.it-codigo
+    FIELD desc_item            AS CHAR
+    FIELD grupo_item           AS INT
+    FIELD grupo_it_desc        AS CHAR
+    FIELD it_familia           AS INT
+    FIELD desc_familia         AS CHAR
+    FIELD preco_tab            AS DEC
+    FIELD preco_pi_atual       AS DEC
+    FIELD preco_pi_epoca       AS DEC
+    FIELD preco_out_epoca      AS DEC
+    FIELD preco_out_atual      AS DEC
+    FIELD preco_tab_ref_atual  AS DEC
+    FIELD preco_tab_ref_epoca  AS DEC
+    FIELD preco_uni_nf         LIKE it-nota-fisc.vl-preuni
+    FIELD qt_nf                AS DEC
+    FIELD vl_tot_it_nf         LIKE it-nota-fisc.vl-tot-item
+    FIELD cod-refer            LIKE it-nota-fisc.cod-refer
+    FIELD un                   LIKE it-nota-fisc.un-fatur[1]
+    FIELD perc_desconto        AS DECIMAL
+    FIELD descFaixa            AS CHAR FORMAT 'x(20)'
+    FIELD descCondPgto         AS CHAR FORMAT 'x(20)'
+    FIELD it_fam_com           AS INT
+    FIELD desc_fam_com         LIKE fam-comerc.descricao 
+    FIELD perc_12              AS DECIMAL
+    FIELD vl_12                AS DECIMAL
+    FIELD desc_reg_ger_rep     AS CHAR FORMAT 'x(20)' 
+    FIELD coligada             AS CHAR .

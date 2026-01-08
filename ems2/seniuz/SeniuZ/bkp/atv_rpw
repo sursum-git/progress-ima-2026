@@ -1,0 +1,31 @@
+#!/bin/bash
+#***************************************************************************
+# Copyright DATASUL S.A. (2000)
+# All rights reserved.
+#
+# File..................: scripts/ems2conv
+# Description...........: Conversion DATASUL-EMS 2.04
+# Created by............: Installation Process
+# Creation Date.........: 8-18-2004 10:26:38
+#***************************************************************************
+
+tput clear
+
+#CD=$pwd;export CD
+#cd /vol3/ems204/rpw
+cd /usr/suporte/rpw
+PROPATH=./esp,./tty,.,/usr/suporte/rpw,/apl/ems204,/apl/ems204/database
+export PROPATH
+DLC=/usr/dlc101b;export DLC
+echo
+
+export PATH=$PATH:/usr/java/default/bin:/usr/suporte/shell:/usr/dlc101b/bin:.
+export DLC=/usr/dlc101b
+
+#export PROCFG=/usr/dlc9/progress.cfg4gl
+
+$DLC/bin/_progres -pf rpw.pf -p aliasrpw.p -param TEC,btb,rpwtear,rpw,pioneer,,20:00:00
+
+#cd $CD
+#************************************************************************
+

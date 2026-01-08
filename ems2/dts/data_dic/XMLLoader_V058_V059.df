@@ -1,0 +1,2434 @@
+ADD TABLE "dt-dados-audit-xml"
+  AREA "Schema Area"
+  LABEL "Dados Auditoria"
+  DUMP-NAME "dt-dados-audit-xml"
+
+ADD FIELD "chave-xml" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Chave Documento"
+  POSITION 2
+  MAX-WIDTH 512
+  COLUMN-LABEL "Chave Documento"
+  ORDER 380
+
+ADD FIELD "num-pedido" OF "dt-dados-audit-xml" AS integer 
+  FORMAT ">>>>>,>>9"
+  INITIAL "0"
+  LABEL "Pedido Compr"
+  POSITION 3
+  MAX-WIDTH 40
+  COLUMN-LABEL "Pedido Compr"
+  HELP "Pedido de Compra"
+  EXTENT 2
+  ORDER 560
+
+ADD FIELD "numero-ordem" OF "dt-dados-audit-xml" AS integer 
+  FORMAT "zzzzz9,99"
+  INITIAL "0"
+  LABEL "Ordem Compra"
+  POSITION 4
+  MAX-WIDTH 40
+  COLUMN-LABEL "Ordem Compra"
+  HELP "Ordem Compra"
+  EXTENT 2
+  ORDER 570
+
+ADD FIELD "it-codigo" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item"
+  POSITION 5
+  MAX-WIDTH 68
+  COLUMN-LABEL "Item"
+  EXTENT 2
+  ORDER 580
+
+ADD FIELD "preco-unit" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Preço Unitário"
+  POSITION 6
+  MAX-WIDTH 72
+  COLUMN-LABEL "Preço Unitário"
+  EXTENT 2
+  DECIMALS 4
+  ORDER 590
+
+ADD FIELD "quantidade" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Quantidade"
+  POSITION 7
+  MAX-WIDTH 72
+  COLUMN-LABEL "Quantidade"
+  EXTENT 2
+  DECIMALS 4
+  ORDER 600
+
+ADD FIELD "un" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(2)"
+  INITIAL ""
+  LABEL "Unidade de Medida"
+  POSITION 8
+  MAX-WIDTH 12
+  COLUMN-LABEL "Unidade de Medida"
+  EXTENT 2
+  ORDER 610
+
+ADD FIELD "class-fiscal" OF "dt-dados-audit-xml" AS character 
+  DESCRIPTION "Classificação Fiscal "
+  FORMAT "9999.99.99"
+  INITIAL ""
+  LABEL "Classificação Fiscal"
+  POSITION 9
+  MAX-WIDTH 44
+  COLUMN-LABEL "Class Fisc"
+  HELP "Classificação Fiscal"
+  EXTENT 2
+  ORDER 620
+
+ADD FIELD "cfop-item" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(6)"
+  INITIAL ""
+  LABEL "CFOP"
+  POSITION 10
+  MAX-WIDTH 28
+  COLUMN-LABEL "CFOP"
+  EXTENT 2
+  ORDER 630
+
+ADD FIELD "sequencia" OF "dt-dados-audit-xml" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Sequencia"
+  POSITION 11
+  MAX-WIDTH 4
+  COLUMN-LABEL "Sequencia"
+  HELP "Sequencia do Item"
+  ORDER 640
+
+ADD FIELD "base-ipi" OF "dt-dados-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo IPI"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo IPI"
+  POSITION 12
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo IPI"
+  HELP "Base Calculo IPI"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 650
+
+ADD FIELD "aliquota-ipi" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota IPI"
+  POSITION 13
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliquota IPI"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 660
+
+ADD FIELD "valor-ipi" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "IPI"
+  POSITION 14
+  MAX-WIDTH 64
+  COLUMN-LABEL "IPI"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 670
+
+ADD FIELD "base-pis" OF "dt-dados-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo PIS"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo PIS"
+  POSITION 15
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo PIS"
+  HELP "Base Calculo PIS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 680
+
+ADD FIELD "aliquota-pis" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota PIS"
+  POSITION 16
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliquota PIS"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 690
+
+ADD FIELD "valor-pis" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor PIS"
+  POSITION 17
+  MAX-WIDTH 76
+  COLUMN-LABEL "Valor PIS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 700
+
+ADD FIELD "base-cofins" OF "dt-dados-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo COFINS"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo COFINS"
+  POSITION 18
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo COFINS"
+  HELP "Base Calculo COFINS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 710
+
+ADD FIELD "aliquota-cofins" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota COFINS"
+  POSITION 19
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliquota COFINS"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 720
+
+ADD FIELD "val-cofins" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor COFINS"
+  POSITION 20
+  MAX-WIDTH 76
+  COLUMN-LABEL "Valor COFINS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 730
+
+ADD FIELD "aliquota-icm" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota ICMS"
+  POSITION 21
+  MAX-WIDTH 44
+  COLUMN-LABEL "Aliquota ICMS"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 740
+
+ADD FIELD "base-icm" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base ICMS"
+  POSITION 22
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base ICMS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 750
+
+ADD FIELD "valor-icm" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "ICMS"
+  POSITION 23
+  MAX-WIDTH 64
+  COLUMN-LABEL "ICMS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 760
+
+ADD FIELD "base-subs" OF "dt-dados-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo Subs"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo Subs"
+  POSITION 24
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo Subs"
+  HELP "Base Calculo Subs"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 770
+
+ADD FIELD "valor-subs" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor Subs"
+  POSITION 25
+  MAX-WIDTH 64
+  COLUMN-LABEL "Valor Subs"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 780
+
+ADD FIELD "int-2" OF "dt-dados-audit-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 26
+  MAX-WIDTH 4
+  ORDER 790
+
+ADD FIELD "int-1" OF "dt-dados-audit-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 27
+  MAX-WIDTH 4
+  ORDER 800
+
+ADD FIELD "dec-1" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 28
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 810
+
+ADD FIELD "dec-2" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 29
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 820
+
+ADD FIELD "log-1" OF "dt-dados-audit-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 30
+  MAX-WIDTH 1
+  ORDER 830
+
+ADD FIELD "log-2" OF "dt-dados-audit-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 31
+  MAX-WIDTH 1
+  ORDER 840
+
+ADD FIELD "char-1" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 32
+  MAX-WIDTH 512
+  ORDER 850
+
+ADD FIELD "char-2" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 33
+  MAX-WIDTH 512
+  ORDER 860
+
+ADD FIELD "date-1" OF "dt-dados-audit-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 34
+  MAX-WIDTH 4
+  ORDER 870
+
+ADD FIELD "date-2" OF "dt-dados-audit-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 35
+  MAX-WIDTH 4
+  ORDER 880
+
+ADD FIELD "aliq-icms-st" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota ICMS ST"
+  POSITION 36
+  MAX-WIDTH 44
+  COLUMN-LABEL "Aliquota ICMS ST"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 890
+
+ADD FIELD "cod-csosn" OF "dt-dados-audit-xml" AS character 
+  FORMAT "x(4)"
+  INITIAL ""
+  LABEL "CSOSN"
+  POSITION 37
+  MAX-WIDTH 20
+  COLUMN-LABEL "CSOSN"
+  HELP "CSOSN"
+  EXTENT 2
+  ORDER 900
+
+ADD FIELD "aliq-icms-sn" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>9.99"
+  INITIAL "0"
+  LABEL "Aliq ICMS SN"
+  POSITION 38
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliq ICMS SN"
+  HELP "Aliquota ICMS Simples Nacional"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 910
+
+ADD FIELD "base-icms-sn" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base ICMS SN"
+  POSITION 39
+  MAX-WIDTH 76
+  COLUMN-LABEL "Base ICMS SN"
+  HELP "Base ICMS Simples Nacional"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 920
+
+ADD FIELD "vl-icms-sn" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor ICMS SN"
+  POSITION 40
+  MAX-WIDTH 76
+  COLUMN-LABEL "Valor ICMS SN"
+  HELP "Valor ICMS Simples Nacional"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 930
+
+ADD FIELD "base-fcp" OF "dt-dados-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo FCP"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo FCP"
+  POSITION 41
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo FCP"
+  HELP "Base Calculo FCP"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 940
+
+ADD FIELD "aliquota-fcp" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota FCP"
+  POSITION 42
+  MAX-WIDTH 44
+  COLUMN-LABEL "Aliquota FCP"
+  HELP "Aliquota FCP"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 950
+
+ADD FIELD "valor-fcp" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor FCP"
+  POSITION 43
+  MAX-WIDTH 64
+  COLUMN-LABEL "Valor FCP"
+  HELP "Valor FCP"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 960
+
+ADD FIELD "base-fcp-st" OF "dt-dados-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo FCP ST"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo FCP ST"
+  POSITION 44
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo FCP ST"
+  HELP "Base Calculo FCP ST"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 970
+
+ADD FIELD "aliquota-fcp-st" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT "->>9.99999"
+  INITIAL "0"
+  LABEL "Aliquota FCP ST"
+  POSITION 45
+  MAX-WIDTH 44
+  COLUMN-LABEL "Aliquota FCP ST"
+  HELP "Aliquota FCP ST"
+  EXTENT 2
+  DECIMALS 5
+  ORDER 980
+
+ADD FIELD "valor-fcp-st" OF "dt-dados-audit-xml" AS decimal 
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor FCP ST"
+  POSITION 46
+  MAX-WIDTH 64
+  COLUMN-LABEL "Valor FCP ST"
+  HELP "Valor FCP ST"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 990
+
+ADD INDEX "idx-item-documento" ON "dt-dados-audit-xml" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "chave-xml" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "idx-chave-doc" ON "dt-dados-audit-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-xml" ASCENDING 
+
+ADD TABLE "dt-dados-motorista"
+  AREA "Schema Area"
+  LABEL "Dados Motorista"
+  DUMP-NAME "dt-dados-motorista"
+
+ADD FIELD "chave-xml" OF "dt-dados-motorista" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Chave Documento"
+  POSITION 2
+  MAX-WIDTH 120
+  COLUMN-LABEL "Chave Documento"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "nome-motorista" OF "dt-dados-motorista" AS character 
+  FORMAT "x(80)"
+  INITIAL ""
+  LABEL "Motorista"
+  POSITION 3
+  MAX-WIDTH 160
+  COLUMN-LABEL "Motorista"
+  ORDER 20
+
+ADD FIELD "carteira-habilitacao" OF "dt-dados-motorista" AS character 
+  FORMAT "x(40)"
+  INITIAL ""
+  LABEL "CNH"
+  POSITION 4
+  MAX-WIDTH 80
+  COLUMN-LABEL "CNH"
+  HELP "Carteira Habilitação Motorista"
+  ORDER 30
+
+ADD FIELD "placa-veiculo" OF "dt-dados-motorista" AS character 
+  FORMAT "x(12)"
+  INITIAL ""
+  LABEL "Placa"
+  POSITION 5
+  MAX-WIDTH 24
+  COLUMN-LABEL "Placa"
+  HELP "Placa Veículo"
+  ORDER 40
+
+ADD INDEX "idx-chave-doc" ON "dt-dados-motorista" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "chave-xml" ASCENDING 
+
+ADD TABLE "dt-ext-docum-est"
+  AREA "Schema Area"
+  LABEL "Extensao Documento Estoque"
+  DESCRIPTION "Extensao Documento Estoque Loader"
+  DUMP-NAME "dt-ext-docum-est"
+
+ADD FIELD "serie-docto" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Série do Documento"
+  FORMAT "X(5)"
+  INITIAL ""
+  LABEL "Série Documento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Série"
+  HELP "Série do Documento"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Número do documento"
+  FORMAT "X(16)"
+  INITIAL ""
+  LABEL "Número Documento"
+  POSITION 3
+  MAX-WIDTH 32
+  COLUMN-LABEL "Nr Docto"
+  HELP "Número do documento"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "cod-emitente" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Código do emitente"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Emitente"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emitente"
+  HELP "Código do emitente"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "nat-operacao" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Natureza da operação"
+  FORMAT "x(06)"
+  INITIAL ""
+  LABEL "Natureza Operação"
+  POSITION 5
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper"
+  HELP "Natureza da operação"
+  ORDER 40
+  MANDATORY
+
+ADD FIELD "cod-param" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código do parâmetro"
+  FORMAT "X(50)"
+  INITIAL ""
+  LABEL "Parâmetro"
+  POSITION 6
+  MAX-WIDTH 100
+  COLUMN-LABEL "parâmetro"
+  HELP "Código do parâmetro"
+  ORDER 50
+  MANDATORY
+
+ADD FIELD "cod-livre-1" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código Livre 1"
+  FORMAT "x(1000)"
+  INITIAL ""
+  LABEL "Livre 1"
+  POSITION 7
+  MAX-WIDTH 2000
+  COLUMN-LABEL "Livre 1"
+  HELP "Código Livre 1"
+  ORDER 60
+
+ADD FIELD "cod-livre-2" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código Livre 2"
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Livre 2"
+  POSITION 8
+  MAX-WIDTH 4000
+  COLUMN-LABEL "Livre 2"
+  HELP "Código Livre 2"
+  ORDER 70
+
+ADD FIELD "cod-livre-3" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código Livre 3"
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Livre 3"
+  POSITION 9
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Livre 3"
+  HELP "Código Livre 3"
+  ORDER 80
+
+ADD FIELD "cod-livre-4" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código Livre 4"
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Livre 4"
+  POSITION 10
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Livre 4"
+  HELP "Código Livre 4"
+  ORDER 90
+
+ADD FIELD "cod-livre-5" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código Livre 5"
+  FORMAT "x(1000)"
+  INITIAL ""
+  LABEL "Livre 5"
+  POSITION 11
+  MAX-WIDTH 2000
+  COLUMN-LABEL "Livre 5"
+  HELP "Código Livre 5"
+  ORDER 100
+
+ADD FIELD "cod-livre-6" OF "dt-ext-docum-est" AS character 
+  DESCRIPTION "Código Livre 6"
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Livre 6"
+  POSITION 12
+  MAX-WIDTH 4000
+  COLUMN-LABEL "Livre 6"
+  HELP "Código Livre 6"
+  ORDER 110
+
+ADD FIELD "num-livre-1" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Número Livre 1"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 1"
+  POSITION 13
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 1"
+  HELP "Número Livre 1"
+  ORDER 120
+
+ADD FIELD "num-livre-2" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Número Livre 2"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 2"
+  POSITION 14
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 2"
+  HELP "Número Livre 2"
+  ORDER 130
+
+ADD FIELD "num-livre-3" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 3"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 15
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 3"
+  HELP "Numero Livre 3"
+  ORDER 140
+
+ADD FIELD "num-livre-4" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 4"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 16
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 3"
+  HELP "Numero Livre 4"
+  ORDER 150
+
+ADD FIELD "num-livre-5" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 5"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 5"
+  POSITION 17
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 5"
+  HELP "Numero Livre 5"
+  ORDER 160
+
+ADD FIELD "num-livre-6" OF "dt-ext-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 6"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 6"
+  POSITION 18
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 6"
+  HELP "Numero Livre 6"
+  ORDER 170
+
+ADD FIELD "val-livre-1" OF "dt-ext-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 1"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 1"
+  POSITION 19
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 1"
+  HELP "Valor Livre 1"
+  DECIMALS 10
+  ORDER 180
+
+ADD FIELD "val-livre-2" OF "dt-ext-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 2"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 2"
+  POSITION 20
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 2"
+  HELP "Valor Livre 2"
+  DECIMALS 10
+  ORDER 190
+
+ADD FIELD "val-livre-3" OF "dt-ext-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 3"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 21
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 3"
+  HELP "Valor Livre 3"
+  DECIMALS 10
+  ORDER 200
+
+ADD FIELD "val-livre-4" OF "dt-ext-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 4"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 4"
+  POSITION 22
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 4"
+  HELP "Valor Livre 4"
+  DECIMALS 10
+  ORDER 210
+
+ADD FIELD "val-livre-5" OF "dt-ext-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 5"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 5"
+  POSITION 23
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 5"
+  HELP "Valor Livre 5"
+  DECIMALS 10
+  ORDER 220
+
+ADD FIELD "val-livre-6" OF "dt-ext-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 6"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 6"
+  POSITION 24
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 6"
+  HELP "Valor Livre 6"
+  DECIMALS 10
+  ORDER 230
+
+ADD FIELD "log-livre-1" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Lógico Livre 1"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 1"
+  POSITION 25
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 1"
+  HELP "Lógico Livre 1"
+  ORDER 240
+
+ADD FIELD "log-livre-2" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Lógico Livre 2"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 2"
+  POSITION 26
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 2"
+  HELP "Lógico Livre 2"
+  ORDER 250
+
+ADD FIELD "log-livre-3" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 3"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 3"
+  POSITION 27
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 3"
+  HELP "Logico Livre 3"
+  ORDER 260
+
+ADD FIELD "log-livre-4" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 4"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 4"
+  POSITION 28
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 4"
+  HELP "Logico Livre 4"
+  ORDER 270
+
+ADD FIELD "log-livre-5" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 5"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 5"
+  POSITION 29
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 5"
+  HELP "Logico Livre 5"
+  ORDER 280
+
+ADD FIELD "log-livre-6" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 6"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 6"
+  POSITION 30
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 6"
+  HELP "Logico Livre 6"
+  ORDER 290
+
+ADD FIELD "log-livre-7" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 7"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 7"
+  POSITION 31
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 7"
+  HELP "Logico Livre 7"
+  ORDER 300
+
+ADD FIELD "log-livre-8" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 8"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 8"
+  POSITION 32
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 8"
+  HELP "Logico Livre 8"
+  ORDER 310
+
+ADD FIELD "log-livre-9" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 9"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 9"
+  POSITION 33
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 9"
+  HELP "Logico Livre 9"
+  ORDER 320
+
+ADD FIELD "log-livre-10" OF "dt-ext-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 10"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 10"
+  POSITION 34
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 10"
+  HELP "Logico Livre 10"
+  ORDER 330
+
+ADD FIELD "dat-livre-1" OF "dt-ext-docum-est" AS date 
+  DESCRIPTION "Data Livre 1"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 1"
+  POSITION 35
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 1"
+  HELP "Data Livre 1"
+  ORDER 340
+
+ADD FIELD "dat-livre-2" OF "dt-ext-docum-est" AS date 
+  DESCRIPTION "Data Livre 2"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 2"
+  POSITION 36
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 2"
+  HELP "Data Livre 2"
+  ORDER 350
+
+ADD FIELD "dat-livre-3" OF "dt-ext-docum-est" AS date 
+  DESCRIPTION "Data Livre 3"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 3"
+  POSITION 37
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 3"
+  HELP "Data Livre 3"
+  ORDER 360
+
+ADD FIELD "dat-livre-4" OF "dt-ext-docum-est" AS date 
+  DESCRIPTION "Data Livre 4"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 4"
+  POSITION 38
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 4"
+  HELP "Data Livre 4"
+  ORDER 370
+
+ADD FIELD "dat-livre-5" OF "dt-ext-docum-est" AS date 
+  DESCRIPTION "Data Livre 5"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 5"
+  POSITION 39
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 5"
+  HELP "Data Livre 5"
+  ORDER 380
+
+ADD FIELD "dat-livre-6" OF "dt-ext-docum-est" AS date 
+  DESCRIPTION "Data Livre 6"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 6"
+  POSITION 40
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 6"
+  HELP "Data Livre 6"
+  ORDER 390
+
+ADD FIELD "chave-xml" OF "dt-ext-docum-est" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Chave Documento"
+  POSITION 45
+  MAX-WIDTH 120
+  COLUMN-LABEL "Chave Documento"
+  ORDER 400
+
+ADD INDEX "ext-documento" ON "dt-ext-docum-est" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "cod-param" ASCENDING 
+
+ADD INDEX "documento" ON "dt-ext-docum-est" 
+  AREA "Schema Area"
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+
+ADD INDEX "ext-documento-param" ON "dt-ext-docum-est" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-param" ASCENDING 
+
+ADD INDEX "idx-chave-doc" ON "dt-ext-docum-est" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-xml" ASCENDING 
+
+ADD TABLE "dt-ext-emitente-loader"
+  AREA "Schema Area"
+  LABEL "Extensao do Fornecedor - Loader"
+  DUMP-NAME "dt-ext-emitente-loader"
+
+ADD FIELD "cod-emitente" OF "dt-ext-emitente-loader" AS integer 
+  DESCRIPTION "Codigo do cliente"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cod emitente"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod emitente"
+  ORDER 10
+
+ADD FIELD "l-fornec-estoq" OF "dt-ext-emitente-loader" AS logical 
+  FORMAT "Sim/NÆo"
+  INITIAL "NÆo"
+  POSITION 6
+  MAX-WIDTH 1
+  ORDER 50
+
+ADD INDEX "ch-ext-emit" ON "dt-ext-emitente-loader" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-emitente" ASCENDING 
+
+ADD TABLE "dt-ext-it-docum-est"
+  AREA "Schema Area"
+  LABEL "Extensao Item Documento Estoqu"
+  DESCRIPTION "Extensao Item Documento Estoque Loader"
+  DUMP-NAME "dt-ext-it-docum-est"
+
+ADD FIELD "serie-docto" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Série do Documento"
+  FORMAT "X(5)"
+  INITIAL ""
+  LABEL "Série Documento"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Série"
+  HELP "Série do Documento"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Número do documento"
+  FORMAT "X(16)"
+  INITIAL ""
+  LABEL "Número Documento"
+  POSITION 3
+  MAX-WIDTH 32
+  COLUMN-LABEL "Nr Docto"
+  HELP "Número do documento"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "cod-emitente" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Código do emitente"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Emitente"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emitente"
+  HELP "Código do emitente"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "nat-operacao" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Natureza da operação"
+  FORMAT "x(06)"
+  INITIAL ""
+  LABEL "Natureza Operação"
+  POSITION 5
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper"
+  HELP "Natureza da operação"
+  ORDER 40
+  MANDATORY
+
+ADD FIELD "sequencia" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Número Sequência"
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Nr Seqüência"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Nr Seq"
+  HELP "Número Sequência"
+  ORDER 50
+  MANDATORY
+
+ADD FIELD "cod-param" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código do parâmetro"
+  FORMAT "X(50)"
+  INITIAL ""
+  LABEL "Parâmetro"
+  POSITION 7
+  MAX-WIDTH 100
+  COLUMN-LABEL "parâmetro"
+  HELP "Código do parâmetro"
+  ORDER 60
+  MANDATORY
+
+ADD FIELD "cod-livre-1" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código Livre 1"
+  FORMAT "x(1000)"
+  INITIAL ""
+  LABEL "Livre 1"
+  POSITION 8
+  MAX-WIDTH 2000
+  COLUMN-LABEL "Livre 1"
+  HELP "Código Livre 1"
+  ORDER 70
+
+ADD FIELD "cod-livre-2" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código Livre 2"
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Livre 2"
+  POSITION 9
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Livre 2"
+  HELP "Código Livre 2"
+  ORDER 80
+
+ADD FIELD "cod-livre-3" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código Livre 3"
+  FORMAT "x(500)"
+  INITIAL ""
+  LABEL "Livre 3"
+  POSITION 10
+  MAX-WIDTH 1000
+  COLUMN-LABEL "Livre 3"
+  HELP "Código Livre 3"
+  ORDER 90
+
+ADD FIELD "cod-livre-4" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código Livre 4"
+  FORMAT "x(1000)"
+  INITIAL ""
+  LABEL "Livre 4"
+  POSITION 11
+  MAX-WIDTH 2000
+  COLUMN-LABEL "Livre 4"
+  HELP "Código Livre 4"
+  ORDER 100
+
+ADD FIELD "cod-livre-5" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código Livre 5"
+  FORMAT "x(1000)"
+  INITIAL ""
+  LABEL "Livre 5"
+  POSITION 12
+  MAX-WIDTH 2000
+  COLUMN-LABEL "Livre 5"
+  HELP "Código Livre 5"
+  ORDER 110
+
+ADD FIELD "cod-livre-6" OF "dt-ext-it-docum-est" AS character 
+  DESCRIPTION "Código Livre 6"
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Livre 6"
+  POSITION 13
+  MAX-WIDTH 4000
+  COLUMN-LABEL "Livre 6"
+  HELP "Código Livre 6"
+  ORDER 120
+
+ADD FIELD "num-livre-1" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Número Livre 1"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 1"
+  POSITION 14
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 1"
+  HELP "Número Livre 1"
+  ORDER 130
+
+ADD FIELD "num-livre-2" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Número Livre 2"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 2"
+  POSITION 15
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 2"
+  HELP "Número Livre 2"
+  ORDER 140
+
+ADD FIELD "num-livre-3" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 3"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 16
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 3"
+  HELP "Numero Livre 3"
+  ORDER 150
+
+ADD FIELD "num-livre-4" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 4"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 17
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 3"
+  HELP "Numero Livre 4"
+  ORDER 160
+
+ADD FIELD "num-livre-5" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 5"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 5"
+  POSITION 18
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 5"
+  HELP "Numero Livre 5"
+  ORDER 170
+
+ADD FIELD "num-livre-6" OF "dt-ext-it-docum-est" AS integer 
+  DESCRIPTION "Numero Livre 6"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Livre 6"
+  POSITION 19
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 6"
+  HELP "Numero Livre 6"
+  ORDER 180
+
+ADD FIELD "val-livre-1" OF "dt-ext-it-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 1"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 1"
+  POSITION 20
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 1"
+  HELP "Valor Livre 1"
+  DECIMALS 10
+  ORDER 190
+
+ADD FIELD "val-livre-2" OF "dt-ext-it-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 2"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 2"
+  POSITION 21
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 2"
+  HELP "Valor Livre 2"
+  DECIMALS 10
+  ORDER 200
+
+ADD FIELD "val-livre-3" OF "dt-ext-it-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 3"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 3"
+  POSITION 22
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 3"
+  HELP "Valor Livre 3"
+  DECIMALS 10
+  ORDER 210
+
+ADD FIELD "val-livre-4" OF "dt-ext-it-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 4"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 4"
+  POSITION 23
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 4"
+  HELP "Valor Livre 4"
+  DECIMALS 10
+  ORDER 220
+
+ADD FIELD "val-livre-5" OF "dt-ext-it-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 5"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 5"
+  POSITION 24
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 5"
+  HELP "Valor Livre 5"
+  DECIMALS 10
+  ORDER 230
+
+ADD FIELD "val-livre-6" OF "dt-ext-it-docum-est" AS decimal 
+  DESCRIPTION "Valor Livre 6"
+  FORMAT "->>>>>>>>>>>9.9999999999"
+  INITIAL "0"
+  LABEL "Livre 6"
+  POSITION 25
+  MAX-WIDTH 25
+  COLUMN-LABEL "Livre 6"
+  HELP "Valor Livre 6"
+  DECIMALS 10
+  ORDER 240
+
+ADD FIELD "log-livre-1" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Lógico Livre 1"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 1"
+  POSITION 26
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 1"
+  HELP "Lógico Livre 1"
+  ORDER 250
+
+ADD FIELD "log-livre-2" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Lógico Livre 2"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 2"
+  POSITION 27
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 2"
+  HELP "Lógico Livre 2"
+  ORDER 260
+
+ADD FIELD "log-livre-3" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 3"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 3"
+  POSITION 28
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 3"
+  HELP "Logico Livre 3"
+  ORDER 270
+
+ADD FIELD "log-livre-4" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 4"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 4"
+  POSITION 29
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 4"
+  HELP "Logico Livre 4"
+  ORDER 280
+
+ADD FIELD "log-livre-5" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 5"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 5"
+  POSITION 30
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 5"
+  HELP "Logico Livre 5"
+  ORDER 290
+
+ADD FIELD "log-livre-6" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 6"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 6"
+  POSITION 31
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 6"
+  HELP "Logico Livre 6"
+  ORDER 300
+
+ADD FIELD "log-livre-7" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 7"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 7"
+  POSITION 32
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 7"
+  HELP "Logico Livre 7"
+  ORDER 310
+
+ADD FIELD "log-livre-8" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 8"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 8"
+  POSITION 33
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 8"
+  HELP "Logico Livre 8"
+  ORDER 320
+
+ADD FIELD "log-livre-9" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 9"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 9"
+  POSITION 34
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 9"
+  HELP "Logico Livre 9"
+  ORDER 330
+
+ADD FIELD "log-livre-10" OF "dt-ext-it-docum-est" AS logical 
+  DESCRIPTION "Logico Livre 10"
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Livre 10"
+  POSITION 35
+  MAX-WIDTH 1
+  COLUMN-LABEL "Livre 10"
+  HELP "Logico Livre 10"
+  ORDER 340
+
+ADD FIELD "dat-livre-1" OF "dt-ext-it-docum-est" AS date 
+  DESCRIPTION "Data Livre 1"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 1"
+  POSITION 36
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 1"
+  HELP "Data Livre 1"
+  ORDER 350
+
+ADD FIELD "dat-livre-2" OF "dt-ext-it-docum-est" AS date 
+  DESCRIPTION "Data Livre 2"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 2"
+  POSITION 37
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 2"
+  HELP "Data Livre 2"
+  ORDER 360
+
+ADD FIELD "dat-livre-3" OF "dt-ext-it-docum-est" AS date 
+  DESCRIPTION "Data Livre 3"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 3"
+  POSITION 38
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 3"
+  HELP "Data Livre 3"
+  ORDER 370
+
+ADD FIELD "dat-livre-4" OF "dt-ext-it-docum-est" AS date 
+  DESCRIPTION "Data Livre 4"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 4"
+  POSITION 39
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 4"
+  HELP "Data Livre 4"
+  ORDER 380
+
+ADD FIELD "dat-livre-5" OF "dt-ext-it-docum-est" AS date 
+  DESCRIPTION "Data Livre 5"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 5"
+  POSITION 40
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 5"
+  HELP "Data Livre 5"
+  ORDER 390
+
+ADD FIELD "dat-livre-6" OF "dt-ext-it-docum-est" AS date 
+  DESCRIPTION "Data Livre 6"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Livre 6"
+  POSITION 41
+  MAX-WIDTH 4
+  COLUMN-LABEL "Livre 6"
+  HELP "Data Livre 6"
+  ORDER 400
+
+ADD FIELD "item-ems" OF "dt-ext-it-docum-est" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item EMS"
+  POSITION 47
+  MAX-WIDTH 32
+  COLUMN-LABEL "Item EMS"
+  ORDER 410
+
+ADD INDEX "ext-item-documento" ON "dt-ext-it-docum-est" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "cod-param" ASCENDING 
+
+ADD INDEX "documento" ON "dt-ext-it-docum-est" 
+  AREA "Schema Area"
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+
+ADD INDEX "ext-item-documento-param" ON "dt-ext-it-docum-est" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-param" ASCENDING 
+
+ADD INDEX "item-documento" ON "dt-ext-it-docum-est" 
+  AREA "Schema Area"
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD TABLE "dt-msg-audit-xml"
+  AREA "Schema Area"
+  LABEL "Mensagens Audit XML"
+  DUMP-NAME "dt-msg-audit-xml"
+
+ADD FIELD "chave-xml" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 2
+  MAX-WIDTH 512
+  ORDER 380
+
+ADD FIELD "cd-msg" OF "dt-msg-audit-xml" AS integer 
+  FORMAT ">>>>>>9"
+  INITIAL "0"
+  LABEL "Cod Erro"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Erro"
+  ORDER 390
+
+ADD FIELD "tipo-erro" OF "dt-msg-audit-xml" AS integer 
+  DESCRIPTION "1 - Erro 
+2 - Warning"
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Tipo Erro"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Tipo Erro"
+  ORDER 400
+
+ADD FIELD "data-msg" OF "dt-msg-audit-xml" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Dt Msg"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data Mensagem"
+  ORDER 410
+
+ADD FIELD "hora-msg" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hr Mensagem"
+  POSITION 6
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora Mensagem"
+  ORDER 420
+
+ADD FIELD "desc-mensagem" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Mensagem"
+  POSITION 7
+  MAX-WIDTH 4000
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Mensagem"
+  ORDER 430
+
+ADD FIELD "int-2" OF "dt-msg-audit-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 4
+  ORDER 440
+
+ADD FIELD "int-1" OF "dt-msg-audit-xml" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 450
+
+ADD FIELD "dec-1" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 460
+
+ADD FIELD "dec-2" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 470
+
+ADD FIELD "log-1" OF "dt-msg-audit-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 12
+  MAX-WIDTH 1
+  ORDER 480
+
+ADD FIELD "log-2" OF "dt-msg-audit-xml" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 13
+  MAX-WIDTH 1
+  ORDER 490
+
+ADD FIELD "char-1" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 14
+  MAX-WIDTH 512
+  ORDER 500
+
+ADD FIELD "char-2" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 15
+  MAX-WIDTH 512
+  ORDER 510
+
+ADD FIELD "date-1" OF "dt-msg-audit-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 16
+  MAX-WIDTH 4
+  ORDER 520
+
+ADD FIELD "date-2" OF "dt-msg-audit-xml" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 530
+
+ADD FIELD "seq-msg" OF "dt-msg-audit-xml" AS integer 
+  DESCRIPTION "Sequencial"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Seq"
+  POSITION 18
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq"
+  ORDER 540
+
+ADD FIELD "tipo-audit" OF "dt-msg-audit-xml" AS integer 
+  FORMAT ">>9"
+  INITIAL "0"
+  LABEL "Tipo Auditoria"
+  POSITION 19
+  MAX-WIDTH 4
+  VIEW-AS "VIEW-AS RADIO-SET
+  RADIO-BUTTONS Compras, 1,
+                Impostos,2,
+                NCM,3"
+  COLUMN-LABEL "Tipo Auditoria"
+  ORDER 550
+
+ADD FIELD "num-pedido" OF "dt-msg-audit-xml" AS integer 
+  FORMAT ">>>>>,>>9"
+  INITIAL "0"
+  LABEL "Pedido Compr"
+  POSITION 20
+  MAX-WIDTH 40
+  COLUMN-LABEL "Pedido Compr"
+  HELP "Pedido de Compra"
+  EXTENT 2
+  ORDER 560
+
+ADD FIELD "numero-ordem" OF "dt-msg-audit-xml" AS integer 
+  FORMAT "zzzzz9,99"
+  INITIAL "0"
+  LABEL "Ordem Compra"
+  POSITION 21
+  MAX-WIDTH 40
+  COLUMN-LABEL "Ordem Compra"
+  HELP "Ordem Compra"
+  EXTENT 2
+  ORDER 570
+
+ADD FIELD "it-codigo" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item"
+  POSITION 22
+  MAX-WIDTH 68
+  COLUMN-LABEL "Item"
+  EXTENT 2
+  ORDER 580
+
+ADD FIELD "preco-unit" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Preço Unitário"
+  POSITION 23
+  MAX-WIDTH 72
+  COLUMN-LABEL "Preço Unitário"
+  EXTENT 2
+  DECIMALS 4
+  ORDER 590
+
+ADD FIELD "quantidade" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>>>,>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Quantidade"
+  POSITION 24
+  MAX-WIDTH 72
+  COLUMN-LABEL "Quantidade"
+  EXTENT 2
+  DECIMALS 4
+  ORDER 600
+
+ADD FIELD "un" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(2)"
+  INITIAL ""
+  LABEL "Unidade de Medida"
+  POSITION 25
+  MAX-WIDTH 12
+  COLUMN-LABEL "Unidade de Medida"
+  EXTENT 2
+  ORDER 610
+
+ADD FIELD "class-fiscal" OF "dt-msg-audit-xml" AS character 
+  DESCRIPTION "Classificação Fiscal "
+  FORMAT "9999.99.99"
+  INITIAL ""
+  LABEL "Classificação Fiscal"
+  POSITION 26
+  MAX-WIDTH 44
+  COLUMN-LABEL "Class Fisc"
+  HELP "Classificação Fiscal"
+  EXTENT 2
+  ORDER 620
+
+ADD FIELD "cfop-item" OF "dt-msg-audit-xml" AS character 
+  FORMAT "x(6)"
+  INITIAL ""
+  LABEL "CFOP"
+  POSITION 27
+  MAX-WIDTH 28
+  COLUMN-LABEL "CFOP"
+  EXTENT 2
+  ORDER 630
+
+ADD FIELD "sequencia" OF "dt-msg-audit-xml" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Sequencia"
+  POSITION 28
+  MAX-WIDTH 4
+  COLUMN-LABEL "Sequencia"
+  HELP "Sequencia do Item"
+  ORDER 640
+
+ADD FIELD "base-ipi" OF "dt-msg-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo IPI"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo IPI"
+  POSITION 29
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo IPI"
+  HELP "Base Calculo IPI"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 650
+
+ADD FIELD "aliquota-ipi" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>9.99"
+  INITIAL "0"
+  LABEL "Aliquota IPI"
+  POSITION 30
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliquota IPI"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 660
+
+ADD FIELD "valor-ipi" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "IPI"
+  POSITION 31
+  MAX-WIDTH 64
+  COLUMN-LABEL "IPI"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 670
+
+ADD FIELD "base-pis" OF "dt-msg-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo PIS"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo PIS"
+  POSITION 32
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo PIS"
+  HELP "Base Calculo PIS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 680
+
+ADD FIELD "aliquota-pis" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>9.99"
+  INITIAL "0"
+  LABEL "Aliquota PIS"
+  POSITION 33
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliquota PIS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 690
+
+ADD FIELD "valor-pis" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor PIS"
+  POSITION 34
+  MAX-WIDTH 76
+  COLUMN-LABEL "Valor PIS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 700
+
+ADD FIELD "base-cofins" OF "dt-msg-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo COFINS"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo COFINS"
+  POSITION 35
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo COFINS"
+  HELP "Base Calculo COFINS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 710
+
+ADD FIELD "aliquota-cofins" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>9.99"
+  INITIAL "0"
+  LABEL "Aliquota COFINS"
+  POSITION 36
+  MAX-WIDTH 28
+  COLUMN-LABEL "Aliquota COFINS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 720
+
+ADD FIELD "val-cofins" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>>,>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor COFINS"
+  POSITION 37
+  MAX-WIDTH 76
+  COLUMN-LABEL "Valor COFINS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 730
+
+ADD FIELD "aliquota-icm" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  LABEL "Aliquota ICMS"
+  POSITION 38
+  MAX-WIDTH 44
+  COLUMN-LABEL "Aliquota ICMS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 740
+
+ADD FIELD "base-icm" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base ICMS"
+  POSITION 39
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base ICMS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 750
+
+ADD FIELD "valor-icm" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT "->>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "ICMS"
+  POSITION 40
+  MAX-WIDTH 64
+  COLUMN-LABEL "ICMS"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 760
+
+ADD FIELD "base-subs" OF "dt-msg-audit-xml" AS decimal 
+  DESCRIPTION "Base Calculo Subs"
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Base Calculo Subs"
+  POSITION 41
+  MAX-WIDTH 64
+  COLUMN-LABEL "Base Calculo Subs"
+  HELP "Base Calculo Subs"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 770
+
+ADD FIELD "valor-subs" OF "dt-msg-audit-xml" AS decimal 
+  FORMAT ">>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Valor Subs"
+  POSITION 42
+  MAX-WIDTH 64
+  COLUMN-LABEL "Valor Subs"
+  EXTENT 2
+  DECIMALS 2
+  ORDER 780
+
+ADD FIELD "tipo-ponto-msg" OF "dt-msg-audit-xml" AS integer 
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Tipo Ponto Mensagem"
+  POSITION 43
+  MAX-WIDTH 4
+  VIEW-AS "view-as radio-set horizontal radio-buttons {include/i01dts0941.i 02}"
+  COLUMN-LABEL "Tipo Ponto Mensagem"
+  ORDER 790
+
+ADD INDEX "unico" ON "dt-msg-audit-xml" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "seq-msg" ASCENDING 
+
+ADD INDEX "idx-chave-doc" ON "dt-msg-audit-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-xml" ASCENDING 
+
+ADD INDEX "idx-ponto-audit" ON "dt-msg-audit-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-xml" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "tipo-ponto-msg" ASCENDING 
+
+ADD INDEX "tipo-audit-doc" ON "dt-msg-audit-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "chave-xml" ASCENDING 
+  INDEX-FIELD "tipo-audit" ASCENDING 
+
+ADD INDEX "tipo-auditoria" ON "dt-msg-audit-xml" 
+  AREA "Schema Area"
+  INDEX-FIELD "tipo-audit" ASCENDING 
+
+ADD TABLE "dt-ocorrencia-painel"
+  AREA "Schema Area"
+  LABEL "Ocorrencias do Documento"
+  DESCRIPTION "Ocorrências do Documento no Painel"
+  DUMP-NAME "dt-ocorrencia-painel"
+
+ADD FIELD "chave-xml" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 2
+  MAX-WIDTH 512
+  ORDER 380
+
+ADD FIELD "it-codigo" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Item"
+  POSITION 3
+  MAX-WIDTH 120
+  COLUMN-LABEL "Item"
+  ORDER 390
+  MANDATORY
+
+ADD FIELD "sequencia" OF "dt-ocorrencia-painel" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Sequencia"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seguencia"
+  ORDER 400
+  MANDATORY
+
+ADD FIELD "observacao" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(4000)"
+  INITIAL ""
+  LABEL "Observ"
+  POSITION 5
+  MAX-WIDTH 8000
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Observ"
+  ORDER 410
+
+ADD FIELD "serie-docto" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Serie"
+  POSITION 6
+  MAX-WIDTH 10
+  COLUMN-LABEL "Serie"
+  HELP "Serie Documento"
+  ORDER 420
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Nr Documento"
+  POSITION 7
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  HELP "Número Documento"
+  ORDER 430
+  MANDATORY
+
+ADD FIELD "nat-operacao" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(6)"
+  INITIAL ""
+  LABEL "Natureza Operação"
+  POSITION 8
+  MAX-WIDTH 12
+  COLUMN-LABEL "Natur Oper"
+  ORDER 440
+  MANDATORY
+
+ADD FIELD "cod-emitente" OF "dt-ocorrencia-painel" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cliente"
+  POSITION 9
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cliente"
+  ORDER 450
+  MANDATORY
+
+ADD FIELD "cod-estabel" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelecimento"
+  POSITION 10
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estab"
+  ORDER 460
+
+ADD FIELD "int-2" OF "dt-ocorrencia-painel" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 4
+  ORDER 470
+
+ADD FIELD "int-1" OF "dt-ocorrencia-painel" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 12
+  MAX-WIDTH 4
+  ORDER 480
+
+ADD FIELD "dec-1" OF "dt-ocorrencia-painel" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 13
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 490
+
+ADD FIELD "dec-2" OF "dt-ocorrencia-painel" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 14
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 500
+
+ADD FIELD "log-1" OF "dt-ocorrencia-painel" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 15
+  MAX-WIDTH 1
+  ORDER 510
+
+ADD FIELD "log-2" OF "dt-ocorrencia-painel" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 16
+  MAX-WIDTH 1
+  ORDER 520
+
+ADD FIELD "char-1" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 17
+  MAX-WIDTH 512
+  ORDER 530
+
+ADD FIELD "char-2" OF "dt-ocorrencia-painel" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 18
+  MAX-WIDTH 512
+  ORDER 540
+
+ADD FIELD "date-1" OF "dt-ocorrencia-painel" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 19
+  MAX-WIDTH 4
+  ORDER 550
+
+ADD FIELD "date-2" OF "dt-ocorrencia-painel" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 20
+  MAX-WIDTH 4
+  ORDER 560
+
+ADD INDEX "chave-doc" ON "dt-ocorrencia-painel" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "chave-xml" ASCENDING 
+
+UPDATE FIELD "chave-xml" OF "dt-docum-est"
+  FORMAT "x(60)"
+  LABEL "Chave Documento"
+  COLUMN-LABEL "Chave Documento"
+
+ADD FIELD "l-libera-almox" OF "dt-docum-est" AS logical
+  DESCRIPTION "Liberação para Almox Portal Auditoria"
+  FORMAT "Sim/Não"
+  POSITION 105
+  INITIAL "Não"
+  HELP "Liberação para Almox Portal Auditoria"
+  LABEL "Liberado Almox"
+  COLUMN-LABEL "Liberado Almox"
+  ORDER 1030
+  MAX-WIDTH 1
+
+ADD FIELD "danfe-impresso" OF "dt-docum-est" AS logical
+  FORMAT "Sim/Não"
+  POSITION 106
+  INITIAL "Não"
+  HELP "DANFE já foi Impresso"
+  LABEL "DANFE Impresso"
+  COLUMN-LABEL "DANFE Impresso"
+  ORDER 1040
+  MAX-WIDTH 1
+
+ADD INDEX "idx-libera-almox" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "ep-codigo" ASCENDING
+  INDEX-FIELD "log-situacao" ASCENDING
+  INDEX-FIELD "l-libera-almox" ASCENDING
+
+ADD FIELD "tag-ordem-compra" OF "dt-empresa" AS integer
+  FORMAT ">9"
+  POSITION 82
+  INITIAL "1"
+  LABEL "Tag Ordem Compra"
+  COLUMN-LABEL "Tag Ordem Compra"
+  VIEW-AS "VIEW-AS RADIO-SET
+  RADIO-BUTTONS xPed, 1,
+                nItemPed, 2"
+  ORDER 1250
+  MAX-WIDTH 4
+
+ADD FIELD "l-usa-tag-compra" OF "dt-empresa" AS logical
+  DESCRIPTION "Usa TAG do XML para validar Ordem de Compra"
+  FORMAT "Sim/Não"
+  POSITION 83
+  INITIAL "Não"
+  HELP "Usa TAG do XML para validar/gravar Ordem de Compra"
+  LABEL "Usa Tag Compra"
+  COLUMN-LABEL "Usa Tag Compra"
+  ORDER 1260
+  MAX-WIDTH 1
+
+ADD FIELD "l-audit-impostos" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 84
+  INITIAL "Não"
+  HELP "Efetua Auditoria Impostos"
+  LABEL "Auditoria Impostos"
+  COLUMN-LABEL "Auditoria Impostos"
+  ORDER 1290
+  MAX-WIDTH 1
+
+ADD FIELD "l-audit-compras" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 85
+  INITIAL "Não"
+  HELP "Efetua auditoria em compras"
+  LABEL "Audit Compras"
+  COLUMN-LABEL "Audit Compras"
+  ORDER 1270
+  MAX-WIDTH 1
+
+ADD FIELD "l-audit-ncm" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 86
+  INITIAL "Não"
+  HELP "Efetua Auditoria NCM"
+  LABEL "Auditoria NCM"
+  COLUMN-LABEL "Auditoria NCM"
+  ORDER 1280
+  MAX-WIDTH 1
+
+UPDATE FIELD "numero-ordem" OF "dt-it-docum-est"
+  LABEL "Ordem Compra"
+  COLUMN-LABEL "Ordem Compra"
+
+UPDATE FIELD "aliquota-icm" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliquota-ipi" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "Aliquota-iss" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliq-fcp-uf-dest" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliq-icms-uf-dest" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliq-icms-inter" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliq-icms-inter-part" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliquota-fcp-st" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliquota-fcp-st-ret" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+UPDATE FIELD "aliquota-fcp" OF "dt-it-docum-est"
+  FORMAT "->>9.99999"
+  DECIMALS 5
+
+ADD FIELD "vl-icms-op" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor do ICMS da Operação"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 95
+  INITIAL "0"
+  HELP "Valor do ICMS da Operação"
+  LABEL "Vl ICMS Op"
+  COLUMN-LABEL "Vl ICMS Operação"
+  DECIMALS 2
+  ORDER 940
+  MAX-WIDTH 17
+
+ADD FIELD "perc-diferimento" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Percentual Diferimento"
+  FORMAT "->>,>>9.9999"
+  POSITION 96
+  INITIAL "0"
+  HELP "Percentual Diferimento"
+  LABEL "Perc Difer"
+  COLUMN-LABEL "Perc Diferimento"
+  DECIMALS 4
+  ORDER 950
+  MAX-WIDTH 19
+
+ADD FIELD "vl-icms-difer" OF "dt-it-docum-est" AS decimal
+  DESCRIPTION "Valor do ICMS da Diferido"
+  FORMAT ">>>>,>>>,>>>,>>9.99"
+  POSITION 97
+  INITIAL "0"
+  HELP "Valor do ICMS da Diferido"
+  LABEL "Vl ICMS Dif"
+  COLUMN-LABEL "Vl ICMS Diferido"
+  DECIMALS 2
+  ORDER 960
+  MAX-WIDTH 17
+
+ADD FIELD "aliquota-pis" OF "dt-it-docum-est" AS decimal
+  FORMAT "->>9.99999"
+  POSITION 98
+  INITIAL "0"
+  LABEL "Aliquota PIS"
+  COLUMN-LABEL "Aliquota PIS"
+  DECIMALS 5
+  ORDER 970
+  MAX-WIDTH 17
+
+ADD FIELD "aliquota-cofins" OF "dt-it-docum-est" AS decimal
+  FORMAT "->>9.99999"
+  POSITION 99
+  INITIAL "0"
+  LABEL "Aliquota COFINS"
+  COLUMN-LABEL "Aliquota COFINS"
+  DECIMALS 5
+  ORDER 980
+  MAX-WIDTH 17
+
+ADD FIELD "num-pedido" OF "dt-it-docum-est" AS integer
+  FORMAT ">>>>>,>>9"
+  POSITION 100
+  INITIAL "0"
+  HELP "Pedido de Compra"
+  LABEL "Pedido Compr"
+  COLUMN-LABEL "Pedido Compr"
+  ORDER 990
+  MAX-WIDTH 4
+
+ADD FIELD "numero-ordem-forn" OF "dt-it-docum-est" AS integer
+  FORMAT "zzzzz9,99"
+  POSITION 101
+  INITIAL "0"
+  HELP "Ordem de Compra do Fornecedor"
+  LABEL "OC Fornec"
+  COLUMN-LABEL "OC Fornec"
+  ORDER 1000
+  MAX-WIDTH 4
+
+ADD FIELD "num-pedido-forn" OF "dt-it-docum-est" AS integer
+  FORMAT ">>>>>,>>9"
+  POSITION 102
+  INITIAL "0"
+  HELP "Pedido de Compra do Fornecedor"
+  LABEL "Pedido Compr Forn"
+  COLUMN-LABEL "Pedido Compr Forn"
+  ORDER 1010
+  MAX-WIDTH 4
+
+ADD FIELD "aliquota-icm-st" OF "dt-it-docum-est" AS decimal
+  FORMAT "->>9.99999"
+  POSITION 103
+  INITIAL "0"
+  LABEL "Aliquota ICMS ST"
+  COLUMN-LABEL "Aliquota ICMS ST"
+  DECIMALS 5
+  ORDER 1020
+  MAX-WIDTH 20
+
+ADD FIELD "l-audit-portaria" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 23
+  INITIAL "Não"
+  LABEL "Audit Portaria"
+  COLUMN-LABEL "Audit Portaria"
+  ORDER 780
+  MAX-WIDTH 1
+
+ADD FIELD "l-audit-suprimentos" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 24
+  INITIAL "Não"
+  LABEL "Audit Suprimentos"
+  COLUMN-LABEL "Audit Suprimentos"
+  ORDER 790
+  MAX-WIDTH 1
+
+ADD FIELD "l-audit-fiscal" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 25
+  INITIAL "Não"
+  LABEL "Audit Fiscal"
+  COLUMN-LABEL "Audit Fiscal"
+  ORDER 800
+  MAX-WIDTH 1
+
+ADD FIELD "l-audit-almox" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 26
+  INITIAL "Não"
+  LABEL "Audit Almoxarifado"
+  COLUMN-LABEL "Audit Almoxarifado"
+  ORDER 810
+  MAX-WIDTH 1
+
+ADD SEQUENCE "seq-msg-audit-loader"
+  INITIAL 0
+  INCREMENT 1
+  CYCLE-ON-LIMIT no
+  MIN-VAL ?
+  MAX-VAL ?
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000053930

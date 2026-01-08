@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppContainer xmlns="urn:schemas-progress-com:WSAD:0009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <FriendlyName xsi:nil="true"/>
+  <ApplicationRuntimeProperties xsi:nil="true"/>
+  <WSAD>
+    <AppObject>
+      <PGVersion>
+        <PXGVersion>03</PXGVersion>
+      </PGVersion>
+      <PGGenInfo isSessionFree="true">
+        <Author>tadeu silva</Author>
+        <VersionString>1.0</VersionString>
+        <VersionNumber>1</VersionNumber>
+        <Package></Package>
+        <Service>webserver_matematica</Service>
+        <WorkDir>T:\especificos\esporadicos\webserver\</WorkDir>
+        <VerboseLogging>true</VerboseLogging>
+        <SaveBeforeGen>true</SaveBeforeGen>
+        <DotNetClient>false</DotNetClient>
+        <JavaClient>false</JavaClient>
+        <WebServicesClient>true</WebServicesClient>
+        <ESBClient>false</ESBClient>
+        <ESBClient2>false</ESBClient2>
+        <UserDefinedAppService>false</UserDefinedAppService>
+        <JavaCompilerType>1</JavaCompilerType>
+        <JavaCompiler>&lt;Install Dir&gt;\jdk\bin\javac</JavaCompiler>
+        <JavaSwitches></JavaSwitches>
+        <JavaClasspathSwitch>-classpath</JavaClasspathSwitch>
+        <JavaClasspath>&lt;Proxy Dir&gt;;&lt;Install Dir&gt;\java\progress.jar;&lt;Install Dir&gt;\java\messages.jar;;&lt;Default classes.zip&gt;;&lt;Install Dir&gt;\java\ext\ecore.sdo.jar;&lt;Install Dir&gt;\java\ext\ecore.change.jar;&lt;Install Dir&gt;\java\ext\commonj.sdo.jar;&lt;Install Dir&gt;\java\ext\ecore.jar;&lt;Install Dir&gt;\java\ext\ecore.resources.jar;&lt;Install Dir&gt;\java\ext\common.jar;&lt;Install Dir&gt;\java\ext\ecore.xmi.jar</JavaClasspath>
+        <DotNetCompilerType>4</DotNetCompilerType>
+        <DotNetCompiler>csc</DotNetCompiler>
+        <DotNetSwitches></DotNetSwitches>
+        <DotNetXSDGenerator>xsd</DotNetXSDGenerator>
+        <DotNetNamespace></DotNetNamespace>
+        <DotNetTitle></DotNetTitle>
+        <DotNetVersion></DotNetVersion>
+        <DotNetDesc></DotNetDesc>
+        <DotNetCompany></DotNetCompany>
+        <DotNetProduct></DotNetProduct>
+        <DotNetPublicKey></DotNetPublicKey>
+        <DotNetDelaySign>false</DotNetDelaySign>
+        <DotNetRuntime>digitally signed</DotNetRuntime>
+        <DotNetDataSetNamespace>StrongTypesNS</DotNetDataSetNamespace>
+        <DNUseDefaultDSNamespace>true</DNUseDefaultDSNamespace>
+        <DNUseNamespaceAsDirs>true</DNUseNamespaceAsDirs>
+        <DotNetUseNullableTypes>false</DotNetUseNullableTypes>
+      </PGGenInfo>
+      <DeploymentWizard>
+        <CurrentEncoding>3</CurrentEncoding>
+        <SoapEndpointURL>http://webservicesima/wsa/wsa1</SoapEndpointURL>
+        <WebServiceNamespace userDefined="true">urn:webservicesima</WebServiceNamespace>
+        <SoapAction appendToSoapAction="false"/>
+        <ConnectReturnString userDefined="false"/>
+        <TestWSDL RPCEncoded="false" RPCLiteral="false" DocLiteral="true"/>
+        <ESBEncoding>3</ESBEncoding>
+        <EntryEndpoint useDefault="true"/>
+        <FaultEndpoint useDefault="true"/>
+        <RejectedEndpoint useDefault="true"/>
+        <Container></Container>
+        <AppserverURL>AppServerDC://localhost:3091</AppserverURL>
+        <FileName overWrite="false">webserver_matematica</FileName>
+        <ResourceDirectory>/Resources/OpenEdgeServices</ResourceDirectory>
+        <SonicAppService useFileSystem="false" deployToDS="false" createXAR="false">
+          <ResourceDirectory overWrite="false"></ResourceDirectory>
+          <XARName></XARName>
+        </SonicAppService>
+      </DeploymentWizard>
+      <Name>webserver_matematica</Name>
+      <ProPath>T:\especificos\esporadicos\webserver\</ProPath>
+      <HelpString></HelpString>
+      <ObjectType>false</ObjectType>
+      <AllowUnknown>false</AllowUnknown>
+      <IsTTResultSet>false</IsTTResultSet>
+      <WriteDatasetBeforeImage>false</WriteDatasetBeforeImage>
+      <Procedure isPersistent="false" useFullName="false">
+        <Name>matematica</Name>
+        <ProcPath></ProcPath>
+        <ProPath>T:\especificos\esporadicos\webserver\</ProPath>
+        <ProcExt>p</ProcExt>
+        <ProcDetail isCustomized="true" usesUnknownDefault="true" useRetVal="false" usesTTMappingDefault="true" IsTTResultSet="false" usesBeforeImageDefault="true">
+          <Name>matematica</Name>
+          <HelpString></HelpString>
+          <ReturnValue allowUnknown="false" ordinal="0" writeXmlBeforeImage="false">
+            <Name>result</Name>
+            <OrigName>result</OrigName>
+            <Type>1</Type>
+            <Mode>0</Mode>
+          </ReturnValue>
+          <Parameter allowUnknown="false" ordinal="1" writeXmlBeforeImage="false">
+            <Name>n1</Name>
+            <OrigName>n1</OrigName>
+            <Type>5</Type>
+            <Mode>1</Mode>
+          </Parameter>
+          <Parameter allowUnknown="false" ordinal="2" writeXmlBeforeImage="false">
+            <Name>n2</Name>
+            <OrigName>n2</OrigName>
+            <Type>5</Type>
+            <Mode>1</Mode>
+          </Parameter>
+          <Parameter allowUnknown="false" ordinal="3" writeXmlBeforeImage="false">
+            <Name>operacao</Name>
+            <OrigName>operacao</OrigName>
+            <Type>1</Type>
+            <Mode>1</Mode>
+          </Parameter>
+          <Parameter allowUnknown="false" ordinal="4" writeXmlBeforeImage="false">
+            <Name>resultado</Name>
+            <OrigName>resultado</OrigName>
+            <Type>5</Type>
+            <Mode>2</Mode>
+          </Parameter>
+        </ProcDetail>
+      </Procedure>
+    </AppObject>
+  </WSAD>
+</AppContainer>

@@ -1,0 +1,11 @@
+DEF INPUT PARAMETER p-cod-refer AS WIDGET-HANDLE NO-UNDO.
+
+IF LOGICAL(SELF:SCREEN-VALUE) THEN DO.
+   ASSIGN p-cod-refer:SCREEN-VALUE = ''
+          p-cod-refer:SENSITIVE = NO.
+END.
+ELSE DO.
+   ASSIGN p-cod-refer:SENSITIVE = YES.
+   APPLY 'ENTRY' TO p-cod-refer.
+END.
+

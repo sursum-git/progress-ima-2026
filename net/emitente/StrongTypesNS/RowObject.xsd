@@ -1,0 +1,227 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="RowObjectDataSet" targetNamespace="RowObjectNS" xmlns:mstns="RowObjectNS" xmlns="RowObjectNS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="RowObjectDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RowObject">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod-emitente" type="xs:int" />
+              <xs:element name="nome-abrev" type="xs:string" minOccurs="0" />
+              <xs:element name="cgc" type="xs:string" minOccurs="0" />
+              <xs:element name="identific" type="xs:int" minOccurs="0" />
+              <xs:element name="natureza" type="xs:int" minOccurs="0" />
+              <xs:element name="nome-emit" type="xs:string" minOccurs="0" />
+              <xs:element name="endereco" type="xs:string" minOccurs="0" />
+              <xs:element name="bairro" type="xs:string" minOccurs="0" />
+              <xs:element name="cidade" type="xs:string" minOccurs="0" />
+              <xs:element name="estado" type="xs:string" minOccurs="0" />
+              <xs:element name="cep" type="xs:string" minOccurs="0" />
+              <xs:element name="caixa-postal" type="xs:string" minOccurs="0" />
+              <xs:element name="pais" type="xs:string" minOccurs="0" />
+              <xs:element name="ins-estadual" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-cond-pag" type="xs:int" minOccurs="0" />
+              <xs:element name="taxa-financ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="data-taxa" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cod-transp" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-gr-forn" type="xs:int" minOccurs="0" />
+              <xs:element name="linha-produt" type="xs:string" minOccurs="0" />
+              <xs:element name="atividade" type="xs:string" minOccurs="0" />
+              <xs:element name="contato1" type="xs:string" minOccurs="0" />
+              <xs:element name="contato2" type="xs:string" minOccurs="0" />
+              <xs:element name="telefone1" type="xs:string" minOccurs="0" />
+              <xs:element name="telefone2" type="xs:string" minOccurs="0" />
+              <xs:element name="ramal1" type="xs:string" minOccurs="0" />
+              <xs:element name="ramal2" type="xs:string" minOccurs="0" />
+              <xs:element name="telefax" type="xs:string" minOccurs="0" />
+              <xs:element name="ramal-fax" type="xs:string" minOccurs="0" />
+              <xs:element name="telex" type="xs:string" minOccurs="0" />
+              <xs:element name="data-implant" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="compr-period" type="xs:decimal" minOccurs="0" />
+              <xs:element name="end-cobranca" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-rep" type="xs:int" minOccurs="0" />
+              <xs:element name="categoria" type="xs:string" minOccurs="0" />
+              <xs:element name="bonificacao" type="xs:decimal" minOccurs="0" />
+              <xs:element name="istr" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-gr-cli" type="xs:int" minOccurs="0" />
+              <xs:element name="lim-credito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dt-lim-cred" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="perc-fat-ped" type="xs:int" minOccurs="0" />
+              <xs:element name="portador" type="xs:int" minOccurs="0" />
+              <xs:element name="modalidade" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-fat-par" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ind-cre-cli" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-apr-cred" type="xs:boolean" minOccurs="0" />
+              <xs:element name="nat-operacao" type="xs:string" minOccurs="0" />
+              <xs:element name="observacoes" type="xs:string" minOccurs="0" />
+              <xs:element name="per-minfat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="emissao-ped" type="xs:int" minOccurs="0" />
+              <xs:element name="nome-matriz" type="xs:string" minOccurs="0" />
+              <xs:element name="telef-modem" type="xs:string" minOccurs="0" />
+              <xs:element name="ramal-modem" type="xs:string" minOccurs="0" />
+              <xs:element name="telef-fac" type="xs:string" minOccurs="0" />
+              <xs:element name="ramal-fac" type="xs:string" minOccurs="0" />
+              <xs:element name="agencia" type="xs:string" minOccurs="0" />
+              <xs:element name="nr-titulo" type="xs:int" minOccurs="0" />
+              <xs:element name="nr-dias" type="xs:int" minOccurs="0" />
+              <xs:element name="per-max-canc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dt-ult-venda" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="emite-bloq" type="xs:boolean" minOccurs="0" />
+              <xs:element name="emite-etiq" type="xs:boolean" minOccurs="0" />
+              <xs:element name="tr-ar-valor" type="xs:int" minOccurs="0" />
+              <xs:element name="gera-ad" type="xs:boolean" minOccurs="0" />
+              <xs:element name="port-prefer" type="xs:int" minOccurs="0" />
+              <xs:element name="mod-prefer" type="xs:int" minOccurs="0" />
+              <xs:element name="bx-acatada" type="xs:int" minOccurs="0" />
+              <xs:element name="conta-corren" type="xs:string" minOccurs="0" />
+              <xs:element name="nr-copias-ped" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-suframa" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-cacex" type="xs:string" minOccurs="0" />
+              <xs:element name="gera-difer" type="xs:int" minOccurs="0" />
+              <xs:element name="nr-tabpre" type="xs:string" minOccurs="0" />
+              <xs:element name="ind-aval" type="xs:int" minOccurs="0" />
+              <xs:element name="user-libcre" type="xs:string" minOccurs="0" />
+              <xs:element name="ins-banc1" type="xs:int" minOccurs="0" />
+              <xs:element name="ins-banc2" type="xs:int" minOccurs="0" />
+              <xs:element name="ven-feriado" type="xs:int" minOccurs="0" />
+              <xs:element name="ven-domingo" type="xs:int" minOccurs="0" />
+              <xs:element name="ven-sabado" type="xs:int" minOccurs="0" />
+              <xs:element name="cgc-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="cep-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="estado-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="cidade-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="bairro-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="endereco-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="cx-post-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="ins-est-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="nome-mic-reg" type="xs:string" minOccurs="0" />
+              <xs:element name="tip-cob-desp" type="xs:int" minOccurs="0" />
+              <xs:element name="nome-tr-red" type="xs:string" minOccurs="0" />
+              <xs:element name="nat-ope-ext" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-banco" type="xs:int" minOccurs="0" />
+              <xs:element name="prox-ad" type="xs:int" minOccurs="0" />
+              <xs:element name="lim-adicional" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dt-fim-cred" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="obs-entrega" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-tip-ent" type="xs:int" minOccurs="0" />
+              <xs:element name="ins-municipal" type="xs:string" minOccurs="0" />
+              <xs:element name="nr-peratr" type="xs:int" minOccurs="0" />
+              <xs:element name="nr-mesina" type="xs:int" minOccurs="0" />
+              <xs:element name="insc-subs-trib" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-mensagem" type="xs:int" minOccurs="0" />
+              <xs:element name="nr-dias-taxa" type="xs:int" minOccurs="0" />
+              <xs:element name="tp-desp-padrao" type="xs:int" minOccurs="0" />
+              <xs:element name="tp-rec-padrao" type="xs:int" minOccurs="0" />
+              <xs:element name="inf-complementar" type="xs:string" minOccurs="0" />
+              <xs:element name="zip-code" type="xs:string" minOccurs="0" />
+              <xs:element name="tp-inspecao" type="xs:int" minOccurs="0" />
+              <xs:element name="forn-exp" type="xs:boolean" minOccurs="0" />
+              <xs:element name="tp-qt-prg" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-atraso" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-div-atraso" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-dif-atrs-1" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-dif-atrs-2" type="xs:int" minOccurs="0" />
+              <xs:element name="esp-pd-venda" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-lib-estoque" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ind-moeda-tit" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-rendiment" type="xs:boolean" minOccurs="0" />
+              <xs:element name="tp-pagto" type="xs:int" minOccurs="0" />
+              <xs:element name="vl-min-ad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="zip-cob-code" type="xs:string" minOccurs="0" />
+              <xs:element name="hora-ini" type="xs:int" minOccurs="0" />
+              <xs:element name="hora-fim" type="xs:int" minOccurs="0" />
+              <xs:element name="pais-cob" type="xs:string" minOccurs="0" />
+              <xs:element name="resumo-mp" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-cred-abat" type="xs:boolean" minOccurs="0" />
+              <xs:element name="contrib-icms" type="xs:boolean" minOccurs="0" />
+              <xs:element name="e-mail" type="xs:string" minOccurs="0" />
+              <xs:element name="home-page" type="xs:string" minOccurs="0" />
+              <xs:element name="ind-licenciador" type="xs:boolean" minOccurs="0" />
+              <xs:element name="endereco2" type="xs:string" minOccurs="0" />
+              <xs:element name="ind-aval-embarque" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-abrange-aval" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-tax" type="xs:int" minOccurs="0" />
+              <xs:element name="cn-codigo" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-entrega" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-isencao" type="xs:int" minOccurs="0" />
+              <xs:element name="dias-comp" type="xs:int" minOccurs="0" />
+              <xs:element name="estoque" type="xs:int" minOccurs="0" />
+              <xs:element name="flag-pag" type="xs:int" minOccurs="0" />
+              <xs:element name="item-cli" type="xs:boolean" minOccurs="0" />
+              <xs:element name="moeda-libcre" type="xs:int" minOccurs="0" />
+              <xs:element name="nr-dias-atraso" type="xs:int" minOccurs="0" />
+              <xs:element name="valor-minimo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cod-parceiro-edi" type="xs:int" minOccurs="0" />
+              <xs:element name="agente-retencao" type="xs:boolean" minOccurs="0" />
+              <xs:element name="percepcao" type="xs:boolean" minOccurs="0" />
+              <xs:element name="char-1" type="xs:string" minOccurs="0" />
+              <xs:element name="char-2" type="xs:string" minOccurs="0" />
+              <xs:element name="dec-1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dec-2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="int-1" type="xs:int" minOccurs="0" />
+              <xs:element name="int-2" type="xs:int" minOccurs="0" />
+              <xs:element name="log-1" type="xs:boolean" minOccurs="0" />
+              <xs:element name="log-2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="data-1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="data-2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cod-canal-venda" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-sit-emitente" type="xs:int" minOccurs="0" />
+              <xs:element name="ind-emit-retencao" type="xs:int" minOccurs="0" />
+              <xs:element name="calcula-multa" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prog-emit" type="xs:boolean" minOccurs="0" />
+              <xs:element name="nr-tab-progr" type="xs:int" minOccurs="0" />
+              <xs:element name="recebe-inf-sci" type="xs:boolean" minOccurs="0" />
+              <xs:element name="cod-classif-fornec" type="xs:int" minOccurs="0" />
+              <xs:element name="cod-classif-cliente" type="xs:int" minOccurs="0" />
+              <xs:element name="nr-cheque-devol" type="xs:int" minOccurs="0" />
+              <xs:element name="periodo-devol" type="xs:int" minOccurs="0" />
+              <xs:element name="vl-max-devol" type="xs:decimal" minOccurs="0" />
+              <xs:element name="check-sum" type="xs:string" minOccurs="0" />
+              <xs:element name="val-quota-media" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cod-repres-imp" type="xs:int" minOccurs="0" />
+              <xs:element name="vencto-dia-nao-util" type="xs:boolean" minOccurs="0" />
+              <xs:element name="rend-tribut" type="xs:decimal" minOccurs="0" />
+              <xs:element name="utiliza-verba" type="xs:boolean" minOccurs="0" />
+              <xs:element name="percent-verba" type="xs:decimal" minOccurs="0" />
+              <xs:element name="endereco_text" type="xs:string" minOccurs="0" />
+              <xs:element name="endereco-cob-text" type="xs:string" minOccurs="0" />
+              <xs:element name="short-name" type="xs:string" minOccurs="0" />
+              <xs:element name="log-controla-val-max-inss" type="xs:boolean" minOccurs="0" />
+              <xs:element name="cod-inscr-inss" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-pulmao" type="xs:string" minOccurs="0" />
+              <xs:element name="idi-tributac-cofins" type="xs:int" minOccurs="0" />
+              <xs:element name="idi-tributac-pis" type="xs:int" minOccurs="0" />
+              <xs:element name="log-calcula-pis-cofins-unid" type="xs:boolean" minOccurs="0" />
+              <xs:element name="log-optan-suspens-ipi" type="xs:boolean" minOccurs="0" />
+              <xs:element name="log-optan-cr-presmdo-subst" type="xs:boolean" minOccurs="0" />
+              <xs:element name="retem-pagto" type="xs:boolean" minOccurs="0" />
+              <xs:element name="portador-ap" type="xs:int" minOccurs="0" />
+              <xs:element name="modalidade-ap" type="xs:int" minOccurs="0" />
+              <xs:element name="log-contribt-subst-interm" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dat-valid-suframa" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="nom-fantasia" type="xs:string" minOccurs="0" />
+              <xs:element name="log-possui-nf-eletro" type="xs:boolean" minOccurs="0" />
+              <xs:element name="log-nf-eletro" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dt-atualiza" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="hra-atualiz" type="xs:string" minOccurs="0" />
+              <xs:element name="cod-email-nfe" type="xs:string" minOccurs="0" />
+              <xs:element name="log-integr-totvs-colab-vendas" type="xs:boolean" minOccurs="0" />
+              <xs:element name="cdn-atraso-max" type="xs:int" minOccurs="0" />
+              <xs:element name="dat-nasc" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="log-beneficiario" type="xs:boolean" minOccurs="0" />
+              <xs:element name="r-rowid" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="codigo" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RowObject" />
+      <xs:field xpath="mstns:cod-emitente" />
+    </xs:unique>
+    <xs:unique name="nome">
+      <xs:selector xpath=".//mstns:RowObject" />
+      <xs:field xpath="mstns:nome-abrev" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

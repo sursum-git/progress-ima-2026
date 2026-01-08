@@ -1,0 +1,30 @@
+#***************************************************************************
+# Copyright DATASUL S.A. (2000)
+# All rights reserved.
+#
+# File..................: scripts/ems2demo.pf
+# Description...........: Client/Server Conection Parameter File
+# Created by............: Installation Process
+# Creation Date.........: 8-31-2004 04:51:08
+#***************************************************************************
+
+-mmax 4096
+-s 200
+-TB 31
+-TM 31
+-d dmy
+-E
+-Bt 2048
+-Mm 4096
+-cpstream ibm850
+-cpterm iso8859-1
+#-q
+-inp 32000
+-h 50
+-T D:\temp
+
+
+-db ems204cad -ld ems204cad -S 63000 -H 192.168.200.10 -N tcp
+-db ems204mov -ld ems204mov -S 63001 -H 192.168.200.10 -N tcp
+-db ems204esp -ld plind     -S 63002 -H 192.168.200.10 -N tcp
+

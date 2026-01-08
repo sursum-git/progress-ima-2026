@@ -1,0 +1,426 @@
+&ANALYZE-SUSPEND _VERSION-NUMBER UIB_v9r12 GUI
+&ANALYZE-RESUME
+/* Connected Databases 
+*/
+&Scoped-define WINDOW-NAME C-Win
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _DEFINITIONS C-Win 
+/*------------------------------------------------------------------------
+
+  File: 
+
+  Description: 
+
+  Input Parameters:
+      <none>
+
+  Output Parameters:
+      <none>
+
+  Author: 
+
+  Created: 
+
+------------------------------------------------------------------------*/
+/*          This .W file was created with the Progress AppBuilder.      */
+/*----------------------------------------------------------------------*/
+
+/* Create an unnamed pool to store all the widgets created 
+     by this procedure. This is a good default which assures
+     that this procedure's triggers and internal procedures 
+     will execute in this procedure's storage, and that proper
+     cleanup will occur on deletion of the procedure. */
+
+CREATE WIDGET-POOL.
+
+/* ***************************  Definitions  ************************** */
+
+/* Parameters Definitions ---                                           */
+
+/* Local Variable Definitions ---                                       */
+
+DEF TEMP-TABLE tt-usr
+    FIELD banco       AS CHAR
+    FIELD cod-usuario AS CHAR
+    FIELD usr         AS INT
+    FIELD acesso      AS INT
+    FIELD tempo       AS INT
+    INDEX indice1 cod-usuario banco.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-PREPROCESSOR-BLOCK 
+
+/* ********************  Preprocessor Definitions  ******************** */
+
+&Scoped-define PROCEDURE-TYPE Window
+&Scoped-define DB-AWARE no
+
+/* Name of designated FRAME-NAME and/or first browse and/or first query */
+&Scoped-define FRAME-NAME DEFAULT-FRAME
+&Scoped-define BROWSE-NAME br-usr
+
+/* Internal Tables (found by Frame, Query & Browse Queries)             */
+&Scoped-define INTERNAL-TABLES tt-usr
+
+/* Definitions for BROWSE br-usr                                        */
+&Scoped-define FIELDS-IN-QUERY-br-usr tt-usr.banco tt-usr.cod-usuario tt-usr.usr tt-usr.acesso tt-usr.tempo   
+&Scoped-define ENABLED-FIELDS-IN-QUERY-br-usr   
+&Scoped-define SELF-NAME br-usr
+&Scoped-define QUERY-STRING-br-usr FOR EACH tt-usr NO-LOCK INDEXED-REPOSITION
+&Scoped-define OPEN-QUERY-br-usr OPEN QUERY {&SELF-NAME} FOR EACH tt-usr NO-LOCK INDEXED-REPOSITION.
+&Scoped-define TABLES-IN-QUERY-br-usr tt-usr
+&Scoped-define FIRST-TABLE-IN-QUERY-br-usr tt-usr
+
+
+/* Definitions for FRAME DEFAULT-FRAME                                  */
+&Scoped-define OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME ~
+    ~{&OPEN-QUERY-br-usr}
+
+/* Standard List Definitions                                            */
+&Scoped-Define ENABLED-OBJECTS br-usr 
+&Scoped-Define DISPLAYED-OBJECTS fi-hora-ini fi-hora-atu 
+
+/* Custom List Definitions                                              */
+/* List-1,List-2,List-3,List-4,List-5,List-6                            */
+
+/* _UIB-PREPROCESSOR-BLOCK-END */
+&ANALYZE-RESUME
+
+
+
+/* ***********************  Control Definitions  ********************** */
+
+/* Define the widget handle for the window                              */
+DEFINE VAR C-Win AS WIDGET-HANDLE NO-UNDO.
+
+/* Definitions of handles for OCX Containers                            */
+DEFINE VARIABLE CtrlFrame AS WIDGET-HANDLE NO-UNDO.
+DEFINE VARIABLE chCtrlFrame AS COMPONENT-HANDLE NO-UNDO.
+
+/* Definitions of the field level widgets                               */
+DEFINE VARIABLE fi-hora-atu AS CHARACTER FORMAT "X(256)":U 
+     LABEL "Hora Atual" 
+     VIEW-AS FILL-IN 
+     SIZE 20 BY .88
+     FONT 6 NO-UNDO.
+
+DEFINE VARIABLE fi-hora-ini AS CHARACTER FORMAT "X(256)":U 
+     LABEL "Monitor Inicializado em:" 
+     VIEW-AS FILL-IN 
+     SIZE 20 BY .88
+     FONT 6 NO-UNDO.
+
+/* Query definitions                                                    */
+&ANALYZE-SUSPEND
+DEFINE QUERY br-usr FOR 
+      tt-usr SCROLLING.
+&ANALYZE-RESUME
+
+/* Browse definitions                                                   */
+DEFINE BROWSE br-usr
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _DISPLAY-FIELDS br-usr C-Win _FREEFORM
+  QUERY br-usr NO-LOCK DISPLAY
+      tt-usr.banco
+      tt-usr.cod-usuario
+      tt-usr.usr
+      tt-usr.acesso
+      tt-usr.tempo
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+    WITH NO-ROW-MARKERS SEPARATORS SIZE 44 BY 15.75
+         FONT 1 FIT-LAST-COLUMN.
+
+
+/* ************************  Frame Definitions  *********************** */
+
+DEFINE FRAME DEFAULT-FRAME
+     br-usr AT ROW 1 COL 2 WIDGET-ID 200
+     fi-hora-ini AT ROW 1.25 COL 79 COLON-ALIGNED WIDGET-ID 40
+     fi-hora-atu AT ROW 2.25 COL 79 COLON-ALIGNED
+    WITH 1 DOWN NO-BOX KEEP-TAB-ORDER OVERLAY 
+         SIDE-LABELS NO-UNDERLINE THREE-D 
+         AT COL 1 ROW 1
+         SIZE 100.57 BY 17.71.
+
+
+/* *********************** Procedure Settings ************************ */
+
+&ANALYZE-SUSPEND _PROCEDURE-SETTINGS
+/* Settings for THIS-PROCEDURE
+   Type: Window
+   Allow: Basic,Browse,DB-Fields,Window,Query
+   Other Settings: COMPILE
+ */
+&ANALYZE-RESUME _END-PROCEDURE-SETTINGS
+
+/* *************************  Create Window  ************************** */
+
+&ANALYZE-SUSPEND _CREATE-WINDOW
+IF SESSION:DISPLAY-TYPE = "GUI":U THEN
+  CREATE WINDOW C-Win ASSIGN
+         HIDDEN             = YES
+         TITLE              = "<insert window title>"
+         HEIGHT             = 17.71
+         WIDTH              = 100.57
+         MAX-HEIGHT         = 17.71
+         MAX-WIDTH          = 100.57
+         VIRTUAL-HEIGHT     = 17.71
+         VIRTUAL-WIDTH      = 100.57
+         RESIZE             = yes
+         SCROLL-BARS        = no
+         STATUS-AREA        = no
+         BGCOLOR            = ?
+         FGCOLOR            = ?
+         KEEP-FRAME-Z-ORDER = yes
+         THREE-D            = yes
+         MESSAGE-AREA       = no
+         SENSITIVE          = yes.
+ELSE {&WINDOW-NAME} = CURRENT-WINDOW.
+/* END WINDOW DEFINITION                                                */
+&ANALYZE-RESUME
+
+
+
+/* ***********  Runtime Attributes and AppBuilder Settings  *********** */
+
+&ANALYZE-SUSPEND _RUN-TIME-ATTRIBUTES
+/* SETTINGS FOR WINDOW C-Win
+  VISIBLE,,RUN-PERSISTENT                                               */
+/* SETTINGS FOR FRAME DEFAULT-FRAME
+   FRAME-NAME                                                           */
+/* BROWSE-TAB br-usr 1 DEFAULT-FRAME */
+/* SETTINGS FOR FILL-IN fi-hora-atu IN FRAME DEFAULT-FRAME
+   NO-ENABLE                                                            */
+/* SETTINGS FOR FILL-IN fi-hora-ini IN FRAME DEFAULT-FRAME
+   NO-ENABLE                                                            */
+IF SESSION:DISPLAY-TYPE = "GUI":U AND VALID-HANDLE(C-Win)
+THEN C-Win:HIDDEN = no.
+
+/* _RUN-TIME-ATTRIBUTES-END */
+&ANALYZE-RESUME
+
+
+/* Setting information for Queries and Browse Widgets fields            */
+
+&ANALYZE-SUSPEND _QUERY-BLOCK BROWSE br-usr
+/* Query rebuild information for BROWSE br-usr
+     _START_FREEFORM
+OPEN QUERY {&SELF-NAME} FOR EACH tt-usr NO-LOCK INDEXED-REPOSITION.
+     _END_FREEFORM
+     _Options          = "NO-LOCK INDEXED-REPOSITION"
+     _Query            is OPENED
+*/  /* BROWSE br-usr */
+&ANALYZE-RESUME
+
+ 
+
+
+/* **********************  Create OCX Containers  ********************** */
+
+&ANALYZE-SUSPEND _CREATE-DYNAMIC
+
+&IF "{&OPSYS}" = "WIN32":U AND "{&WINDOW-SYSTEM}" NE "TTY":U &THEN
+
+CREATE CONTROL-FRAME CtrlFrame ASSIGN
+       FRAME           = FRAME DEFAULT-FRAME:HANDLE
+       ROW             = 17
+       COLUMN          = 1
+       HEIGHT          = 1.5
+       WIDTH           = 6
+       HIDDEN          = yes
+       SENSITIVE       = yes.
+/* CtrlFrame OCXINFO:CREATE-CONTROL from: {F0B88A90-F5DA-11CF-B545-0020AF6ED35A} type: PSTimer */
+      CtrlFrame:MOVE-AFTER(fi-hora-atu:HANDLE IN FRAME DEFAULT-FRAME).
+
+&ENDIF
+
+&ANALYZE-RESUME /* End of _CREATE-DYNAMIC */
+
+
+/* ************************  Control Triggers  ************************ */
+
+&Scoped-define SELF-NAME C-Win
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL C-Win C-Win
+ON END-ERROR OF C-Win /* <insert window title> */
+OR ENDKEY OF {&WINDOW-NAME} ANYWHERE DO:
+  /* This case occurs when the user presses the "Esc" key.
+     In a persistently run window, just ignore this.  If we did not, the
+     application would exit. */
+  IF THIS-PROCEDURE:PERSISTENT THEN RETURN NO-APPLY.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CONTROL C-Win C-Win
+ON WINDOW-CLOSE OF C-Win /* <insert window title> */
+DO:
+  /* This event will close the window and terminate the procedure.  */
+  APPLY "CLOSE":U TO THIS-PROCEDURE.
+  RETURN NO-APPLY.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+&Scoped-define BROWSE-NAME br-usr
+&UNDEFINE SELF-NAME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _CUSTOM _MAIN-BLOCK C-Win 
+
+
+/* ***************************  Main Block  *************************** */
+
+/* Set CURRENT-WINDOW: this will parent dialog-boxes and frames.        */
+ASSIGN CURRENT-WINDOW                = {&WINDOW-NAME} 
+       THIS-PROCEDURE:CURRENT-WINDOW = {&WINDOW-NAME}.
+
+/* The CLOSE event can be used from inside or outside the procedure to  */
+/* terminate it.                                                        */
+ON CLOSE OF THIS-PROCEDURE 
+   RUN disable_UI.
+
+/* Best default for GUI applications is...                              */
+PAUSE 0 BEFORE-HIDE.
+
+/* Now enable the interface and wait for the exit condition.            */
+/* (NOTE: handle ERROR and END-KEY so cleanup code will always fire.    */
+MAIN-BLOCK:
+DO ON ERROR   UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK
+   ON END-KEY UNDO MAIN-BLOCK, LEAVE MAIN-BLOCK:
+  RUN enable_UI.
+
+  ASSIGN fi-hora-ini:SCREEN-VALUE IN FRAME {&FRAME-NAME} = STRING(TODAY,"99/99/9999") + "  " +
+                                                           STRING(TIME,"HH:MM:SS").
+  RUN pi-processa.
+  IF NOT THIS-PROCEDURE:PERSISTENT THEN
+    WAIT-FOR CLOSE OF THIS-PROCEDURE.
+END.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+
+/* **********************  Internal Procedures  *********************** */
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE control_load C-Win  _CONTROL-LOAD
+PROCEDURE control_load :
+/*------------------------------------------------------------------------------
+  Purpose:     Load the OCXs    
+  Parameters:  <none>
+  Notes:       Here we load, initialize and make visible the 
+               OCXs in the interface.                        
+------------------------------------------------------------------------------*/
+
+&IF "{&OPSYS}" = "WIN32":U AND "{&WINDOW-SYSTEM}" NE "TTY":U &THEN
+DEFINE VARIABLE UIB_S    AS LOGICAL    NO-UNDO.
+DEFINE VARIABLE OCXFile  AS CHARACTER  NO-UNDO.
+
+OCXFile = SEARCH( "t70.wrx":U ).
+IF OCXFile = ? THEN
+  OCXFile = SEARCH(SUBSTRING(THIS-PROCEDURE:FILE-NAME, 1,
+                     R-INDEX(THIS-PROCEDURE:FILE-NAME, ".":U), "CHARACTER":U) + "wrx":U).
+
+IF OCXFile <> ? THEN
+DO:
+  ASSIGN
+    chCtrlFrame = CtrlFrame:COM-HANDLE
+    UIB_S = chCtrlFrame:LoadControls( OCXFile, "CtrlFrame":U)
+    CtrlFrame:NAME = "CtrlFrame":U
+  .
+  RUN initialize-controls IN THIS-PROCEDURE NO-ERROR.
+END.
+ELSE MESSAGE "t70.wrx":U SKIP(1)
+             "The binary control file could not be found. The controls cannot be loaded."
+             VIEW-AS ALERT-BOX TITLE "Controls Not Loaded".
+
+&ENDIF
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE CtrlFrame.Pstimer.tick C-Win 
+PROCEDURE CtrlFrame.Pstimer.tick :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+    ASSIGN fi-hora-atu:SCREEN-VALUE IN FRAME {&FRAME-NAME} = STRING(TODAY,"99/99/9999") + "  " +
+                                                             STRING(TIME,"HH:MM:SS").
+
+    IF INT(ENTRY(3,STRING(TIME,"HH:MM:SS"),":")) = 0 THEN
+       RUN pi-processa.
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE disable_UI C-Win  _DEFAULT-DISABLE
+PROCEDURE disable_UI :
+/*------------------------------------------------------------------------------
+  Purpose:     DISABLE the User Interface
+  Parameters:  <none>
+  Notes:       Here we clean-up the user-interface by deleting
+               dynamic widgets we have created and/or hide 
+               frames.  This procedure is usually called when
+               we are ready to "clean-up" after running.
+------------------------------------------------------------------------------*/
+  /* Delete the WINDOW we created */
+  IF SESSION:DISPLAY-TYPE = "GUI":U AND VALID-HANDLE(C-Win)
+  THEN DELETE WIDGET C-Win.
+  IF THIS-PROCEDURE:PERSISTENT THEN DELETE PROCEDURE THIS-PROCEDURE.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE enable_UI C-Win  _DEFAULT-ENABLE
+PROCEDURE enable_UI :
+/*------------------------------------------------------------------------------
+  Purpose:     ENABLE the User Interface
+  Parameters:  <none>
+  Notes:       Here we display/view/enable the widgets in the
+               user-interface.  In addition, OPEN all queries
+               associated with each FRAME and BROWSE.
+               These statements here are based on the "Other 
+               Settings" section of the widget Property Sheets.
+------------------------------------------------------------------------------*/
+  RUN control_load.
+  DISPLAY fi-hora-ini fi-hora-atu 
+      WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
+  ENABLE br-usr 
+      WITH FRAME DEFAULT-FRAME IN WINDOW C-Win.
+  {&OPEN-BROWSERS-IN-QUERY-DEFAULT-FRAME}
+  VIEW C-Win.
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+
+&ANALYZE-SUSPEND _UIB-CODE-BLOCK _PROCEDURE pi-processa C-Win 
+PROCEDURE pi-processa :
+/*------------------------------------------------------------------------------
+  Purpose:     
+  Parameters:  <none>
+  Notes:       
+------------------------------------------------------------------------------*/
+    DEFINE VARIABLE i AS INTEGER.
+    REPEAT i = 1 TO NUM-DBS:
+        RUN c:\temp\t1.p (INPUT-OUTPUT TABLE tt-usr) LDBNAME(i).
+    END. 
+  
+   {&OPEN-QUERY-br-usr}
+
+END PROCEDURE.
+
+/* _UIB-CODE-BLOCK-END */
+&ANALYZE-RESUME
+

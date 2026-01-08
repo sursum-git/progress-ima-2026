@@ -1,0 +1,15 @@
+DEFINE INPUT  PARAMETER precoBase   AS DECIMAL     NO-UNDO.
+DEFINE INPUT  PARAMETER dias        AS INTEGER     NO-UNDO.
+DEFINE OUTPUT PARAMETER precoPrazo  AS DECIMAL     NO-UNDO.
+DEFINE OUTPUT PARAMETER cErro       AS CHARACTER   NO-UNDO.
+DEFINE VARIABLE dInd AS DECIMAL     NO-UNDO.
+
+RUN esapi/getIndFinan.p(dias,OUTPUT dInd, OUTPUT cErro).
+ASSIGN precoPrazo = dInd * precoBase.
+
+
+   
+
+
+
+

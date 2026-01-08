@@ -1,0 +1,6 @@
+DEF NEW GLOBAL SHARED VAR wh-copia-reservas AS WIDGET-HANDLE NO-UNDO.
+DEF NEW GLOBAL SHARED VAR l-copia-reservas AS LOG.
+
+ASSIGN l-copia-reservas = LOGICAL(wh-copia-reservas:SCREEN-VALUE).
+
+APPLY 'CHOOSE' TO SELF.

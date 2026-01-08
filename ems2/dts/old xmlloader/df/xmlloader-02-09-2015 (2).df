@@ -1,0 +1,176 @@
+ADD TABLE "dt-log-dispon-sefaz"
+  AREA "Schema Area"
+  LABEL "LOG Disponibilidade SEFAZ"
+  DESCRIPTION "Log com a Disponibilidade da SEFAZ"
+  DUMP-NAME "dt-log-dispon-sefaz"
+
+ADD FIELD "data-consulta" OF "dt-log-dispon-sefaz" AS date 
+  DESCRIPTION "Data da Consulta"
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Consulta"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data Consulta"
+  HELP "Data da Consulta"
+  ORDER 10
+
+ADD FIELD "hr-consulta" OF "dt-log-dispon-sefaz" AS character 
+  DESCRIPTION "Hora da Consulta"
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hora Consulta"
+  POSITION 3
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora Consulta"
+  HELP "Hora da Consulta"
+  ORDER 20
+
+ADD FIELD "status-retorno" OF "dt-log-dispon-sefaz" AS integer 
+  DESCRIPTION "Status Retorno"
+  FORMAT ">>9"
+  INITIAL "0"
+  LABEL "Status Retorno"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Status Retorno"
+  HELP "Status Retorno"
+  ORDER 30
+
+ADD FIELD "desc-retorno" OF "dt-log-dispon-sefaz" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  LABEL "Descri‡Æo"
+  POSITION 5
+  MAX-WIDTH 512
+  COLUMN-LABEL "Descri‡Æo"
+  HELP "Descri‡Æo do Retorno"
+  ORDER 40
+
+ADD FIELD "int-2" OF "dt-log-dispon-sefaz" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 70
+
+ADD FIELD "int-1" OF "dt-log-dispon-sefaz" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 80
+
+ADD FIELD "dec-1" OF "dt-log-dispon-sefaz" AS decimal 
+  FORMAT "->>,>>9.9999"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 90
+
+ADD FIELD "dec-2" OF "dt-log-dispon-sefaz" AS decimal 
+  FORMAT "->>,>>9.9999"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 100
+
+ADD FIELD "log-1" OF "dt-log-dispon-sefaz" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 10
+  MAX-WIDTH 1
+  ORDER 110
+
+ADD FIELD "log-2" OF "dt-log-dispon-sefaz" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 11
+  MAX-WIDTH 1
+  ORDER 120
+
+ADD FIELD "char-1" OF "dt-log-dispon-sefaz" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 16
+  ORDER 130
+
+ADD FIELD "char-2" OF "dt-log-dispon-sefaz" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 13
+  MAX-WIDTH 16
+  ORDER 140
+
+ADD FIELD "date-1" OF "dt-log-dispon-sefaz" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 150
+
+ADD FIELD "date-2" OF "dt-log-dispon-sefaz" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 15
+  MAX-WIDTH 4
+  ORDER 160
+
+ADD FIELD "tipo-ambiente" OF "dt-log-dispon-sefaz" AS integer 
+  DESCRIPTION "1 - Homologa‡Æo;
+2 - Produ‡Æo"
+  FORMAT "9"
+  INITIAL "0"
+  LABEL "Ambiente"
+  POSITION 16
+  MAX-WIDTH 4
+  COLUMN-LABEL "Ambiente"
+  ORDER 60
+
+ADD FIELD "estado" OF "dt-log-dispon-sefaz" AS character 
+  DESCRIPTION "Unidade da Federa‡Æo"
+  FORMAT "x(2)"
+  INITIAL ""
+  LABEL "UF"
+  POSITION 17
+  MAX-WIDTH 4
+  COLUMN-LABEL "UF"
+  HELP "Unidade da Federa‡Æo"
+  ORDER 50
+
+ADD INDEX "idx-log-disp" ON "dt-log-dispon-sefaz" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "estado" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+  INDEX-FIELD "hr-consulta" ASCENDING 
+
+ADD INDEX "idx-data" ON "dt-log-dispon-sefaz" 
+  AREA "Schema Area"
+  INDEX-FIELD "data-consulta" ASCENDING 
+
+ADD INDEX "idx-status-sefaz" ON "dt-log-dispon-sefaz" 
+  AREA "Schema Area"
+  INDEX-FIELD "estado" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+  INDEX-FIELD "hr-consulta" ASCENDING 
+  INDEX-FIELD "status-retorno" ASCENDING 
+
+ADD INDEX "idx-uf" ON "dt-log-dispon-sefaz" 
+  AREA "Schema Area"
+  INDEX-FIELD "estado" ASCENDING 
+
+ADD INDEX "idx-uf-data" ON "dt-log-dispon-sefaz" 
+  AREA "Schema Area"
+  INDEX-FIELD "estado" ASCENDING 
+  INDEX-FIELD "data-consulta" ASCENDING 
+
+.
+PSC
+cpstream=ibm850
+.
+0000003865

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso8859-1"?>
+<DsCertificado xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ttDadosXMLLoader>
+    <ep-codigo>5</ep-codigo>
+    <cod-estab>5</cod-estab>
+    <pasta-xml>//imasrvfs/global/XML/ENT</pasta-xml>
+    <pasta-erro>//imasrvfs/global/XML/Error</pasta-erro>
+    <pasta-conf>M:/EMS206/especificos/xmlloader/ArqConf</pasta-conf>
+    <serv-email>imap.imatextil.com.br</serv-email>
+    <email-nfe>nfe.medtextil@imatextil.com.br</email-nfe>
+    <senha-email>med123</senha-email>
+    <arq-certif>//ima-srv-nfe/certificado/med.pfx.pfx</arq-certif>
+    <chave-certif> </chave-certif>
+    <senha-certif>78690297</senha-certif>
+    <tipo-certif>1</tipo-certif>
+  </ttDadosXMLLoader>
+</DsCertificado>

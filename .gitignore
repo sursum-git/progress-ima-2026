@@ -1,0 +1,13 @@
+*.r
+*.log
+*.json
+*.txt
+*.pdf
+*.java
+*.c
+*.h
+*.rar
+bkp_fontes/
+ems2/_LIXO/
+excel/*.xlsx
+*.zip

@@ -1,0 +1,13 @@
+UPDATE FIELD "dec-1" OF "dt-it-docum-est"
+  FORMAT "->>>,>>>,>>9.9999"
+  DECIMALS 4
+
+UPDATE FIELD "dec-2" OF "dt-it-docum-est"
+  FORMAT "->>>,>>>,>>9.9999"
+  DECIMALS 4
+
+.
+PSC
+cpstream=ibm850
+.
+0000000181

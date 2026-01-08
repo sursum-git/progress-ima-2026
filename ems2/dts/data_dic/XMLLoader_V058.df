@@ -1,0 +1,982 @@
+ADD TABLE "dt-manifest-documento"
+  AREA "Schema Area"
+  LABEL "Registro de Manifestos do Doc"
+  DESCRIPTION "Registro de Manifestos do Documento"
+  DUMP-NAME "dt-manifest-documento"
+
+ADD FIELD "chave-documento" OF "dt-manifest-documento" AS character 
+  DESCRIPTION "Chave Documento"
+  FORMAT "x(44)"
+  INITIAL ""
+  LABEL "Chave Documento"
+  POSITION 2
+  MAX-WIDTH 88
+  COLUMN-LABEL "Chave Documento"
+  HELP "Chave Documento"
+  ORDER 20
+
+ADD FIELD "cod-emitente" OF "dt-manifest-documento" AS integer 
+  DESCRIPTION "Código do Emitente - DATASUL"
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Cod Emitente"
+  POSITION 3
+  MAX-WIDTH 4
+  COLUMN-LABEL "Cod Emitente"
+  HELP "Código do Emitente - DATASUL"
+  ORDER 50
+
+ADD FIELD "dt-evento" OF "dt-manifest-documento" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  LABEL "Data Evento"
+  POSITION 4
+  MAX-WIDTH 4
+  COLUMN-LABEL "Data Evento"
+  ORDER 260
+
+ADD FIELD "hr-evento" OF "dt-manifest-documento" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  LABEL "Hora Evento"
+  POSITION 5
+  MAX-WIDTH 16
+  COLUMN-LABEL "Hora Evento"
+  ORDER 270
+
+ADD FIELD "nro-docto" OF "dt-manifest-documento" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Nr Documento"
+  POSITION 6
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  HELP "Número Documento"
+  ORDER 280
+  MANDATORY
+
+ADD FIELD "serie-docto" OF "dt-manifest-documento" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Serie"
+  POSITION 7
+  MAX-WIDTH 10
+  COLUMN-LABEL "Serie"
+  HELP "Serie Documento"
+  ORDER 290
+  MANDATORY
+
+ADD FIELD "cod-estabel" OF "dt-manifest-documento" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelec"
+  POSITION 8
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estabelec"
+  ORDER 360
+
+ADD FIELD "nat-operacao" OF "dt-manifest-documento" AS character 
+  FORMAT "x(6)"
+  INITIAL ""
+  LABEL "Natureza Operação"
+  POSITION 9
+  MAX-WIDTH 12
+  COLUMN-LABEL "Natur Oper"
+  ORDER 370
+  MANDATORY
+
+ADD FIELD "ind-sit-documento" OF "dt-manifest-documento" AS integer 
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Situação do Documento"
+  POSITION 10
+  MAX-WIDTH 4
+  VIEW-AS "view-as radio-set radio-buttons {include/i03dts0911.i 02}"
+  COLUMN-LABEL "Sit Documento"
+  ORDER 380
+
+ADD FIELD "int-2" OF "dt-manifest-documento" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 4
+  ORDER 390
+
+ADD FIELD "int-1" OF "dt-manifest-documento" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 12
+  MAX-WIDTH 4
+  ORDER 400
+
+ADD FIELD "dec-1" OF "dt-manifest-documento" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 13
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 410
+
+ADD FIELD "dec-2" OF "dt-manifest-documento" AS decimal 
+  FORMAT "->>,>>9.99"
+  INITIAL "0"
+  POSITION 14
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 420
+
+ADD FIELD "log-1" OF "dt-manifest-documento" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 15
+  MAX-WIDTH 1
+  ORDER 430
+
+ADD FIELD "log-2" OF "dt-manifest-documento" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 16
+  MAX-WIDTH 1
+  ORDER 440
+
+ADD FIELD "char-1" OF "dt-manifest-documento" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 17
+  MAX-WIDTH 512
+  ORDER 450
+
+ADD FIELD "char-2" OF "dt-manifest-documento" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 18
+  MAX-WIDTH 512
+  ORDER 460
+
+ADD FIELD "date-1" OF "dt-manifest-documento" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 19
+  MAX-WIDTH 4
+  ORDER 470
+
+ADD FIELD "date-2" OF "dt-manifest-documento" AS date 
+  FORMAT "99/99/99"
+  INITIAL ?
+  POSITION 20
+  MAX-WIDTH 4
+  ORDER 480
+
+ADD INDEX "idx-chave-doc" ON "dt-manifest-documento" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "chave-documento" ASCENDING 
+
+ADD INDEX "documento" ON "dt-manifest-documento" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+
+ADD INDEX "situacao" ON "dt-manifest-documento" 
+  AREA "Schema Area"
+  INDEX-FIELD "ind-sit-documento" ASCENDING 
+
+ADD TABLE "dt-monitor-eventos"
+  AREA "Schema Area"
+  LABEL "Monitor de Eventos"
+  DESCRIPTION "Monitor de Eventos"
+  DUMP-NAME "dt-monitor-eventos"
+
+ADD FIELD "cod-estabel" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Estabelec"
+  POSITION 2
+  MAX-WIDTH 10
+  COLUMN-LABEL "Estabel"
+  ORDER 10
+
+ADD FIELD "idi-tipo-evento" OF "dt-monitor-eventos" AS integer 
+  FORMAT ">9"
+  INITIAL "0"
+  LABEL "Tipo Evento"
+  POSITION 3
+  MAX-WIDTH 4
+  VIEW-AS "view-as radio-set radio-buttons {include/i01dts0938.i 02}"
+  COLUMN-LABEL "Tipo Evento"
+  ORDER 20
+
+ADD FIELD "txt-email" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Texto e-mail"
+  POSITION 4
+  MAX-WIDTH 4000
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Texto e-mail"
+  ORDER 30
+
+ADD FIELD "destino-email" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(2000)"
+  INITIAL ""
+  LABEL "Destinatários"
+  POSITION 5
+  MAX-WIDTH 4000
+  VIEW-AS "view-as editor scrollbar-vertical size 60 by 5"
+  COLUMN-LABEL "Destinat"
+  ORDER 40
+
+ADD FIELD "int-2" OF "dt-monitor-eventos" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 50
+
+ADD FIELD "int-1" OF "dt-monitor-eventos" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "dec-1" OF "dt-monitor-eventos" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 8
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "dec-2" OF "dt-monitor-eventos" AS decimal 
+  FORMAT "->>>,>>,>>9.99"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 17
+  DECIMALS 2
+  ORDER 80
+
+ADD FIELD "log-1" OF "dt-monitor-eventos" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 10
+  MAX-WIDTH 1
+  ORDER 90
+
+ADD FIELD "log-2" OF "dt-monitor-eventos" AS logical 
+  FORMAT "yes/no"
+  INITIAL "no"
+  POSITION 11
+  MAX-WIDTH 1
+  ORDER 100
+
+ADD FIELD "char-1" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 512
+  ORDER 110
+
+ADD FIELD "char-2" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(256)"
+  INITIAL ""
+  POSITION 13
+  MAX-WIDTH 512
+  ORDER 120
+
+ADD FIELD "date-1" OF "dt-monitor-eventos" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 14
+  MAX-WIDTH 4
+  ORDER 130
+
+ADD FIELD "date-2" OF "dt-monitor-eventos" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 15
+  MAX-WIDTH 4
+  ORDER 140
+
+ADD FIELD "assunto-email" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  LABEL "Assunto E-mail"
+  POSITION 16
+  MAX-WIDTH 200
+  COLUMN-LABEL "Assunto E-Mail"
+  ORDER 150
+
+ADD FIELD "remetente-email" OF "dt-monitor-eventos" AS character 
+  FORMAT "x(60)"
+  INITIAL ""
+  LABEL "Remetente e-mail"
+  POSITION 17
+  MAX-WIDTH 120
+  COLUMN-LABEL "Remetente"
+  HELP "Remetente"
+  ORDER 160
+
+ADD INDEX "idx-monitor-eventos" ON "dt-monitor-eventos" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "cod-estabel" ASCENDING 
+  INDEX-FIELD "idi-tipo-evento" ASCENDING 
+
+ADD TABLE "dt-rat-ordem-compra"
+  AREA "Schema Area"
+  LABEL "Rateio Ordens de Compra"
+  DESCRIPTION "Rateio do Recebimento entre diversas Ordens de Compra"
+  DUMP-NAME "dt-rat-ordem-compra"
+
+ADD FIELD "cod-emitente" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Emitente"
+  POSITION 2
+  MAX-WIDTH 4
+  COLUMN-LABEL "Emit"
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "serie-docto" OF "dt-rat-ordem-compra" AS character 
+  FORMAT "x(5)"
+  INITIAL ""
+  LABEL "Série"
+  POSITION 3
+  MAX-WIDTH 10
+  COLUMN-LABEL "Ser"
+  ORDER 20
+  MANDATORY
+
+ADD FIELD "nro-docto" OF "dt-rat-ordem-compra" AS character 
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Documento"
+  POSITION 4
+  MAX-WIDTH 32
+  COLUMN-LABEL "Documento"
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "numero-ordem" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT "zzzzz9,99"
+  INITIAL "0"
+  LABEL "Ordem Compra"
+  POSITION 5
+  MAX-WIDTH 4
+  COLUMN-LABEL "Ordem"
+  ORDER 40
+  MANDATORY
+
+ADD FIELD "parcela" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Parcela"
+  POSITION 6
+  MAX-WIDTH 4
+  COLUMN-LABEL "Parc"
+  ORDER 50
+  MANDATORY
+
+ADD FIELD "nat-operacao" OF "dt-rat-ordem-compra" AS character 
+  FORMAT "x(06)"
+  INITIAL ""
+  LABEL "Nat Operação"
+  POSITION 7
+  MAX-WIDTH 12
+  COLUMN-LABEL "Nat Oper"
+  ORDER 60
+  MANDATORY
+
+ADD FIELD "sequencia" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">>>>9"
+  INITIAL "0"
+  LABEL "Seq"
+  POSITION 8
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq"
+  ORDER 70
+  MANDATORY
+
+ADD FIELD "quantidade" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT ">>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qtde"
+  POSITION 9
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qtde"
+  DECIMALS 4
+  ORDER 80
+  MANDATORY
+
+ADD FIELD "qtidade-forn" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT ">>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qtde Fornec"
+  POSITION 10
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qtde Fornecedor"
+  DECIMALS 4
+  ORDER 90
+  MANDATORY
+
+ADD FIELD "num-pedido" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">>>>>,>>9"
+  INITIAL "0"
+  LABEL "Pedido"
+  POSITION 11
+  MAX-WIDTH 4
+  COLUMN-LABEL "Pedido"
+  ORDER 100
+  MANDATORY
+
+ADD FIELD "encerrada" OF "dt-rat-ordem-compra" AS logical 
+  DESCRIPTION "Identifica se a ordem "
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  LABEL "Encerrada"
+  POSITION 12
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  COLUMN-LABEL "Ord Enc"
+  HELP "Ordem encerrada"
+  ORDER 180
+
+ADD FIELD "char-1" OF "dt-rat-ordem-compra" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  POSITION 13
+  MAX-WIDTH 200
+  ORDER 190
+
+ADD FIELD "char-2" OF "dt-rat-ordem-compra" AS character 
+  FORMAT "x(100)"
+  INITIAL ""
+  POSITION 14
+  MAX-WIDTH 200
+  ORDER 200
+
+ADD FIELD "dec-1" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  POSITION 15
+  MAX-WIDTH 23
+  DECIMALS 8
+  ORDER 210
+
+ADD FIELD "dec-2" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT "->>>>>>>>>>>9.99999999"
+  INITIAL "0"
+  POSITION 16
+  MAX-WIDTH 23
+  DECIMALS 8
+  ORDER 220
+
+ADD FIELD "int-1" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT "->>>>>>>>>9"
+  INITIAL "0"
+  POSITION 17
+  MAX-WIDTH 4
+  ORDER 230
+
+ADD FIELD "int-2" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT "->>>>>>>>>9"
+  INITIAL "0"
+  POSITION 18
+  MAX-WIDTH 4
+  ORDER 240
+
+ADD FIELD "log-1" OF "dt-rat-ordem-compra" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  POSITION 19
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  ORDER 250
+
+ADD FIELD "log-2" OF "dt-rat-ordem-compra" AS logical 
+  FORMAT "Sim/Não"
+  INITIAL "no"
+  POSITION 20
+  MAX-WIDTH 1
+  VIEW-AS "view-as toggle-box"
+  ORDER 260
+
+ADD FIELD "data-1" OF "dt-rat-ordem-compra" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 21
+  MAX-WIDTH 4
+  ORDER 270
+
+ADD FIELD "data-2" OF "dt-rat-ordem-compra" AS date 
+  FORMAT "99/99/9999"
+  INITIAL ?
+  POSITION 22
+  MAX-WIDTH 4
+  ORDER 280
+
+ADD FIELD "check-sum" OF "dt-rat-ordem-compra" AS character 
+  FORMAT "x(20)"
+  INITIAL ""
+  LABEL "Check-sum"
+  POSITION 23
+  MAX-WIDTH 40
+  ORDER 290
+
+ADD FIELD "tipo-nota" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">9"
+  INITIAL "1"
+  LABEL "Tipo Nota"
+  POSITION 24
+  MAX-WIDTH 4
+  VIEW-AS "view-as radio-set horizontal radio-buttons {ininc/i01in089.i 02}"
+  COLUMN-LABEL "Tp Nota"
+  HELP "Tipo de Nota Fiscal"
+  ORDER 300
+  MANDATORY
+
+ADD FIELD "nr-contrato" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">>>>>>>>9"
+  INITIAL "0"
+  LABEL "Nr Contrato"
+  POSITION 25
+  MAX-WIDTH 4
+  COLUMN-LABEL "Nr Contrato"
+  HELP "Permite informar o número do contrato do aditivo."
+  ORDER 310
+
+ADD FIELD "num-seq-item" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">>,>>9"
+  INITIAL "0"
+  LABEL "Seq Item"
+  POSITION 26
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq Item"
+  HELP "Sequência do item do contrato"
+  ORDER 320
+
+ADD FIELD "num-seq-event" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">,>>9"
+  INITIAL "0"
+  LABEL "Seq Event"
+  POSITION 27
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq Event"
+  HELP "Seqüência do evento"
+  ORDER 330
+
+ADD FIELD "num-seq-medicao" OF "dt-rat-ordem-compra" AS integer 
+  FORMAT ">,>>9"
+  INITIAL "0"
+  LABEL "Seq Medição"
+  POSITION 28
+  MAX-WIDTH 4
+  COLUMN-LABEL "Seq Medição"
+  HELP "Número da seqüência da medição"
+  ORDER 340
+
+ADD FIELD "val-medicao" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT ">>>>>,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Vl Medição"
+  POSITION 29
+  MAX-WIDTH 17
+  COLUMN-LABEL "Vl Medição"
+  HELP "Valor a ser recebido da medição."
+  DECIMALS 2
+  ORDER 350
+
+ADD FIELD "qtd-devol" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT "->>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qt Devol"
+  POSITION 30
+  MAX-WIDTH 19
+  COLUMN-LABEL "Qt Devol"
+  HELP "Quantidade Devolucao"
+  DECIMALS 4
+  ORDER 360
+  MANDATORY
+
+ADD FIELD "qtd-devolver" OF "dt-rat-ordem-compra" AS decimal 
+  FORMAT ">>>>,>>9.9999"
+  INITIAL "0"
+  LABEL "Qtde Devolver"
+  POSITION 31
+  MAX-WIDTH 25
+  COLUMN-LABEL "Qt Devolver"
+  HELP "Quantidade a ser devolvida ao cliente"
+  DECIMALS 10
+  ORDER 370
+
+ADD FIELD "item-ems" OF "dt-rat-ordem-compra" AS character 
+  DESCRIPTION "Item EMS"
+  FORMAT "x(16)"
+  INITIAL ""
+  LABEL "Item EMS"
+  POSITION 32
+  MAX-WIDTH 32
+  COLUMN-LABEL "Item EMS"
+  ORDER 380
+
+ADD INDEX "documento" ON "dt-rat-ordem-compra" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "ratordem-02" ON "dt-rat-ordem-compra" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "ratordem-03" ON "dt-rat-ordem-compra" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+  INDEX-FIELD "numero-ordem" ASCENDING 
+  INDEX-FIELD "parcela" ASCENDING 
+
+ADD INDEX "ratordem-04" ON "dt-rat-ordem-compra" 
+  AREA "Schema Area"
+  INDEX-FIELD "cod-emitente" ASCENDING 
+  INDEX-FIELD "serie-docto" ASCENDING 
+  INDEX-FIELD "nro-docto" ASCENDING 
+  INDEX-FIELD "nat-operacao" ASCENDING 
+  INDEX-FIELD "sequencia" ASCENDING 
+
+ADD INDEX "idx-manifest" ON "dt-docum-est"
+  AREA "Schema Area"
+  INDEX-FIELD "cod-estabel" ASCENDING
+  INDEX-FIELD "serie-docto" ASCENDING
+  INDEX-FIELD "nro-docto" ASCENDING
+  INDEX-FIELD "cod-emitente" ASCENDING
+  INDEX-FIELD "chave-xml" ASCENDING
+  INDEX-FIELD "dt-emissao" ASCENDING
+  INDEX-FIELD "log-cancelado" ASCENDING
+
+ADD FIELD "pasta-entrada-lnx" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 66
+  INITIAL ""
+  HELP "Pasta de Entrada Linux"
+  LABEL "Pasta de Entrada Linux"
+  COLUMN-LABEL "Entrada Linux"
+  ORDER 1110
+  MAX-WIDTH 160
+
+ADD FIELD "pasta-arq-config-lnx" OF "dt-empresa" AS character
+  DESCRIPTION "Pasta de arquivos de configuração para conexão Receita Federal"
+  FORMAT "x(80)"
+  POSITION 67
+  INITIAL ""
+  HELP "Pasta de arquivos de configuração Linux"
+  LABEL "Pasta Arq Config Linux"
+  COLUMN-LABEL "Pasta Arq Config Lnx"
+  ORDER 1120
+  MAX-WIDTH 160
+
+ADD FIELD "nome-arq-config-lnx" OF "dt-empresa" AS character
+  DESCRIPTION "Nome do arquivo de configuração (caminho e arquivo) Linux"
+  FORMAT "x(200)"
+  POSITION 68
+  INITIAL ""
+  HELP "Nome do arquivo de configuração (caminho e arquivo) Linux"
+  LABEL "Nome Arq Config Linux"
+  COLUMN-LABEL "Nome Arq Config Lnx"
+  ORDER 1130
+  MAX-WIDTH 400
+
+ADD FIELD "pasta-grava-log-linux" OF "dt-empresa" AS character
+  DESCRIPTION "Pasta onde serão armazenados os arquivos de LOG do Produto - LOG JAVA e-mail e destinadas"
+  FORMAT "x(80)"
+  POSITION 69
+  INITIAL ""
+  HELP "Pasta de Gravação de LOG Linux"
+  LABEL "Pasta de Log Linux"
+  COLUMN-LABEL "LOG Linux"
+  ORDER 1140
+  MAX-WIDTH 160
+
+ADD FIELD "pasta-erros-lnx" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 70
+  INITIAL ""
+  HELP "Pasta de Erros para execução de RPW em Linux"
+  LABEL "Pasta de Erros Linux"
+  COLUMN-LABEL "Erros Lnx"
+  ORDER 1090
+  MAX-WIDTH 160
+
+ADD FIELD "pasta-armaz-lnx" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 71
+  INITIAL ""
+  HELP "Pasta de Armazenagem Linux"
+  LABEL "Pasta de Armazenagem Linux"
+  COLUMN-LABEL "Armazena Lnx"
+  ORDER 1100
+  MAX-WIDTH 160
+
+ADD FIELD "cod-arq-certificado-lnx" OF "dt-empresa" AS character
+  FORMAT "x(200)"
+  POSITION 72
+  INITIAL ""
+  HELP "Arquivo Certificado Linux"
+  LABEL "Arquivo Certificado Linux"
+  COLUMN-LABEL "Arquivo Certificado Lnx"
+  ORDER 1150
+  MAX-WIDTH 400
+
+ADD FIELD "l-usa-linux-rpw" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 73
+  INITIAL "Não"
+  HELP "Usa SO Linux em servidor de RPW?"
+  LABEL "Usa Linux RPW"
+  COLUMN-LABEL "Usa Linux RPW"
+  ORDER 1160
+  MAX-WIDTH 1
+
+ADD FIELD "l-email-eventos" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 74
+  INITIAL "Não"
+  HELP "Envia E-Mail Eventos"
+  LABEL "Envia E-Mail Eventos"
+  COLUMN-LABEL "Envia E-Mail Eventos"
+  ORDER 1170
+  MAX-WIDTH 1
+
+ADD FIELD "l-valida-atualizacao" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 75
+  INITIAL "Não"
+  HELP "Valida a NF-e no momento da Atualização"
+  LABEL "Valia NF Atual"
+  COLUMN-LABEL "Valida NF Atual"
+  ORDER 1180
+  MAX-WIDTH 1
+
+ADD FIELD "l-copia-gfe" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 76
+  INITIAL "Não"
+  HELP "Copia arquivo XML de CT-e para pasta GFE"
+  LABEL "Copia CT-e para GFE"
+  COLUMN-LABEL "Copia CT-e para GFE"
+  ORDER 1190
+  MAX-WIDTH 1
+
+ADD FIELD "pasta-gfe" OF "dt-empresa" AS character
+  FORMAT "x(80)"
+  POSITION 77
+  INITIAL ""
+  HELP "Pasta Cópia GFE"
+  LABEL "Pasta Cópia GFE"
+  COLUMN-LABEL "Pasta Cópia GFE"
+  ORDER 1200
+  MAX-WIDTH 160
+
+ADD FIELD "l-manifest-rpw" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 78
+  INITIAL "Não"
+  HELP "Efetua Confirmação de Operação NF Período no Fechamento"
+  LABEL "Efetua Confirmação Fechamento"
+  COLUMN-LABEL "Efetua Confirmação Fechamento"
+  ORDER 1210
+  MAX-WIDTH 1
+
+ADD FIELD "l-impostos-capa" OF "dt-empresa" AS logical
+  DESCRIPTION "Mantém Impostos XML na Capa da Nota Fiscal no RE1001, sem recalcular"
+  FORMAT "Sim/Não"
+  POSITION 79
+  INITIAL "Não"
+  HELP "Mantém Impostos do XML na Capa da Nota Fiscal no RE1001"
+  LABEL "Mantém Impostos XML na Capa"
+  COLUMN-LABEL "Mantém Impostos XML na Capa"
+  ORDER 1220
+  MAX-WIDTH 1
+
+ADD FIELD "log-altera-ean-gtin" OF "dt-empresa" AS logical
+  FORMAT "Sim/Não"
+  POSITION 80
+  INITIAL "Não"
+  HELP "Altera EAN/GTIN do Item substituindo pelo do Fornecedor"
+  LABEL "Altera EAN/GTIN do Item"
+  COLUMN-LABEL "Altera EAN/GTIN do Item"
+  ORDER 1230
+  MAX-WIDTH 1
+
+ADD FIELD "l-bloqueia-op-finaliz" OF "dt-empresa" AS logical
+  DESCRIPTION "Bloqueia OP Finaliz/Terminada"
+  FORMAT "Sim/Não"
+  POSITION 81
+  INITIAL "Não"
+  HELP "Bloqueia Documento quando OP Finalizada ou Terminada"
+  LABEL "Bloqueia OP Finaliz/Terminada"
+  COLUMN-LABEL "Bloqueia OP Finaliz/Terminada"
+  ORDER 1240
+  MAX-WIDTH 1
+
+UPDATE FIELD "tipo-evento" OF "dt-eventos-documento"
+  VIEW-AS ""
+
+ADD FIELD "cod-estabel" OF "dt-eventos-documento" AS character
+  FORMAT "x(5)"
+  POSITION 17
+  INITIAL ""
+  LABEL "Estabelec"
+  COLUMN-LABEL "Estabelec"
+  ORDER 360
+  MAX-WIDTH 10
+
+ADD FIELD "int-2" OF "dt-eventos-documento" AS integer
+  FORMAT "->,>>>,>>9"
+  POSITION 18
+  INITIAL "0"
+  ORDER 370
+  MAX-WIDTH 4
+
+ADD FIELD "int-1" OF "dt-eventos-documento" AS integer
+  FORMAT "->,>>>,>>9"
+  POSITION 19
+  INITIAL "0"
+  ORDER 380
+  MAX-WIDTH 4
+
+ADD FIELD "dec-1" OF "dt-eventos-documento" AS decimal
+  FORMAT "->>,>>9.99"
+  POSITION 20
+  INITIAL "0"
+  DECIMALS 2
+  ORDER 390
+  MAX-WIDTH 17
+
+ADD FIELD "dec-2" OF "dt-eventos-documento" AS decimal
+  FORMAT "->>,>>9.99"
+  POSITION 21
+  INITIAL "0"
+  DECIMALS 2
+  ORDER 400
+  MAX-WIDTH 17
+
+ADD FIELD "log-1" OF "dt-eventos-documento" AS logical
+  FORMAT "yes/no"
+  POSITION 22
+  INITIAL "no"
+  ORDER 410
+  MAX-WIDTH 1
+
+ADD FIELD "log-2" OF "dt-eventos-documento" AS logical
+  FORMAT "yes/no"
+  POSITION 23
+  INITIAL "no"
+  ORDER 420
+  MAX-WIDTH 1
+
+ADD FIELD "char-1" OF "dt-eventos-documento" AS character
+  FORMAT "x(256)"
+  POSITION 24
+  INITIAL ""
+  ORDER 430
+  MAX-WIDTH 512
+
+ADD FIELD "char-2" OF "dt-eventos-documento" AS character
+  FORMAT "x(256)"
+  POSITION 25
+  INITIAL ""
+  ORDER 440
+  MAX-WIDTH 512
+
+ADD FIELD "date-1" OF "dt-eventos-documento" AS date
+  FORMAT "99/99/99"
+  POSITION 26
+  INITIAL ?
+  ORDER 450
+  MAX-WIDTH 4
+
+ADD FIELD "date-2" OF "dt-eventos-documento" AS date
+  FORMAT "99/99/99"
+  POSITION 27
+  INITIAL ?
+  ORDER 460
+  MAX-WIDTH 4
+
+ADD FIELD "dt-consulta" OF "dt-eventos-documento" AS date
+  FORMAT "99/99/9999"
+  POSITION 28
+  INITIAL ?
+  LABEL "Dt Consulta"
+  COLUMN-LABEL "Dt Consulta"
+  ORDER 470
+  MAX-WIDTH 4
+
+ADD FIELD "log-alt-ncm" OF "dt-ge-alt-ncm" AS logical
+  FORMAT "Sim/Não"
+  POSITION 14
+  INITIAL "Não"
+  HELP "Altera NCM Item"
+  LABEL "Altera NCM"
+  COLUMN-LABEL "Altera NCM"
+  ORDER 130
+  MAX-WIDTH 1
+
+ADD FIELD "log-alt-ean" OF "dt-ge-alt-ncm" AS logical
+  FORMAT "Sim/Não"
+  POSITION 15
+  INITIAL "Não"
+  HELP "Altera EAN/GTIN Item"
+  LABEL "Altera EAN/GTIN"
+  COLUMN-LABEL "Altera EAN/GTIN"
+  ORDER 140
+  MAX-WIDTH 1
+
+ADD FIELD "cod-ean-fornec" OF "dt-it-docum-est" AS character
+  FORMAT "x(16)"
+  POSITION 94
+  INITIAL ""
+  HELP "EAN Fornecedor"
+  LABEL "EAN Fornec"
+  COLUMN-LABEL "EAN Fornec"
+  ORDER 930
+  MAX-WIDTH 32
+
+UPDATE FIELD "idi-tipo-processo" OF "dt-log-sefaz"
+  DESCRIPTION "1 - Consulta Destinadas;
+2 - Ciência Operação;
+3 - Download Documento;
+4 - Manifestação Destinatário;"
+  VIEW-AS "view-as radio-set radio-buttons {include/i04dts0911.i 02}"
+
+UPDATE FIELD "ind-sit-conf" OF "dt-notas-destinadas"
+  VIEW-AS "view-as radio-set radio-buttons {include/i03dts0911.i 02}"
+
+ADD FIELD "l-manifesta" OF "dt-usuario-estab" AS logical
+  FORMAT "Sim/Não"
+  POSITION 22
+  INITIAL "Não"
+  LABEL "Manifesta Documento"
+  COLUMN-LABEL "Manifesta Documento"
+  ORDER 770
+  MAX-WIDTH 1
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000022807

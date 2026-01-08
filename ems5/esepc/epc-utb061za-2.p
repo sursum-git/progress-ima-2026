@@ -1,0 +1,7 @@
+DEF NEW GLOBAL SHARED VAR h-cotacao AS HANDLE NO-UNDO.
+ 
+ASSIGN h-cotacao = SELF.
+    
+
+
+

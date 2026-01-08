@@ -1,0 +1,5 @@
+/* Include: es022.fv2
+** Tabela.: mov-man
+*/
+
+data-abe >= 01/01/0001 and data-abe <= today

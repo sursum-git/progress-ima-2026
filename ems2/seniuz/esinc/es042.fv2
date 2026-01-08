@@ -1,0 +1,5 @@
+/* Include: es042.fv2
+** Tabela.: familia-ext
+*/
+
+can-find(espec.composi where espec.composi.cod-composi = espec.familia-ext.cod-composi)

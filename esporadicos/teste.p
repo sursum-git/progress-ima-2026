@@ -1,0 +1,2 @@
+MESSAGE 'teste de mensagem'
+    VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.

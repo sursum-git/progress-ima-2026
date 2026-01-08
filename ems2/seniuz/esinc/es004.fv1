@@ -1,0 +1,5 @@
+/* Include: es004.fv1
+** Tabela.: contr-sac
+*/
+
+can-find(mgind.familia where mgind.familia.fm-codigo = espec.contr-sac.fm-codigo)

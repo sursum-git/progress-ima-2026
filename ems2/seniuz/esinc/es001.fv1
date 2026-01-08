@@ -1,0 +1,5 @@
+/* Include: es001.fv1
+** Tabela.: amostra-fam
+*/
+
+can-find(mgind.familia where mgind.familia.fm-codigo = espec.amostra-fam.fm-codigo)

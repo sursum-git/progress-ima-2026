@@ -1,0 +1,73 @@
+DEF NEW GLOBAL SHARED VAR c-seg-usuario AS CHAR NO-UNDO.
+
+/* Includes para gerar Movto Estoq */
+{cdp/cd0666.i}
+{cep/ceapi001.i}
+/*{cep/ceapi002.i}*/
+
+RUN pi-acerta-estoq (INPUT '130048',
+                     INPUT '013',
+                     INPUT '013', 
+                     INPUT 25,
+                     INPUT 33,
+                     INPUT 2,
+                     01.16.2012).
+
+
+
+PROCEDURE pi-acerta-estoq :
+    DEF INPUT PARAMETER p-it-codigo  AS CHAR.
+    DEF INPUT PARAMETER p-cod-refer  AS CHAR.
+    DEF INPUT PARAMETER p-lote       AS CHAR.
+    DEF INPUT PARAMETER p-qtde       AS DEC.
+    DEF INPUT PARAMETER p-esp-docto  AS INT.
+    DEF INPUT PARAMETER p-tipo-trans AS INT.
+    DEF INPUT PARAMETER p-dt-trans   AS DATE.
+
+    FIND FIRST param-estoq NO-LOCK NO-ERROR.
+
+    FIND ITEM WHERE
+         ITEM.it-codigo = p-it-codigo NO-LOCK NO-ERROR.
+
+    FOR EACH tt-movto.
+        DELETE tt-movto.
+    END.
+
+    CREATE tt-movto.
+    ASSIGN tt-movto.cod-versao-integracao = 1                 /* acrescentado*/
+           tt-movto.cod-prog-orig = "ESSP0145"                /* acrescentado*/
+           tt-movto.usuario = c-seg-usuario                   /* acrescentado*/
+           tt-movto.cod-estabel  = '1'     /* param-estoq.estabel-pad */
+           tt-movto.ct-codigo = IF p-esp-docto = 33 
+                                THEN param-estoq.ct-tr-transf
+                                ELSE param-estoq.ct-acerto
+           tt-movto.sc-codigo = IF p-esp-docto = 33 
+                                THEN param-estoq.sc-tr-transf
+                                ELSE param-estoq.sc-acerto
+           tt-movto.conta-contabil = IF p-esp-docto = 33
+                                     THEN param-estoq.conta-transf
+                                     ELSE param-estoq.conta-acerto
+           tt-movto.esp-docto = p-esp-docto
+           tt-movto.tipo-trans = p-tipo-trans
+           tt-movto.cod-depos = item.deposito-pad
+           tt-movto.dt-trans = p-dt-trans
+           tt-movto.it-codigo = p-it-codigo
+           tt-movto.cod-refer = p-cod-refer
+           tt-movto.lote = p-lote
+           tt-movto.quantidade = p-qtde
+           tt-movto.un = item.un
+           tt-movto.dt-vali-lote = 12.31.9999.
+
+    RUN cep/ceapi001.p (INPUT-OUTPUT TABLE tt-movto,
+                        INPUT-OUTPUT TABLE tt-erro,
+                        INPUT YES). /* Deleta erros? */
+   
+    FIND FIRST tt-erro NO-LOCK NO-ERROR.
+    IF AVAIL tt-erro THEN DO.
+       FOR EACH tt-erro.
+           MESSAGE "Erro ao reportar o item " SKIP
+                   tt-erro.mensagem
+                   VIEW-AS ALERT-BOX ERROR.
+       END.
+    END.
+END PROCEDURE.

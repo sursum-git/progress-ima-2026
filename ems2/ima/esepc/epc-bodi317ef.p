@@ -214,8 +214,10 @@ IF p-ind-event = "EndEfetivaNota":U THEN DO:
                   ped-venda-ext.nr-pedido = ped-venda.nr-pedido NO-LOCK NO-ERROR.
         
              IF AVAIL ped-venda-ext AND
-                ped-venda-ext.tp-frete <> 'Cif Destaque NF' THEN
+                ped-venda-ext.tp-frete BEGINS 'Cif' AND
+                ped-venda-ext.tp-frete <> 'Cif Destaque NF' THEN 
                 ASSIGN nota-fiscal.vl-frete = 0.
+
     
              IF ped-venda-ext.compl-observ <> '' THEN 
                 ASSIGN nota-fiscal.observ-nota = ped-venda-ext.compl-observ + nota-fiscal.observ-nota.

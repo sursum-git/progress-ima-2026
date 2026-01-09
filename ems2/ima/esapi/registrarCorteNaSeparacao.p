@@ -22,7 +22,8 @@ Data: 09/2025
 {esapi/analisarJsonObject2.i}
 {esp/util.i}
 {esapi/retorno-isf-lisa.i}
-
+{esp/params.i}
+{lisa/codProdUnif.i}
 
 DEFINE INPUT PARAMETER TABLE FOR ttJson.
 DEFINE OUTPUT PARAMETER cErro   AS CHAR.
@@ -43,6 +44,9 @@ RUN esapi/analisarJsonobject3.p(oJson, OUTPUT TABLE ttJson).     */
 
 RUN esbo/boMsg.p        PERSIST SET hBoMsg.
 RUN esbo/boTransacoes.p PERSIST SET hBoTrans.  
+
+/*MESSAGE 'versao2'
+    VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.*/
 
 //{esp/exportarTabelaCsv3.i ttJson " " " " "ttjson"}
 
@@ -104,6 +108,13 @@ RUN setMsg IN hBoMsg(999,'x-arr-log-id:' + x-arr-log-id,'log').
     END.    
 END.
 
+IF lCodigoProdUnificado THEN DO:
+   FOR EACH ttReservas:
+       ASSIGN ttReservas.cod-refer = ENTRY(2,ttreservas.it-codigo,"-")
+              ttReservas.it-codigo = ENTRY(1,ttreservas.it-codigo,"-")                
+              .         
+   END.    
+END.
 RUN iniciarTransacao IN hBoTrans.
 RUN gerarTransacao   IN hBoTrans(INPUT 'registrarCorteNaSeparacao',
                                  INPUT c-seg-usuario,

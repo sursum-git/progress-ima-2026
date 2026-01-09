@@ -344,12 +344,12 @@ IF AVAIL cont-emit THEN
   2 Î Terceiros
   9 Î Sem Frete
 =====================================================================================================================================================*/
-/* IF c-seg-usuario = 'SUPER' THEN DO:                                */
-/*     MESSAGE ttTransp.modfrete SKIP                                 */
-/*             nota-fiscal.nome-ab-cli = nota-fiscal.nome-abrev SKIP  */
-/*             nota-fiscal.nr-pedcli                                  */
-/*         VIEW-AS ALERT-BOX INFO BUTTONS OK.                         */
-/* END.                                                               */
+ //IF c-seg-usuario = 'SUPER' THEN DO:                               
+ //    MESSAGE ttTransp.modfrete SKIP                                 
+ //            nota-fiscal.nome-ab-cli = nota-fiscal.nome-abrev SKIP  
+ //            nota-fiscal.nr-pedcli                                  
+ //        VIEW-AS ALERT-BOX INFO BUTTONS OK.                         
+ //END.                                                               
 
 
 IF ttTransp.modfrete = '1' AND /* FOB */

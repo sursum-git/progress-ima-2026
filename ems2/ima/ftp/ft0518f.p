@@ -351,12 +351,29 @@ IF AVAIL cont-emit THEN
  //        VIEW-AS ALERT-BOX INFO BUTTONS OK.                         
  //END.                                                               
 
+IF ttTransp.modfrete = '1' THEN DO.     // FOB
+   IF nota-fiscal.nome-ab-cli = nota-fiscal.nome-abrev AND
+      nota-fiscal.nr-pedcli = "" THEN
+      ASSIGN ttTransp.modfrete = "2".
+   /*
+   FIND ped-venda WHERE
+        ped-venda.nome-abrev = nota-fiscal.nome-ab-cli AND 
+        ped-venda.nr-pedcli = nota-fiscal.nr-pedcli
+        NO-LOCK NO-ERROR.
 
-IF ttTransp.modfrete = '1' AND /* FOB */
-   nota-fiscal.nome-ab-cli = nota-fiscal.nome-abrev AND
-   nota-fiscal.nr-pedcli = "" THEN
-   ASSIGN ttTransp.modfrete = "2".
+   IF AVAIL ped-venda THEN DO.
+      FIND ped-venda-ext WHERE
+           ped-venda-ext.cod-estabel = ped-venda.cod-estabel AND 
+           ped-venda-ext.nr-pedido = ped-venda.nr-pedido NO-LOCK NO-ERROR.
+    
+     IF AVAIL ped-venda-ext AND
+        ped-venda-ext.tp-frete BEGINS 'Cif' THEN 
+        ASSIGN ttTransp.modfrete = "0".
+   END.
+   */
+END.
 
+   
 CASE ttTransp.modfrete:
     WHEN "0":U THEN
         ASSIGN c-desc-mod-frete = "0 Î Emitente":U.

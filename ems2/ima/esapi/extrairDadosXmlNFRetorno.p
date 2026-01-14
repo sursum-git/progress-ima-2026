@@ -9,7 +9,7 @@ DEFINE OUTPUT PARAMETER pErroProgress AS CHARACTER   NO-UNDO.
 
 DEFINE VARIABLE iCont   AS INTEGER     NO-UNDO.
 DEFINE VARIABLE cDtEmis AS CHARACTER   NO-UNDO.
-assign retOK = dataset nfeProcDset:READ-XML('longchar',
+assign retOK = dataset nfeProcDset:READ-XML('longchar',   
                                         lcXML,
                                         "empty",
                                         ?,
@@ -37,7 +37,6 @@ IF AVAIL ide THEN DO:
 END.
 
 
-
 //busca fornecedor
 FIND FIRST emit NO-ERROR.
 IF AVAIL emit THEN DO:
@@ -48,8 +47,7 @@ IF AVAIL emit THEN DO:
        // criar campo de cod-emitente e colocar aqui
    END.                
 END.
-
-
+ 
 
 //busca estabelecimento
 FIND FIRST dest NO-ERROR.
@@ -73,6 +71,7 @@ FOR EACH NFref.
     ASSIGN iCont = iCont + 1.
     ASSIGN ttReg.chaves_nfs_refer[iCont] = string(nfref.refnfe) .
 END.
+
 
 // busca o valor da nota fiscal
 FIND FIRST IcmsTot NO-ERROR.

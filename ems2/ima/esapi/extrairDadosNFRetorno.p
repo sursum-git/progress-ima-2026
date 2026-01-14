@@ -44,6 +44,8 @@ DEFINE VARIABLE vlNF            AS DECIMAL     NO-UNDO.
 DEFINE VARIABLE retOk           AS LOGICAL     NO-UNDO.
 DEFINE VARIABLE idRetorno       AS INTEGER     NO-UNDO.
 
+
+
 //DEFINE VARIABLE hboMsg          AS HANDLE      NO-UNDO.
 CREATE ttReg.
 ASSIGN ttReg.nr_pedido      = getChaveTTJson('payload', 'pedidoCliente')
@@ -60,8 +62,7 @@ DO:  ASSIGN
 END.
        
        
-       
-       
+
        
        
 /*RUN esp/instProg.p('esbo/boMsg.p'        , OUTPUT hBoMsg).
@@ -117,11 +118,11 @@ ASSIGN lcXML = REPLACE(lcXML,"\/","/")
        lcXML = REPLACE(lcXML,'\"','"')
        . 
 
-
 RUN esapi/extrairDadosXmlNfRetorno.p(INPUT-OUTPUT TABLE ttReg,
                                      INPUT lcXMl,
                                      OUTPUT retOk,
                                      OUTPUT cErroProgress).
+FIND FIRST ttReg NO-ERROR.                                     
 IF retOk = FALSE THEN DO:
    ASSIGN lcXML = cErroProgress
           ttReg.LOG_erro_xml = YES .
@@ -247,8 +248,9 @@ PROCEDURE criarRomaneiosRetorno:
 END PROCEDURE.
 
 PROCEDURE criarRetornoLISA:
-
-    DEFINE VARIABLE cDataEmis AS DATE        NO-UNDO.
+    MESSAGE 'ponto 1'
+        VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+    DEFINE VARIABLE cDataEmis AS DATE   NO-UNDO.
     FIND FIRST ttReg NO-ERROR.
 
     IF AVAIL ttReg THEN DO:
@@ -265,6 +267,7 @@ PROCEDURE criarRetornoLISA:
               .
 
     END.
-
+    MESSAGE 'ponto 2'
+        VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
 
 END PROCEDURE.

@@ -70,6 +70,9 @@ RUN setMsg IN hBoMsg(1,'Nr_pedido='    + ttReg.Nr_pedido,'log').
 RUN setMsg IN hBoMsg(1,'Pre_pedido='   + string(ttReg.pre_pedido),'log').
 RUN setMsg IN hBoMsg(1,'dt_hr_recbto=' + STRING(dt_hr_recbto,"99/99/9999 hh:mm:ss"),'log').
 */
+MESSAGE 'nr.pedido:' ttReg.nr_pedido
+    VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+
 IF ttReg.nr_pedido = "" THEN DO:
    
    RETURN "NOK".
@@ -248,13 +251,13 @@ PROCEDURE criarRomaneiosRetorno:
 END PROCEDURE.
 
 PROCEDURE criarRetornoLISA:
-    MESSAGE 'ponto 1'
-        VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+    
     DEFINE VARIABLE cDataEmis AS DATE   NO-UNDO.
     FIND FIRST ttReg NO-ERROR.
 
     IF AVAIL ttReg THEN DO:
-
+       MESSAGE 'vou criar o retorno lisa'
+           VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
        CREATE retornos_lisa.
        BUFFER-COPY ttReg TO retornos_lisa.
        ASSIGN retornos_lisa.retorno_lisa_id = NEXT-VALUE(seq_retorno_lisa)
@@ -265,9 +268,9 @@ PROCEDURE criarRetornoLISA:
               retornos_lisa.dt_hr_recbto    = ttReg.dt_hr_recbto 
               retornos_lisa.arquivo_json    = ttReg.arquivo_json*/
               .
+              
 
     END.
-    MESSAGE 'ponto 2'
-        VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+   
 
 END PROCEDURE.

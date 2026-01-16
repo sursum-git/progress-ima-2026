@@ -26,8 +26,10 @@ DEF VAR i-id AS INT.
 
 
 DEF INPUT PARAMETER p-row-di135 AS ROWID.
+{esp/util.i}
 {esp/params.i}
 {lisa/codProdUnif.i}
+
 
 FIND nota-fiscal WHERE
      ROWID(nota-fiscal) = p-row-di135 NO-LOCK NO-ERROR.
@@ -81,11 +83,11 @@ END.
 
 //limpar item em branco
 FOR EACH infRolos
-    WHERE infRolos.produto = '':
+    WHERE infRolos.produto = '' OR infRolos.quantidade = 0:
     DELETE infRolos.
 END.
 
-
+{esp/exportarTabelaCsv3.i infRolos " " " " "rolos"}
 
 DEF DATASET dsNFe SERIALIZE-NAME '' FOR infNotaEntrada, infRolos DATA-RELATION relx FOR infNotaEntrada, infRolos RELATION-FIELDS (id,id) NESTED.
 RUN pi-chama-api.

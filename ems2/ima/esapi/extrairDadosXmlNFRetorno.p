@@ -78,3 +78,5 @@ FIND FIRST IcmsTot NO-ERROR.
 IF AVAIL IcmsTot THEN DO:
    ASSIGN ttReg.vl_nota = IcmsTot.vNF .
 END.
+
+{esp/retornarErrosMsg.i}

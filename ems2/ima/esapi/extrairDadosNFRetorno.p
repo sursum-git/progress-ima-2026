@@ -70,8 +70,7 @@ RUN setMsg IN hBoMsg(1,'Nr_pedido='    + ttReg.Nr_pedido,'log').
 RUN setMsg IN hBoMsg(1,'Pre_pedido='   + string(ttReg.pre_pedido),'log').
 RUN setMsg IN hBoMsg(1,'dt_hr_recbto=' + STRING(dt_hr_recbto,"99/99/9999 hh:mm:ss"),'log').
 */
-MESSAGE 'nr.pedido:' ttReg.nr_pedido
-    VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+
 
 IF ttReg.nr_pedido = "" THEN DO:
    
@@ -97,14 +96,14 @@ IF lcXMl = ''  THEN  DO:
 END.
 
 
-    
 IF lcXMl = '' THEN DO:
    RETURN 'nok'.
 END.
-    
+
  
 //se o tamanho for menor que 100 quer dizer que Ç o nome do arquivo e n∆o o conteudo que esta na tag
 IF length(lcXML) < 100 THEN DO:
+    
    /*MESSAGE 'longchar'
        VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.*/
    ASSIGN cArquivo = STRING(lcXMl).
@@ -112,6 +111,8 @@ IF length(lcXML) < 100 THEN DO:
       COPY-LOB FROM FILE cArquivo TO lcXml.   
    ELSE DO:
       //ASSIGN cErro = 'arquivo n∆o encontrado:' +  cArquivo .
+      MESSAGE 'arquivo xml n∆o encontrado'
+          VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
       RETURN 'nok'.                                      
    END.
       
@@ -119,8 +120,7 @@ END.
 
 ASSIGN lcXML = REPLACE(lcXML,"\/","/")
        lcXML = REPLACE(lcXML,'\"','"')
-       . 
-
+       .  
 RUN esapi/extrairDadosXmlNfRetorno.p(INPUT-OUTPUT TABLE ttReg,
                                      INPUT lcXMl,
                                      OUTPUT retOk,
@@ -129,6 +129,8 @@ FIND FIRST ttReg NO-ERROR.
 IF retOk = FALSE THEN DO:
    ASSIGN lcXML = cErroProgress
           ttReg.LOG_erro_xml = YES .
+          MESSAGE cErroProgress
+              VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
    RETURN 'nok'.
 END.
 FIND FIRST ttReg NO-ERROR.
@@ -172,8 +174,10 @@ Order Field Name                       Data Type   Flags
 
 PROCEDURE getEtqsRomaneio:
 
-    DEFINE VARIABLE iCont AS INTEGER     NO-UNDO.
-    DEFINE VARIABLE cData AS CHARACTER   NO-UNDO.
+    DEFINE VARIABLE iCont   AS INTEGER     NO-UNDO.
+    DEFINE VARIABLE iCont2  AS INTEGER     NO-UNDO.
+    DEFINE VARIABLE cData   AS CHARACTER   NO-UNDO.
+    DEFINE VARIABLE cItem   AS CHARACTER   NO-UNDO.
     
     RUN geTtNos('separacao','','json', OUTPUT TABLE ttNos).
     FOR EACH ttNos:
@@ -203,15 +207,25 @@ PROCEDURE getEtqsRomaneio:
                 END.
                 WHEN 'quantidade' THEN
                    ASSIGN ttRomaneio.quantidade =  dec(replace(ttJson.valor,'.',',') ).
-            END CASE.
-            
-            IF lCodigoProdUnificado THEN  DO:
-               ASSIGN ttRomaneio.it_codigo = ENTRY(1,ttRomaneio.it_codigo,"-") 
-                      ttRomaneio.cod_refer = ENTRY(2,ttRomaneio.it_codigo,"-")   
-                      .                 
-            END.
-
+            END CASE.          
+           
+                
+/*             REPEAT icont2 = 1 TO LENGTH(ttRomaneio.it_codigo):     */
+/*                 MESSAGE SUBSTR(ttRomaneio.it_codigo,iCont2,1) SKIP */
+/*                         ASC(SUBSTR(ttRomaneio.it_codigo,iCont2,1)) */
+/*                     VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.      */
+/*             END.                                                   */                    
         END.
+    END.
+    
+    FOR EACH ttRomaneio:
+        ASSIGN cItem =  ttRomaneio.it_codigo.   
+        IF lCodigoProdUnificado AND NUM-ENTRIES(cItem,"-") > 1 THEN  DO:
+           ASSIGN ttRomaneio.cod_refer = ENTRY(2,cItem,"-")   
+                  ttRomaneio.it_codigo = ENTRY(1,cItem,"-")                       
+                  .                 
+        END.
+      
     END.
     //{esp/exportarTabelacsv3.i ttNos " " " " "  "ttNos01" }
     //{esp/exportarTabelacsv3.i ttRomaneio " " " " "  "ttRomaneio01" }
@@ -255,9 +269,7 @@ PROCEDURE criarRetornoLISA:
     DEFINE VARIABLE cDataEmis AS DATE   NO-UNDO.
     FIND FIRST ttReg NO-ERROR.
 
-    IF AVAIL ttReg THEN DO:
-       MESSAGE 'vou criar o retorno lisa'
-           VIEW-AS ALERT-BOX INFORMATION BUTTONS OK.
+    IF AVAIL ttReg THEN DO:       
        CREATE retornos_lisa.
        BUFFER-COPY ttReg TO retornos_lisa.
        ASSIGN retornos_lisa.retorno_lisa_id = NEXT-VALUE(seq_retorno_lisa)

@@ -103,6 +103,13 @@ IF AVAIL ped-venda-ext THEN DO.
    END.
 END.
 
+IF ped-venda-ext.tp-frete BEGINS 'Cif' THEN 
+   ASSIGN ped-venda.cidade-cif = ped-venda.cidade
+          ped-venda.ind-tp-frete = 1.
+ELSE
+   ASSIGN ped-venda.cidade-cif = ''
+          ped-venda.ind-tp-frete = 2.
+ 
 /*IF ped-venda-ext.tp-frete = "Cif Total" THEN
 DO: 
       
